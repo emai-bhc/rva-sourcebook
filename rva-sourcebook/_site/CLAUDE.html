@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>claude – rva-sourcebook</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">rva-sourcebook</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./demographics.html"> 
+<span class="menu-text">demographics.html</span></a>
+  </li>  
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">economics.qmd</span>
+    </span>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#claude.md-richmond-regional-housing-framework-2026-data-update" id="toc-claude.md-richmond-regional-housing-framework-2026-data-update" class="nav-link active" data-scroll-target="#claude.md-richmond-regional-housing-framework-2026-data-update">CLAUDE.md — Richmond Regional Housing Framework 2026 Data Update</a>
+  <ul class="collapse">
+  <li><a href="#start-of-session-checklist" id="toc-start-of-session-checklist" class="nav-link" data-scroll-target="#start-of-session-checklist">Start-of-session checklist</a></li>
+  <li><a href="#end-of-session-checklist" id="toc-end-of-session-checklist" class="nav-link" data-scroll-target="#end-of-session-checklist">End-of-session checklist</a></li>
+  <li><a href="#commit-conventions" id="toc-commit-conventions" class="nav-link" data-scroll-target="#commit-conventions">Commit conventions</a></li>
+  <li><a href="#token-efficiency-and-model-policy" id="toc-token-efficiency-and-model-policy" class="nav-link" data-scroll-target="#token-efficiency-and-model-policy">Token efficiency and model policy</a></li>
+  <li><a href="#data-flow-rule" id="toc-data-flow-rule" class="nav-link" data-scroll-target="#data-flow-rule">Data flow rule</a></li>
+  <li><a href="#code-style-and-script-anatomy" id="toc-code-style-and-script-anatomy" class="nav-link" data-scroll-target="#code-style-and-script-anatomy">Code style and script anatomy</a></li>
+  <li><a href="#validation-semantics" id="toc-validation-semantics" class="nav-link" data-scroll-target="#validation-semantics">Validation semantics</a></li>
+  <li><a href="#what-_common.r-provides" id="toc-what-_common.r-provides" class="nav-link" data-scroll-target="#what-_common.r-provides">What <code>_common.R</code> provides</a></li>
+  <li><a href="#chart-and-table-conventions" id="toc-chart-and-table-conventions" class="nav-link" data-scroll-target="#chart-and-table-conventions">Chart and table conventions</a></li>
+  <li><a href="#narrative-rule" id="toc-narrative-rule" class="nav-link" data-scroll-target="#narrative-rule">Narrative rule</a></li>
+  <li><a href="#execution-on-windows" id="toc-execution-on-windows" class="nav-link" data-scroll-target="#execution-on-windows">Execution on Windows</a></li>
+  <li><a href="#api-keys" id="toc-api-keys" class="nav-link" data-scroll-target="#api-keys">API keys</a></li>
+  <li><a href="#data-fetch-rule" id="toc-data-fetch-rule" class="nav-link" data-scroll-target="#data-fetch-rule">Data-fetch rule</a></li>
+  <li><a href="#publishing-status" id="toc-publishing-status" class="nav-link" data-scroll-target="#publishing-status">Publishing status</a></li>
+  <li><a href="#known-gotchas" id="toc-known-gotchas" class="nav-link" data-scroll-target="#known-gotchas">Known gotchas</a></li>
+  <li><a href="#repo-map" id="toc-repo-map" class="nav-link" data-scroll-target="#repo-map">Repo map</a></li>
+  <li><a href="#geography-and-vintages" id="toc-geography-and-vintages" class="nav-link" data-scroll-target="#geography-and-vintages">Geography and vintages</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="claude.md-richmond-regional-housing-framework-2026-data-update" class="level1">
+<h1>CLAUDE.md — Richmond Regional Housing Framework 2026 Data Update</h1>
+<p>Conventions for all Claude sessions on this project. <strong>This is a report repo</strong> under the HDA four-type taxonomy, which settles the commit vocabulary below. <a href="./TODO.html"><strong>TODO.md</strong></a> <strong>is the punch list</strong> — start every session there. <a href="METHODOLOGY.md">METHODOLOGY.md</a> holds the internal data/geography/scope conventions; <code>data-notes.qmd</code> holds the public-facing methodology.</p>
+<section id="start-of-session-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="start-of-session-checklist">Start-of-session checklist</h2>
+<ol type="1">
+<li>Read this file, then <a href="./TODO.html">TODO.md</a>, then the top entry of <a href="LOG.md">LOG.md</a>.</li>
+<li>Read <a href="METHODOLOGY.md">METHODOLOGY.md</a> and <code>_common.R</code> for the geography/PUMS/scope rules that bear on the task at hand. Do not read the reference repos unless the task sends you there.</li>
+<li>Verify that the prerequisite raw files exist under <code>data/raw/</code>. If any are missing, do the work that does not need them and record the blocker in the log entry.</li>
+</ol>
+</section>
+<section id="end-of-session-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="end-of-session-checklist">End-of-session checklist</h2>
+<ol type="1">
+<li>Update <a href="./TODO.html">TODO.md</a> — check off what landed, add anything new that surfaced.</li>
+<li>Append a <a href="LOG.md">LOG.md</a> entry: what changed, data surprises, any 2022 percentage change, what was left open.</li>
+<li>Update README.md or this file if a convention changed — same session, not a follow-up.</li>
+<li>Commit the work and the log entry together — <code>hda-git:commit</code>.</li>
+</ol>
+</section>
+<section id="commit-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="commit-conventions">Commit conventions</h2>
+<p><code>hda-git:commit</code> owns the full grammar, the staging rules, and the branch-or-main decision. What is specific to this repo:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Repo type</td>
+<td>Report</td>
+</tr>
+<tr class="even">
+<td>Commit types</td>
+<td><code>fix</code>, <code>docs</code>, <code>chore</code>, <code>data</code>, <code>content</code>, <code>infra</code></td>
+</tr>
+<tr class="odd">
+<td>Scope</td>
+<td>A component noun (<code>docs(readme)</code>, <code>data(acs-tenure)</code>, <code>content(gaps)</code>). Optional on <code>docs</code> and <code>chore</code> commits.</td>
+</tr>
+<tr class="even">
+<td>Versioned</td>
+<td>No.&nbsp;Git history plus <a href="LOG.md">LOG.md</a> is the release record</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="token-efficiency-and-model-policy" class="level2">
+<h2 class="anchored" data-anchor-id="token-efficiency-and-model-policy">Token efficiency and model policy</h2>
+<ul>
+<li><strong>Start narrow.</strong> Read TODO.md and only the LOG.md/METHODOLOGY.md sections that bear on the task. Do not read whole files when a block will do.</li>
+<li><strong>Model by session type.</strong> Sonnet for mechanical data pulls, geography swaps, and QA sweeps. Opus for PUMS methodology, gap analysis, and chapter builds. Fable for meta-level investigation and critique only, never for core output.</li>
+<li><strong>User runs long jobs</strong> — PUMS, CHAS, and tigris pulls, and any full render over roughly two minutes. Claude writes the script; user runs it and pastes back errors and validation output. Never babysit a long <code>Rscript</code> run.</li>
+<li><strong>Manual data drops</strong> for MLS and CoStar go straight into <code>data/raw/</code>. User provides them.</li>
+<li><strong>Skills carry the boilerplate.</strong> Invoke <code>/new-data-script</code> before writing a new <code>r/*.R</code> pull or prep script, and <code>/new-chapter</code> before a new section <code>.qmd</code>. Never regenerate the anatomy from scratch in context. Both live in-repo at <code>.claude/skills/</code>. Each reads a project-config block from this file, <a href="METHODOLOGY.md">METHODOLOGY.md</a>, and <code>_common.R</code> at invocation and creates a pha-shaped scaffold. Full exemplars and a conventions digest are in each skill’s <code>references/</code>.</li>
+</ul>
+</section>
+<section id="data-flow-rule" class="level2">
+<h2 class="anchored" data-anchor-id="data-flow-rule">Data flow rule</h2>
+<p><code>r/</code> scripts write <code>data/*.rds</code> and, through <code>export_csv()</code>, <code>data-out/*.csv</code>. Chapters call <code>read_rds()</code> only. <strong>Chapters never call APIs.</strong></p>
+</section>
+<section id="code-style-and-script-anatomy" class="level2">
+<h2 class="anchored" data-anchor-id="code-style-and-script-anatomy">Code style and script anatomy</h2>
+<p>Script anatomy: a header comment stating what, source, and output → numbered <code>## 1. Setup ----</code> sections → an <code>.Renviron</code> fallback for keys → <code>write_rds()</code> paired with <code>export_csv()</code> → a validation block. Scripts are idempotent and safe to re-run. No inline <code>install.packages()</code>.</p>
+<ul>
+<li>Native pipe <code>|&gt;</code>, tidyverse style, <code>janitor::clean_names()</code> on all imported raw data.</li>
+<li>dplyr 1.2 idioms: <code>.by=</code> over <code>group_by()</code> for one-off grouping; <code>across()</code>; <code>join_by()</code>; <code>reframe()</code> for multi-row summaries. Use <code>recode_values()</code> for value-to-label recodes — the pinned dplyr is 1.2.1 and <code>case_match()</code> is soft-deprecated. Reserve <code>case_when()</code> for genuine conditional logic.</li>
+<li><code>purrr::map()</code> and <code>imap()</code> over <code>for</code> loops, bound with <code>list_rbind()</code> or <code>list_cbind()</code>. The pinned purrr is 1.2.2, in which <code>map_dfr()</code> and <code>map_dfc()</code> are superseded. Pattern: <code>map(years, \(yr) get_acs(..., year = yr) |&gt; mutate(year = yr)) |&gt; list_rbind()</code>.</li>
+<li>tidycensus: <code>get_acs(geography, state = "VA", table = "BXXXXX", year, survey = "acs5", cache_table = TRUE)</code>. Pull whole tables and build label lookups from <code>load_variables()</code> with <code>separate_wider_delim(label, "!!")</code>.</li>
+</ul>
+</section>
+<section id="validation-semantics" class="level2">
+<h2 class="anchored" data-anchor-id="validation-semantics">Validation semantics</h2>
+<ul>
+<li><code>stopifnot()</code> fires only on structural expectations (row counts, all geographies present, no all-NA columns) and on <strong>same-vintage</strong> published benchmarks — a HUD-published MFI, a Census-published table total, or the State of Housing deck numbers, which are current as of January 2026.</li>
+<li>2022 baselines are compared as a <strong>logged percentage change in the session’s log entry</strong>, never as a <code>stopifnot()</code> gate. Implausible swings are flagged for human review. They never fail a build, because 2020-2024 ACS and 2016-2020 ACS differ by construction.</li>
+<li>Every data phase logs its benchmark results, both passes and variances.</li>
+</ul>
+</section>
+<section id="what-_common.r-provides" class="level2">
+<h2 class="anchored" data-anchor-id="what-_common.r-provides">What <code>_common.R</code> provides</h2>
+<ul>
+<li><strong>Palettes:</strong> <code>pha_pal</code>, the 6 brand hexes, and <code>cb_pal</code> for cost-burden fills.</li>
+<li><strong>Geography:</strong> <code>rr</code> (8), <code>pha</code> (4 primary), <code>secondary</code> (4), <code>ashland</code> (place 5103368, sumlev 160), <code>virginia</code>; and the PUMS sets <code>puma_core3</code>, <code>puma_region</code>, <code>puma_locality</code>.</li>
+<li><strong>Regional chapter geography rule:</strong> Regional findings chapters (<code>demand.qmd</code>, <code>ownership.qmd</code>, <code>rental.qmd</code>, <code>gaps.qmd</code>, <code>burden.qmd</code>) filter all chart data and inline scalars with <code>pha</code> (or <code>c(pha, "51")</code> when Virginia appears as a reference). Use <code>rr</code> only in <code>r/</code> data-collection scripts and in <code>index.qmd</code> / <code>data-notes.qmd</code> scope statements. Secondary localities are never plotted or named as findings in regional chapters.</li>
+<li><strong>Caption helpers:</strong> <code>acs_cap</code>, <code>pums_cap</code>, <code>chas_cap</code>, <code>dec_cap</code>, <code>pep_cap</code>, <code>wc_cap</code>, <code>bps_cap</code>, <code>mls_cap</code>, <code>costar_cap</code>, <code>fmr_cap</code>, <code>ami_cap</code>, <code>nhpd_cap</code>, <code>posh_cap</code>, <code>lihtc_cap</code>, <code>oews_cap</code>, <code>pit_cap</code>, <code>eviction_cap</code>, <code>vdoe_cap</code>, <code>cpi_cap</code>, <code>pmms_cap</code>.</li>
+<li><strong><code>flag_reliability(df, cv_col = cv)</code></strong> — High at or below 15, Medium at or below 30, Low above 30, from a <strong>0 to 100</strong> CV. Use it for secondary-locality and Ashland ACS estimates. Do not use <code>hdatools::add_reliability()</code>, which assumes a 0 to 1 scale and mislabels small cells as Low.</li>
+<li><strong><code>export_csv(df, name)</code></strong> — writes <code>data-out/&lt;name&gt;.csv</code>. <strong>Naming is commit policy:</strong> name public-source exports plainly, and prefix MLS and CoStar derivatives <code>mls_</code> or <code>costar_</code> so <code>.gitignore</code> keeps them private.</li>
+<li><strong><code>fct_wrap(f, width)</code></strong> — applies <code>str_wrap()</code> to a factor’s levels.</li>
+</ul>
+</section>
+<section id="chart-and-table-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="chart-and-table-conventions">Chart and table conventions</h2>
+<ul>
+<li><code>theme_pha()</code> with <code>pha_pal</code>, plus <code>add_zero_line()</code>.</li>
+<li>Titles are takeaway sentences. The subtitle carries geography, units, and years. Captions come from a <code>_common.R</code> source helper.</li>
+<li>For 2 or 3 series, prefer color-coded bold words in the subtitle, as ggtext spans using <code>pha_pal</code> hexes, over a legend.</li>
+<li>Keep subtitle length to 50 characters to avoid wrapping text onto a new row.</li>
+<li>Currency uses <code>scales::label_dollar()</code>, and the subtitle notes whether a series is nominal or inflation-adjusted. Percentages use <code>label_percent(accuracy = 1)</code> unless precision matters.</li>
+<li>Tables use <code>kbl() |&gt; kable_styling(c("condensed","striped"))</code> with <code>formattable::comma</code> and <code>percent</code>.</li>
+<li>Secondary-locality and Ashland ACS estimates always carry reliability treatment through <code>flag_reliability()</code>. Suppress cells with a CV above 30 and footnote the Medium cells.</li>
+<li>Every figure gets <code>#| fig-alt:</code> alt text.</li>
+</ul>
+</section>
+<section id="narrative-rule" class="level2">
+<h2 class="anchored" data-anchor-id="narrative-rule">Narrative rule</h2>
+<p>Chapters ship with takeaway H2s, 2 to 5 bullet findings per section (plain statements traceable to a figure or table), and callout boxes for the “Since 2022” change and for data caveats. <strong>No drafted paragraphs.</strong> The bullets must be specific enough that a human expands them into prose without reopening the data.</p>
+</section>
+<section id="execution-on-windows" class="level2">
+<h2 class="anchored" data-anchor-id="execution-on-windows">Execution on Windows</h2>
+<p><strong>Never run R inline.</strong> Write <code>r/&lt;name&gt;.R</code> and run <code>Rscript r/&lt;name&gt;.R</code> from the project root. Ad hoc checks go in a temp script in the scratchpad, run through <code>Rscript</code>, never in the repo.</p>
+<p>R and Quarto are usually not on PATH. See the quick start in <a href="README.md">README.md</a> for the prepend and the render commands; the install paths are machine-specific and are documented there and nowhere else.</p>
+<p>Use forward slashes in R paths, and keep every path relative to the project root.</p>
+</section>
+<section id="api-keys" class="level2">
+<h2 class="anchored" data-anchor-id="api-keys">API keys</h2>
+<p><code>CENSUS_API_KEY</code>, <code>FRED_API_KEY</code>, and <code>GEOCODIO_API_KEY</code> are all required (the last for MLS geocoding, <code>r/mls_geocode.R</code>). They live in your user <code>.Renviron</code> at <code>%USERPROFILE%\Documents\.Renviron</code>. Never print or commit their values.</p>
+<p>R’s HOME on Windows may be <code>C:\Users\&lt;you&gt;</code> rather than the Documents folder, so that file is not always loaded automatically. Scripts include an <code>.Renviron</code> fallback derived from the current user — <code>readRenviron(file.path(Sys.getenv("USERPROFILE"), "Documents", ".Renviron"))</code> when the key is empty — never a hardcoded username. Verify visibility with a TRUE or FALSE check only.</p>
+</section>
+<section id="data-fetch-rule" class="level2">
+<h2 class="anchored" data-anchor-id="data-fetch-rule">Data-fetch rule</h2>
+<p>tidycensus, tigris, and fredr package downloads are approved. Direct fetches from census.gov file servers (BPS, the PEP FTP) and from huduser.gov (CHAS zips, Income Limits) are approved with a manual fallback. Geocodio via <code>tidygeocoder</code> (<code>r/mls_geocode.R</code>) is approved for MLS address geocoding only. Anything else on a government host, especially BLS OEWS, requires Jonathan’s approval or a manual download.</p>
+</section>
+<section id="publishing-status" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-status">Publishing status</h2>
+<p>Public repo, with GitHub Pages live from the start on <code>main</code>/<code>docs</code> at <code>https://hdadvisors.github.io/pha-update-2026/</code>, carrying a <strong>noindex</strong> robots meta tag set in <code>_quarto.yml</code> until the report is final. Phase 7 removes it. PHA reviewers comment through a <strong>private</strong> Hypothesis group, because Hypothesis annotations are public by default.</p>
+</section>
+<section id="known-gotchas" class="level2">
+<h2 class="anchored" data-anchor-id="known-gotchas">Known gotchas</h2>
+<ul>
+<li><strong>PEP</strong> — the post-2020 API requires an explicit <code>vintage=</code> argument; <code>year=</code> alone misbehaves silently. Use Vintage 2025 and fall back to the FTP tables if the API lags.</li>
+<li><strong>huduser.gov</strong> — send a browser User-Agent and Referer or the server returns 202 or an empty body. The CHAS data dictionary is a separate download from the table zips.</li>
+<li><strong>gridtext and <code>theme_pha</code></strong> — an <code>@fig</code>, <code>@tbl</code>, or <code>@sec</code> cross-reference inside <code>labs(caption=)</code> or a kbl <code>footnote()</code> throws a gridtext <code>&lt;a&gt;</code>-tag error. Keep cross-references in markdown bullets.</li>
+<li><strong>ggplot2 4.0 (S7)</strong> — override strip text with <code>ggtext::element_markdown()</code>, never a raw <code>element_text()</code>. <code>theme_pha</code>’s strip element is a ggtext markdown element and ggplot2 4.0 only merges theme elements of the same class, so an <code>element_text()</code> override is the thing that clashes. Faceting is fine; the override just has to match the class. Documented at <code>hdatools/R/themes.R</code>, <code>theme_pha</code>’s <code>@details</code>.</li>
+<li><strong>PUMS <code>RNTP</code> is 0, not NA, outside the cash-renter universe.</strong> It arrives as a hard 0 on every owner-occupied row (15,558 on the core-3 file) and on every no-cash-rent renter row (221). A 0 there means no rent is charged, not a rent of zero. An affordability test that reads <code>RNTP</code> ungated scores all of them as the cheapest units in the file, clearing every rent ceiling at every AMI threshold. Gate on <code>tenure_detail == "Renter"</code> before using it. <code>r/pums/pums_prep.R</code>’s <code>contract_rent_nominal</code> does this, and its section 10a asserts the gate. Found while switching <code>r/pums/pums_gap.R</code> to a contract-to-contract rent comparison.</li>
+<li><strong><code>dplyr::join_by(a == b)</code> on differently-named columns</strong> — the joined result keeps only <code>a</code>, silently dropping <code>b</code>. A downstream <code>mutate()</code> or <code>select()</code> that expects <code>b</code> to survive gets a column-not-found error, or worse, an <code>NA</code> after a <code>bind_rows()</code> masks the missing column with a same-named one from another frame. Join on the equal-named keys only and enforce the cross-name equality with a <code>filter()</code> immediately after, so both columns survive. Found while building <code>r/mls_clean.R</code>’s cross-MLS price-tolerance match.</li>
+<li><strong>5-year PUMS dollars</strong> — <code>HINCP</code>, <code>GRNTP</code>, and <code>SMOCP</code> are reported in each record’s own survey-year dollars, and <code>ADJINC</code>/<code>ADJHSG</code> are the only thing in the file encoding which year a record came from. Omit them and AMI banding against a current-year income limit pushes early-year households one tier too low; on the 2020-2024 sample the median household income moves 11.6%. Ratios like cost burden are unaffected — compute those on nominal dollars, where the two factors cancel. Found while building <code>r/pums/pums_prep.R</code>.</li>
+<li><strong>tidycensus scales <code>ADJINC</code> but not <code>ADJHSG</code></strong> — both arrive as character, but <code>ADJINC</code> comes back already divided (<code>"1.015250"</code>) while <code>ADJHSG</code> stays a raw 7-digit integer (<code>"1000000"</code>). A single <code>/1e6</code> is wrong for one of them. <code>adj_factor()</code> in <code>r/pums/pums_prep.R</code> rescales only values still in integer form.</li>
+<li><strong><code>get_pums()</code> + <code>return_vacant</code>: unconditional <code>VACS</code> append duplicates a user-supplied <code>VACS</code>, crashing on an unrelated <code>WGTP</code> mutate.</strong> Confirmed 2026-09-09 by reading tidycensus 1.8.1 source (<code>R/pums.R</code>): <code>if (return_vacant) variables &lt;- c(variables, "VACS")</code> never checks whether <code>"VACS"</code> is already in <code>variables</code>. Passing <code>return_vacant = TRUE</code> alongside an explicit <code>"VACS"</code> in <code>variables</code> — the natural way to request the vacancy-status code as an output column — duplicates it, the Census API returns two identically named <code>VACS</code> columns, and the very next step, <code>mutate(across(contains("WGTP"), as.numeric))</code>, fails with “Can’t transform a data frame with duplicate names.” dplyr’s duplicate-name guard fires on the whole data frame, not just the targeted <code>WGTP</code> columns, which is why the error names <code>WGTP</code> instead of the actual duplicate. Fix: don’t pass <code>return_vacant = TRUE</code> at all. <code>get_pums()</code> has a second, independent check — <code>if ("VACS" %in% variables) return_vacant &lt;- TRUE</code> — that runs <em>after</em> the duplicating append and fires whenever <code>"VACS"</code> is already listed, regardless of the argument. Listing <code>"VACS"</code> explicitly is enough; tidycensus infers <code>return_vacant</code> on its own without duplicating it. Confirmed live: identical row counts and full <code>VACS</code> population on vacant rows whether <code>return_vacant</code> is passed explicitly (with <code>"VACS"</code> omitted, so no duplicate) or omitted entirely (with <code>"VACS"</code> left in <code>variables</code>, inferred instead). Separately, <code>get_pums()</code> also splits variable lists over 45 into batches of 45, and <code>VACS</code> anywhere in a batch infers <code>return_vacant</code> for that batch alone — a batch made up entirely of person-record variables can then fail at the Census API with a blank error message; this is why <code>r/pums/pums_collect.R</code> keeps its vacant supplement call (5 variables — <code>PUMA</code>, <code>TEN</code>, <code>RNTP</code>, <code>VACS</code>, <code>BDSP</code> — well under the batch threshold) separate from the 48-variable person+housing main call. <code>RNTP</code> sits in the main call as well and is safe there: neither of the two <code>return_vacant</code> checks reads it, so a person-only trailing batch stays harmless. Found and corrected while building <code>r/pums/pums_collect.R</code>; two earlier, incorrect diagnoses of this same crash are superseded — see LOG.md.</li>
+</ul>
+</section>
+<section id="repo-map" class="level2">
+<h2 class="anchored" data-anchor-id="repo-map">Repo map</h2>
+<pre><code>pha-update-2026/
+├── _quarto.yml            # book config: freeze auto, execute-dir project, output-dir docs, noindex meta, Hypothesis
+├── _common.R              # sourced by every chapter: libs, pha_pal/cb_pal, geo+PUMA constants, caption helpers, flag_reliability(), export_csv()
+├── .Rprofile              # source("renv/activate.R")
+├── renv.lock / renv/      # R pinned 4.6.1; dplyr 1.2.1; hdatools from GitHub hdadvisors/hdatools
+├── CLAUDE.md              # this file
+├── METHODOLOGY.md         # internal data/geography/scope conventions
+├── TODO.md                # the punch list — start here
+├── LOG.md                 # append-only dev log
+├── README.md              # purpose, quick start, plain-language renv guide, status
+├── rrh-framework.scss     # brand styling (Noto Sans; from rrh)
+├── img/pha_logo.jpg       # sidebar logo (from rrh)
+├── index.qmd              # About this update
+├── demand.qmd             # Section 1 Housing demand
+├── ownership.qmd          # Section 2 Homeownership market
+├── rental.qmd             # Section 3 Rental market
+├── gaps.qmd               # Section 4 Housing gap
+├── burden.qmd             # Section 5 Cost burden and instability
+├── data-notes.qmd         # Appendix: data and methodology (public-facing; doubles as PHA training doc)
+├── local-*.qmd            # 9 local summaries — stubs, not yet built
+│                          # + tracker.qmd, exec-sum.qmd — not yet started
+├── r/                     # collection and prep scripts — committed (r/pums/ not yet built)
+├── data/                  # .rds outputs and raw drops — gitignored (except data/raw/README.md)
+│   └── raw/{mls,costar}/  # Jonathan's manual drops (spec: data/raw/README.md)
+├── data-out/              # tidy CSV exports; public-source committed, mls_*/costar_* gitignored
+├── docs/                  # rendered site — committed; GitHub Pages serves this
+├── _freeze/               # committed (keeps renders fast and reproducible)
+└── archive/soh-2026/      # archived State of Housing deliverables (committed; retained)</code></pre>
+<ul>
+<li>Repo: <code>hdadvisors/pha-update-2026</code>, public. Pages serves <code>docs/</code> on <code>main</code>.</li>
+<li>Theming: <code>hdatools::theme_pha()</code> and <code>pha_pal</code> everywhere. Static ggplot2 and kableExtra tables. No leaflet, no ggiraph — see <a href="METHODOLOGY.md">METHODOLOGY.md</a>.</li>
+<li>Chapter anatomy: <code># Title {#sec-slug}</code> → setup chunk (<code>source("_common.R")</code>, <code>read_rds()</code> stubs, inline-scalar block) → theme-based takeaway H2s → alternating figure and table blocks with bullets → a per-section “Since 2022” callout → a closing summary callout. The <code>/new-chapter</code> skill emits this shape.</li>
+</ul>
+</section>
+<section id="geography-and-vintages" class="level2">
+<h2 class="anchored" data-anchor-id="geography-and-vintages">Geography and vintages</h2>
+<p>Geography and PUMS constants are defined once in <code>_common.R</code> (<code>rr</code>, <code>pha</code>, <code>secondary</code>, <code>ashland</code>, <code>virginia</code>, <code>puma_core3</code>, <code>puma_region</code>, <code>puma_locality</code>). The geography table, vintage table, and dataset inventory that used to live here now live in git history (<code>.planning/PLAN.md</code>, removed 2026-08-26) — <a href="METHODOLOGY.md">METHODOLOGY.md</a> carries forward only the conventions still worth stating explicitly; the rest is legible directly from <code>_common.R</code> and the <code>r/</code> scripts.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
