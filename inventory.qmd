@@ -1,0 +1,7 @@
+---
+title: "Inventory"
+---
+
+Housing stock, occupancy and vacancy, structure type, year built, and building permits for the Richmond region.
+
+*Not built yet — see [TODO.md](TODO.md) Phase 2.*

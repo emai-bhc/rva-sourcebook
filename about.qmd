@@ -1,0 +1,7 @@
+---
+title: "About"
+---
+
+RVA Sourcebook is a personal project collecting basic housing data for the Richmond, Virginia region — inventory, demographics, and market conditions — from public sources only (Census/ACS, BLS, and other government data). It isn't a client deliverable; it's a reference site kept up to date as new data releases come out.
+
+Built with [Quarto](https://quarto.org), R, and [mapgl](https://walker-data.com/mapgl/) for the interactive maps.

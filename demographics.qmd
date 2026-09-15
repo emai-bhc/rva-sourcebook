@@ -1,0 +1,7 @@
+---
+title: "Demographics"
+---
+
+Population, age and sex, race and ethnicity, household composition, and income for the Richmond region.
+
+*Not built yet — see [TODO.md](TODO.md) Phase 3. `r/acs_tenure.R` has a working pattern to extend.*

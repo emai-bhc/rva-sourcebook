@@ -1,0 +1,11 @@
+---
+title: "RVA Sourcebook"
+---
+
+A basic reference for Richmond-region housing data — inventory, demographics, and market conditions — pulled from public sources (Census/ACS, BLS) and kept current as new data releases.
+
+- [Inventory](inventory.qmd) — housing stock, occupancy, structure type, permits
+- [Demographics](demographics.qmd) — population, households, income
+- [Market](market.qmd) — tenure, home values, rents, cost burden
+
+See [Data Notes](data-notes.qmd) for sources and methodology, and [About](about.qmd) for what this project is.

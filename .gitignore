@@ -1,1 +1,5 @@
 /.quarto/
+.Renviron
+/data/
+
+.claude/settings.local.json

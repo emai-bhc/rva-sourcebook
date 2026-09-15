@@ -1,5 +1,31 @@
 project:
+  type: website
+  output-dir: docs
+  execute-dir: project
+
+execute:
+  freeze: auto
+
+website:
   title: "rva-sourcebook"
+  description: "Basic Richmond-region housing data — inventory, demographics, and market — from public sources."
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: inventory.qmd
+        text: Inventory
+      - href: demographics.qmd
+        text: Demographics
+      - href: market.qmd
+        text: Market
+      - href: data-notes.qmd
+        text: Data Notes
+      - href: about.qmd
+        text: About
 
-
-
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

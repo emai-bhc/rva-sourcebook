@@ -1,0 +1,7 @@
+---
+title: "Market"
+---
+
+Tenure, home values, rents, and cost burden for the Richmond region.
+
+*Not built yet — see [TODO.md](TODO.md) Phase 4. `r/acs_burden.R` already covers cost burden.*

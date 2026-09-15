@@ -1,0 +1,7 @@
+---
+title: "Data Notes"
+---
+
+All data on this site comes from public sources — the Census Bureau (American Community Survey, decennial census, Population Estimates Program, Building Permits Survey), the Bureau of Labor Statistics, and TIGER/Line boundary files via `tigris`. No licensed or proprietary data (MLS, CoStar) is used.
+
+*Full methodology to be written alongside each page — see [METHODOLOGY.md](METHODOLOGY.md) for the internal version of these notes.*
