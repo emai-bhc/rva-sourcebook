@@ -17,12 +17,14 @@
 
 ## Phase 1 — foundations
 
-- [ ] `renv::init()` + `renv::snapshot()` — **user runs**, package installs are a long job. Pin R + tidyverse/tidycensus/tigris/mapgl/kableExtra/ggtext/formattable/janitor.
+- [ ] `renv::init()` + `renv::snapshot()` — **user runs**, package installs are a long job. Pin R + tidyverse/tidycensus/tigris/sf/mapgl/kableExtra/ggtext/formattable/janitor.
 - [ ] Add `.Rprofile` (`source("renv/activate.R")`) once renv exists.
-- [ ] Define a palette + light theme in `_common.R` (`rva_pal`, `theme_rva()` or similar) — currently undefined; charts fall back to ggplot2 defaults until this lands.
-- [ ] `r/geo.R` — tigris county boundaries for the `rr` region → `data/geo.rds`, for `mapgl` choropleths.
-- [ ] Confirm `CENSUS_API_KEY` is visible (`Sys.getenv("CENSUS_API_KEY") != ""`) — TRUE/FALSE check only, never print the value.
-- [ ] Decide the `mapgl` basemap style (free MapLibre/Carto/ESRI — no token) and note the choice in `_common.R` or a small map helper.
+- [x] Define a palette + light theme in `_common.R` — `rva_pal` (8-hue categorical), `rva_seq` (sequential blue ramp), `rva_ink` (chart chrome), `theme_rva()`. Values from the dataviz skill's validated reference palette.
+- [x] Decide the `mapgl` basemap style — `rva_map_style` in `_common.R`, Carto's free Positron MapLibre style, no token.
+- [x] `r/geo.R` written — tigris county/independent-city boundaries for the `rr` region → `data/geo.rds` + `data-out/geo.csv`.
+- [ ] **Run `Rscript r/geo.R`** — user runs (tigris pull is a long job). Confirms `data/geo.rds` writes clean and the validation block passes (17 localities, valid geometry, EPSG:4326).
+- [ ] Confirm `CENSUS_API_KEY` is visible (`Sys.getenv("CENSUS_API_KEY") != ""`) — TRUE/FALSE check only, never print the value. Not needed by `geo.R` (tigris doesn't require a key) but will be for every ACS script from Phase 2 on.
+- [ ] Once `mapgl` is in `renv.lock`, build one small proof-of-concept map (e.g. `rr` region colored by `aland`) to confirm `rva_map_style` + `data/geo.rds` actually render before wiring real data into it.
 
 ## Phase 2 — inventory page
 

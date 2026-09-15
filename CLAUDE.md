@@ -53,7 +53,7 @@ Script anatomy: a header comment stating what, source, and output → numbered `
 ## What `_common.R` provides
 
 - **Geography:** `rr` (17-locality Richmond region), `bhc` (3-locality core: Richmond city, Henrico, Chesterfield), `secondary` (4 expansion localities: Hanover, Goochland, New Kent, Powhatan), `ashland` (place 5103368, sumlev 160), `regions` (comparison MSAs: Charlottesville, Richmond, Hampton Roads, DC), `virginia`; and PUMS-ready PUMA sets `puma_core3`/`puma_region`/`puma_locality` (defined but not currently used — see METHODOLOGY.md).
-- **Palette/theme:** not yet defined — Phase 1 task. Until then, charts use plain ggplot2 defaults plus the conventions below (takeaway titles, dollar/percent labels, captions). Pick a small `rva_pal` + `theme_rva()` wrapper before the first real chart ships, and update this section once they exist.
+- **Palette/theme:** `rva_pal` (8-hue categorical, fixed order — never cycle or reorder), `rva_seq` (7-step blue sequential ramp for choropleths/magnitude), `rva_ink` (chart chrome: primary/muted/gridline/baseline), `theme_rva()` (ggplot2 theme; `legend.position = "none"` by default since 2-3 series use bold ggtext subtitle spans instead of a legend box), and `rva_map_style` (free Carto MapLibre basemap URL, no token). Values come from the dataviz skill's validated reference palette — CVD-safe adjacent pairs. Change values in `_common.R` only, never at the call site.
 - **Caption helpers:** `acs_cap`, `pums_cap`, `chas_cap`, `dec_cap`, `pep_cap`, `bps_cap`, `oews_cap` and others — see the file for the full list. Not every helper has a matching script yet; that's fine, they're cheap to keep around.
 - **`flag_reliability(df, cv_col = cv)`** — High at or below 15, Medium at or below 30, Low above 30, from a **0 to 100** CV. Use it for secondary-locality and Ashland ACS estimates, which run noisier than the `bhc` core.
 - **`export_csv(df, name)`** — writes `data-out/<name>.csv`. All data in this project is public-source, so no filename-prefix privacy convention is needed (unlike sibling reports that mix in licensed MLS/CoStar data).
@@ -72,7 +72,8 @@ Script anatomy: a header comment stating what, source, and output → numbered `
 ## Interactive maps (`mapgl`)
 
 - Use `mapgl` for anything inherently spatial (locality choropleths, point maps of permits/listings); keep everything else as static ggplot2.
-- Basemap: a free MapLibre style (Carto or ESRI) — no Mapbox token, so the project stays zero-cost. Revisit only if styling needs genuinely outgrow that.
+- Basemap: `rva_map_style` in `_common.R` — Carto's free Positron MapLibre style, no Mapbox token, zero-cost. Revisit only if styling needs genuinely outgrow that.
+- Choropleth fills use `rva_seq` (the same sequential ramp as ggplot2 magnitude encodings), so a reader sees one consistent "light = low, dark = high" language across static charts and maps.
 - Boundary data comes from `r/geo.R` → `data/geo.rds` (tigris pulls for the `rr` region). Join whatever table a map needs onto that, in the page — don't re-pull boundaries per page.
 - Caption maps the same way as charts, via a `_common.R` source helper.
 

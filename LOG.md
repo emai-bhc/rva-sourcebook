@@ -4,6 +4,16 @@ Append-only. Newest entry first.
 
 ---
 
+## 2026-09-15 — Phase 1 foundations: palette, theme, map basemap, geo script
+
+**What changed:** Defined the site's palette and theme in `_common.R` — `rva_pal` (8-hue categorical, fixed order), `rva_seq` (sequential blue ramp for choropleths/magnitude), `rva_ink` (chart chrome tokens), and `theme_rva()` (ggplot2 theme, `legend.position = "none"` by default per the bold-subtitle-span convention). Values are the dataviz skill's validated reference palette (CVD-safe adjacent pairs), not hand-picked. Chose `rva_map_style` — Carto's free Positron MapLibre style — as the `mapgl` basemap, avoiding a Mapbox token. Wrote `r/geo.R`: pulls cartographic-boundary (500k) county/independent-city geometry for the 17-locality `rr` region via `tigris::counties()`, transforms to EPSG:4326, writes `data/geo.rds` + `data-out/geo.csv` (attributes only — CSV can't hold geometry sensibly).
+
+**Data surprises:** None yet — `r/geo.R` hasn't been run. tigris pulls are a user-run long job per CLAUDE.md.
+
+**Left open:** User needs to (1) run `renv::init()`/`renv::snapshot()` to pin the package set (tidyverse/tidycensus/tigris/sf/mapgl/kableExtra/ggtext/formattable/janitor), (2) run `Rscript r/geo.R` and confirm the validation block passes, (3) confirm `CENSUS_API_KEY` is visible. Once `mapgl` is installed, build one proof-of-concept map before wiring real data into Phase 2.
+
+---
+
 ## 2026-09-15 — Repo cleanup and re-plan
 
 **What changed:** The repo was in a confused, mid-restructure state — `CLAUDE.md` and `TODO.md` had been copy-pasted from an unrelated sibling engagement (a much larger Richmond-nonprofit report with PUMS/CHAS/MLS pipelines that don't exist here), `PLAN.md` was for a wholly different Fauquier County study, and `_quarto.yml`/`index.qmd`/`about.qmd` were generic un-customized `quarto create` scaffold. `_common.R` and `r/acs_tenure.R`/`r/acs_burden.R` were confirmed real and Richmond-specific, and kept as-is.

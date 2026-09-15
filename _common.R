@@ -114,6 +114,69 @@ puma_locality <- c(
   "76002" = "Richmond city"
 )
 
+# ---- Palette and theme -----------------------------------------------------
+# Light-mode-only (this site doesn't do a dark-mode toggle). Categorical slots,
+# ordering, and the sequential ramp are the validated defaults from the dataviz
+# skill's reference palette (references/palette.md) -- CVD-safe adjacent pairs,
+# blue->dark-blue sequential for choropleths/magnitude. Swap values here only,
+# never the call sites, if the palette ever changes.
+
+rva_pal <- c(
+  blue    = "#2a78d6",
+  orange  = "#eb6834",
+  aqua    = "#1baf7a",
+  yellow  = "#eda100",
+  magenta = "#e87ba4",
+  green   = "#008300",
+  violet  = "#4a3aa7",
+  red     = "#e34948"
+)
+
+# Sequential blue ramp, light -> dark, for choropleths and other magnitude
+# encodings (ggplot2 continuous fills and mapgl step/interpolate expressions).
+rva_seq <- c(
+  "#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5",
+  "#256abf", "#184f95", "#0d366b"
+)
+
+# Chart chrome -- recessive gridlines/axis, muted labels, primary ink.
+rva_ink <- c(
+  primary  = "#0b0b0b",
+  muted    = "#898781",
+  gridline = "#e1e0d9",
+  baseline = "#c3c2b7"
+)
+
+# Light ggplot2 theme. Legend defaults to "none" because the CLAUDE.md convention
+# for 2-3 series is color-coded bold words in the ggtext subtitle, not a legend
+# box; pass legend.position = "bottom" at the call site for charts where a
+# legend is genuinely needed (more series, or no natural subtitle callout).
+theme_rva <- function(base_size = 13, legend.position = "none") {
+  ggplot2::theme_minimal(base_size = base_size) +
+    ggplot2::theme(
+      legend.position = legend.position,
+      plot.title.position = "plot",
+      plot.title = ggtext::element_markdown(face = "bold", size = ggplot2::rel(1.1)),
+      plot.subtitle = ggtext::element_markdown(color = rva_ink[["muted"]]),
+      plot.caption = ggtext::element_markdown(
+        color = rva_ink[["muted"]],
+        size = ggplot2::rel(0.75),
+        hjust = 0
+      ),
+      axis.title = ggplot2::element_blank(),
+      axis.text = ggplot2::element_text(color = rva_ink[["muted"]]),
+      axis.line.x = ggplot2::element_line(color = rva_ink[["baseline"]]),
+      panel.grid.minor = ggplot2::element_blank(),
+      panel.grid.major.x = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_line(color = rva_ink[["gridline"]]),
+      strip.text = ggtext::element_markdown(face = "bold")
+    )
+}
+
+# Zero-cost MapLibre basemap for mapgl -- no Mapbox token required. Carto's
+# free vector style; swap here if the project ever needs custom styling.
+rva_map_style <- "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+
 # ---- Caption helpers ------------------------------------------------------
 # Bold-markdown source lines for chart/table captions. Vintages default to this project's.
 
