@@ -4,6 +4,16 @@ Append-only. Newest entry first.
 
 ---
 
+## 2026-09-16 — Phase 1: renv pinned, `.Rprofile` added
+
+**What changed:** Ran `renv::init()` + `renv::snapshot()` (user-run, per CLAUDE.md — package installs are a long job) and committed the result: `renv.lock` (168 packages), `renv/.gitignore`, `renv/activate.R`, `renv/settings.json`, and a new `.Rprofile` that sources `renv/activate.R`. `renv/library/` stays untracked via renv's own `.gitignore`. R 4.6.1. Pinned the packages CLAUDE.md's Phase 1 line calls for — tidyverse, tidycensus, tigris, sf, kableExtra, ggtext, formattable, janitor — confirmed present in the lockfile. **`mapgl` is not in `renv.lock`** — it never got installed in this pass, so the Phase 1 POC map and any Phase 2/5 interactive map work stay blocked until a follow-up `renv::install("mapgl")` + `renv::snapshot()`.
+
+**Data surprises:** None — this is package pinning, not a data pull.
+
+**Left open:** `mapgl` still needs installing (blocks TODO's POC-map line). `Rscript r/geo.R` and the `CENSUS_API_KEY` visibility check are still open — both are next per TODO.md's Phase 1 list.
+
+---
+
 ## 2026-09-16 — Finish Session 0 cleanup: remove leftover `rva-sourcebook/` folder
 
 **What changed:** The 2026-09-15 cleanup entry claimed the nested `rva-sourcebook/` subfolder was removed, but it wasn't — it still held a `.quarto/` build cache and a live `.Renviron`. Deleted it for real. Also fixed `.gitignore`: the `.quarto/` rule was anchored to the repo root (`/.quarto/`), so it never covered that nested copy — a real gap, since a stray `git add -A` could have staged cache files or (worse) an `.Renviron` sitting somewhere the anchored rule didn't reach. Unanchored the rule so it covers `.quarto/` at any depth. Committed the Session 0 cleanup, which had been sitting unstaged.

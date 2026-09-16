@@ -17,8 +17,8 @@
 
 ## Phase 1 — foundations
 
-- [ ] `renv::init()` + `renv::snapshot()` — **user runs**, package installs are a long job. Pin R + tidyverse/tidycensus/tigris/sf/mapgl/kableExtra/ggtext/formattable/janitor.
-- [ ] Add `.Rprofile` (`source("renv/activate.R")`) once renv exists.
+- [x] `renv::init()` + `renv::snapshot()` — **user runs**, package installs are a long job. Pin R + tidyverse/tidycensus/tigris/sf/mapgl/kableExtra/ggtext/formattable/janitor.
+- [x] Add `.Rprofile` (`source("renv/activate.R")`) once renv exists.
 - [x] Define a palette + light theme in `_common.R` — `rva_pal` (8-hue categorical), `rva_seq` (sequential blue ramp), `rva_ink` (chart chrome), `theme_rva()`. Values from the dataviz skill's validated reference palette.
 - [x] Decide the `mapgl` basemap style — `rva_map_style` in `_common.R`, Carto's free Positron MapLibre style, no token.
 - [x] `r/geo.R` written — tigris county/independent-city boundaries for the `rr` region → `data/geo.rds` + `data-out/geo.csv`.
