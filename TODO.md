@@ -13,7 +13,7 @@
 - [x] Write `METHODOLOGY.md` (geography/scope conventions, referenced by CLAUDE.md but never written).
 - [x] Reconcile `_quarto.yml` — real navbar (Home/About/Inventory/Demographics/Market/Data Notes), `output-dir: docs`, `freeze: auto`, `execute-dir: project`. Added stub content to `inventory.qmd`/`demographics.qmd`/`market.qmd`/`data-notes.qmd`/`index.qmd`/`about.qmd` so the site renders end-to-end even before real data lands.
 - [x] First `LOG.md` entry for this session.
-- [ ] Commit the cleanup.
+- [x] Commit the cleanup (including removing the leftover `rva-sourcebook/` folder that survived the first pass).
 
 ## Phase 1 — foundations
 
