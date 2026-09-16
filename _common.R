@@ -158,10 +158,17 @@ theme_rva <- function(base_size = 13, legend.position = "none") {
       plot.title.position = "plot",
       plot.title = ggtext::element_markdown(face = "bold", size = ggplot2::rel(1.1)),
       plot.subtitle = ggtext::element_markdown(color = rva_ink[["muted"]]),
-      plot.caption = ggtext::element_markdown(
+      # element_markdown() does not wrap on its own, so a long source line
+      # (the ACS helper's is ~95 characters) runs off the right edge of the
+      # figure. width = unit(1, "npc") constrains it to the plot width so it
+      # wraps instead of clipping.
+      plot.caption = ggtext::element_textbox_simple(
         color = rva_ink[["muted"]],
         size = ggplot2::rel(0.75),
-        hjust = 0
+        hjust = 0,
+        halign = 0,
+        width = grid::unit(1, "npc"),
+        margin = ggplot2::margin(t = 8)
       ),
       axis.title = ggplot2::element_blank(),
       axis.text = ggplot2::element_text(color = rva_ink[["muted"]]),

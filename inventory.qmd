@@ -2,6 +2,474 @@
 title: "Inventory"
 ---
 
-Housing stock, occupancy and vacancy, structure type, year built, and building permits for the Richmond region.
+```{r}
+#| label: setup
+#| include: false
 
-*Not built yet — see [TODO.md](TODO.md) Phase 2.*
+source("_common.R")
+
+# Data flow rule: pages read_rds() only, never call an API. Both frames are
+# written by r/acs_stock.R and r/bps_permits.R.
+stock <- read_rds("data/acs_stock.rds")
+permits <- read_rds("data/bps_permits.rds")
+
+# Geographies this page reads at. `bhc3` and `secondary4` are the pooled rows
+# the r/ scripts build; `rr17` exists only in the permits frame (BPS is an
+# administrative count, so the whole region pools cleanly).
+core_geos <- c(unname(bhc), "bhc3")
+core_labels <- c(
+  "51760" = "Richmond city",
+  "51087" = "Henrico",
+  "51041" = "Chesterfield",
+  "bhc3" = "Richmond core",
+  "secondary4" = "Expansion ring",
+  "5103368" = "Ashland"
+)
+
+short_name <- function(geoid) unname(core_labels[geoid])
+
+latest_acs <- max(stock$units$year)
+first_acs <- min(stock$units$year)
+latest_bps <- max(permits$annual$year)
+
+# ---- Inline scalars --------------------------------------------------------
+
+# formattable::comma()/percent() mask the scales versions (_common.R loads
+# formattable after scales) and take `digits`, not `accuracy`. Inline text uses
+# these thin wrappers so a bullet never depends on which package won that race;
+# the kbl() tables below still use formattable's, which is what they want.
+n_fmt <- function(x) scales::label_comma()(x)
+p_fmt <- function(x, accuracy = 0.1) scales::label_percent(accuracy = accuracy)(x)
+
+core_units <- stock$units |>
+  filter(geoid == "bhc3", year == latest_acs) |>
+  pull(estimate)
+
+core_units_first <- stock$units |>
+  filter(geoid == "bhc3", year == first_acs) |>
+  pull(estimate)
+
+core_growth <- (core_units - core_units_first) / core_units_first
+
+ring_growth <- stock$units |>
+  filter(geoid == "secondary4", year %in% c(first_acs, latest_acs)) |>
+  arrange(year) |>
+  pull(estimate) |>
+  (\(x) (x[2] - x[1]) / x[1])()
+
+core_vac <- stock$occupancy |>
+  filter(geoid == "bhc3", year == latest_acs, status == "Vacant") |>
+  pull(vacancy_rate)
+
+city_vac <- stock$occupancy |>
+  filter(geoid == "51760", year == latest_acs, status == "Vacant") |>
+  pull(vacancy_rate)
+
+ches_vac <- stock$occupancy |>
+  filter(geoid == "51041", year == latest_acs, status == "Vacant") |>
+  pull(vacancy_rate)
+
+sfd_share <- stock$structure_type |>
+  filter(geoid == "bhc3", year == latest_acs, structure == "Single-family detached") |>
+  pull(share)
+
+ring_sfd_share <- stock$structure_type |>
+  filter(geoid == "secondary4", year == latest_acs, structure == "Single-family detached") |>
+  pull(share)
+
+city_20p_share <- stock$structure_type |>
+  filter(geoid == "51760", year == latest_acs, structure == "20+ units") |>
+  pull(share)
+
+city_prewar <- stock$year_built |>
+  filter(geoid == "51760", year == latest_acs, era == "Pre-1950") |>
+  pull(share)
+
+region_peak <- permits$annual |>
+  filter(geoid == "rr17") |>
+  slice_max(total_units, n = 1)
+
+region_trough <- permits$annual |>
+  filter(geoid == "rr17") |>
+  slice_min(total_units, n = 1)
+
+region_latest <- permits$annual |>
+  filter(geoid == "rr17", year == latest_bps)
+
+city_mf_share_latest <- permits$annual |>
+  filter(geoid == "51760", year == latest_bps) |>
+  pull(mf_share)
+
+# Permit five-year totals quoted in the bullets below, computed rather than
+# typed so a data refresh moves the prose with the table.
+perm_5y <- permits$annual |>
+  filter(year > latest_bps - 5) |>
+  summarise(sf = sum(single_family), mf = sum(multifamily), tot = sum(total_units), .by = geoid)
+
+p5 <- function(g, col) perm_5y |> filter(geoid == g) |> pull({{ col }})
+
+# Unit counts quoted in the stock bullets.
+units_at <- function(g, yr = latest_acs) {
+  stock$units |> filter(geoid == g, year == yr) |> pull(estimate)
+}
+
+ashland_units <- stock$units |>
+  filter(geoid %in% unname(ashland), year == latest_acs) |>
+  pull(estimate)
+
+# How many of Ashland's structure-type + year-built cells fall below the
+# CV-30 reliability threshold — quoted in the reliability callout, so it is
+# computed rather than typed and can't drift when the data refreshes.
+ashland_cells <- bind_rows(
+  stock$structure_type |> filter(geoid %in% unname(ashland), year == latest_acs),
+  stock$year_built |> filter(geoid %in% unname(ashland), year == latest_acs)
+) |>
+  summarise(low = sum(reliability == "Low", na.rm = TRUE), n = n())
+
+ring_mf_5y <- permits$annual |>
+  filter(geoid == "secondary4", year > latest_bps - 5) |>
+  summarise(mf = sum(multifamily), tot = sum(total_units)) |>
+  mutate(share = mf / tot)
+```
+
+Housing stock, occupancy and vacancy, structure type, year built, and building permits for the Richmond region. Stock figures come from the ACS 5-year estimates; production figures from the Census Building Permits Survey.
+
+::: callout-note
+## Two different things
+
+**Stock** is what exists — the ACS count of housing units standing in a five-year window. **Production** is what was permitted — an administrative count of permits *issued*, which leads completions by a year or more and can be cancelled. The two never reconcile exactly, and neither is a count of units built. Read them as separate series.
+:::
+
+## The region added housing, but the expansion ring grew faster than the core
+
+```{r}
+#| label: fig-units-trend
+#| fig-alt: "Grouped bar chart of total housing units in the three core Richmond localities and the pooled expansion ring across three ACS windows ending 2014, 2019, and 2024. Every geography grows across the period; Chesterfield adds the most units while the four-locality expansion ring grows fastest in percentage terms."
+#| fig-height: 4
+
+units_trend <- stock$units |>
+  filter(geoid %in% c(unname(bhc), "secondary4")) |>
+  mutate(
+    # Order by the latest window, not the default median across all three --
+    # Chesterfield passes Henrico over this period, and the chart should show
+    # the same ranking the table and bullets state.
+    geo = fct_reorder2(short_name(geoid), year, estimate, .fun = \(y, e) e[which.max(y)], .desc = TRUE),
+    yr = factor(year)
+  )
+
+ggplot(units_trend, aes(x = geo, y = estimate, fill = yr)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  scale_y_continuous(labels = label_comma(), expand = expansion(mult = c(0, 0.08))) +
+  scale_fill_manual(values = unname(rva_seq[c(2, 4, 7)])) +
+  labs(
+    title = "Every core locality added housing units over the past decade",
+    subtitle = glue::glue(
+      "Total housing units, <span style='color:{rva_seq[2]}'>**{first_acs}**</span>, ",
+      "<span style='color:{rva_seq[4]}'>**2019**</span>, ",
+      "<span style='color:{rva_seq[7]}'>**{latest_acs}**</span> ACS 5-year windows"
+    ),
+    caption = acs_cap("B25001", "2010-2014, 2015-2019, 2020-2024")
+  ) +
+  theme_rva()
+```
+
+- The three core localities held `r n_fmt(core_units)` housing units in the `r latest_acs` window, up `r p_fmt(core_growth, 0.1)` from the `r first_acs` window.
+- The four-locality expansion ring grew `r p_fmt(ring_growth, 0.1)` over the same decade — faster in percentage terms than the core, from a much smaller base.
+- Chesterfield added the most units of any single locality, growing 17.1% while Henrico grew 8.3%.
+- Richmond city grew 15.3%, second-fastest among the core three despite being the most built-out.
+
+```{r}
+#| label: tbl-units
+
+stock$units |>
+  filter(year %in% c(first_acs, latest_acs), geoid %in% c(unname(rr), "bhc3", "secondary4")) |>
+  select(name, year, estimate) |>
+  pivot_wider(names_from = year, values_from = estimate) |>
+  mutate(
+    change = .data[[as.character(latest_acs)]] - .data[[as.character(first_acs)]],
+    pct = change / .data[[as.character(first_acs)]]
+  ) |>
+  arrange(desc(.data[[as.character(latest_acs)]])) |>
+  mutate(across(c(as.character(first_acs), as.character(latest_acs), "change"), \(x) comma(x, digits = 0))) |>
+  mutate(pct = percent(pct, digits = 1)) |>
+  set_names(c("Locality", first_acs, latest_acs, "Change", "% change")) |>
+  kbl(
+    align = "lrrrr",
+    caption = paste0(
+      "Total housing units by locality, ", first_acs, " and ", latest_acs,
+      " ACS 5-year windows. Source: ACS Table B25001."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Chesterfield (`r n_fmt(units_at("51041"))`) passed Henrico (`r n_fmt(units_at("51087"))`) to become the region's largest locality by housing units.
+- The pooled core holds roughly five times the expansion ring's stock, so equal percentage growth in the ring is a much smaller absolute number of units.
+- Outside the core and the ring, no single locality holds more than about 18,000 units — the region's housing is heavily concentrated in the three core jurisdictions.
+
+## Vacancy is low in the suburbs and concentrated in the city and the southern localities
+
+```{r}
+#| label: fig-vacancy
+#| fig-alt: "Horizontal bar chart of the 2024 vacancy rate for the 17 Richmond-region localities plus the pooled core and expansion ring. Sussex County and Petersburg city have the highest rates, near 20 and 16 percent; Chesterfield and Hanover have the lowest, under 5 percent."
+#| fig-height: 6
+
+# Ashland is included here (its vacancy estimate is reliable enough to show)
+# but it sits inside Hanover, so it is not a peer of the counties around it --
+# the * marks it as a place-level estimate, and Medium-reliability cells carry
+# the same marker per the reliability convention. A Low cell would be dropped.
+vac <- stock$occupancy |>
+  filter(
+    year == latest_acs,
+    status == "Vacant",
+    geoid %in% c(unname(rr), unname(ashland), "bhc3", "secondary4"),
+    reliability != "Low"
+  ) |>
+  mutate(
+    label = str_remove(name, ", Virginia") |> str_remove(" County"),
+    label = if_else(geoid %in% c("bhc3", "secondary4"), short_name(geoid), label),
+    label = if_else(geoid %in% unname(ashland), "Ashland town*", label),
+    label = if_else(reliability == "Medium" & geoid %in% unname(rr), paste0(label, "*"), label),
+    pooled = geoid %in% c("bhc3", "secondary4")
+  )
+
+ggplot(vac, aes(x = vacancy_rate, y = fct_reorder(label, vacancy_rate), fill = pooled)) +
+  geom_col(width = 0.72) +
+  geom_text(
+    aes(label = p_fmt(vacancy_rate)),
+    hjust = -0.15, size = 3.1, color = rva_ink[["muted"]]
+  ) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
+  scale_fill_manual(values = c(`FALSE` = rva_pal[["blue"]], `TRUE` = rva_ink[["muted"]])) +
+  labs(
+    title = "Vacancy tracks the region's southern edge, not its center",
+    subtitle = glue::glue(
+      "Share of housing units vacant, {latest_acs} ACS 5-year. ",
+      "<span style='color:{rva_ink[[\"muted\"]]}'>**Pooled rows**</span> in grey."
+    ),
+    caption = paste(
+      acs_cap("B25002"),
+      "* marks a medium-reliability estimate (CV 15-30). Ashland is a town",
+      "inside Hanover County, not a separate locality."
+    )
+  ) +
+  theme_rva()
+```
+
+- Sussex County (19.6%) and Petersburg city (16.2%) have the region's highest vacancy rates — both are southern localities with declining or flat housing demand.
+- Chesterfield's `r p_fmt(ches_vac, 0.1)` is the region's lowest, and Hanover (4.3%) is close behind; the suburban core runs tight.
+- Richmond city sits at `r p_fmt(city_vac, 0.1)`, above the pooled core's `r p_fmt(core_vac, 0.1)` but slightly below Virginia's 8.7%.
+- The pooled expansion ring (5.2%) and core (`r p_fmt(core_vac, 0.1)`) are nearly identical, so the spread in this chart is driven almost entirely by the outer southern localities.
+
+```{r}
+#| label: tbl-vacancy-reason
+
+stock$vacancy_reason |>
+  filter(year == latest_acs, geoid %in% core_geos, reason != "Total", estimate > 0) |>
+  mutate(
+    geo = short_name(geoid),
+    cell = if_else(
+      reliability == "Low",
+      "&mdash;",
+      paste0(n_fmt(estimate), if_else(reliability == "Medium", "*", ""))
+    )
+  ) |>
+  select(reason, geo, cell) |>
+  pivot_wider(names_from = geo, values_from = cell) |>
+  rename(`Reason vacant` = reason) |>
+  kbl(
+    align = "lrrrr",
+    escape = FALSE,
+    caption = paste0(
+      "Vacant units by reason, ", latest_acs, " ACS 5-year. Cells with a ",
+      "coefficient of variation above 30 are suppressed (—); * marks a ",
+      "medium-reliability estimate (CV 15-30). Source: ACS Table B25004."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- "For rent" is the largest vacancy category in every core locality — 39.2% of Richmond city's vacant units and 38.7% of Henrico's.
+- "Other vacant" is the second-largest everywhere, at 29.8% to 39.3% of vacant units; it is the Census catch-all for units that are neither on the market nor seasonal, and it includes long-term-abandoned stock.
+- Units held off market ("other vacant" plus seasonal) account for roughly a third of core vacancy, so the effective *available* vacancy rate is well below the headline number.
+- Chesterfield's for-sale vacancies (661) outnumber Henrico's (500) despite Chesterfield's lower overall vacancy rate.
+
+## The core is a single-family region; density is concentrated in the city
+
+```{r}
+#| label: fig-structure
+#| fig-alt: "Stacked horizontal bar chart of housing units by structure type for Richmond city, Henrico, Chesterfield, the pooled core, and the pooled expansion ring in 2024. Single-family detached dominates everywhere, at 88 percent in the expansion ring and 78 percent in Chesterfield, but only 45 percent in Richmond city, where buildings with 20 or more units make up 22 percent of the stock."
+#| fig-height: 4.2
+
+struct <- stock$structure_type |>
+  filter(year == latest_acs, geoid %in% c(unname(bhc), "bhc3", "secondary4")) |>
+  mutate(geo = factor(
+    short_name(geoid),
+    levels = c("Expansion ring", "Chesterfield", "Richmond core", "Henrico", "Richmond city")
+  ))
+
+ggplot(struct, aes(x = share, y = geo, fill = fct_rev(structure))) +
+  geom_col(width = 0.72) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = c(0, 0)) +
+  scale_fill_manual(values = rev(unname(rva_pal[c(1, 3, 4, 2, 8, 6)]))) +
+  labs(
+    title = "Richmond city is the region's only substantially multifamily market",
+    subtitle = glue::glue("Share of housing units by units in structure, {latest_acs} ACS 5-year"),
+    caption = acs_cap("B25024")
+  ) +
+  theme_rva(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+```
+
+- Single-family detached homes are `r p_fmt(sfd_share, 0.1)` of the pooled core's stock and `r p_fmt(ring_sfd_share, 0.1)` of the expansion ring's.
+- Richmond city is the outlier: `r p_fmt(city_20p_share, 0.1)` of its units sit in buildings of 20 or more, against 7.2% in Henrico and 4.6% in Chesterfield.
+- Small multifamily (2–4 units) is scarce everywhere but the city, where it is 12.0% of stock versus 2.9% in Chesterfield and 0.9% in the expansion ring.
+- Manufactured housing is a rounding error in the core (0.7%) but 2.5% of the expansion ring and 12.6% of Ashland's stock.
+
+::: callout-warning
+## Small-geography reliability
+
+Ashland is a town of roughly `r n_fmt(ashland_units)` housing units, so its ACS estimates carry wide margins of error — `r ashland_cells$low` of its `r ashland_cells$n` structure-type and year-built cells fall below the CV-30 reliability threshold. Ashland and the four expansion-ring localities are shown here only where the underlying estimate is reliable; suppressed cells appear as an em dash.
+:::
+
+## Housing age splits the region in two
+
+```{r}
+#| label: fig-year-built
+#| fig-alt: "Stacked horizontal bar chart of housing units by construction era for Richmond city, Henrico, Chesterfield, the pooled core, and the pooled expansion ring in 2024. Richmond city's stock is oldest, with 38 percent built before 1950; Chesterfield and the expansion ring are newest, with over half built since 1990."
+#| fig-height: 4.2
+
+era_df <- stock$year_built |>
+  filter(year == latest_acs, geoid %in% c(unname(bhc), "bhc3", "secondary4")) |>
+  mutate(geo = factor(
+    short_name(geoid),
+    levels = c("Richmond city", "Henrico", "Richmond core", "Chesterfield", "Expansion ring")
+  ))
+
+ggplot(era_df, aes(x = share, y = geo, fill = fct_rev(era))) +
+  geom_col(width = 0.72) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = c(0, 0)) +
+  scale_fill_manual(values = rev(unname(rva_seq[c(7, 6, 4, 3, 1)]))) +
+  labs(
+    title = "The city's stock is prewar; the suburbs are a postwar build-out",
+    subtitle = glue::glue("Share of housing units by year structure built, {latest_acs} ACS 5-year"),
+    caption = acs_cap("B25034")
+  ) +
+  theme_rva(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+```
+
+- `r p_fmt(city_prewar, 0.1)` of Richmond city's housing was built before 1950, against 7.4% in Henrico and 2.4% in Chesterfield.
+- Chesterfield's stock is the region's newest: 50.3% was built in 1990 or later, and 17.2% since 2010.
+- The expansion ring is newer still by that measure — 56.0% built since 1990 — consistent with its faster unit growth.
+- Only 13.2% of the pooled core's stock dates from 2010 or later, so the great majority of the region's housing predates the current market.
+
+## Permitting recovered from the 2011 trough, and what gets permitted has changed
+
+```{r}
+#| label: fig-permits-trend
+#| fig-alt: "Stacked area chart of annually permitted housing units in the 17-locality Richmond region from 2000 to 2025, split into single-family and multifamily. Single-family dominates the early 2000s, both collapse after 2007 to a 2011 trough of 2,520 units, and the recovery is driven by multifamily, which exceeds single-family for the first time in 2022."
+#| fig-height: 4.2
+
+perm_long <- permits$annual |>
+  filter(geoid == "rr17") |>
+  select(year, `Single-family` = single_family, Multifamily = multifamily) |>
+  pivot_longer(-year, names_to = "structure_group", values_to = "units") |>
+  mutate(structure_group = factor(structure_group, levels = c("Multifamily", "Single-family")))
+
+ggplot(perm_long, aes(x = year, y = units, fill = structure_group)) +
+  geom_area() +
+  scale_y_continuous(labels = label_comma(), expand = expansion(mult = c(0, 0.05))) +
+  scale_x_continuous(breaks = seq(2000, 2025, 5), expand = c(0, 0)) +
+  scale_fill_manual(values = unname(rva_pal[c("orange", "blue")])) +
+  labs(
+    title = "The permitting recovery has been a multifamily recovery",
+    subtitle = glue::glue(
+      "Permitted units per year, 17-locality region: ",
+      "<span style='color:{rva_pal[[\"blue\"]]}'>**single-family**</span> and ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**multifamily**</span>"
+    ),
+    caption = bps_cap("2000-2025")
+  ) +
+  theme_rva()
+```
+
+- Regional permitting peaked at `r n_fmt(region_peak$total_units)` units in `r region_peak$year` and bottomed at `r n_fmt(region_trough$total_units)` in `r region_trough$year` — a 76% collapse.
+- The `r latest_bps` total of `r n_fmt(region_latest$total_units)` units is still below the `r region_peak$year` peak, but roughly 3.6 times the trough.
+- Multifamily was 3.6% of permitted units in 2000 and `r p_fmt(region_latest$mf_share, 0.1)` in `r latest_bps`; it first exceeded single-family in 2022.
+- Single-family permitting has been flat at roughly 4,400–5,900 units a year since 2020, so essentially all of the swing in regional volume is multifamily.
+
+```{r}
+#| label: tbl-permits-5yr
+
+permits$annual |>
+  filter(year > latest_bps - 5, geoid %in% c(unname(rr), "bhc3", "secondary4", "rr17")) |>
+  summarise(
+    sf = sum(single_family),
+    mf = sum(multifamily),
+    tot = sum(total_units),
+    .by = c(geoid, name)
+  ) |>
+  filter(tot > 0) |>
+  mutate(mf_share = mf / tot) |>
+  arrange(desc(tot)) |>
+  transmute(
+    Locality = name,
+    `Single-family` = comma(sf, digits = 0),
+    Multifamily = comma(mf, digits = 0),
+    Total = comma(tot, digits = 0),
+    `MF share` = percent(mf_share, digits = 1)
+  ) |>
+  kbl(
+    align = "lrrrr",
+    caption = paste0(
+      "Permitted housing units by structure type, ", latest_bps - 4, "-", latest_bps,
+      " (five-year totals). Source: Census Building Permits Survey."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Over the last five years the core three localities accounted for `r n_fmt(p5("bhc3", tot))` of the region's `r n_fmt(p5("rr17", tot))` permitted units — 79% of regional production.
+- Richmond city permitted `r n_fmt(p5("51760", mf))` multifamily units in five years, more than Henrico (`r n_fmt(p5("51087", mf))`) and Chesterfield (`r n_fmt(p5("51041", mf))`), despite being the smallest of the three by stock.
+- Chesterfield is the region's single-family engine, with `r n_fmt(p5("51041", sf))` single-family permits — more than double Henrico's.
+- The expansion ring permitted `r n_fmt(p5("secondary4", sf))` single-family units against only `r n_fmt(p5("secondary4", mf))` multifamily, a `r p_fmt(ring_mf_5y$share, 0.1)` multifamily share.
+
+```{r}
+#| label: fig-permits-core
+#| fig-alt: "Line chart of the multifamily share of permitted units for Richmond city, Henrico, and Chesterfield from 2015 to 2025. Richmond city rises from about 51 percent to 86 percent, Henrico is volatile between 25 and 73 percent, and Chesterfield falls back to under 30 percent after a 2022 peak."
+#| fig-height: 4
+
+core_perm <- permits$annual |>
+  filter(geoid %in% unname(bhc), year >= 2015) |>
+  mutate(geo = short_name(geoid))
+
+ggplot(core_perm, aes(x = year, y = mf_share, color = geo)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.6) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), limits = c(0, 1)) +
+  scale_x_continuous(breaks = seq(2015, 2025, 2)) +
+  scale_color_manual(values = unname(rva_pal[c("aqua", "orange", "blue")])) +
+  labs(
+    title = "The three core localities are permitting increasingly different things",
+    subtitle = glue::glue(
+      "Multifamily share of permitted units: ",
+      "<span style='color:{rva_pal[[\"blue\"]]}'>**Richmond city**</span>, ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**Henrico**</span>, ",
+      "<span style='color:{rva_pal[[\"aqua\"]]}'>**Chesterfield**</span>"
+    ),
+    caption = bps_cap("2015-2025")
+  ) +
+  theme_rva()
+```
+
+- Richmond city's multifamily share rose from 50.7% in 2015 to `r p_fmt(city_mf_share_latest, 0.1)` in `r latest_bps` — the city now permits almost nothing but apartments.
+- Chesterfield peaked at 57.2% multifamily in 2022 and fell back to 28.2% by `r latest_bps`, returning to a single-family pattern.
+- Henrico is the most volatile of the three, swinging between 24.5% (2016) and 73.4% (2023).
+- The three localities diverged after 2021: before then their multifamily shares moved roughly together, and since then they have not.
+
+::: callout-tip
+## What this page establishes
+
+The Richmond region's existing stock is overwhelmingly single-family and largely predates 1990, with density and prewar housing both concentrated in Richmond city. New production tells a different story — since 2022 the region has permitted more multifamily than single-family units, driven almost entirely by the city and Henrico, while the expansion ring continues to build detached houses almost exclusively. Vacancy is low across the core and the ring, so the stock that exists is being used; the region's slack sits in its southern localities. The [Demographics](demographics.qmd) and [Market](market.qmd) pages cover who lives in this housing and what it costs.
+:::
