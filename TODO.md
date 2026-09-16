@@ -34,7 +34,7 @@
 
 ## Phase 3 — demographics page
 
-- [ ] Extend the `acs_tenure.R` pattern: population, age/sex (B01001), race/ethnicity (already partly covered by `acs_tenure.R`'s B25003 letter tables — add B01001/B03002 for the population side), household composition (B11001), income (B19013/B19001).
+- [ ] Extend the `acs_tenure.R` pattern: population, age/sex (B01001), race/ethnicity (already partly covered by `acs_tenure.R`'s B25003 letter tables — add B01001/B03002 for the population side), household composition (B11001), income (B19013/B19001/B25118).
 - [ ] Build out `demographics.qmd` (currently an empty stub).
 
 ## Phase 4 — market page

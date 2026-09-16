@@ -1,0 +1,15 @@
+{
+  "permission": {
+    "bash": {
+      "ls *": "allow",
+      "echo *": "allow",
+      "cat *": "allow",
+      "git check-ignore *": "allow",
+      "git status *": "allow",
+      "head *": "allow"
+    },
+    "edit": {
+      "*.md": "allow"
+    }
+  }
+}
