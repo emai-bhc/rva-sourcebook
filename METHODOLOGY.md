@@ -25,9 +25,15 @@ Defined once in `_common.R`, sourced by every script and page.
 
 | Source | Vintage in use |
 |---|---|
-| ACS 5-year | Whatever the two existing scripts (`acs_tenure.R`, `acs_burden.R`) pull — check their header comments; update this table as new scripts land |
-| tigris boundaries | Latest available at time of pull — record the year in `r/geo.R`'s header |
-| BPS permits | Not yet pulled |
+| ACS 5-year | Three non-overlapping 5-year windows ending **2014, 2019, 2024** — the trend convention `acs_tenure.R` set and `acs_stock.R` follows. Overlapping 5-year samples are not independent, so the site never plots consecutive windows against each other. Check `acs_burden.R`'s header for its own vintage |
+| tigris boundaries | 2023 cartographic boundary (500k), per `r/geo.R` |
+| BPS permits | See `r/bps_permits.R`'s header |
+
+### Table-level scope notes
+
+- **`acs_stock.R`** covers B25001 (total units), B25002 (occupancy), B25004 (vacancy status), B25024 (units in structure), B25034 (year built), and B25035 (median year built). **B25036 (year built by tenure) is out of scope for v1** — it is not published in the 2014 window, which would break the three-window trend every other frame in that script carries. B25035 is a median and cannot be summed, so unlike the other frames it carries no pooled `bhc3`/`secondary4` rows.
+- **Pooled rows.** Frames that hold counts carry two synthetic geographies alongside the published ones: `bhc3` (the 3 core localities) and `secondary4` (the 4 expansion localities). Counts add and MOEs combine in quadrature, both computed in the `r/` script so pages only filter and plot. Ashland sits inside Hanover and is therefore never pooled — doing so would double-count it.
+- **`cache_table = TRUE`** is now a no-op: current tidycensus deprecates it in favor of Census API groups and warns once per call. Harmless, and CLAUDE.md still prescribes it, so scripts keep passing it; drop it project-wide in a dedicated cleanup rather than piecemeal.
 
 Keep this table current as scripts are added — it's the fastest way for a session to know what year's data is actually on the site without opening every script.
 
