@@ -1,0 +1,2081 @@
+geoid,name,year,structure,structure_group,bldgs,units,value
+51007,Amelia County,2000,Single-family,Single-family,69,69,8484573
+51007,Amelia County,2000,2 units,Multifamily,0,0,0
+51007,Amelia County,2000,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2000,5+ units,Multifamily,0,0,0
+51036,Charles City County,2000,Single-family,Single-family,44,44,4279213
+51036,Charles City County,2000,2 units,Multifamily,0,0,0
+51036,Charles City County,2000,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2000,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2000,Single-family,Single-family,1920,1920,224557559
+51041,Chesterfield County,2000,2 units,Multifamily,19,38,2479299
+51041,Chesterfield County,2000,3-4 units,Multifamily,0,0,0
+51041,Chesterfield County,2000,5+ units,Multifamily,0,0,0
+51053,Dinwiddie County,2000,Single-family,Single-family,140,140,14573229
+51053,Dinwiddie County,2000,2 units,Multifamily,2,4,400000
+51053,Dinwiddie County,2000,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2000,5+ units,Multifamily,0,0,0
+51075,Goochland County,2000,Single-family,Single-family,223,223,36042711
+51075,Goochland County,2000,2 units,Multifamily,0,0,0
+51075,Goochland County,2000,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2000,5+ units,Multifamily,0,0,0
+51085,Hanover County,2000,Single-family,Single-family,891,891,92882666
+51085,Hanover County,2000,2 units,Multifamily,0,0,0
+51085,Hanover County,2000,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2000,5+ units,Multifamily,9,75,1735000
+51087,Henrico County,2000,Single-family,Single-family,1566,1566,179315662
+51087,Henrico County,2000,2 units,Multifamily,0,0,0
+51087,Henrico County,2000,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2000,5+ units,Multifamily,0,0,0
+51097,King and Queen County,2000,Single-family,Single-family,24,24,3220168
+51097,King and Queen County,2000,2 units,Multifamily,0,0,0
+51097,King and Queen County,2000,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2000,5+ units,Multifamily,0,0,0
+51101,King William County,2000,Single-family,Single-family,117,117,9558522
+51101,King William County,2000,2 units,Multifamily,0,0,0
+51101,King William County,2000,3-4 units,Multifamily,0,0,0
+51101,King William County,2000,5+ units,Multifamily,0,0,0
+51127,New Kent County,2000,Single-family,Single-family,157,157,18426871
+51127,New Kent County,2000,2 units,Multifamily,0,0,0
+51127,New Kent County,2000,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2000,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2000,Single-family,Single-family,260,260,30480745
+51145,Powhatan County,2000,2 units,Multifamily,0,0,0
+51145,Powhatan County,2000,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2000,5+ units,Multifamily,0,0,0
+51149,Prince George County,2000,Single-family,Single-family,181,181,20466507
+51149,Prince George County,2000,2 units,Multifamily,0,0,0
+51149,Prince George County,2000,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2000,5+ units,Multifamily,0,0,0
+51183,Sussex County,2000,Single-family,Single-family,13,13,1099500
+51183,Sussex County,2000,2 units,Multifamily,0,0,0
+51183,Sussex County,2000,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2000,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2000,Single-family,Single-family,41,41,4844087
+51570,Colonial Heights (Independent,2000,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2000,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2000,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2000,Single-family,Single-family,66,66,4930803
+51670,Hopewell (Independent City),2000,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2000,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2000,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2000,Single-family,Single-family,11,11,510000
+51730,Petersburg (Independent City),2000,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2000,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2000,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2000,Single-family,Single-family,170,170,15852807
+51760,Richmond (Independent City),2000,2 units,Multifamily,12,24,1416088
+51760,Richmond (Independent City),2000,3-4 units,Multifamily,22,76,3961510
+51760,Richmond (Independent City),2000,5+ units,Multifamily,0,0,0
+bhc3,Richmond core (3 localities),2000,Single-family,Single-family,3656,3656,419726028
+bhc3,Richmond core (3 localities),2000,2 units,Multifamily,31,62,3895387
+bhc3,Richmond core (3 localities),2000,3-4 units,Multifamily,22,76,3961510
+bhc3,Richmond core (3 localities),2000,5+ units,Multifamily,0,0,0
+rr17,Richmond region (17 localities),2000,Single-family,Single-family,5893,5893,669525623
+rr17,Richmond region (17 localities),2000,2 units,Multifamily,33,66,4295387
+rr17,Richmond region (17 localities),2000,3-4 units,Multifamily,22,76,3961510
+rr17,Richmond region (17 localities),2000,5+ units,Multifamily,9,75,1735000
+secondary4,Expansion ring (4 localities),2000,Single-family,Single-family,1531,1531,177832993
+secondary4,Expansion ring (4 localities),2000,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2000,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2000,5+ units,Multifamily,9,75,1735000
+51007,Amelia County,2001,Single-family,Single-family,53,53,6794294
+51007,Amelia County,2001,2 units,Multifamily,0,0,0
+51007,Amelia County,2001,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2001,5+ units,Multifamily,0,0,0
+51036,Charles City County,2001,Single-family,Single-family,42,42,5309660
+51036,Charles City County,2001,2 units,Multifamily,0,0,0
+51036,Charles City County,2001,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2001,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2001,Single-family,Single-family,2568,2568,285125892
+51041,Chesterfield County,2001,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2001,3-4 units,Multifamily,5,20,1041600
+51041,Chesterfield County,2001,5+ units,Multifamily,25,353,9410263
+51053,Dinwiddie County,2001,Single-family,Single-family,192,192,18557300
+51053,Dinwiddie County,2001,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2001,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2001,5+ units,Multifamily,0,0,0
+51075,Goochland County,2001,Single-family,Single-family,246,246,54198344
+51075,Goochland County,2001,2 units,Multifamily,0,0,0
+51075,Goochland County,2001,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2001,5+ units,Multifamily,0,0,0
+51085,Hanover County,2001,Single-family,Single-family,902,902,112451297
+51085,Hanover County,2001,2 units,Multifamily,0,0,0
+51085,Hanover County,2001,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2001,5+ units,Multifamily,0,0,0
+51087,Henrico County,2001,Single-family,Single-family,1638,1638,200379602
+51087,Henrico County,2001,2 units,Multifamily,0,0,0
+51087,Henrico County,2001,3-4 units,Multifamily,26,104,6616855
+51087,Henrico County,2001,5+ units,Multifamily,58,938,52891446
+51097,King and Queen County,2001,Single-family,Single-family,33,33,4093035
+51097,King and Queen County,2001,2 units,Multifamily,0,0,0
+51097,King and Queen County,2001,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2001,5+ units,Multifamily,0,0,0
+51101,King William County,2001,Single-family,Single-family,106,106,8493929
+51101,King William County,2001,2 units,Multifamily,0,0,0
+51101,King William County,2001,3-4 units,Multifamily,0,0,0
+51101,King William County,2001,5+ units,Multifamily,0,0,0
+51127,New Kent County,2001,Single-family,Single-family,192,192,24078434
+51127,New Kent County,2001,2 units,Multifamily,0,0,0
+51127,New Kent County,2001,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2001,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2001,Single-family,Single-family,260,260,33096420
+51145,Powhatan County,2001,2 units,Multifamily,1,2,122000
+51145,Powhatan County,2001,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2001,5+ units,Multifamily,0,0,0
+51149,Prince George County,2001,Single-family,Single-family,202,202,21731523
+51149,Prince George County,2001,2 units,Multifamily,0,0,0
+51149,Prince George County,2001,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2001,5+ units,Multifamily,0,0,0
+51183,Sussex County,2001,Single-family,Single-family,14,14,2412202
+51183,Sussex County,2001,2 units,Multifamily,0,0,0
+51183,Sussex County,2001,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2001,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2001,Single-family,Single-family,58,58,6514797
+51570,Colonial Heights (Independent,2001,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2001,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2001,5+ units,Multifamily,7,88,2280000
+51670,Hopewell (Independent City),2001,Single-family,Single-family,56,56,3334524
+51670,Hopewell (Independent City),2001,2 units,Multifamily,1,2,58000
+51670,Hopewell (Independent City),2001,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2001,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2001,Single-family,Single-family,16,16,751000
+51730,Petersburg (Independent City),2001,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2001,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2001,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2001,Single-family,Single-family,179,179,19264826
+51760,Richmond (Independent City),2001,2 units,Multifamily,1,2,73709
+51760,Richmond (Independent City),2001,3-4 units,Multifamily,1,3,125458
+51760,Richmond (Independent City),2001,5+ units,Multifamily,14,99,4262111
+bhc3,Richmond core (3 localities),2001,Single-family,Single-family,4385,4385,504770320
+bhc3,Richmond core (3 localities),2001,2 units,Multifamily,1,2,73709
+bhc3,Richmond core (3 localities),2001,3-4 units,Multifamily,32,127,7783913
+bhc3,Richmond core (3 localities),2001,5+ units,Multifamily,97,1390,66563820
+rr17,Richmond region (17 localities),2001,Single-family,Single-family,6757,6757,806587079
+rr17,Richmond region (17 localities),2001,2 units,Multifamily,3,6,253709
+rr17,Richmond region (17 localities),2001,3-4 units,Multifamily,32,127,7783913
+rr17,Richmond region (17 localities),2001,5+ units,Multifamily,104,1478,68843820
+secondary4,Expansion ring (4 localities),2001,Single-family,Single-family,1600,1600,223824495
+secondary4,Expansion ring (4 localities),2001,2 units,Multifamily,1,2,122000
+secondary4,Expansion ring (4 localities),2001,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2001,5+ units,Multifamily,0,0,0
+51007,Amelia County,2002,Single-family,Single-family,96,96,12468923
+51007,Amelia County,2002,2 units,Multifamily,0,0,0
+51007,Amelia County,2002,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2002,5+ units,Multifamily,0,0,0
+51036,Charles City County,2002,Single-family,Single-family,30,30,3342706
+51036,Charles City County,2002,2 units,Multifamily,0,0,0
+51036,Charles City County,2002,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2002,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2002,Single-family,Single-family,2503,2503,314294010
+51041,Chesterfield County,2002,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2002,3-4 units,Multifamily,1,4,716000
+51041,Chesterfield County,2002,5+ units,Multifamily,53,812,21236041
+51053,Dinwiddie County,2002,Single-family,Single-family,171,171,17566757
+51053,Dinwiddie County,2002,2 units,Multifamily,1,2,200000
+51053,Dinwiddie County,2002,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2002,5+ units,Multifamily,0,0,0
+51075,Goochland County,2002,Single-family,Single-family,267,267,63370802
+51075,Goochland County,2002,2 units,Multifamily,0,0,0
+51075,Goochland County,2002,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2002,5+ units,Multifamily,0,0,0
+51085,Hanover County,2002,Single-family,Single-family,954,954,137529307
+51085,Hanover County,2002,2 units,Multifamily,0,0,0
+51085,Hanover County,2002,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2002,5+ units,Multifamily,0,0,0
+51087,Henrico County,2002,Single-family,Single-family,1886,1886,237269444
+51087,Henrico County,2002,2 units,Multifamily,0,0,0
+51087,Henrico County,2002,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2002,5+ units,Multifamily,27,590,35198409
+51097,King and Queen County,2002,Single-family,Single-family,44,44,4014927
+51097,King and Queen County,2002,2 units,Multifamily,0,0,0
+51097,King and Queen County,2002,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2002,5+ units,Multifamily,0,0,0
+51101,King William County,2002,Single-family,Single-family,109,109,11188780
+51101,King William County,2002,2 units,Multifamily,0,0,0
+51101,King William County,2002,3-4 units,Multifamily,0,0,0
+51101,King William County,2002,5+ units,Multifamily,0,0,0
+51127,New Kent County,2002,Single-family,Single-family,215,215,28498629
+51127,New Kent County,2002,2 units,Multifamily,0,0,0
+51127,New Kent County,2002,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2002,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2002,Single-family,Single-family,343,343,48106513
+51145,Powhatan County,2002,2 units,Multifamily,0,0,0
+51145,Powhatan County,2002,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2002,5+ units,Multifamily,0,0,0
+51149,Prince George County,2002,Single-family,Single-family,244,244,27290540
+51149,Prince George County,2002,2 units,Multifamily,0,0,0
+51149,Prince George County,2002,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2002,5+ units,Multifamily,0,0,0
+51183,Sussex County,2002,Single-family,Single-family,13,13,1476110
+51183,Sussex County,2002,2 units,Multifamily,0,0,0
+51183,Sussex County,2002,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2002,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2002,Single-family,Single-family,54,54,6978630
+51570,Colonial Heights (Independent,2002,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2002,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2002,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2002,Single-family,Single-family,51,51,3197180
+51670,Hopewell (Independent City),2002,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2002,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2002,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2002,Single-family,Single-family,8,8,470000
+51730,Petersburg (Independent City),2002,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2002,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2002,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2002,Single-family,Single-family,161,161,18427951
+51760,Richmond (Independent City),2002,2 units,Multifamily,4,8,517992
+51760,Richmond (Independent City),2002,3-4 units,Multifamily,9,35,1928083
+51760,Richmond (Independent City),2002,5+ units,Multifamily,27,312,17711831
+bhc3,Richmond core (3 localities),2002,Single-family,Single-family,4550,4550,569991405
+bhc3,Richmond core (3 localities),2002,2 units,Multifamily,4,8,517992
+bhc3,Richmond core (3 localities),2002,3-4 units,Multifamily,10,39,2644083
+bhc3,Richmond core (3 localities),2002,5+ units,Multifamily,107,1714,74146281
+rr17,Richmond region (17 localities),2002,Single-family,Single-family,7149,7149,935491209
+rr17,Richmond region (17 localities),2002,2 units,Multifamily,5,10,717992
+rr17,Richmond region (17 localities),2002,3-4 units,Multifamily,10,39,2644083
+rr17,Richmond region (17 localities),2002,5+ units,Multifamily,107,1714,74146281
+secondary4,Expansion ring (4 localities),2002,Single-family,Single-family,1779,1779,277505251
+secondary4,Expansion ring (4 localities),2002,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2002,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2002,5+ units,Multifamily,0,0,0
+51007,Amelia County,2003,Single-family,Single-family,116,116,16516614
+51007,Amelia County,2003,2 units,Multifamily,0,0,0
+51007,Amelia County,2003,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2003,5+ units,Multifamily,0,0,0
+51036,Charles City County,2003,Single-family,Single-family,35,35,3911478
+51036,Charles City County,2003,2 units,Multifamily,0,0,0
+51036,Charles City County,2003,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2003,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2003,Single-family,Single-family,2024,2024,260273005
+51041,Chesterfield County,2003,2 units,Multifamily,4,8,583812
+51041,Chesterfield County,2003,3-4 units,Multifamily,22,80,5564748
+51041,Chesterfield County,2003,5+ units,Multifamily,56,821,50215161
+51053,Dinwiddie County,2003,Single-family,Single-family,213,213,21784564
+51053,Dinwiddie County,2003,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2003,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2003,5+ units,Multifamily,0,0,0
+51075,Goochland County,2003,Single-family,Single-family,286,286,81779127
+51075,Goochland County,2003,2 units,Multifamily,0,0,0
+51075,Goochland County,2003,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2003,5+ units,Multifamily,0,0,0
+51085,Hanover County,2003,Single-family,Single-family,788,788,124687059
+51085,Hanover County,2003,2 units,Multifamily,0,0,0
+51085,Hanover County,2003,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2003,5+ units,Multifamily,8,108,3670456
+51087,Henrico County,2003,Single-family,Single-family,1841,1841,269014137
+51087,Henrico County,2003,2 units,Multifamily,0,0,0
+51087,Henrico County,2003,3-4 units,Multifamily,26,81,5673788
+51087,Henrico County,2003,5+ units,Multifamily,35,245,14616288
+51097,King and Queen County,2003,Single-family,Single-family,40,40,4233622
+51097,King and Queen County,2003,2 units,Multifamily,0,0,0
+51097,King and Queen County,2003,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2003,5+ units,Multifamily,0,0,0
+51101,King William County,2003,Single-family,Single-family,134,134,13959357
+51101,King William County,2003,2 units,Multifamily,0,0,0
+51101,King William County,2003,3-4 units,Multifamily,1,4,330000
+51101,King William County,2003,5+ units,Multifamily,0,0,0
+51127,New Kent County,2003,Single-family,Single-family,255,255,36528687
+51127,New Kent County,2003,2 units,Multifamily,0,0,0
+51127,New Kent County,2003,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2003,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2003,Single-family,Single-family,337,337,51559490
+51145,Powhatan County,2003,2 units,Multifamily,0,0,0
+51145,Powhatan County,2003,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2003,5+ units,Multifamily,0,0,0
+51149,Prince George County,2003,Single-family,Single-family,222,222,25947274
+51149,Prince George County,2003,2 units,Multifamily,0,0,0
+51149,Prince George County,2003,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2003,5+ units,Multifamily,0,0,0
+51183,Sussex County,2003,Single-family,Single-family,9,9,487291
+51183,Sussex County,2003,2 units,Multifamily,0,0,0
+51183,Sussex County,2003,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2003,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2003,Single-family,Single-family,57,57,7659070
+51570,Colonial Heights (Independent,2003,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2003,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2003,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2003,Single-family,Single-family,44,44,2777000
+51670,Hopewell (Independent City),2003,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2003,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2003,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2003,Single-family,Single-family,10,10,480650
+51730,Petersburg (Independent City),2003,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2003,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2003,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2003,Single-family,Single-family,279,279,32241880
+51760,Richmond (Independent City),2003,2 units,Multifamily,3,6,443586
+51760,Richmond (Independent City),2003,3-4 units,Multifamily,17,68,3684019
+51760,Richmond (Independent City),2003,5+ units,Multifamily,10,142,8301052
+bhc3,Richmond core (3 localities),2003,Single-family,Single-family,4144,4144,561529022
+bhc3,Richmond core (3 localities),2003,2 units,Multifamily,7,14,1027398
+bhc3,Richmond core (3 localities),2003,3-4 units,Multifamily,65,229,14922555
+bhc3,Richmond core (3 localities),2003,5+ units,Multifamily,101,1208,73132501
+rr17,Richmond region (17 localities),2003,Single-family,Single-family,6690,6690,953840305
+rr17,Richmond region (17 localities),2003,2 units,Multifamily,7,14,1027398
+rr17,Richmond region (17 localities),2003,3-4 units,Multifamily,66,233,15252555
+rr17,Richmond region (17 localities),2003,5+ units,Multifamily,109,1316,76802957
+secondary4,Expansion ring (4 localities),2003,Single-family,Single-family,1666,1666,294554363
+secondary4,Expansion ring (4 localities),2003,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2003,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2003,5+ units,Multifamily,8,108,3670456
+51007,Amelia County,2004,Single-family,Single-family,114,114,18447229
+51007,Amelia County,2004,2 units,Multifamily,0,0,0
+51007,Amelia County,2004,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2004,5+ units,Multifamily,0,0,0
+51036,Charles City County,2004,Single-family,Single-family,44,44,7579984
+51036,Charles City County,2004,2 units,Multifamily,0,0,0
+51036,Charles City County,2004,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2004,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2004,Single-family,Single-family,2040,2040,274501728
+51041,Chesterfield County,2004,2 units,Multifamily,3,6,421442
+51041,Chesterfield County,2004,3-4 units,Multifamily,35,132,9269547
+51041,Chesterfield County,2004,5+ units,Multifamily,60,960,62629833
+51053,Dinwiddie County,2004,Single-family,Single-family,227,227,23239599
+51053,Dinwiddie County,2004,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2004,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2004,5+ units,Multifamily,0,0,0
+51075,Goochland County,2004,Single-family,Single-family,310,310,82034286
+51075,Goochland County,2004,2 units,Multifamily,0,0,0
+51075,Goochland County,2004,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2004,5+ units,Multifamily,0,0,0
+51085,Hanover County,2004,Single-family,Single-family,566,566,102743826
+51085,Hanover County,2004,2 units,Multifamily,0,0,0
+51085,Hanover County,2004,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2004,5+ units,Multifamily,0,0,0
+51087,Henrico County,2004,Single-family,Single-family,1811,1811,243658599
+51087,Henrico County,2004,2 units,Multifamily,0,0,0
+51087,Henrico County,2004,3-4 units,Multifamily,30,90,6512282
+51087,Henrico County,2004,5+ units,Multifamily,11,55,4029850
+51097,King and Queen County,2004,Single-family,Single-family,45,45,5694328
+51097,King and Queen County,2004,2 units,Multifamily,0,0,0
+51097,King and Queen County,2004,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2004,5+ units,Multifamily,0,0,0
+51101,King William County,2004,Single-family,Single-family,236,236,25810107
+51101,King William County,2004,2 units,Multifamily,0,0,0
+51101,King William County,2004,3-4 units,Multifamily,0,0,0
+51101,King William County,2004,5+ units,Multifamily,0,0,0
+51127,New Kent County,2004,Single-family,Single-family,276,276,43974806
+51127,New Kent County,2004,2 units,Multifamily,0,0,0
+51127,New Kent County,2004,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2004,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2004,Single-family,Single-family,347,347,76820210
+51145,Powhatan County,2004,2 units,Multifamily,0,0,0
+51145,Powhatan County,2004,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2004,5+ units,Multifamily,0,0,0
+51149,Prince George County,2004,Single-family,Single-family,245,245,32242607
+51149,Prince George County,2004,2 units,Multifamily,0,0,0
+51149,Prince George County,2004,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2004,5+ units,Multifamily,0,0,0
+51183,Sussex County,2004,Single-family,Single-family,20,20,3183326
+51183,Sussex County,2004,2 units,Multifamily,0,0,0
+51183,Sussex County,2004,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2004,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2004,Single-family,Single-family,46,46,6770790
+51570,Colonial Heights (Independent,2004,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2004,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2004,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2004,Single-family,Single-family,48,48,2872000
+51670,Hopewell (Independent City),2004,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2004,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2004,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2004,Single-family,Single-family,20,20,1200000
+51730,Petersburg (Independent City),2004,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2004,3-4 units,Multifamily,9,36,3826200
+51730,Petersburg (Independent City),2004,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2004,Single-family,Single-family,319,319,45966074
+51760,Richmond (Independent City),2004,2 units,Multifamily,4,8,869618
+51760,Richmond (Independent City),2004,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2004,5+ units,Multifamily,1,71,2562442
+bhc3,Richmond core (3 localities),2004,Single-family,Single-family,4170,4170,564126401
+bhc3,Richmond core (3 localities),2004,2 units,Multifamily,7,14,1291060
+bhc3,Richmond core (3 localities),2004,3-4 units,Multifamily,65,222,15781829
+bhc3,Richmond core (3 localities),2004,5+ units,Multifamily,72,1086,69222125
+rr17,Richmond region (17 localities),2004,Single-family,Single-family,6714,6714,996739499
+rr17,Richmond region (17 localities),2004,2 units,Multifamily,7,14,1291060
+rr17,Richmond region (17 localities),2004,3-4 units,Multifamily,74,258,19608029
+rr17,Richmond region (17 localities),2004,5+ units,Multifamily,72,1086,69222125
+secondary4,Expansion ring (4 localities),2004,Single-family,Single-family,1499,1499,305573128
+secondary4,Expansion ring (4 localities),2004,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2004,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2004,5+ units,Multifamily,0,0,0
+51007,Amelia County,2005,Single-family,Single-family,169,169,28256973
+51007,Amelia County,2005,2 units,Multifamily,0,0,0
+51007,Amelia County,2005,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2005,5+ units,Multifamily,0,0,0
+51036,Charles City County,2005,Single-family,Single-family,41,41,6463998
+51036,Charles City County,2005,2 units,Multifamily,0,0,0
+51036,Charles City County,2005,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2005,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2005,Single-family,Single-family,2188,2188,316098302
+51041,Chesterfield County,2005,2 units,Multifamily,3,6,437625
+51041,Chesterfield County,2005,3-4 units,Multifamily,40,149,11698582
+51041,Chesterfield County,2005,5+ units,Multifamily,26,374,26351751
+51053,Dinwiddie County,2005,Single-family,Single-family,174,174,20388011
+51053,Dinwiddie County,2005,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2005,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2005,5+ units,Multifamily,0,0,0
+51075,Goochland County,2005,Single-family,Single-family,380,380,109410691
+51075,Goochland County,2005,2 units,Multifamily,0,0,0
+51075,Goochland County,2005,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2005,5+ units,Multifamily,0,0,0
+51085,Hanover County,2005,Single-family,Single-family,619,619,138449606
+51085,Hanover County,2005,2 units,Multifamily,0,0,0
+51085,Hanover County,2005,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2005,5+ units,Multifamily,0,0,0
+51087,Henrico County,2005,Single-family,Single-family,1781,1781,256557938
+51087,Henrico County,2005,2 units,Multifamily,1,2,156971
+51087,Henrico County,2005,3-4 units,Multifamily,9,28,2129469
+51087,Henrico County,2005,5+ units,Multifamily,30,271,21128685
+51097,King and Queen County,2005,Single-family,Single-family,60,60,8247714
+51097,King and Queen County,2005,2 units,Multifamily,0,0,0
+51097,King and Queen County,2005,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2005,5+ units,Multifamily,0,0,0
+51101,King William County,2005,Single-family,Single-family,199,199,26522470
+51101,King William County,2005,2 units,Multifamily,0,0,0
+51101,King William County,2005,3-4 units,Multifamily,0,0,0
+51101,King William County,2005,5+ units,Multifamily,0,0,0
+51127,New Kent County,2005,Single-family,Single-family,340,340,69928006
+51127,New Kent County,2005,2 units,Multifamily,0,0,0
+51127,New Kent County,2005,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2005,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2005,Single-family,Single-family,360,360,86263162
+51145,Powhatan County,2005,2 units,Multifamily,0,0,0
+51145,Powhatan County,2005,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2005,5+ units,Multifamily,0,0,0
+51149,Prince George County,2005,Single-family,Single-family,238,238,32242607
+51149,Prince George County,2005,2 units,Multifamily,0,0,0
+51149,Prince George County,2005,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2005,5+ units,Multifamily,0,0,0
+51183,Sussex County,2005,Single-family,Single-family,35,35,4927641
+51183,Sussex County,2005,2 units,Multifamily,0,0,0
+51183,Sussex County,2005,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2005,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2005,Single-family,Single-family,54,54,9582000
+51570,Colonial Heights (Independent,2005,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2005,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2005,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2005,Single-family,Single-family,152,152,6851727
+51670,Hopewell (Independent City),2005,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2005,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2005,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2005,Single-family,Single-family,21,21,1308890
+51730,Petersburg (Independent City),2005,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2005,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2005,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2005,Single-family,Single-family,525,525,84616876
+51760,Richmond (Independent City),2005,2 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2005,3-4 units,Multifamily,1,3,290000
+51760,Richmond (Independent City),2005,5+ units,Multifamily,13,226,15434964
+bhc3,Richmond core (3 localities),2005,Single-family,Single-family,4494,4494,657273116
+bhc3,Richmond core (3 localities),2005,2 units,Multifamily,4,8,594596
+bhc3,Richmond core (3 localities),2005,3-4 units,Multifamily,50,180,14118051
+bhc3,Richmond core (3 localities),2005,5+ units,Multifamily,69,871,62915400
+rr17,Richmond region (17 localities),2005,Single-family,Single-family,7336,7336,1206116612
+rr17,Richmond region (17 localities),2005,2 units,Multifamily,4,8,594596
+rr17,Richmond region (17 localities),2005,3-4 units,Multifamily,50,180,14118051
+rr17,Richmond region (17 localities),2005,5+ units,Multifamily,69,871,62915400
+secondary4,Expansion ring (4 localities),2005,Single-family,Single-family,1699,1699,404051465
+secondary4,Expansion ring (4 localities),2005,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2005,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2005,5+ units,Multifamily,0,0,0
+51007,Amelia County,2006,Single-family,Single-family,139,139,26884267
+51007,Amelia County,2006,2 units,Multifamily,0,0,0
+51007,Amelia County,2006,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2006,5+ units,Multifamily,0,0,0
+51036,Charles City County,2006,Single-family,Single-family,38,38,5952019
+51036,Charles City County,2006,2 units,Multifamily,0,0,0
+51036,Charles City County,2006,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2006,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2006,Single-family,Single-family,1882,1882,289610985
+51041,Chesterfield County,2006,2 units,Multifamily,6,12,969699
+51041,Chesterfield County,2006,3-4 units,Multifamily,32,124,11022498
+51041,Chesterfield County,2006,5+ units,Multifamily,12,96,8690646
+51053,Dinwiddie County,2006,Single-family,Single-family,162,162,18404921
+51053,Dinwiddie County,2006,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2006,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2006,5+ units,Multifamily,0,0,0
+51075,Goochland County,2006,Single-family,Single-family,281,281,82042708
+51075,Goochland County,2006,2 units,Multifamily,0,0,0
+51075,Goochland County,2006,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2006,5+ units,Multifamily,0,0,0
+51085,Hanover County,2006,Single-family,Single-family,510,510,119344120
+51085,Hanover County,2006,2 units,Multifamily,0,0,0
+51085,Hanover County,2006,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2006,5+ units,Multifamily,0,0,0
+51087,Henrico County,2006,Single-family,Single-family,1468,1468,225664711
+51087,Henrico County,2006,2 units,Multifamily,1,2,156971
+51087,Henrico County,2006,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2006,5+ units,Multifamily,1,5,494455
+51097,King and Queen County,2006,Single-family,Single-family,67,67,9290205
+51097,King and Queen County,2006,2 units,Multifamily,0,0,0
+51097,King and Queen County,2006,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2006,5+ units,Multifamily,0,0,0
+51101,King William County,2006,Single-family,Single-family,230,230,35241313
+51101,King William County,2006,2 units,Multifamily,0,0,0
+51101,King William County,2006,3-4 units,Multifamily,0,0,0
+51101,King William County,2006,5+ units,Multifamily,0,0,0
+51127,New Kent County,2006,Single-family,Single-family,294,294,69285272
+51127,New Kent County,2006,2 units,Multifamily,0,0,0
+51127,New Kent County,2006,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2006,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2006,Single-family,Single-family,303,303,80402444
+51145,Powhatan County,2006,2 units,Multifamily,0,0,0
+51145,Powhatan County,2006,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2006,5+ units,Multifamily,0,0,0
+51149,Prince George County,2006,Single-family,Single-family,202,202,37720564
+51149,Prince George County,2006,2 units,Multifamily,0,0,0
+51149,Prince George County,2006,3-4 units,Multifamily,1,4,376000
+51149,Prince George County,2006,5+ units,Multifamily,0,0,0
+51183,Sussex County,2006,Single-family,Single-family,91,91,11676885
+51183,Sussex County,2006,2 units,Multifamily,0,0,0
+51183,Sussex County,2006,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2006,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2006,Single-family,Single-family,40,40,6456000
+51570,Colonial Heights (Independent,2006,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2006,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2006,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2006,Single-family,Single-family,159,159,8869993
+51670,Hopewell (Independent City),2006,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2006,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2006,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2006,Single-family,Single-family,51,51,7979621
+51730,Petersburg (Independent City),2006,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2006,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2006,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2006,Single-family,Single-family,483,483,67583986
+51760,Richmond (Independent City),2006,2 units,Multifamily,7,14,1833748
+51760,Richmond (Independent City),2006,3-4 units,Multifamily,6,18,1189499
+51760,Richmond (Independent City),2006,5+ units,Multifamily,6,214,13515135
+bhc3,Richmond core (3 localities),2006,Single-family,Single-family,3833,3833,582859682
+bhc3,Richmond core (3 localities),2006,2 units,Multifamily,14,28,2960418
+bhc3,Richmond core (3 localities),2006,3-4 units,Multifamily,38,142,12211997
+bhc3,Richmond core (3 localities),2006,5+ units,Multifamily,19,315,22700236
+rr17,Richmond region (17 localities),2006,Single-family,Single-family,6400,6400,1102410014
+rr17,Richmond region (17 localities),2006,2 units,Multifamily,14,28,2960418
+rr17,Richmond region (17 localities),2006,3-4 units,Multifamily,39,146,12587997
+rr17,Richmond region (17 localities),2006,5+ units,Multifamily,19,315,22700236
+secondary4,Expansion ring (4 localities),2006,Single-family,Single-family,1388,1388,351074544
+secondary4,Expansion ring (4 localities),2006,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2006,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2006,5+ units,Multifamily,0,0,0
+51007,Amelia County,2007,Single-family,Single-family,94,94,16536250
+51007,Amelia County,2007,2 units,Multifamily,0,0,0
+51007,Amelia County,2007,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2007,5+ units,Multifamily,0,0,0
+51036,Charles City County,2007,Single-family,Single-family,37,37,6108129
+51036,Charles City County,2007,2 units,Multifamily,0,0,0
+51036,Charles City County,2007,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2007,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2007,Single-family,Single-family,1273,1273,209893613
+51041,Chesterfield County,2007,2 units,Multifamily,10,20,1748674
+51041,Chesterfield County,2007,3-4 units,Multifamily,36,138,13715727
+51041,Chesterfield County,2007,5+ units,Multifamily,40,671,77026700
+51053,Dinwiddie County,2007,Single-family,Single-family,225,225,26653299
+51053,Dinwiddie County,2007,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2007,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2007,5+ units,Multifamily,0,0,0
+51075,Goochland County,2007,Single-family,Single-family,196,196,59651666
+51075,Goochland County,2007,2 units,Multifamily,0,0,0
+51075,Goochland County,2007,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2007,5+ units,Multifamily,0,0,0
+51085,Hanover County,2007,Single-family,Single-family,519,519,112871584
+51085,Hanover County,2007,2 units,Multifamily,0,0,0
+51085,Hanover County,2007,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2007,5+ units,Multifamily,0,0,0
+51087,Henrico County,2007,Single-family,Single-family,1228,1228,202496940
+51087,Henrico County,2007,2 units,Multifamily,0,0,0
+51087,Henrico County,2007,3-4 units,Multifamily,1,4,412040
+51087,Henrico County,2007,5+ units,Multifamily,3,15,1486617
+51097,King and Queen County,2007,Single-family,Single-family,60,60,8063217
+51097,King and Queen County,2007,2 units,Multifamily,0,0,0
+51097,King and Queen County,2007,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2007,5+ units,Multifamily,0,0,0
+51101,King William County,2007,Single-family,Single-family,185,185,30085391
+51101,King William County,2007,2 units,Multifamily,0,0,0
+51101,King William County,2007,3-4 units,Multifamily,0,0,0
+51101,King William County,2007,5+ units,Multifamily,0,0,0
+51127,New Kent County,2007,Single-family,Single-family,232,232,47836086
+51127,New Kent County,2007,2 units,Multifamily,0,0,0
+51127,New Kent County,2007,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2007,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2007,Single-family,Single-family,222,222,62792750
+51145,Powhatan County,2007,2 units,Multifamily,0,0,0
+51145,Powhatan County,2007,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2007,5+ units,Multifamily,0,0,0
+51149,Prince George County,2007,Single-family,Single-family,182,182,28092875
+51149,Prince George County,2007,2 units,Multifamily,0,0,0
+51149,Prince George County,2007,3-4 units,Multifamily,1,4,356000
+51149,Prince George County,2007,5+ units,Multifamily,1,24,624322
+51183,Sussex County,2007,Single-family,Single-family,90,90,11087535
+51183,Sussex County,2007,2 units,Multifamily,0,0,0
+51183,Sussex County,2007,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2007,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2007,Single-family,Single-family,16,16,2247000
+51570,Colonial Heights (Independent,2007,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2007,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2007,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2007,Single-family,Single-family,158,158,8440455
+51670,Hopewell (Independent City),2007,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2007,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2007,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2007,Single-family,Single-family,34,34,3357973
+51730,Petersburg (Independent City),2007,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2007,3-4 units,Multifamily,19,76,4717225
+51730,Petersburg (Independent City),2007,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2007,Single-family,Single-family,356,356,51841292
+51760,Richmond (Independent City),2007,2 units,Multifamily,3,6,879000
+51760,Richmond (Independent City),2007,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2007,5+ units,Multifamily,2,202,32633172
+bhc3,Richmond core (3 localities),2007,Single-family,Single-family,2857,2857,464231845
+bhc3,Richmond core (3 localities),2007,2 units,Multifamily,13,26,2627674
+bhc3,Richmond core (3 localities),2007,3-4 units,Multifamily,37,142,14127767
+bhc3,Richmond core (3 localities),2007,5+ units,Multifamily,45,888,111146489
+rr17,Richmond region (17 localities),2007,Single-family,Single-family,5107,5107,888056055
+rr17,Richmond region (17 localities),2007,2 units,Multifamily,13,26,2627674
+rr17,Richmond region (17 localities),2007,3-4 units,Multifamily,57,222,19200992
+rr17,Richmond region (17 localities),2007,5+ units,Multifamily,46,912,111770811
+secondary4,Expansion ring (4 localities),2007,Single-family,Single-family,1169,1169,283152086
+secondary4,Expansion ring (4 localities),2007,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2007,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2007,5+ units,Multifamily,0,0,0
+51007,Amelia County,2008,Single-family,Single-family,60,60,11273750
+51007,Amelia County,2008,2 units,Multifamily,0,0,0
+51007,Amelia County,2008,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2008,5+ units,Multifamily,0,0,0
+51036,Charles City County,2008,Single-family,Single-family,30,30,4586020
+51036,Charles City County,2008,2 units,Multifamily,0,0,0
+51036,Charles City County,2008,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2008,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2008,Single-family,Single-family,804,804,139810085
+51041,Chesterfield County,2008,2 units,Multifamily,5,10,1224040
+51041,Chesterfield County,2008,3-4 units,Multifamily,15,57,6983762
+51041,Chesterfield County,2008,5+ units,Multifamily,45,857,59026801
+51053,Dinwiddie County,2008,Single-family,Single-family,118,118,20950570
+51053,Dinwiddie County,2008,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2008,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2008,5+ units,Multifamily,0,0,0
+51075,Goochland County,2008,Single-family,Single-family,98,98,26879124
+51075,Goochland County,2008,2 units,Multifamily,0,0,0
+51075,Goochland County,2008,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2008,5+ units,Multifamily,0,0,0
+51085,Hanover County,2008,Single-family,Single-family,370,370,71915244
+51085,Hanover County,2008,2 units,Multifamily,0,0,0
+51085,Hanover County,2008,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2008,5+ units,Multifamily,0,0,0
+51087,Henrico County,2008,Single-family,Single-family,834,834,144742652
+51087,Henrico County,2008,2 units,Multifamily,0,0,0
+51087,Henrico County,2008,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2008,5+ units,Multifamily,0,0,0
+51097,King and Queen County,2008,Single-family,Single-family,50,50,5705420
+51097,King and Queen County,2008,2 units,Multifamily,0,0,0
+51097,King and Queen County,2008,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2008,5+ units,Multifamily,0,0,0
+51101,King William County,2008,Single-family,Single-family,127,127,15994084
+51101,King William County,2008,2 units,Multifamily,0,0,0
+51101,King William County,2008,3-4 units,Multifamily,0,0,0
+51101,King William County,2008,5+ units,Multifamily,0,0,0
+51127,New Kent County,2008,Single-family,Single-family,235,235,48898851
+51127,New Kent County,2008,2 units,Multifamily,0,0,0
+51127,New Kent County,2008,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2008,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2008,Single-family,Single-family,130,130,32371449
+51145,Powhatan County,2008,2 units,Multifamily,0,0,0
+51145,Powhatan County,2008,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2008,5+ units,Multifamily,0,0,0
+51149,Prince George County,2008,Single-family,Single-family,101,101,15117464
+51149,Prince George County,2008,2 units,Multifamily,0,0,0
+51149,Prince George County,2008,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2008,5+ units,Multifamily,0,0,0
+51183,Sussex County,2008,Single-family,Single-family,45,45,5262642
+51183,Sussex County,2008,2 units,Multifamily,0,0,0
+51183,Sussex County,2008,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2008,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2008,Single-family,Single-family,24,24,2410040
+51570,Colonial Heights (Independent,2008,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2008,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2008,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2008,Single-family,Single-family,109,109,6928079
+51670,Hopewell (Independent City),2008,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2008,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2008,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2008,Single-family,Single-family,41,41,3821446
+51730,Petersburg (Independent City),2008,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2008,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2008,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2008,Single-family,Single-family,253,253,39669993
+51760,Richmond (Independent City),2008,2 units,Multifamily,2,4,346267
+51760,Richmond (Independent City),2008,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2008,5+ units,Multifamily,5,101,5324919
+bhc3,Richmond core (3 localities),2008,Single-family,Single-family,1891,1891,324222730
+bhc3,Richmond core (3 localities),2008,2 units,Multifamily,7,14,1570307
+bhc3,Richmond core (3 localities),2008,3-4 units,Multifamily,15,57,6983762
+bhc3,Richmond core (3 localities),2008,5+ units,Multifamily,50,958,64351720
+rr17,Richmond region (17 localities),2008,Single-family,Single-family,3429,3429,596336913
+rr17,Richmond region (17 localities),2008,2 units,Multifamily,7,14,1570307
+rr17,Richmond region (17 localities),2008,3-4 units,Multifamily,15,57,6983762
+rr17,Richmond region (17 localities),2008,5+ units,Multifamily,50,958,64351720
+secondary4,Expansion ring (4 localities),2008,Single-family,Single-family,833,833,180064668
+secondary4,Expansion ring (4 localities),2008,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2008,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2008,5+ units,Multifamily,0,0,0
+51007,Amelia County,2009,Single-family,Single-family,36,36,5281600
+51007,Amelia County,2009,2 units,Multifamily,0,0,0
+51007,Amelia County,2009,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2009,5+ units,Multifamily,0,0,0
+51036,Charles City County,2009,Single-family,Single-family,24,24,2936966
+51036,Charles City County,2009,2 units,Multifamily,0,0,0
+51036,Charles City County,2009,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2009,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2009,Single-family,Single-family,635,635,113785200
+51041,Chesterfield County,2009,2 units,Multifamily,2,4,370000
+51041,Chesterfield County,2009,3-4 units,Multifamily,5,18,1540664
+51041,Chesterfield County,2009,5+ units,Multifamily,13,146,14381240
+51053,Dinwiddie County,2009,Single-family,Single-family,127,127,15870587
+51053,Dinwiddie County,2009,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2009,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2009,5+ units,Multifamily,0,0,0
+51075,Goochland County,2009,Single-family,Single-family,75,75,15635240
+51075,Goochland County,2009,2 units,Multifamily,0,0,0
+51075,Goochland County,2009,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2009,5+ units,Multifamily,0,0,0
+51085,Hanover County,2009,Single-family,Single-family,257,257,46958188
+51085,Hanover County,2009,2 units,Multifamily,0,0,0
+51085,Hanover County,2009,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2009,5+ units,Multifamily,0,0,0
+51087,Henrico County,2009,Single-family,Single-family,467,467,83646376
+51087,Henrico County,2009,2 units,Multifamily,0,0,0
+51087,Henrico County,2009,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2009,5+ units,Multifamily,0,0,0
+51097,King and Queen County,2009,Single-family,Single-family,18,18,2717032
+51097,King and Queen County,2009,2 units,Multifamily,0,0,0
+51097,King and Queen County,2009,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2009,5+ units,Multifamily,0,0,0
+51101,King William County,2009,Single-family,Single-family,73,73,8462788
+51101,King William County,2009,2 units,Multifamily,0,0,0
+51101,King William County,2009,3-4 units,Multifamily,0,0,0
+51101,King William County,2009,5+ units,Multifamily,0,0,0
+51127,New Kent County,2009,Single-family,Single-family,130,130,20577761
+51127,New Kent County,2009,2 units,Multifamily,0,0,0
+51127,New Kent County,2009,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2009,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2009,Single-family,Single-family,69,69,13749077
+51145,Powhatan County,2009,2 units,Multifamily,0,0,0
+51145,Powhatan County,2009,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2009,5+ units,Multifamily,0,0,0
+51149,Prince George County,2009,Single-family,Single-family,76,76,11721793
+51149,Prince George County,2009,2 units,Multifamily,0,0,0
+51149,Prince George County,2009,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2009,5+ units,Multifamily,0,0,0
+51183,Sussex County,2009,Single-family,Single-family,27,27,3634202
+51183,Sussex County,2009,2 units,Multifamily,0,0,0
+51183,Sussex County,2009,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2009,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2009,Single-family,Single-family,4,4,261000
+51570,Colonial Heights (Independent,2009,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2009,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2009,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2009,Single-family,Single-family,168,168,11409934
+51670,Hopewell (Independent City),2009,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2009,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2009,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2009,Single-family,Single-family,48,48,4340763
+51730,Petersburg (Independent City),2009,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2009,3-4 units,Multifamily,14,56,5000000
+51730,Petersburg (Independent City),2009,5+ units,Multifamily,7,168,5067000
+51760,Richmond (Independent City),2009,Single-family,Single-family,139,139,18226122
+51760,Richmond (Independent City),2009,2 units,Multifamily,1,2,179942
+51760,Richmond (Independent City),2009,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2009,5+ units,Multifamily,3,220,11575424
+bhc3,Richmond core (3 localities),2009,Single-family,Single-family,1241,1241,215657698
+bhc3,Richmond core (3 localities),2009,2 units,Multifamily,3,6,549942
+bhc3,Richmond core (3 localities),2009,3-4 units,Multifamily,5,18,1540664
+bhc3,Richmond core (3 localities),2009,5+ units,Multifamily,16,366,25956664
+rr17,Richmond region (17 localities),2009,Single-family,Single-family,2373,2373,379214629
+rr17,Richmond region (17 localities),2009,2 units,Multifamily,3,6,549942
+rr17,Richmond region (17 localities),2009,3-4 units,Multifamily,19,74,6540664
+rr17,Richmond region (17 localities),2009,5+ units,Multifamily,23,534,31023664
+secondary4,Expansion ring (4 localities),2009,Single-family,Single-family,531,531,96920266
+secondary4,Expansion ring (4 localities),2009,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2009,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2009,5+ units,Multifamily,0,0,0
+51007,Amelia County,2010,Single-family,Single-family,44,44,7768030
+51007,Amelia County,2010,2 units,Multifamily,0,0,0
+51007,Amelia County,2010,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2010,5+ units,Multifamily,0,0,0
+51036,Charles City County,2010,Single-family,Single-family,43,43,6175569
+51036,Charles City County,2010,2 units,Multifamily,0,0,0
+51036,Charles City County,2010,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2010,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2010,Single-family,Single-family,545,545,95135552
+51041,Chesterfield County,2010,2 units,Multifamily,1,2,280000
+51041,Chesterfield County,2010,3-4 units,Multifamily,15,59,7915555
+51041,Chesterfield County,2010,5+ units,Multifamily,15,265,12504968
+51053,Dinwiddie County,2010,Single-family,Single-family,72,72,10926008
+51053,Dinwiddie County,2010,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2010,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2010,5+ units,Multifamily,0,0,0
+51075,Goochland County,2010,Single-family,Single-family,60,60,14065462
+51075,Goochland County,2010,2 units,Multifamily,0,0,0
+51075,Goochland County,2010,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2010,5+ units,Multifamily,0,0,0
+51085,Hanover County,2010,Single-family,Single-family,275,275,45948177
+51085,Hanover County,2010,2 units,Multifamily,0,0,0
+51085,Hanover County,2010,3-4 units,Multifamily,2,8,667720
+51085,Hanover County,2010,5+ units,Multifamily,0,0,0
+51087,Henrico County,2010,Single-family,Single-family,630,630,110304745
+51087,Henrico County,2010,2 units,Multifamily,0,0,0
+51087,Henrico County,2010,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2010,5+ units,Multifamily,1,5,730000
+51097,King and Queen County,2010,Single-family,Single-family,25,25,3241767
+51097,King and Queen County,2010,2 units,Multifamily,0,0,0
+51097,King and Queen County,2010,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2010,5+ units,Multifamily,0,0,0
+51101,King William County,2010,Single-family,Single-family,45,45,6818710
+51101,King William County,2010,2 units,Multifamily,0,0,0
+51101,King William County,2010,3-4 units,Multifamily,0,0,0
+51101,King William County,2010,5+ units,Multifamily,0,0,0
+51127,New Kent County,2010,Single-family,Single-family,146,146,23285464
+51127,New Kent County,2010,2 units,Multifamily,0,0,0
+51127,New Kent County,2010,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2010,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2010,Single-family,Single-family,70,70,16339664
+51145,Powhatan County,2010,2 units,Multifamily,0,0,0
+51145,Powhatan County,2010,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2010,5+ units,Multifamily,0,0,0
+51149,Prince George County,2010,Single-family,Single-family,42,42,7373587
+51149,Prince George County,2010,2 units,Multifamily,0,0,0
+51149,Prince George County,2010,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2010,5+ units,Multifamily,0,0,0
+51183,Sussex County,2010,Single-family,Single-family,15,15,2039829
+51183,Sussex County,2010,2 units,Multifamily,0,0,0
+51183,Sussex County,2010,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2010,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2010,Single-family,Single-family,6,6,548000
+51570,Colonial Heights (Independent,2010,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2010,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2010,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2010,Single-family,Single-family,30,30,2390460
+51670,Hopewell (Independent City),2010,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2010,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2010,5+ units,Multifamily,1,6,660000
+51730,Petersburg (Independent City),2010,Single-family,Single-family,19,19,1660716
+51730,Petersburg (Independent City),2010,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2010,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2010,5+ units,Multifamily,3,158,11887700
+51760,Richmond (Independent City),2010,Single-family,Single-family,126,126,17828923
+51760,Richmond (Independent City),2010,2 units,Multifamily,12,24,1645723
+51760,Richmond (Independent City),2010,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2010,5+ units,Multifamily,6,457,23162849
+bhc3,Richmond core (3 localities),2010,Single-family,Single-family,1301,1301,223269220
+bhc3,Richmond core (3 localities),2010,2 units,Multifamily,13,26,1925723
+bhc3,Richmond core (3 localities),2010,3-4 units,Multifamily,15,59,7915555
+bhc3,Richmond core (3 localities),2010,5+ units,Multifamily,22,727,36397817
+rr17,Richmond region (17 localities),2010,Single-family,Single-family,2193,2193,371850663
+rr17,Richmond region (17 localities),2010,2 units,Multifamily,13,26,1925723
+rr17,Richmond region (17 localities),2010,3-4 units,Multifamily,17,67,8583275
+rr17,Richmond region (17 localities),2010,5+ units,Multifamily,26,891,48945517
+secondary4,Expansion ring (4 localities),2010,Single-family,Single-family,551,551,99638767
+secondary4,Expansion ring (4 localities),2010,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2010,3-4 units,Multifamily,2,8,667720
+secondary4,Expansion ring (4 localities),2010,5+ units,Multifamily,0,0,0
+51007,Amelia County,2011,Single-family,Single-family,22,22,3366810
+51007,Amelia County,2011,2 units,Multifamily,0,0,0
+51007,Amelia County,2011,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2011,5+ units,Multifamily,0,0,0
+51036,Charles City County,2011,Single-family,Single-family,27,27,3936455
+51036,Charles City County,2011,2 units,Multifamily,0,0,0
+51036,Charles City County,2011,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2011,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2011,Single-family,Single-family,605,605,110057429
+51041,Chesterfield County,2011,2 units,Multifamily,1,2,100000
+51041,Chesterfield County,2011,3-4 units,Multifamily,7,26,3748572
+51041,Chesterfield County,2011,5+ units,Multifamily,5,51,4073452
+51053,Dinwiddie County,2011,Single-family,Single-family,62,62,10580859
+51053,Dinwiddie County,2011,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2011,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2011,5+ units,Multifamily,0,0,0
+51075,Goochland County,2011,Single-family,Single-family,47,47,13406077
+51075,Goochland County,2011,2 units,Multifamily,0,0,0
+51075,Goochland County,2011,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2011,5+ units,Multifamily,0,0,0
+51085,Hanover County,2011,Single-family,Single-family,314,314,55536158
+51085,Hanover County,2011,2 units,Multifamily,0,0,0
+51085,Hanover County,2011,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2011,5+ units,Multifamily,0,0,0
+51087,Henrico County,2011,Single-family,Single-family,613,613,111738630
+51087,Henrico County,2011,2 units,Multifamily,0,0,0
+51087,Henrico County,2011,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2011,5+ units,Multifamily,1,27,1643463
+51097,King and Queen County,2011,Single-family,Single-family,20,20,3519500
+51097,King and Queen County,2011,2 units,Multifamily,0,0,0
+51097,King and Queen County,2011,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2011,5+ units,Multifamily,0,0,0
+51101,King William County,2011,Single-family,Single-family,45,45,5399495
+51101,King William County,2011,2 units,Multifamily,0,0,0
+51101,King William County,2011,3-4 units,Multifamily,0,0,0
+51101,King William County,2011,5+ units,Multifamily,0,0,0
+51127,New Kent County,2011,Single-family,Single-family,156,156,27934301
+51127,New Kent County,2011,2 units,Multifamily,0,0,0
+51127,New Kent County,2011,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2011,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2011,Single-family,Single-family,68,68,16727232
+51145,Powhatan County,2011,2 units,Multifamily,0,0,0
+51145,Powhatan County,2011,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2011,5+ units,Multifamily,0,0,0
+51149,Prince George County,2011,Single-family,Single-family,37,37,6655869
+51149,Prince George County,2011,2 units,Multifamily,0,0,0
+51149,Prince George County,2011,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2011,5+ units,Multifamily,0,0,0
+51183,Sussex County,2011,Single-family,Single-family,15,15,1803772
+51183,Sussex County,2011,2 units,Multifamily,0,0,0
+51183,Sussex County,2011,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2011,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2011,Single-family,Single-family,6,6,603000
+51570,Colonial Heights (Independent,2011,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2011,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2011,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2011,Single-family,Single-family,24,24,1774040
+51670,Hopewell (Independent City),2011,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2011,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2011,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2011,Single-family,Single-family,10,10,1179128
+51730,Petersburg (Independent City),2011,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2011,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2011,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2011,Single-family,Single-family,92,92,14327121
+51760,Richmond (Independent City),2011,2 units,Multifamily,3,6,517006
+51760,Richmond (Independent City),2011,3-4 units,Multifamily,1,3,195320
+51760,Richmond (Independent City),2011,5+ units,Multifamily,6,242,25104346
+bhc3,Richmond core (3 localities),2011,Single-family,Single-family,1310,1310,236123180
+bhc3,Richmond core (3 localities),2011,2 units,Multifamily,4,8,617006
+bhc3,Richmond core (3 localities),2011,3-4 units,Multifamily,8,29,3943892
+bhc3,Richmond core (3 localities),2011,5+ units,Multifamily,12,320,30821261
+rr17,Richmond region (17 localities),2011,Single-family,Single-family,2163,2163,388545876
+rr17,Richmond region (17 localities),2011,2 units,Multifamily,4,8,617006
+rr17,Richmond region (17 localities),2011,3-4 units,Multifamily,8,29,3943892
+rr17,Richmond region (17 localities),2011,5+ units,Multifamily,12,320,30821261
+secondary4,Expansion ring (4 localities),2011,Single-family,Single-family,585,585,113603768
+secondary4,Expansion ring (4 localities),2011,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2011,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2011,5+ units,Multifamily,0,0,0
+51007,Amelia County,2012,Single-family,Single-family,25,25,4312545
+51007,Amelia County,2012,2 units,Multifamily,0,0,0
+51007,Amelia County,2012,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2012,5+ units,Multifamily,0,0,0
+51036,Charles City County,2012,Single-family,Single-family,18,18,2990383
+51036,Charles City County,2012,2 units,Multifamily,0,0,0
+51036,Charles City County,2012,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2012,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2012,Single-family,Single-family,786,786,151164146
+51041,Chesterfield County,2012,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2012,3-4 units,Multifamily,18,71,10049997
+51041,Chesterfield County,2012,5+ units,Multifamily,41,547,25216728
+51053,Dinwiddie County,2012,Single-family,Single-family,54,54,7626982
+51053,Dinwiddie County,2012,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2012,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2012,5+ units,Multifamily,0,0,0
+51075,Goochland County,2012,Single-family,Single-family,88,88,23197262
+51075,Goochland County,2012,2 units,Multifamily,0,0,0
+51075,Goochland County,2012,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2012,5+ units,Multifamily,0,0,0
+51085,Hanover County,2012,Single-family,Single-family,402,402,70632791
+51085,Hanover County,2012,2 units,Multifamily,0,0,0
+51085,Hanover County,2012,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2012,5+ units,Multifamily,1,84,3680000
+51087,Henrico County,2012,Single-family,Single-family,660,660,109136956
+51087,Henrico County,2012,2 units,Multifamily,0,0,0
+51087,Henrico County,2012,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2012,5+ units,Multifamily,0,0,0
+51097,King and Queen County,2012,Single-family,Single-family,16,16,1583000
+51097,King and Queen County,2012,2 units,Multifamily,0,0,0
+51097,King and Queen County,2012,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2012,5+ units,Multifamily,0,0,0
+51101,King William County,2012,Single-family,Single-family,32,32,3859950
+51101,King William County,2012,2 units,Multifamily,0,0,0
+51101,King William County,2012,3-4 units,Multifamily,0,0,0
+51101,King William County,2012,5+ units,Multifamily,0,0,0
+51127,New Kent County,2012,Single-family,Single-family,141,141,23886255
+51127,New Kent County,2012,2 units,Multifamily,0,0,0
+51127,New Kent County,2012,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2012,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2012,Single-family,Single-family,91,91,27364190
+51145,Powhatan County,2012,2 units,Multifamily,0,0,0
+51145,Powhatan County,2012,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2012,5+ units,Multifamily,0,0,0
+51149,Prince George County,2012,Single-family,Single-family,41,41,5370817
+51149,Prince George County,2012,2 units,Multifamily,0,0,0
+51149,Prince George County,2012,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2012,5+ units,Multifamily,0,0,0
+51183,Sussex County,2012,Single-family,Single-family,26,26,3056195
+51183,Sussex County,2012,2 units,Multifamily,0,0,0
+51183,Sussex County,2012,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2012,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2012,Single-family,Single-family,5,5,640000
+51570,Colonial Heights (Independent,2012,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2012,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2012,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2012,Single-family,Single-family,57,57,4654056
+51670,Hopewell (Independent City),2012,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2012,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2012,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2012,Single-family,Single-family,8,8,619116
+51730,Petersburg (Independent City),2012,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2012,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2012,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2012,Single-family,Single-family,119,119,16806209
+51760,Richmond (Independent City),2012,2 units,Multifamily,51,102,8031485
+51760,Richmond (Independent City),2012,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2012,5+ units,Multifamily,9,619,40383545
+bhc3,Richmond core (3 localities),2012,Single-family,Single-family,1565,1565,277107311
+bhc3,Richmond core (3 localities),2012,2 units,Multifamily,51,102,8031485
+bhc3,Richmond core (3 localities),2012,3-4 units,Multifamily,18,71,10049997
+bhc3,Richmond core (3 localities),2012,5+ units,Multifamily,50,1166,65600273
+rr17,Richmond region (17 localities),2012,Single-family,Single-family,2569,2569,456900853
+rr17,Richmond region (17 localities),2012,2 units,Multifamily,51,102,8031485
+rr17,Richmond region (17 localities),2012,3-4 units,Multifamily,18,71,10049997
+rr17,Richmond region (17 localities),2012,5+ units,Multifamily,51,1250,69280273
+secondary4,Expansion ring (4 localities),2012,Single-family,Single-family,722,722,145080498
+secondary4,Expansion ring (4 localities),2012,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2012,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2012,5+ units,Multifamily,1,84,3680000
+51007,Amelia County,2013,Single-family,Single-family,37,37,6529830
+51007,Amelia County,2013,2 units,Multifamily,0,0,0
+51007,Amelia County,2013,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2013,5+ units,Multifamily,0,0,0
+51036,Charles City County,2013,Single-family,Single-family,20,20,4421813
+51036,Charles City County,2013,2 units,Multifamily,0,0,0
+51036,Charles City County,2013,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2013,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2013,Single-family,Single-family,956,956,192343027
+51041,Chesterfield County,2013,2 units,Multifamily,1,2,213150
+51041,Chesterfield County,2013,3-4 units,Multifamily,13,50,6176552
+51041,Chesterfield County,2013,5+ units,Multifamily,20,389,6841260
+51053,Dinwiddie County,2013,Single-family,Single-family,59,59,8311338
+51053,Dinwiddie County,2013,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2013,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2013,5+ units,Multifamily,0,0,0
+51075,Goochland County,2013,Single-family,Single-family,142,142,40812745
+51075,Goochland County,2013,2 units,Multifamily,0,0,0
+51075,Goochland County,2013,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2013,5+ units,Multifamily,0,0,0
+51085,Hanover County,2013,Single-family,Single-family,599,599,111071088
+51085,Hanover County,2013,2 units,Multifamily,0,0,0
+51085,Hanover County,2013,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2013,5+ units,Multifamily,0,0,0
+51087,Henrico County,2013,Single-family,Single-family,823,823,140676351
+51087,Henrico County,2013,2 units,Multifamily,0,0,0
+51087,Henrico County,2013,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2013,5+ units,Multifamily,19,122,19562160
+51097,King and Queen County,2013,Single-family,Single-family,11,11,2532902
+51097,King and Queen County,2013,2 units,Multifamily,0,0,0
+51097,King and Queen County,2013,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2013,5+ units,Multifamily,0,0,0
+51101,King William County,2013,Single-family,Single-family,69,69,8031863
+51101,King William County,2013,2 units,Multifamily,0,0,0
+51101,King William County,2013,3-4 units,Multifamily,0,0,0
+51101,King William County,2013,5+ units,Multifamily,0,0,0
+51127,New Kent County,2013,Single-family,Single-family,187,187,35327614
+51127,New Kent County,2013,2 units,Multifamily,0,0,0
+51127,New Kent County,2013,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2013,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2013,Single-family,Single-family,143,143,36334373
+51145,Powhatan County,2013,2 units,Multifamily,0,0,0
+51145,Powhatan County,2013,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2013,5+ units,Multifamily,0,0,0
+51149,Prince George County,2013,Single-family,Single-family,42,42,5944500
+51149,Prince George County,2013,2 units,Multifamily,0,0,0
+51149,Prince George County,2013,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2013,5+ units,Multifamily,8,144,9346720
+51183,Sussex County,2013,Single-family,Single-family,29,29,2592956
+51183,Sussex County,2013,2 units,Multifamily,0,0,0
+51183,Sussex County,2013,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2013,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2013,Single-family,Single-family,8,8,859750
+51570,Colonial Heights (Independent,2013,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2013,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2013,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2013,Single-family,Single-family,58,58,6410334
+51670,Hopewell (Independent City),2013,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2013,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2013,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2013,Single-family,Single-family,8,8,906032
+51730,Petersburg (Independent City),2013,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2013,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2013,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2013,Single-family,Single-family,106,106,17765805
+51760,Richmond (Independent City),2013,2 units,Multifamily,14,28,2692059
+51760,Richmond (Independent City),2013,3-4 units,Multifamily,1,4,161456
+51760,Richmond (Independent City),2013,5+ units,Multifamily,7,711,42160421
+bhc3,Richmond core (3 localities),2013,Single-family,Single-family,1885,1885,350785183
+bhc3,Richmond core (3 localities),2013,2 units,Multifamily,15,30,2905209
+bhc3,Richmond core (3 localities),2013,3-4 units,Multifamily,14,54,6338008
+bhc3,Richmond core (3 localities),2013,5+ units,Multifamily,46,1222,68563841
+rr17,Richmond region (17 localities),2013,Single-family,Single-family,3297,3297,620872321
+rr17,Richmond region (17 localities),2013,2 units,Multifamily,15,30,2905209
+rr17,Richmond region (17 localities),2013,3-4 units,Multifamily,14,54,6338008
+rr17,Richmond region (17 localities),2013,5+ units,Multifamily,54,1366,77910561
+secondary4,Expansion ring (4 localities),2013,Single-family,Single-family,1071,1071,223545820
+secondary4,Expansion ring (4 localities),2013,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2013,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2013,5+ units,Multifamily,0,0,0
+51007,Amelia County,2014,Single-family,Single-family,40,40,8630600
+51007,Amelia County,2014,2 units,Multifamily,0,0,0
+51007,Amelia County,2014,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2014,5+ units,Multifamily,0,0,0
+51036,Charles City County,2014,Single-family,Single-family,18,18,2905380
+51036,Charles City County,2014,2 units,Multifamily,0,0,0
+51036,Charles City County,2014,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2014,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2014,Single-family,Single-family,860,860,182408314
+51041,Chesterfield County,2014,2 units,Multifamily,1,2,240000
+51041,Chesterfield County,2014,3-4 units,Multifamily,23,85,8466730
+51041,Chesterfield County,2014,5+ units,Multifamily,18,675,32393105
+51053,Dinwiddie County,2014,Single-family,Single-family,42,42,6645118
+51053,Dinwiddie County,2014,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2014,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2014,5+ units,Multifamily,0,0,0
+51075,Goochland County,2014,Single-family,Single-family,127,127,35652417
+51075,Goochland County,2014,2 units,Multifamily,0,0,0
+51075,Goochland County,2014,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2014,5+ units,Multifamily,0,0,0
+51085,Hanover County,2014,Single-family,Single-family,522,522,105754771
+51085,Hanover County,2014,2 units,Multifamily,0,0,0
+51085,Hanover County,2014,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2014,5+ units,Multifamily,0,0,0
+51087,Henrico County,2014,Single-family,Single-family,693,693,121790472
+51087,Henrico County,2014,2 units,Multifamily,0,0,0
+51087,Henrico County,2014,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2014,5+ units,Multifamily,0,0,0
+51097,King and Queen County,2014,Single-family,Single-family,13,13,2529000
+51097,King and Queen County,2014,2 units,Multifamily,0,0,0
+51097,King and Queen County,2014,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2014,5+ units,Multifamily,0,0,0
+51101,King William County,2014,Single-family,Single-family,74,74,11029647
+51101,King William County,2014,2 units,Multifamily,0,0,0
+51101,King William County,2014,3-4 units,Multifamily,0,0,0
+51101,King William County,2014,5+ units,Multifamily,0,0,0
+51127,New Kent County,2014,Single-family,Single-family,162,162,27867975
+51127,New Kent County,2014,2 units,Multifamily,0,0,0
+51127,New Kent County,2014,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2014,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2014,Single-family,Single-family,191,191,51925200
+51145,Powhatan County,2014,2 units,Multifamily,0,0,0
+51145,Powhatan County,2014,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2014,5+ units,Multifamily,0,0,0
+51149,Prince George County,2014,Single-family,Single-family,66,66,9152849
+51149,Prince George County,2014,2 units,Multifamily,0,0,0
+51149,Prince George County,2014,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2014,5+ units,Multifamily,0,0,0
+51183,Sussex County,2014,Single-family,Single-family,20,20,2123494
+51183,Sussex County,2014,2 units,Multifamily,0,0,0
+51183,Sussex County,2014,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2014,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2014,Single-family,Single-family,13,13,1693594
+51570,Colonial Heights (Independent,2014,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2014,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2014,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2014,Single-family,Single-family,90,90,10409011
+51670,Hopewell (Independent City),2014,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2014,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2014,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2014,Single-family,Single-family,8,8,1144556
+51730,Petersburg (Independent City),2014,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2014,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2014,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2014,Single-family,Single-family,182,182,29083961
+51760,Richmond (Independent City),2014,2 units,Multifamily,19,38,3441870
+51760,Richmond (Independent City),2014,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2014,5+ units,Multifamily,6,331,26318108
+bhc3,Richmond core (3 localities),2014,Single-family,Single-family,1735,1735,333282747
+bhc3,Richmond core (3 localities),2014,2 units,Multifamily,20,40,3681870
+bhc3,Richmond core (3 localities),2014,3-4 units,Multifamily,23,85,8466730
+bhc3,Richmond core (3 localities),2014,5+ units,Multifamily,24,1006,58711213
+rr17,Richmond region (17 localities),2014,Single-family,Single-family,3121,3121,610746359
+rr17,Richmond region (17 localities),2014,2 units,Multifamily,20,40,3681870
+rr17,Richmond region (17 localities),2014,3-4 units,Multifamily,23,85,8466730
+rr17,Richmond region (17 localities),2014,5+ units,Multifamily,24,1006,58711213
+secondary4,Expansion ring (4 localities),2014,Single-family,Single-family,1002,1002,221200363
+secondary4,Expansion ring (4 localities),2014,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2014,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2014,5+ units,Multifamily,0,0,0
+51007,Amelia County,2015,Single-family,Single-family,34,34,7472610
+51007,Amelia County,2015,2 units,Multifamily,0,0,0
+51007,Amelia County,2015,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2015,5+ units,Multifamily,0,0,0
+51036,Charles City County,2015,Single-family,Single-family,14,14,2669300
+51036,Charles City County,2015,2 units,Multifamily,0,0,0
+51036,Charles City County,2015,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2015,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2015,Single-family,Single-family,1053,1053,223476848
+51041,Chesterfield County,2015,2 units,Multifamily,1,2,175000
+51041,Chesterfield County,2015,3-4 units,Multifamily,20,76,7720348
+51041,Chesterfield County,2015,5+ units,Multifamily,13,132,12842470
+51053,Dinwiddie County,2015,Single-family,Single-family,60,60,6274360
+51053,Dinwiddie County,2015,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2015,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2015,5+ units,Multifamily,0,0,0
+51075,Goochland County,2015,Single-family,Single-family,136,136,43329970
+51075,Goochland County,2015,2 units,Multifamily,0,0,0
+51075,Goochland County,2015,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2015,5+ units,Multifamily,0,0,0
+51085,Hanover County,2015,Single-family,Single-family,637,637,118329950
+51085,Hanover County,2015,2 units,Multifamily,0,0,0
+51085,Hanover County,2015,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2015,5+ units,Multifamily,0,0,0
+51087,Henrico County,2015,Single-family,Single-family,749,749,128204811
+51087,Henrico County,2015,2 units,Multifamily,0,0,0
+51087,Henrico County,2015,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2015,5+ units,Multifamily,19,701,56266140
+51097,King and Queen County,2015,Single-family,Single-family,13,13,2259500
+51097,King and Queen County,2015,2 units,Multifamily,0,0,0
+51097,King and Queen County,2015,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2015,5+ units,Multifamily,0,0,0
+51101,King William County,2015,Single-family,Single-family,100,100,14306036
+51101,King William County,2015,2 units,Multifamily,0,0,0
+51101,King William County,2015,3-4 units,Multifamily,0,0,0
+51101,King William County,2015,5+ units,Multifamily,0,0,0
+51127,New Kent County,2015,Single-family,Single-family,187,187,37657472
+51127,New Kent County,2015,2 units,Multifamily,0,0,0
+51127,New Kent County,2015,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2015,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2015,Single-family,Single-family,171,171,41425936
+51145,Powhatan County,2015,2 units,Multifamily,0,0,0
+51145,Powhatan County,2015,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2015,5+ units,Multifamily,0,0,0
+51149,Prince George County,2015,Single-family,Single-family,68,68,11907915
+51149,Prince George County,2015,2 units,Multifamily,0,0,0
+51149,Prince George County,2015,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2015,5+ units,Multifamily,0,0,0
+51183,Sussex County,2015,Single-family,Single-family,18,18,2187862
+51183,Sussex County,2015,2 units,Multifamily,0,0,0
+51183,Sussex County,2015,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2015,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2015,Single-family,Single-family,4,4,653000
+51570,Colonial Heights (Independent,2015,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2015,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2015,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2015,Single-family,Single-family,48,48,4087413
+51670,Hopewell (Independent City),2015,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2015,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2015,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2015,Single-family,Single-family,5,5,557595
+51730,Petersburg (Independent City),2015,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2015,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2015,5+ units,Multifamily,1,80,4073667
+51760,Richmond (Independent City),2015,Single-family,Single-family,258,258,37018249
+51760,Richmond (Independent City),2015,2 units,Multifamily,10,20,1927720
+51760,Richmond (Independent City),2015,3-4 units,Multifamily,1,4,260000
+51760,Richmond (Independent City),2015,5+ units,Multifamily,4,241,13727462
+bhc3,Richmond core (3 localities),2015,Single-family,Single-family,2060,2060,388699908
+bhc3,Richmond core (3 localities),2015,2 units,Multifamily,11,22,2102720
+bhc3,Richmond core (3 localities),2015,3-4 units,Multifamily,21,80,7980348
+bhc3,Richmond core (3 localities),2015,5+ units,Multifamily,36,1074,82836072
+rr17,Richmond region (17 localities),2015,Single-family,Single-family,3555,3555,681818827
+rr17,Richmond region (17 localities),2015,2 units,Multifamily,11,22,2102720
+rr17,Richmond region (17 localities),2015,3-4 units,Multifamily,21,80,7980348
+rr17,Richmond region (17 localities),2015,5+ units,Multifamily,37,1154,86909739
+secondary4,Expansion ring (4 localities),2015,Single-family,Single-family,1131,1131,240743328
+secondary4,Expansion ring (4 localities),2015,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2015,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2015,5+ units,Multifamily,0,0,0
+51007,Amelia County,2016,Single-family,Single-family,44,44,9108390
+51007,Amelia County,2016,2 units,Multifamily,0,0,0
+51007,Amelia County,2016,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2016,5+ units,Multifamily,0,0,0
+51036,Charles City County,2016,Single-family,Single-family,17,17,3122500
+51036,Charles City County,2016,2 units,Multifamily,0,0,0
+51036,Charles City County,2016,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2016,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2016,Single-family,Single-family,1330,1330,299770879
+51041,Chesterfield County,2016,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2016,3-4 units,Multifamily,27,103,13621917
+51041,Chesterfield County,2016,5+ units,Multifamily,15,280,19313851
+51053,Dinwiddie County,2016,Single-family,Single-family,61,61,1163308
+51053,Dinwiddie County,2016,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2016,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2016,5+ units,Multifamily,0,0,0
+51075,Goochland County,2016,Single-family,Single-family,129,129,33693896
+51075,Goochland County,2016,2 units,Multifamily,0,0,0
+51075,Goochland County,2016,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2016,5+ units,Multifamily,0,0,0
+51085,Hanover County,2016,Single-family,Single-family,584,584,117846581
+51085,Hanover County,2016,2 units,Multifamily,0,0,0
+51085,Hanover County,2016,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2016,5+ units,Multifamily,0,0,0
+51087,Henrico County,2016,Single-family,Single-family,723,723,129437373
+51087,Henrico County,2016,2 units,Multifamily,0,0,0
+51087,Henrico County,2016,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2016,5+ units,Multifamily,45,235,6723025
+51097,King and Queen County,2016,Single-family,Single-family,25,25,4540543
+51097,King and Queen County,2016,2 units,Multifamily,0,0,0
+51097,King and Queen County,2016,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2016,5+ units,Multifamily,0,0,0
+51101,King William County,2016,Single-family,Single-family,129,129,15708949
+51101,King William County,2016,2 units,Multifamily,0,0,0
+51101,King William County,2016,3-4 units,Multifamily,0,0,0
+51101,King William County,2016,5+ units,Multifamily,0,0,0
+51127,New Kent County,2016,Single-family,Single-family,221,221,39581779
+51127,New Kent County,2016,2 units,Multifamily,0,0,0
+51127,New Kent County,2016,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2016,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2016,Single-family,Single-family,208,208,40073895
+51145,Powhatan County,2016,2 units,Multifamily,1,2,182000
+51145,Powhatan County,2016,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2016,5+ units,Multifamily,0,0,0
+51149,Prince George County,2016,Single-family,Single-family,81,81,12272827
+51149,Prince George County,2016,2 units,Multifamily,0,0,0
+51149,Prince George County,2016,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2016,5+ units,Multifamily,0,0,0
+51183,Sussex County,2016,Single-family,Single-family,24,24,3719833
+51183,Sussex County,2016,2 units,Multifamily,0,0,0
+51183,Sussex County,2016,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2016,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2016,Single-family,Single-family,4,4,553213
+51570,Colonial Heights (Independent,2016,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2016,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2016,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2016,Single-family,Single-family,47,47,4259925
+51670,Hopewell (Independent City),2016,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2016,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2016,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2016,Single-family,Single-family,11,11,1043110
+51730,Petersburg (Independent City),2016,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2016,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2016,5+ units,Multifamily,3,66,2725097
+51760,Richmond (Independent City),2016,Single-family,Single-family,280,280,49684756
+51760,Richmond (Independent City),2016,2 units,Multifamily,12,24,2258943
+51760,Richmond (Independent City),2016,3-4 units,Multifamily,3,10,1131250
+51760,Richmond (Independent City),2016,5+ units,Multifamily,5,196,19232566
+bhc3,Richmond core (3 localities),2016,Single-family,Single-family,2333,2333,478893008
+bhc3,Richmond core (3 localities),2016,2 units,Multifamily,12,24,2258943
+bhc3,Richmond core (3 localities),2016,3-4 units,Multifamily,30,113,14753167
+bhc3,Richmond core (3 localities),2016,5+ units,Multifamily,65,711,45269442
+rr17,Richmond region (17 localities),2016,Single-family,Single-family,3918,3918,765581757
+rr17,Richmond region (17 localities),2016,2 units,Multifamily,13,26,2440943
+rr17,Richmond region (17 localities),2016,3-4 units,Multifamily,30,113,14753167
+rr17,Richmond region (17 localities),2016,5+ units,Multifamily,68,777,47994539
+secondary4,Expansion ring (4 localities),2016,Single-family,Single-family,1142,1142,231196151
+secondary4,Expansion ring (4 localities),2016,2 units,Multifamily,1,2,182000
+secondary4,Expansion ring (4 localities),2016,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2016,5+ units,Multifamily,0,0,0
+51007,Amelia County,2017,Single-family,Single-family,55,55,9837166
+51007,Amelia County,2017,2 units,Multifamily,0,0,0
+51007,Amelia County,2017,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2017,5+ units,Multifamily,0,0,0
+51036,Charles City County,2017,Single-family,Single-family,24,24,3898700
+51036,Charles City County,2017,2 units,Multifamily,0,0,0
+51036,Charles City County,2017,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2017,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2017,Single-family,Single-family,1413,1413,325530388
+51041,Chesterfield County,2017,2 units,Multifamily,2,4,600000
+51041,Chesterfield County,2017,3-4 units,Multifamily,45,165,20020686
+51041,Chesterfield County,2017,5+ units,Multifamily,24,646,37219416
+51053,Dinwiddie County,2017,Single-family,Single-family,77,77,11078723
+51053,Dinwiddie County,2017,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2017,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2017,5+ units,Multifamily,0,0,0
+51075,Goochland County,2017,Single-family,Single-family,197,197,55865797
+51075,Goochland County,2017,2 units,Multifamily,0,0,0
+51075,Goochland County,2017,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2017,5+ units,Multifamily,0,0,0
+51085,Hanover County,2017,Single-family,Single-family,597,597,141526243
+51085,Hanover County,2017,2 units,Multifamily,0,0,0
+51085,Hanover County,2017,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2017,5+ units,Multifamily,0,0,0
+51087,Henrico County,2017,Single-family,Single-family,987,987,180761887
+51087,Henrico County,2017,2 units,Multifamily,0,0,0
+51087,Henrico County,2017,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2017,5+ units,Multifamily,86,639,26907341
+51097,King and Queen County,2017,Single-family,Single-family,18,18,2671532
+51097,King and Queen County,2017,2 units,Multifamily,0,0,0
+51097,King and Queen County,2017,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2017,5+ units,Multifamily,0,0,0
+51101,King William County,2017,Single-family,Single-family,143,143,19651685
+51101,King William County,2017,2 units,Multifamily,0,0,0
+51101,King William County,2017,3-4 units,Multifamily,0,0,0
+51101,King William County,2017,5+ units,Multifamily,3,86,7619756
+51127,New Kent County,2017,Single-family,Single-family,295,295,57287449
+51127,New Kent County,2017,2 units,Multifamily,0,0,0
+51127,New Kent County,2017,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2017,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2017,Single-family,Single-family,223,223,41277853
+51145,Powhatan County,2017,2 units,Multifamily,0,0,0
+51145,Powhatan County,2017,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2017,5+ units,Multifamily,0,0,0
+51149,Prince George County,2017,Single-family,Single-family,97,97,14705877
+51149,Prince George County,2017,2 units,Multifamily,0,0,0
+51149,Prince George County,2017,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2017,5+ units,Multifamily,0,0,0
+51183,Sussex County,2017,Single-family,Single-family,33,33,4198896
+51183,Sussex County,2017,2 units,Multifamily,0,0,0
+51183,Sussex County,2017,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2017,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2017,Single-family,Single-family,6,6,1050000
+51570,Colonial Heights (Independent,2017,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2017,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2017,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2017,Single-family,Single-family,45,45,4116590
+51670,Hopewell (Independent City),2017,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2017,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2017,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2017,Single-family,Single-family,3,3,193750
+51730,Petersburg (Independent City),2017,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2017,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2017,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2017,Single-family,Single-family,326,326,66679060
+51760,Richmond (Independent City),2017,2 units,Multifamily,1,2,230406
+51760,Richmond (Independent City),2017,3-4 units,Multifamily,3,10,955942
+51760,Richmond (Independent City),2017,5+ units,Multifamily,14,979,54849163
+bhc3,Richmond core (3 localities),2017,Single-family,Single-family,2726,2726,572971335
+bhc3,Richmond core (3 localities),2017,2 units,Multifamily,3,6,830406
+bhc3,Richmond core (3 localities),2017,3-4 units,Multifamily,48,175,20976628
+bhc3,Richmond core (3 localities),2017,5+ units,Multifamily,124,2264,118975920
+rr17,Richmond region (17 localities),2017,Single-family,Single-family,4539,4539,940331596
+rr17,Richmond region (17 localities),2017,2 units,Multifamily,3,6,830406
+rr17,Richmond region (17 localities),2017,3-4 units,Multifamily,48,175,20976628
+rr17,Richmond region (17 localities),2017,5+ units,Multifamily,127,2350,126595676
+secondary4,Expansion ring (4 localities),2017,Single-family,Single-family,1312,1312,295957342
+secondary4,Expansion ring (4 localities),2017,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2017,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2017,5+ units,Multifamily,0,0,0
+51007,Amelia County,2018,Single-family,Single-family,49,49,8343090
+51007,Amelia County,2018,2 units,Multifamily,0,0,0
+51007,Amelia County,2018,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2018,5+ units,Multifamily,0,0,0
+51036,Charles City County,2018,Single-family,Single-family,17,17,2787325
+51036,Charles City County,2018,2 units,Multifamily,0,0,0
+51036,Charles City County,2018,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2018,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2018,Single-family,Single-family,1535,1535,312041829
+51041,Chesterfield County,2018,2 units,Multifamily,3,6,1043000
+51041,Chesterfield County,2018,3-4 units,Multifamily,32,121,14263696
+51041,Chesterfield County,2018,5+ units,Multifamily,26,598,47653751
+51053,Dinwiddie County,2018,Single-family,Single-family,75,75,11554836
+51053,Dinwiddie County,2018,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2018,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2018,5+ units,Multifamily,0,0,0
+51075,Goochland County,2018,Single-family,Single-family,190,190,56272245
+51075,Goochland County,2018,2 units,Multifamily,0,0,0
+51075,Goochland County,2018,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2018,5+ units,Multifamily,0,0,0
+51085,Hanover County,2018,Single-family,Single-family,487,487,98254751
+51085,Hanover County,2018,2 units,Multifamily,0,0,0
+51085,Hanover County,2018,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2018,5+ units,Multifamily,0,0,0
+51087,Henrico County,2018,Single-family,Single-family,998,998,158411964
+51087,Henrico County,2018,2 units,Multifamily,116,232,9995853
+51087,Henrico County,2018,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2018,5+ units,Multifamily,2,248,17418266
+51097,King and Queen County,2018,Single-family,Single-family,15,15,2349006
+51097,King and Queen County,2018,2 units,Multifamily,0,0,0
+51097,King and Queen County,2018,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2018,5+ units,Multifamily,0,0,0
+51101,King William County,2018,Single-family,Single-family,129,129,19294052
+51101,King William County,2018,2 units,Multifamily,0,0,0
+51101,King William County,2018,3-4 units,Multifamily,0,0,0
+51101,King William County,2018,5+ units,Multifamily,0,0,0
+51127,New Kent County,2018,Single-family,Single-family,253,253,63582819
+51127,New Kent County,2018,2 units,Multifamily,0,0,0
+51127,New Kent County,2018,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2018,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2018,Single-family,Single-family,191,191,45223669
+51145,Powhatan County,2018,2 units,Multifamily,0,0,0
+51145,Powhatan County,2018,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2018,5+ units,Multifamily,0,0,0
+51149,Prince George County,2018,Single-family,Single-family,89,89,14154747
+51149,Prince George County,2018,2 units,Multifamily,0,0,0
+51149,Prince George County,2018,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2018,5+ units,Multifamily,0,0,0
+51183,Sussex County,2018,Single-family,Single-family,33,33,3905073
+51183,Sussex County,2018,2 units,Multifamily,0,0,0
+51183,Sussex County,2018,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2018,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2018,Single-family,Single-family,12,12,1821330
+51570,Colonial Heights (Independent,2018,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2018,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2018,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2018,Single-family,Single-family,50,50,5063953
+51670,Hopewell (Independent City),2018,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2018,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2018,5+ units,Multifamily,1,68,5860172
+51730,Petersburg (Independent City),2018,Single-family,Single-family,13,13,1203794
+51730,Petersburg (Independent City),2018,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2018,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2018,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2018,Single-family,Single-family,273,273,57560527
+51760,Richmond (Independent City),2018,2 units,Multifamily,10,20,2382800
+51760,Richmond (Independent City),2018,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2018,5+ units,Multifamily,2,270,20102991
+bhc3,Richmond core (3 localities),2018,Single-family,Single-family,2806,2806,528014320
+bhc3,Richmond core (3 localities),2018,2 units,Multifamily,129,258,13421653
+bhc3,Richmond core (3 localities),2018,3-4 units,Multifamily,32,121,14263696
+bhc3,Richmond core (3 localities),2018,5+ units,Multifamily,30,1116,85175008
+rr17,Richmond region (17 localities),2018,Single-family,Single-family,4409,4409,861825010
+rr17,Richmond region (17 localities),2018,2 units,Multifamily,129,258,13421653
+rr17,Richmond region (17 localities),2018,3-4 units,Multifamily,32,121,14263696
+rr17,Richmond region (17 localities),2018,5+ units,Multifamily,31,1184,91035180
+secondary4,Expansion ring (4 localities),2018,Single-family,Single-family,1121,1121,263333484
+secondary4,Expansion ring (4 localities),2018,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2018,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2018,5+ units,Multifamily,0,0,0
+51007,Amelia County,2019,Single-family,Single-family,54,54,10310830
+51007,Amelia County,2019,2 units,Multifamily,0,0,0
+51007,Amelia County,2019,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2019,5+ units,Multifamily,0,0,0
+51036,Charles City County,2019,Single-family,Single-family,19,19,3476881
+51036,Charles City County,2019,2 units,Multifamily,0,0,0
+51036,Charles City County,2019,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2019,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2019,Single-family,Single-family,1557,1557,312659874
+51041,Chesterfield County,2019,2 units,Multifamily,5,10,1899986
+51041,Chesterfield County,2019,3-4 units,Multifamily,43,169,19981078
+51041,Chesterfield County,2019,5+ units,Multifamily,63,1466,111997454
+51053,Dinwiddie County,2019,Single-family,Single-family,89,89,14997147
+51053,Dinwiddie County,2019,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2019,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2019,5+ units,Multifamily,0,0,0
+51075,Goochland County,2019,Single-family,Single-family,218,218,61768472
+51075,Goochland County,2019,2 units,Multifamily,0,0,0
+51075,Goochland County,2019,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2019,5+ units,Multifamily,0,0,0
+51085,Hanover County,2019,Single-family,Single-family,574,574,119073655
+51085,Hanover County,2019,2 units,Multifamily,1,2,458800
+51085,Hanover County,2019,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2019,5+ units,Multifamily,10,416,30653637
+51087,Henrico County,2019,Single-family,Single-family,901,901,150110130
+51087,Henrico County,2019,2 units,Multifamily,81,162,5775000
+51087,Henrico County,2019,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2019,5+ units,Multifamily,6,712,72616964
+51097,King and Queen County,2019,Single-family,Single-family,26,26,4274750
+51097,King and Queen County,2019,2 units,Multifamily,0,0,0
+51097,King and Queen County,2019,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2019,5+ units,Multifamily,0,0,0
+51101,King William County,2019,Single-family,Single-family,118,118,18971171
+51101,King William County,2019,2 units,Multifamily,0,0,0
+51101,King William County,2019,3-4 units,Multifamily,0,0,0
+51101,King William County,2019,5+ units,Multifamily,0,0,0
+51127,New Kent County,2019,Single-family,Single-family,173,173,60844000
+51127,New Kent County,2019,2 units,Multifamily,0,0,0
+51127,New Kent County,2019,3-4 units,Multifamily,3,12,2604000
+51127,New Kent County,2019,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2019,Single-family,Single-family,238,238,54926429
+51145,Powhatan County,2019,2 units,Multifamily,0,0,0
+51145,Powhatan County,2019,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2019,5+ units,Multifamily,0,0,0
+51149,Prince George County,2019,Single-family,Single-family,75,75,10153785
+51149,Prince George County,2019,2 units,Multifamily,0,0,0
+51149,Prince George County,2019,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2019,5+ units,Multifamily,0,0,0
+51183,Sussex County,2019,Single-family,Single-family,40,40,3582929
+51183,Sussex County,2019,2 units,Multifamily,0,0,0
+51183,Sussex County,2019,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2019,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2019,Single-family,Single-family,3,3,433500
+51570,Colonial Heights (Independent,2019,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2019,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2019,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2019,Single-family,Single-family,33,33,3065476
+51670,Hopewell (Independent City),2019,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2019,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2019,5+ units,Multifamily,4,23,1982117
+51730,Petersburg (Independent City),2019,Single-family,Single-family,10,10,1350216
+51730,Petersburg (Independent City),2019,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2019,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2019,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2019,Single-family,Single-family,353,353,71580518
+51760,Richmond (Independent City),2019,2 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2019,3-4 units,Multifamily,5,15,970875
+51760,Richmond (Independent City),2019,5+ units,Multifamily,15,872,56169278
+bhc3,Richmond core (3 localities),2019,Single-family,Single-family,2811,2811,534350522
+bhc3,Richmond core (3 localities),2019,2 units,Multifamily,86,172,7674986
+bhc3,Richmond core (3 localities),2019,3-4 units,Multifamily,48,184,20951953
+bhc3,Richmond core (3 localities),2019,5+ units,Multifamily,84,3050,240783696
+rr17,Richmond region (17 localities),2019,Single-family,Single-family,4481,4481,901579763
+rr17,Richmond region (17 localities),2019,2 units,Multifamily,87,174,8133786
+rr17,Richmond region (17 localities),2019,3-4 units,Multifamily,51,196,23555953
+rr17,Richmond region (17 localities),2019,5+ units,Multifamily,98,3489,273419450
+secondary4,Expansion ring (4 localities),2019,Single-family,Single-family,1203,1203,296612556
+secondary4,Expansion ring (4 localities),2019,2 units,Multifamily,1,2,458800
+secondary4,Expansion ring (4 localities),2019,3-4 units,Multifamily,3,12,2604000
+secondary4,Expansion ring (4 localities),2019,5+ units,Multifamily,10,416,30653637
+51007,Amelia County,2020,Single-family,Single-family,54,54,11814409
+51007,Amelia County,2020,2 units,Multifamily,0,0,0
+51007,Amelia County,2020,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2020,5+ units,Multifamily,0,0,0
+51036,Charles City County,2020,Single-family,Single-family,20,20,3583738
+51036,Charles City County,2020,2 units,Multifamily,0,0,0
+51036,Charles City County,2020,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2020,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2020,Single-family,Single-family,2202,2202,399033566
+51041,Chesterfield County,2020,2 units,Multifamily,7,14,2182744
+51041,Chesterfield County,2020,3-4 units,Multifamily,64,243,27853080
+51041,Chesterfield County,2020,5+ units,Multifamily,42,657,44961533
+51053,Dinwiddie County,2020,Single-family,Single-family,99,99,17146626
+51053,Dinwiddie County,2020,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2020,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2020,5+ units,Multifamily,0,0,0
+51075,Goochland County,2020,Single-family,Single-family,301,301,72948170
+51075,Goochland County,2020,2 units,Multifamily,0,0,0
+51075,Goochland County,2020,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2020,5+ units,Multifamily,0,0,0
+51085,Hanover County,2020,Single-family,Single-family,690,690,155718216
+51085,Hanover County,2020,2 units,Multifamily,0,0,0
+51085,Hanover County,2020,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2020,5+ units,Multifamily,0,0,0
+51087,Henrico County,2020,Single-family,Single-family,794,794,126372936
+51087,Henrico County,2020,2 units,Multifamily,167,334,12787187
+51087,Henrico County,2020,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2020,5+ units,Multifamily,5,787,95009202
+51097,King and Queen County,2020,Single-family,Single-family,26,26,3472068
+51097,King and Queen County,2020,2 units,Multifamily,0,0,0
+51097,King and Queen County,2020,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2020,5+ units,Multifamily,0,0,0
+51101,King William County,2020,Single-family,Single-family,169,169,25726401
+51101,King William County,2020,2 units,Multifamily,0,0,0
+51101,King William County,2020,3-4 units,Multifamily,0,0,0
+51101,King William County,2020,5+ units,Multifamily,0,0,0
+51127,New Kent County,2020,Single-family,Single-family,317,317,116294520
+51127,New Kent County,2020,2 units,Multifamily,0,0,0
+51127,New Kent County,2020,3-4 units,Multifamily,1,4,868000
+51127,New Kent County,2020,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2020,Single-family,Single-family,207,207,46481583
+51145,Powhatan County,2020,2 units,Multifamily,1,2,240000
+51145,Powhatan County,2020,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2020,5+ units,Multifamily,0,0,0
+51149,Prince George County,2020,Single-family,Single-family,64,64,10619270
+51149,Prince George County,2020,2 units,Multifamily,0,0,0
+51149,Prince George County,2020,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2020,5+ units,Multifamily,0,0,0
+51183,Sussex County,2020,Single-family,Single-family,37,37,4792381
+51183,Sussex County,2020,2 units,Multifamily,0,0,0
+51183,Sussex County,2020,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2020,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2020,Single-family,Single-family,6,6,1029076
+51570,Colonial Heights (Independent,2020,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2020,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2020,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2020,Single-family,Single-family,37,37,3129305
+51670,Hopewell (Independent City),2020,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2020,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2020,5+ units,Multifamily,8,40,3447160
+51730,Petersburg (Independent City),2020,Single-family,Single-family,13,13,1120334
+51730,Petersburg (Independent City),2020,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2020,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2020,5+ units,Multifamily,5,50,6540520
+51760,Richmond (Independent City),2020,Single-family,Single-family,294,294,59012477
+51760,Richmond (Independent City),2020,2 units,Multifamily,2,4,446989
+51760,Richmond (Independent City),2020,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2020,5+ units,Multifamily,9,725,49382087
+bhc3,Richmond core (3 localities),2020,Single-family,Single-family,3290,3290,584418979
+bhc3,Richmond core (3 localities),2020,2 units,Multifamily,176,352,15416920
+bhc3,Richmond core (3 localities),2020,3-4 units,Multifamily,64,243,27853080
+bhc3,Richmond core (3 localities),2020,5+ units,Multifamily,56,2169,189352822
+rr17,Richmond region (17 localities),2020,Single-family,Single-family,5330,5330,1058295076
+rr17,Richmond region (17 localities),2020,2 units,Multifamily,177,354,15656920
+rr17,Richmond region (17 localities),2020,3-4 units,Multifamily,65,247,28721080
+rr17,Richmond region (17 localities),2020,5+ units,Multifamily,69,2259,199340502
+secondary4,Expansion ring (4 localities),2020,Single-family,Single-family,1515,1515,391442489
+secondary4,Expansion ring (4 localities),2020,2 units,Multifamily,1,2,240000
+secondary4,Expansion ring (4 localities),2020,3-4 units,Multifamily,1,4,868000
+secondary4,Expansion ring (4 localities),2020,5+ units,Multifamily,0,0,0
+51007,Amelia County,2021,Single-family,Single-family,58,58,12977761
+51007,Amelia County,2021,2 units,Multifamily,0,0,0
+51007,Amelia County,2021,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2021,5+ units,Multifamily,0,0,0
+51036,Charles City County,2021,Single-family,Single-family,23,23,4147947
+51036,Charles City County,2021,2 units,Multifamily,0,0,0
+51036,Charles City County,2021,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2021,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2021,Single-family,Single-family,2362,2362,459529722
+51041,Chesterfield County,2021,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2021,3-4 units,Multifamily,1,4,500000
+51041,Chesterfield County,2021,5+ units,Multifamily,31,1465,118575137
+51053,Dinwiddie County,2021,Single-family,Single-family,93,93,16774509
+51053,Dinwiddie County,2021,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2021,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2021,5+ units,Multifamily,0,0,0
+51075,Goochland County,2021,Single-family,Single-family,353,353,106107599
+51075,Goochland County,2021,2 units,Multifamily,0,0,0
+51075,Goochland County,2021,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2021,5+ units,Multifamily,0,0,0
+51085,Hanover County,2021,Single-family,Single-family,789,789,231400282
+51085,Hanover County,2021,2 units,Multifamily,0,0,0
+51085,Hanover County,2021,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2021,5+ units,Multifamily,0,0,0
+51087,Henrico County,2021,Single-family,Single-family,748,748,129149612
+51087,Henrico County,2021,2 units,Multifamily,198,396,40726933
+51087,Henrico County,2021,3-4 units,Multifamily,9,27,1856250
+51087,Henrico County,2021,5+ units,Multifamily,14,1020,80493755
+51097,King and Queen County,2021,Single-family,Single-family,23,23,6042700
+51097,King and Queen County,2021,2 units,Multifamily,0,0,0
+51097,King and Queen County,2021,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2021,5+ units,Multifamily,0,0,0
+51101,King William County,2021,Single-family,Single-family,198,198,42326027
+51101,King William County,2021,2 units,Multifamily,0,0,0
+51101,King William County,2021,3-4 units,Multifamily,0,0,0
+51101,King William County,2021,5+ units,Multifamily,0,0,0
+51127,New Kent County,2021,Single-family,Single-family,416,416,149638788
+51127,New Kent County,2021,2 units,Multifamily,0,0,0
+51127,New Kent County,2021,3-4 units,Multifamily,5,18,4258000
+51127,New Kent County,2021,5+ units,Multifamily,3,17,4271000
+51145,Powhatan County,2021,Single-family,Single-family,213,213,57451243
+51145,Powhatan County,2021,2 units,Multifamily,0,0,0
+51145,Powhatan County,2021,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2021,5+ units,Multifamily,0,0,0
+51149,Prince George County,2021,Single-family,Single-family,78,78,15501573
+51149,Prince George County,2021,2 units,Multifamily,0,0,0
+51149,Prince George County,2021,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2021,5+ units,Multifamily,0,0,0
+51183,Sussex County,2021,Single-family,Single-family,33,33,4959873
+51183,Sussex County,2021,2 units,Multifamily,0,0,0
+51183,Sussex County,2021,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2021,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2021,Single-family,Single-family,13,13,1530000
+51570,Colonial Heights (Independent,2021,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2021,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2021,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2021,Single-family,Single-family,17,17,1012868
+51670,Hopewell (Independent City),2021,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2021,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2021,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2021,Single-family,Single-family,27,27,3098540
+51730,Petersburg (Independent City),2021,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2021,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2021,5+ units,Multifamily,8,89,8595389
+51760,Richmond (Independent City),2021,Single-family,Single-family,502,502,108266799
+51760,Richmond (Independent City),2021,2 units,Multifamily,1,2,185893
+51760,Richmond (Independent City),2021,3-4 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2021,5+ units,Multifamily,4,563,40860100
+bhc3,Richmond core (3 localities),2021,Single-family,Single-family,3612,3612,696946133
+bhc3,Richmond core (3 localities),2021,2 units,Multifamily,199,398,40912826
+bhc3,Richmond core (3 localities),2021,3-4 units,Multifamily,10,31,2356250
+bhc3,Richmond core (3 localities),2021,5+ units,Multifamily,49,3048,239928992
+rr17,Richmond region (17 localities),2021,Single-family,Single-family,5946,5946,1349915843
+rr17,Richmond region (17 localities),2021,2 units,Multifamily,199,398,40912826
+rr17,Richmond region (17 localities),2021,3-4 units,Multifamily,15,49,6614250
+rr17,Richmond region (17 localities),2021,5+ units,Multifamily,60,3154,252795381
+secondary4,Expansion ring (4 localities),2021,Single-family,Single-family,1771,1771,544597912
+secondary4,Expansion ring (4 localities),2021,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2021,3-4 units,Multifamily,5,18,4258000
+secondary4,Expansion ring (4 localities),2021,5+ units,Multifamily,3,17,4271000
+51007,Amelia County,2022,Single-family,Single-family,73,73,19739906
+51007,Amelia County,2022,2 units,Multifamily,0,0,0
+51007,Amelia County,2022,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2022,5+ units,Multifamily,0,0,0
+51036,Charles City County,2022,Single-family,Single-family,21,21,3780306
+51036,Charles City County,2022,2 units,Multifamily,0,0,0
+51036,Charles City County,2022,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2022,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2022,Single-family,Single-family,1385,1385,373399414
+51041,Chesterfield County,2022,2 units,Multifamily,3,6,379065
+51041,Chesterfield County,2022,3-4 units,Multifamily,0,0,0
+51041,Chesterfield County,2022,5+ units,Multifamily,61,1842,170870681
+51053,Dinwiddie County,2022,Single-family,Single-family,84,84,14943155
+51053,Dinwiddie County,2022,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2022,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2022,5+ units,Multifamily,0,0,0
+51075,Goochland County,2022,Single-family,Single-family,325,325,116741890
+51075,Goochland County,2022,2 units,Multifamily,0,0,0
+51075,Goochland County,2022,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2022,5+ units,Multifamily,0,0,0
+51085,Hanover County,2022,Single-family,Single-family,474,474,161449845
+51085,Hanover County,2022,2 units,Multifamily,0,0,0
+51085,Hanover County,2022,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2022,5+ units,Multifamily,3,90,7738978
+51087,Henrico County,2022,Single-family,Single-family,712,712,122199521
+51087,Henrico County,2022,2 units,Multifamily,63,126,16769182
+51087,Henrico County,2022,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2022,5+ units,Multifamily,40,1548,233352169
+51097,King and Queen County,2022,Single-family,Single-family,37,37,6501461
+51097,King and Queen County,2022,2 units,Multifamily,0,0,0
+51097,King and Queen County,2022,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2022,5+ units,Multifamily,0,0,0
+51101,King William County,2022,Single-family,Single-family,125,125,23474807
+51101,King William County,2022,2 units,Multifamily,0,0,0
+51101,King William County,2022,3-4 units,Multifamily,1,4,713680
+51101,King William County,2022,5+ units,Multifamily,1,5,917560
+51127,New Kent County,2022,Single-family,Single-family,356,356,117580000
+51127,New Kent County,2022,2 units,Multifamily,0,0,0
+51127,New Kent County,2022,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2022,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2022,Single-family,Single-family,216,216,67701089
+51145,Powhatan County,2022,2 units,Multifamily,0,0,0
+51145,Powhatan County,2022,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2022,5+ units,Multifamily,0,0,0
+51149,Prince George County,2022,Single-family,Single-family,161,161,27774828
+51149,Prince George County,2022,2 units,Multifamily,0,0,0
+51149,Prince George County,2022,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2022,5+ units,Multifamily,0,0,0
+51183,Sussex County,2022,Single-family,Single-family,32,32,6187529
+51183,Sussex County,2022,2 units,Multifamily,0,0,0
+51183,Sussex County,2022,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2022,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2022,Single-family,Single-family,6,6,870000
+51570,Colonial Heights (Independent,2022,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2022,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2022,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2022,Single-family,Single-family,19,19,10207328
+51670,Hopewell (Independent City),2022,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2022,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2022,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2022,Single-family,Single-family,20,20,2209471
+51730,Petersburg (Independent City),2022,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2022,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2022,5+ units,Multifamily,12,98,10012314
+51760,Richmond (Independent City),2022,Single-family,Single-family,457,457,113041401
+51760,Richmond (Independent City),2022,2 units,Multifamily,0,0,0
+51760,Richmond (Independent City),2022,3-4 units,Multifamily,3,9,837227
+51760,Richmond (Independent City),2022,5+ units,Multifamily,69,2183,179577763
+bhc3,Richmond core (3 localities),2022,Single-family,Single-family,2554,2554,608640336
+bhc3,Richmond core (3 localities),2022,2 units,Multifamily,66,132,17148247
+bhc3,Richmond core (3 localities),2022,3-4 units,Multifamily,3,9,837227
+bhc3,Richmond core (3 localities),2022,5+ units,Multifamily,170,5573,583800613
+rr17,Richmond region (17 localities),2022,Single-family,Single-family,4503,4503,1187801951
+rr17,Richmond region (17 localities),2022,2 units,Multifamily,66,132,17148247
+rr17,Richmond region (17 localities),2022,3-4 units,Multifamily,4,13,1550907
+rr17,Richmond region (17 localities),2022,5+ units,Multifamily,186,5766,602469465
+secondary4,Expansion ring (4 localities),2022,Single-family,Single-family,1371,1371,463472824
+secondary4,Expansion ring (4 localities),2022,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2022,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2022,5+ units,Multifamily,3,90,7738978
+51007,Amelia County,2023,Single-family,Single-family,50,50,13542358
+51007,Amelia County,2023,2 units,Multifamily,1,2,250000
+51007,Amelia County,2023,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2023,5+ units,Multifamily,0,0,0
+51036,Charles City County,2023,Single-family,Single-family,22,22,3961975
+51036,Charles City County,2023,2 units,Multifamily,0,0,0
+51036,Charles City County,2023,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2023,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2023,Single-family,Single-family,1734,1734,401377363
+51041,Chesterfield County,2023,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2023,3-4 units,Multifamily,1,4,528990
+51041,Chesterfield County,2023,5+ units,Multifamily,24,1456,161814373
+51053,Dinwiddie County,2023,Single-family,Single-family,78,78,13917884
+51053,Dinwiddie County,2023,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2023,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2023,5+ units,Multifamily,0,0,0
+51075,Goochland County,2023,Single-family,Single-family,268,268,90885518
+51075,Goochland County,2023,2 units,Multifamily,0,0,0
+51075,Goochland County,2023,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2023,5+ units,Multifamily,0,0,0
+51085,Hanover County,2023,Single-family,Single-family,481,481,143702068
+51085,Hanover County,2023,2 units,Multifamily,0,0,0
+51085,Hanover County,2023,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2023,5+ units,Multifamily,0,0,0
+51087,Henrico County,2023,Single-family,Single-family,730,730,143427373
+51087,Henrico County,2023,2 units,Multifamily,104,208,31065230
+51087,Henrico County,2023,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2023,5+ units,Multifamily,28,1805,196718529
+51097,King and Queen County,2023,Single-family,Single-family,36,36,7572121
+51097,King and Queen County,2023,2 units,Multifamily,0,0,0
+51097,King and Queen County,2023,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2023,5+ units,Multifamily,0,0,0
+51101,King William County,2023,Single-family,Single-family,135,135,25561462
+51101,King William County,2023,2 units,Multifamily,0,0,0
+51101,King William County,2023,3-4 units,Multifamily,0,0,0
+51101,King William County,2023,5+ units,Multifamily,0,0,0
+51127,New Kent County,2023,Single-family,Single-family,345,345,121393800
+51127,New Kent County,2023,2 units,Multifamily,0,0,0
+51127,New Kent County,2023,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2023,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2023,Single-family,Single-family,135,135,35897074
+51145,Powhatan County,2023,2 units,Multifamily,5,10,700000
+51145,Powhatan County,2023,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2023,5+ units,Multifamily,0,0,0
+51149,Prince George County,2023,Single-family,Single-family,92,92,19260423
+51149,Prince George County,2023,2 units,Multifamily,1,2,210000
+51149,Prince George County,2023,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2023,5+ units,Multifamily,0,0,0
+51183,Sussex County,2023,Single-family,Single-family,43,43,8484278
+51183,Sussex County,2023,2 units,Multifamily,0,0,0
+51183,Sussex County,2023,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2023,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2023,Single-family,Single-family,12,12,2068000
+51570,Colonial Heights (Independent,2023,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2023,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2023,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2023,Single-family,Single-family,18,18,8714808
+51670,Hopewell (Independent City),2023,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2023,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2023,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2023,Single-family,Single-family,24,24,2931442
+51730,Petersburg (Independent City),2023,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2023,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2023,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2023,Single-family,Single-family,387,387,107793819
+51760,Richmond (Independent City),2023,2 units,Multifamily,1,2,194824
+51760,Richmond (Independent City),2023,3-4 units,Multifamily,1,4,299889
+51760,Richmond (Independent City),2023,5+ units,Multifamily,25,1890,123250285
+bhc3,Richmond core (3 localities),2023,Single-family,Single-family,2851,2851,652598555
+bhc3,Richmond core (3 localities),2023,2 units,Multifamily,105,210,31260054
+bhc3,Richmond core (3 localities),2023,3-4 units,Multifamily,2,8,828879
+bhc3,Richmond core (3 localities),2023,5+ units,Multifamily,77,5151,481783187
+rr17,Richmond region (17 localities),2023,Single-family,Single-family,4590,4590,1150491766
+rr17,Richmond region (17 localities),2023,2 units,Multifamily,112,224,32420054
+rr17,Richmond region (17 localities),2023,3-4 units,Multifamily,2,8,828879
+rr17,Richmond region (17 localities),2023,5+ units,Multifamily,77,5151,481783187
+secondary4,Expansion ring (4 localities),2023,Single-family,Single-family,1229,1229,391878460
+secondary4,Expansion ring (4 localities),2023,2 units,Multifamily,5,10,700000
+secondary4,Expansion ring (4 localities),2023,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2023,5+ units,Multifamily,0,0,0
+51007,Amelia County,2024,Single-family,Single-family,60,60,20564133
+51007,Amelia County,2024,2 units,Multifamily,0,0,0
+51007,Amelia County,2024,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2024,5+ units,Multifamily,0,0,0
+51036,Charles City County,2024,Single-family,Single-family,30,30,6068667
+51036,Charles City County,2024,2 units,Multifamily,0,0,0
+51036,Charles City County,2024,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2024,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2024,Single-family,Single-family,1845,1845,384189467
+51041,Chesterfield County,2024,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2024,3-4 units,Multifamily,0,0,0
+51041,Chesterfield County,2024,5+ units,Multifamily,22,462,33046000
+51053,Dinwiddie County,2024,Single-family,Single-family,82,82,14620287
+51053,Dinwiddie County,2024,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2024,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2024,5+ units,Multifamily,0,0,0
+51075,Goochland County,2024,Single-family,Single-family,322,322,105342724
+51075,Goochland County,2024,2 units,Multifamily,0,0,0
+51075,Goochland County,2024,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2024,5+ units,Multifamily,0,0,0
+51085,Hanover County,2024,Single-family,Single-family,443,443,137303471
+51085,Hanover County,2024,2 units,Multifamily,2,4,858332
+51085,Hanover County,2024,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2024,5+ units,Multifamily,0,0,0
+51087,Henrico County,2024,Single-family,Single-family,921,921,159262002
+51087,Henrico County,2024,2 units,Multifamily,60,120,21828337
+51087,Henrico County,2024,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2024,5+ units,Multifamily,9,785,86149613
+51097,King and Queen County,2024,Single-family,Single-family,36,36,8672390
+51097,King and Queen County,2024,2 units,Multifamily,0,0,0
+51097,King and Queen County,2024,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2024,5+ units,Multifamily,0,0,0
+51101,King William County,2024,Single-family,Single-family,129,129,27901675
+51101,King William County,2024,2 units,Multifamily,0,0,0
+51101,King William County,2024,3-4 units,Multifamily,0,0,0
+51101,King William County,2024,5+ units,Multifamily,0,0,0
+51127,New Kent County,2024,Single-family,Single-family,453,453,149534000
+51127,New Kent County,2024,2 units,Multifamily,0,0,0
+51127,New Kent County,2024,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2024,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2024,Single-family,Single-family,115,115,30656620
+51145,Powhatan County,2024,2 units,Multifamily,0,0,0
+51145,Powhatan County,2024,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2024,5+ units,Multifamily,0,0,0
+51149,Prince George County,2024,Single-family,Single-family,68,68,13661504
+51149,Prince George County,2024,2 units,Multifamily,2,4,400000
+51149,Prince George County,2024,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2024,5+ units,Multifamily,0,0,0
+51183,Sussex County,2024,Single-family,Single-family,29,29,6185520
+51183,Sussex County,2024,2 units,Multifamily,0,0,0
+51183,Sussex County,2024,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2024,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2024,Single-family,Single-family,17,17,2855000
+51570,Colonial Heights (Independent,2024,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2024,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2024,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2024,Single-family,Single-family,42,42,10122029
+51670,Hopewell (Independent City),2024,2 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2024,3-4 units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2024,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2024,Single-family,Single-family,51,51,14571818
+51730,Petersburg (Independent City),2024,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2024,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2024,5+ units,Multifamily,5,84,16203720
+51760,Richmond (Independent City),2024,Single-family,Single-family,380,380,80158665
+51760,Richmond (Independent City),2024,2 units,Multifamily,40,80,11742000
+51760,Richmond (Independent City),2024,3-4 units,Multifamily,1,3,567000
+51760,Richmond (Independent City),2024,5+ units,Multifamily,27,2077,219960928
+bhc3,Richmond core (3 localities),2024,Single-family,Single-family,3146,3146,623610134
+bhc3,Richmond core (3 localities),2024,2 units,Multifamily,100,200,33570337
+bhc3,Richmond core (3 localities),2024,3-4 units,Multifamily,1,3,567000
+bhc3,Richmond core (3 localities),2024,5+ units,Multifamily,58,3324,339156541
+rr17,Richmond region (17 localities),2024,Single-family,Single-family,5023,5023,1171669972
+rr17,Richmond region (17 localities),2024,2 units,Multifamily,104,208,34828669
+rr17,Richmond region (17 localities),2024,3-4 units,Multifamily,1,3,567000
+rr17,Richmond region (17 localities),2024,5+ units,Multifamily,63,3408,355360261
+secondary4,Expansion ring (4 localities),2024,Single-family,Single-family,1333,1333,422836815
+secondary4,Expansion ring (4 localities),2024,2 units,Multifamily,2,4,858332
+secondary4,Expansion ring (4 localities),2024,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2024,5+ units,Multifamily,0,0,0
+51007,Amelia County,2025,Single-family,Single-family,50,50,13598021
+51007,Amelia County,2025,2 units,Multifamily,0,0,0
+51007,Amelia County,2025,3-4 units,Multifamily,0,0,0
+51007,Amelia County,2025,5+ units,Multifamily,0,0,0
+51036,Charles City County,2025,Single-family,Single-family,24,24,7062667
+51036,Charles City County,2025,2 units,Multifamily,0,0,0
+51036,Charles City County,2025,3-4 units,Multifamily,0,0,0
+51036,Charles City County,2025,5+ units,Multifamily,0,0,0
+51041,Chesterfield County,2025,Single-family,Single-family,1576,1576,383044410
+51041,Chesterfield County,2025,2 units,Multifamily,0,0,0
+51041,Chesterfield County,2025,3-4 units,Multifamily,0,0,0
+51041,Chesterfield County,2025,5+ units,Multifamily,19,618,67581689
+51053,Dinwiddie County,2025,Single-family,Single-family,14,14,3000346
+51053,Dinwiddie County,2025,2 units,Multifamily,0,0,0
+51053,Dinwiddie County,2025,3-4 units,Multifamily,0,0,0
+51053,Dinwiddie County,2025,5+ units,Multifamily,0,0,0
+51075,Goochland County,2025,Single-family,Single-family,314,314,109375812
+51075,Goochland County,2025,2 units,Multifamily,0,0,0
+51075,Goochland County,2025,3-4 units,Multifamily,0,0,0
+51075,Goochland County,2025,5+ units,Multifamily,0,0,0
+51085,Hanover County,2025,Single-family,Single-family,279,279,98667057
+51085,Hanover County,2025,2 units,Multifamily,0,0,0
+51085,Hanover County,2025,3-4 units,Multifamily,0,0,0
+51085,Hanover County,2025,5+ units,Multifamily,5,232,21849876
+51087,Henrico County,2025,Single-family,Single-family,809,809,146992770
+51087,Henrico County,2025,2 units,Multifamily,122,244,36263634
+51087,Henrico County,2025,3-4 units,Multifamily,0,0,0
+51087,Henrico County,2025,5+ units,Multifamily,37,1270,113778394
+51097,King and Queen County,2025,Single-family,Single-family,36,36,8706019
+51097,King and Queen County,2025,2 units,Multifamily,0,0,0
+51097,King and Queen County,2025,3-4 units,Multifamily,0,0,0
+51097,King and Queen County,2025,5+ units,Multifamily,0,0,0
+51101,King William County,2025,Single-family,Single-family,215,215,48948434
+51101,King William County,2025,2 units,Multifamily,0,0,0
+51101,King William County,2025,3-4 units,Multifamily,0,0,0
+51101,King William County,2025,5+ units,Multifamily,0,0,0
+51127,New Kent County,2025,Single-family,Single-family,295,295,113047400
+51127,New Kent County,2025,2 units,Multifamily,0,0,0
+51127,New Kent County,2025,3-4 units,Multifamily,0,0,0
+51127,New Kent County,2025,5+ units,Multifamily,0,0,0
+51145,Powhatan County,2025,Single-family,Single-family,127,127,48691061
+51145,Powhatan County,2025,2 units,Multifamily,0,0,0
+51145,Powhatan County,2025,3-4 units,Multifamily,0,0,0
+51145,Powhatan County,2025,5+ units,Multifamily,0,0,0
+51149,Prince George County,2025,Single-family,Single-family,122,122,25708592
+51149,Prince George County,2025,2 units,Multifamily,5,10,1190000
+51149,Prince George County,2025,3-4 units,Multifamily,0,0,0
+51149,Prince George County,2025,5+ units,Multifamily,0,0,0
+51183,Sussex County,2025,Single-family,Single-family,34,34,6492888
+51183,Sussex County,2025,2 units,Multifamily,0,0,0
+51183,Sussex County,2025,3-4 units,Multifamily,0,0,0
+51183,Sussex County,2025,5+ units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2025,Single-family,Single-family,15,15,2319233
+51570,Colonial Heights (Independent,2025,2 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2025,3-4 units,Multifamily,0,0,0
+51570,Colonial Heights (Independent,2025,5+ units,Multifamily,0,0,0
+51670,Hopewell (Independent City),2025,Single-family,Single-family,26,26,4468219
+51670,Hopewell (Independent City),2025,2 units,Multifamily,1,2,192400
+51670,Hopewell (Independent City),2025,3-4 units,Multifamily,1,3,500000
+51670,Hopewell (Independent City),2025,5+ units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2025,Single-family,Single-family,95,95,14077951
+51730,Petersburg (Independent City),2025,2 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2025,3-4 units,Multifamily,0,0,0
+51730,Petersburg (Independent City),2025,5+ units,Multifamily,0,0,0
+51760,Richmond (Independent City),2025,Single-family,Single-family,368,368,74518168
+51760,Richmond (Independent City),2025,2 units,Multifamily,22,44,4625000
+51760,Richmond (Independent City),2025,3-4 units,Multifamily,5,17,3843920
+51760,Richmond (Independent City),2025,5+ units,Multifamily,23,2252,312153421
+bhc3,Richmond core (3 localities),2025,Single-family,Single-family,2753,2753,604555348
+bhc3,Richmond core (3 localities),2025,2 units,Multifamily,144,288,40888634
+bhc3,Richmond core (3 localities),2025,3-4 units,Multifamily,5,17,3843920
+bhc3,Richmond core (3 localities),2025,5+ units,Multifamily,79,4140,493513504
+rr17,Richmond region (17 localities),2025,Single-family,Single-family,4399,4399,1108719048
+rr17,Richmond region (17 localities),2025,2 units,Multifamily,150,300,42271034
+rr17,Richmond region (17 localities),2025,3-4 units,Multifamily,6,20,4343920
+rr17,Richmond region (17 localities),2025,5+ units,Multifamily,84,4372,515363380
+secondary4,Expansion ring (4 localities),2025,Single-family,Single-family,1015,1015,369781330
+secondary4,Expansion ring (4 localities),2025,2 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2025,3-4 units,Multifamily,0,0,0
+secondary4,Expansion ring (4 localities),2025,5+ units,Multifamily,5,232,21849876
