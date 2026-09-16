@@ -28,9 +28,9 @@
 
 ## Phase 2 — inventory page
 
-- [ ] `r/acs_stock.R` — ACS B25001 (units), B25002/B25004 (occupancy/vacancy), B25024 (structure type), B25034–36 (year built).
-- [ ] BPS building permits (census.gov text files) — annual permits by structure type for the `rr` region.
-- [ ] Build out `inventory.qmd` (currently an empty stub).
+- [x] `r/acs_stock.R` — ACS B25001 (units), B25002/B25004 (occupancy/vacancy), B25024 (structure type), B25034–36 (year built). Ran clean; validation passes. **B25036 dropped from scope** — not published in the 2014 window, which would break the three-window trend (recorded in METHODOLOGY.md). B25035 is pulled but carries no pooled rows, since a median can't be summed.
+- [x] BPS building permits (census.gov text files) — annual permits by structure type for the `rr` region. `r/bps_permits.R`, 2000–2025, cached under `data/cache/bps/`. Ran clean; the `rr17` pooled row reconciles to its 17 members in all 26 years.
+- [x] Build out `inventory.qmd` (currently an empty stub). 6 figures, 3 tables, takeaway H2s, bullets, callouts; renders standalone in ~10s.
 
 ## Phase 3 — demographics page
 
@@ -52,8 +52,14 @@
 - [ ] `data-notes.qmd` — public-facing methodology, derived from `METHODOLOGY.md`.
 - [ ] `about.qmd` — real content (currently a one-line stub).
 - [ ] Full `quarto render` completes with no errors.
-- [ ] Every `#| label: fig-` chunk has a matching `#| fig-alt:` line.
+- [ ] Every `#| label: fig-` chunk has a matching `#| fig-alt:` line. (`inventory.qmd` is done — 6 of 6.)
 - [ ] GitHub Pages live from `docs/` on `main`.
+
+## Surfaced during Phase 2 — not blocking
+
+- [ ] `cache_table = TRUE` is deprecated in current tidycensus (one warning per `get_acs()` call, ignored). CLAUDE.md still prescribes it. Drop it project-wide in one pass — `acs_stock.R`, `acs_tenure.R`, `acs_burden.R`, and the CLAUDE.md line together — rather than piecemeal.
+- [ ] `theme_rva()`'s caption switched to `element_textbox_simple()` so long source lines wrap instead of clipping. The other pages' charts haven't been re-rendered against it yet; check them when Phases 3–4 land.
+- [ ] `formattable::comma()`/`percent()` mask the `scales` versions (`_common.R` loads formattable last) and take `digits`, not `accuracy`. `inventory.qmd` works around it with local `n_fmt()`/`p_fmt()` wrappers — consider promoting those to `_common.R` before the next page repeats the workaround.
 
 ## Future — not in scope right now
 

@@ -4,6 +4,29 @@ Append-only. Newest entry first.
 
 ---
 
+## 2026-09-16 — Phase 1 closed out; Phase 2 complete (inventory page live)
+
+**What changed:** Closed the three open Phase 1 lines and built all of Phase 2.
+
+*Phase 1.* `data/geo.rds` already existed from a user run and validates clean — `sf`, 17 rows, all `rr` GEOIDs, EPSG:4326, zero empty geometries — so the tigris pull was not re-run. `CENSUS_API_KEY` visibility confirmed TRUE via the `.Renviron` fallback (existence check only; the value was never printed). The `mapgl` POC map is marked `[-]`: `mapgl` is absent from `renv.lock` and installing it is a user-run job.
+
+*Phase 2.* Added `r/acs_stock.R` (B25001, B25002, B25004, B25024, B25034, B25035 across the 2014/2019/2024 non-overlapping ACS windows; 17 `rr` localities + Ashland + 4 comparison metros + Virginia, plus pooled `bhc3`/`secondary4` rows) and `r/bps_permits.R` (Census BPS county annual files, 2000–2025). Both ran clean and passed validation on the first attempt. Replaced the `inventory.qmd` stub with a real page: 6 figures, 3 tables, takeaway H2s, 2–4 bullets per section, a reliability callout, and a closing summary. Renders standalone in ~10 seconds.
+
+**Data surprises:**
+
+- **B25036 is not published in the 2014 window.** The TODO line asked for B25034–36; including B25036 would have broken the three-window trend every other frame carries, so it is out of scope for v1 and recorded as such in METHODOLOGY.md. B25035 is a median and cannot be summed, so it is pulled but carries no pooled rows.
+- **BPS file naming is a trap.** `co<YY><MM>y.txt` is year-to-date-through-month and `...c.txt` is the monthly current file; only `co<YYYY>a.txt` is the true annual file. Confirmed the layout against both the 2000 and 2025 files before writing the parser. The files also carry each size class twice — a published imputation-inclusive figure and a "rep" reported-only duplicate. This script reads the former.
+- **Both cross-table checks reconciled exactly.** B25024 and B25034 each sum to B25001 at 0.000% max difference across every geography-year, and B25002's Occupied + Vacant equals its own Total everywhere. Tighter than the 0.5% tolerance allowed for.
+- **The regional permit story is compositional, not volumetric.** Permitted units ran 6,110 (2000) → 8,912 (2002) → a 2,520 trough in 2011 → a 10,414 peak in 2022 → 9,091 in 2025. Multifamily went from 3.6% of permitted units in 2000 to 56.8% in 2022, first exceeding single-family that year. Richmond city is now at 86.3% multifamily while Chesterfield fell back to 28.2% — the three core localities diverged sharply after 2021.
+- **Housing-unit growth, 2014 → 2024** (logged, not gated): Richmond core +13.3% (357,302 → 404,918), Chesterfield +17.1%, Richmond city +15.3%, Henrico +8.3%, expansion ring +18.4%, Ashland +14.3%.
+- **`theme_rva()` was clipping every caption.** `element_markdown()` does not wrap, so the ~95-character ACS source line ran off the right edge of every chart — a latent bug in the shared theme, not this page. Switched `plot.caption` to `element_textbox_simple()` with `width = unit(1, "npc")`. Found by reading the rendered PNGs; the render exit code was clean throughout.
+- **`formattable` masks `scales`.** `_common.R` loads formattable after scales, so `comma()`/`percent()` resolve to formattable's, which take `digits` rather than `accuracy` — this killed two renders outright and silently produced "357,302.00" unit counts in a table. `inventory.qmd` uses local `n_fmt()`/`p_fmt()` wrappers for inline prose and passes `digits = 0` to the `kbl()` cells.
+- **12 of 30 Ashland structure-type and year-built cells fall below CV-30.** The page computes that count rather than hardcoding it, and suppresses Low cells while marking Medium ones.
+
+**Left open:** `mapgl` install (blocks the Phase 1 POC map and all of Phase 5). Three non-blocking items surfaced and are now in TODO.md: retire the deprecated `cache_table = TRUE` project-wide in one pass, re-check the other pages' captions against the new theme when Phases 3–4 land, and consider promoting `n_fmt()`/`p_fmt()` into `_common.R` before another page repeats the workaround. Phases 3–6 are untouched.
+
+---
+
 ## 2026-09-16 — Phase 1: renv pinned, `.Rprofile` added
 
 **What changed:** Ran `renv::init()` + `renv::snapshot()` (user-run, per CLAUDE.md — package installs are a long job) and committed the result: `renv.lock` (168 packages), `renv/.gitignore`, `renv/activate.R`, `renv/settings.json`, and a new `.Rprofile` that sources `renv/activate.R`. `renv/library/` stays untracked via renv's own `.gitignore`. R 4.6.1. Pinned the packages CLAUDE.md's Phase 1 line calls for — tidyverse, tidycensus, tigris, sf, kableExtra, ggtext, formattable, janitor — confirmed present in the lockfile. **`mapgl` is not in `renv.lock`** — it never got installed in this pass, so the Phase 1 POC map and any Phase 2/5 interactive map work stay blocked until a follow-up `renv::install("mapgl")` + `renv::snapshot()`.
