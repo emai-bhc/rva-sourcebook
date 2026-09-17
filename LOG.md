@@ -27,6 +27,16 @@ Append-only. Newest entry first.
 
 ---
 
+## 2026-09-17 — Fix `r/acs_tenure.R` runtime error: leftover `pha` reference
+
+**What changed:** `Rscript r/acs_tenure.R` failed with `object 'pha' not found` (two `filter(geoid %in% pha, ...)` calls, lines 521 and 585). `pha` is a geography constant from the sibling project this script was copied from; it was never defined in this project's `_common.R` and never got swapped for the equivalent `bhc` (3-locality core) during the earlier cleanup pass. Replaced both occurrences with `bhc`, which matches the surrounding "3 primary localities" comments and the `region3` pooling used elsewhere in the same script.
+
+**Data surprises:** The script's own header comment (lines 18–21) still describes "the 8 `rr` localities" and "the 4 primary localities" / a `region4` pooling — none of which match this project's real geography (`rr` = 17, `bhc` = 3, code pools into `region3`). Didn't rewrite it as part of this fix (out of scope for the reported error), but it's the same sibling-project debris class flagged in METHODOLOGY.md/PLAN.md — flagging here rather than trusting it. Added a TODO line.
+
+**Left open:** Re-run `Rscript r/acs_tenure.R` end to end to confirm the rest of the script is clean now that it gets past line 521/585. Consider a pass to reconcile every `r/*.R` header comment against `_common.R`'s actual constants while this class of bug is fresh.
+
+---
+
 ## 2026-09-16 — Phase 1: renv pinned, `.Rprofile` added
 
 **What changed:** Ran `renv::init()` + `renv::snapshot()` (user-run, per CLAUDE.md — package installs are a long job) and committed the result: `renv.lock` (168 packages), `renv/.gitignore`, `renv/activate.R`, `renv/settings.json`, and a new `.Rprofile` that sources `renv/activate.R`. `renv/library/` stays untracked via renv's own `.gitignore`. R 4.6.1. Pinned the packages CLAUDE.md's Phase 1 line calls for — tidyverse, tidycensus, tigris, sf, kableExtra, ggtext, formattable, janitor — confirmed present in the lockfile. **`mapgl` is not in `renv.lock`** — it never got installed in this pass, so the Phase 1 POC map and any Phase 2/5 interactive map work stay blocked until a follow-up `renv::install("mapgl")` + `renv::snapshot()`.

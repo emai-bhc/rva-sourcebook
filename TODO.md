@@ -26,6 +26,8 @@
 - [x] Confirm `CENSUS_API_KEY` is visible (`Sys.getenv("CENSUS_API_KEY") != ""`) — TRUE/FALSE check only, never print the value. Not needed by `geo.R` (tigris doesn't require a key) but will be for every ACS script from Phase 2 on. Verified TRUE 2026-09-16 via the `.Renviron` fallback.
 - [-] Once `mapgl` is in `renv.lock`, build one small proof-of-concept map (e.g. `rr` region colored by `aland`) to confirm `rva_map_style` + `data/geo.rds` actually render before wiring real data into it. **Blocked:** `mapgl` is not in `renv.lock` — needs a user-run `renv::install("mapgl")` + `renv::snapshot()`.
 
+- [ ] `r/acs_tenure.R`'s header comment (lines 18–21) still says "8 `rr` localities" / "4 primary localities" / `region4` — doesn't match `_common.R` (`rr`=17, `bhc`=3) or the script's own `region3` pooling. Sibling-project debris missed in the 2026-09-15 cleanup; reconcile the comment (and sanity-check no other `r/*.R` header has the same mismatch).
+
 ## Phase 2 — inventory page
 
 - [x] `r/acs_stock.R` — ACS B25001 (units), B25002/B25004 (occupancy/vacancy), B25024 (structure type), B25034–36 (year built). Ran clean; validation passes. **B25036 dropped from scope** — not published in the 2014 window, which would break the three-window trend (recorded in METHODOLOGY.md). B25035 is pulled but carries no pooled rows, since a median can't be summed.

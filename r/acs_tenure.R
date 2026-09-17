@@ -518,7 +518,7 @@ if (file.exists("data/acs_tenure.rds")) {
     select(race_group, year, pooled = estimate) |>
     left_join(
       g |>
-        filter(geoid %in% pha, tenure == "Total") |>
+        filter(geoid %in% bhc, tenure == "Total") |>
         summarise(from_localities = sum(estimate), .by = c(race_group, year)),
       by = join_by(race_group, year)
     ) |>
@@ -582,7 +582,7 @@ pooled_clear <- region_2024 |>
 # A locality counts as clearing only if both its owner and renter cells do --
 # the owner rate needs both to be reportable.
 locality_clear <- g |>
-  filter(geoid %in% pha, year == 2024, tenure == "Owner") |>
+  filter(geoid %in% bhc, year == 2024, tenure == "Owner") |>
   mutate(clears = rate_reliability != "Low") |>
   summarise(
     n_localities = sum(clears),
