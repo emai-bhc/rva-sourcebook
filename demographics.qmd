@@ -2,6 +2,785 @@
 title: "Demographics"
 ---
 
-Population, age and sex, race and ethnicity, household composition, and income for the Richmond region.
+```{r}
+#| label: setup
+#| include: false
 
-*Not built yet — see [TODO.md](TODO.md) Phase 3. `r/acs_tenure.R` has a working pattern to extend.*
+source("_common.R")
+
+# Data flow rule: pages read_rds() only, never call an API. The frames are
+# written by r/acs_demographics.R (ACS) and r/pep_migration.R (Population
+# Estimates Program components of change).
+demo <- read_rds("data/acs_demographics.rds")
+pep <- read_rds("data/pep_migration.rds")
+
+# Geographies this page reads at. `bhc3`, `secondary4`, and `rr17` are the
+# pooled rows the r/ script builds. Median income carries no pooled rows (a
+# median cannot be summed), so the median-income figure and table read the three
+# core localities, the comparison metros, and Virginia instead.
+geo_labels <- c(
+  "51760" = "Richmond city",
+  "51087" = "Henrico",
+  "51041" = "Chesterfield",
+  "bhc3" = "Richmond core",
+  "secondary4" = "Expansion ring",
+  "rr17" = "Richmond region",
+  "5103368" = "Ashland town",
+  "40060" = "Richmond MSA",
+  "16820" = "Charlottesville MSA",
+  "47260" = "Hampton Roads MSA",
+  "47900" = "Washington MSA",
+  "51" = "Virginia"
+)
+
+short_name <- function(geoid) unname(geo_labels[geoid])
+
+# Label for any geography: the lookup above where it has one, else the ACS name
+# with the state and "County" stripped.
+loc_label <- function(geoid, name) {
+  if_else(
+    geoid %in% names(geo_labels),
+    short_name(geoid),
+    str_remove(name, ", Virginia") |> str_remove(" County")
+  )
+}
+
+first_yr <- min(demo$population$year)
+latest_yr <- max(demo$population$year)
+
+# formattable::comma()/percent() mask the scales versions (_common.R loads
+# formattable after scales) and take `digits`, not `accuracy`. Inline text uses
+# these thin wrappers so a bullet never depends on which package won that race;
+# the kbl() tables below still use formattable's, which is what they want.
+n_fmt <- function(x) scales::label_comma()(x)
+p_fmt <- function(x, accuracy = 0.1) scales::label_percent(accuracy = accuracy)(x)
+d_fmt <- function(x) scales::label_dollar()(x)
+pt_fmt <- function(x) sprintf("%+.1f points", x * 100)
+
+# ---- Inline scalars --------------------------------------------------------
+
+pop_at <- function(g, yr = latest_yr) {
+  demo$population |> filter(geoid == g, year == yr) |> pull(estimate)
+}
+pop_growth <- function(g) pop_at(g) / pop_at(g, first_yr) - 1
+pop_added <- pop_at("rr17") - pop_at("rr17", first_yr)
+
+# Fastest- and slowest-growing of the 17 localities (counts are high-reliability
+# at every size in the region, so no suppression is needed for population).
+loc_growth <- demo$population |>
+  filter(geoid %in% unname(rr), year %in% c(first_yr, latest_yr)) |>
+  select(geoid, name, year, estimate) |>
+  pivot_wider(names_from = year, values_from = estimate) |>
+  mutate(pct = .data[[as.character(latest_yr)]] / .data[[as.character(first_yr)]] - 1)
+fastest <- loc_growth |> slice_max(pct, n = 1)
+slowest <- loc_growth |> slice_min(pct, n = 1)
+
+# Age: shares sum across sex.
+age_share <- function(g, grp, yr = latest_yr) {
+  demo$age_sex |>
+    filter(geoid == g, year == yr, age_group == grp) |>
+    pull(share) |>
+    sum()
+}
+
+# Race and ethnicity.
+race_share <- function(g, grp, yr = latest_yr) {
+  demo$race_ethnicity |>
+    filter(geoid == g, year == yr, race == grp) |>
+    pull(share)
+}
+
+# Household type.
+hh_share <- function(g, grp, yr = latest_yr) {
+  demo$household_type |>
+    filter(geoid == g, year == yr, household_type == grp) |>
+    pull(share)
+}
+
+# Income.
+inc <- function(g, yr, col = estimate_real) {
+  demo$median_income |> filter(geoid == g, year == yr) |> pull({{ col }})
+}
+real_growth <- function(g) inc(g, latest_yr) / inc(g, first_yr) - 1
+nominal_growth <- function(g) inc(g, latest_yr, estimate) / inc(g, first_yr, estimate) - 1
+
+have_real <- !anyNA(demo$median_income$estimate_real)
+
+top_band <- function(g, yr = latest_yr) {
+  demo$income_bands |>
+    filter(geoid == g, year == yr, income_band == "$150k or more") |>
+    pull(share)
+}
+low_band <- function(g, yr = latest_yr) {
+  demo$income_bands |>
+    filter(geoid == g, year == yr, income_band == "Under $25k") |>
+    pull(share)
+}
+
+# Share of a tenure's households under $50,000.
+under50 <- function(g, ten, yr = latest_yr) {
+  demo$tenure_income |>
+    filter(geoid == g, year == yr, tenure == ten, income_band %in% c("Under $25k", "$25k-$49k")) |>
+    pull(share) |>
+    sum()
+}
+
+# Low-reliability race cells in the small geographies, quoted in the callout.
+low_race <- demo$race_ethnicity |>
+  filter(geoid %in% c(unname(secondary), unname(ashland)), year == latest_yr) |>
+  summarise(low = sum(reliability == "Low", na.rm = TRUE), n = n())
+
+# ---- PEP migration scalars -------------------------------------------------
+
+# The PEP series is two vintages (2010-2019 and 2020-2025) that do not join, so
+# every comparison here is between the two eras, each internal to one vintage.
+pep_eras <- levels(pep$era$era)
+era1 <- pep_eras[1]
+era2 <- pep_eras[2]
+
+era_at <- function(g, e, col) {
+  pep$era |> filter(geoid == g, era == e) |> pull({{ col }})
+}
+
+# Years in which the region grew faster than Virginia (both rates defined).
+growth_cmp <- pep$annual |>
+  filter(geoid %in% c("rr17", virginia), !is.na(pct_change)) |>
+  select(geoid, year, pct_change) |>
+  pivot_wider(names_from = geoid, values_from = pct_change) |>
+  mutate(region_faster = rr17 > .data[[virginia]])
+n_faster <- sum(growth_cmp$region_faster)
+n_years_cmp <- nrow(growth_cmp)
+pep_first_full <- min(growth_cmp$year)
+pep_peak <- pep$annual |> filter(geoid == "rr17") |> slice_max(pct_change, n = 1)
+pep_peak_intl <- pep$annual |> filter(geoid == "rr17") |> slice_max(international_mig, n = 1)
+
+# Components are annual averages over each era's full years.
+yrs_era <- function(e) era_at("rr17", e, n_years)
+per_year <- function(g, e, col) era_at(g, e, {{ col }}) / yrs_era(e)
+
+# Localities (of the 17) whose net migration rate rose / whose deaths exceeded
+# births in the later era.
+loc_eras <- pep$era |> filter(geoid %in% unname(rr))
+mig_rate_wide <- loc_eras |>
+  select(geoid, name, era, net_mig_rate) |>
+  pivot_wider(names_from = era, values_from = net_mig_rate) |>
+  mutate(start = .data[[era1]], end = .data[[era2]])
+n_mig_up <- sum(mig_rate_wide$end > mig_rate_wide$start)
+n_natural_neg <- sum(loc_eras$natural_change[loc_eras$era == era2] < 0)
+mig_down <- mig_rate_wide |> filter(end <= start) |> mutate(label = loc_label(geoid, name)) |> pull(label)
+top_mig <- mig_rate_wide |> slice_max(end, n = 2)
+
+# Table cell helper: suppress Low-reliability cells, mark Medium with *.
+cell <- function(txt, rel) {
+  if_else(rel == "Low", "&mdash;", paste0(txt, if_else(rel == "Medium", "*", "")))
+}
+```
+
+Population, age, race and ethnicity, household composition, and income for the Richmond region, from the ACS 5-year estimates. Every trend compares three non-overlapping five-year windows ending `r first_yr`, 2019, and `r latest_yr`.
+
+## Growth was strongest in Chesterfield and the expansion ring
+
+```{r}
+#| label: fig-pop-growth
+#| fig-alt: "Horizontal bar chart of population growth between the 2014 and 2024 ACS windows for the 17 Richmond-region localities, Ashland town, and the pooled core, expansion ring, and region. Chesterfield and the expansion ring grow around 16 percent, Richmond city about 9 percent, and Henrico about 7 percent; the region as a whole grows about 11 percent."
+#| fig-height: 6
+
+pop_plot <- demo$population |>
+  filter(
+    geoid %in% c(unname(rr), unname(ashland), "bhc3", "secondary4", "rr17"),
+    year %in% c(first_yr, latest_yr)
+  ) |>
+  select(geoid, name, year, estimate) |>
+  pivot_wider(names_from = year, values_from = estimate) |>
+  mutate(
+    pct = .data[[as.character(latest_yr)]] / .data[[as.character(first_yr)]] - 1,
+    label = loc_label(geoid, name),
+    pooled = geoid %in% c("bhc3", "secondary4", "rr17")
+  )
+
+ggplot(pop_plot, aes(x = pct, y = fct_reorder(label, pct), fill = pooled)) +
+  geom_col(width = 0.72) +
+  geom_text(
+    aes(label = p_fmt(pct), hjust = if_else(pct < 0, 1.15, -0.15)),
+    size = 3.1, color = rva_ink[["muted"]]
+  ) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0.08, 0.12))) +
+  scale_fill_manual(values = c(`FALSE` = rva_pal[["blue"]], `TRUE` = rva_ink[["muted"]])) +
+  labs(
+    title = "Growth concentrated in Chesterfield and the outer ring",
+    subtitle = glue::glue(
+      "Population change, {first_yr} to {latest_yr} ACS 5-year. ",
+      "<span style='color:{rva_ink[[\"muted\"]]}'>**Pooled rows**</span> in grey."
+    ),
+    caption = paste(
+      acs_cap("B01001", "2010-2014 and 2020-2024"),
+      "Ashland is a town inside Hanover County, not a separate locality."
+    )
+  ) +
+  theme_rva()
+```
+
+- The region added `r n_fmt(pop_added)` people between the `r first_yr` and `r latest_yr` windows, growing `r p_fmt(pop_growth("rr17"))` to `r n_fmt(pop_at("rr17"))`.
+- Chesterfield grew `r p_fmt(pop_growth("51041"))` and the four-locality expansion ring `r p_fmt(pop_growth("secondary4"))`, against `r p_fmt(pop_growth("51760"))` in Richmond city and `r p_fmt(pop_growth("51087"))` in Henrico.
+- `r loc_label(fastest$geoid, fastest$name)` was the fastest-growing of the 17 localities (`r p_fmt(fastest$pct)`); `r loc_label(slowest$geoid, slowest$name)` was the slowest (`r p_fmt(slowest$pct)`).
+
+```{r}
+#| label: tbl-pop
+
+pop_plot |>
+  arrange(desc(.data[[as.character(latest_yr)]])) |>
+  mutate(
+    change = .data[[as.character(latest_yr)]] - .data[[as.character(first_yr)]],
+    across(c(as.character(first_yr), as.character(latest_yr), change), \(x) comma(x, digits = 0)),
+    pct = percent(pct, digits = 1)
+  ) |>
+  select(label, all_of(c(as.character(first_yr), as.character(latest_yr))), change, pct) |>
+  set_names(c("Geography", first_yr, latest_yr, "Change", "% change")) |>
+  kbl(
+    align = "lrrrr",
+    caption = paste0(
+      "Population by geography, ", first_yr, " and ", latest_yr,
+      " ACS 5-year windows. Source: ACS Table B01001."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- The three core localities hold `r p_fmt(pop_at("bhc3") / pop_at("rr17"), 0.1)` of the region's population, and Chesterfield alone is larger than either Henrico or Richmond city.
+- The expansion ring's `r n_fmt(pop_at("secondary4"))` residents are about one-fifth of the core's, so its fast percentage growth is a smaller absolute gain than Chesterfield's.
+
+## The region has outgrown Virginia in nearly every year since 2011
+
+```{r}
+#| label: fig-pep-growth
+#| fig-alt: "Line chart of annual population growth rates, as a percent of the prior year's population, for the 17-locality Richmond region and for Virginia from 2011 to 2025, with a break at 2020 where the Census Bureau's estimates change vintage. The region grows between about 0.8 and 1.5 percent a year, peaking in 2024, and sits above the state line in every year but 2011; Virginia falls from about 1 percent to about 0.2 percent in 2022 before recovering."
+#| fig-height: 4.2
+
+growth_plot <- pep$annual |>
+  filter(geoid %in% c("rr17", virginia), year >= pep_first_full) |>
+  mutate(geo = factor(short_name(geoid), levels = c("Richmond region", "Virginia")))
+
+ggplot(growth_plot, aes(x = year, y = pct_change, color = geo)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2.2) +
+  annotate(
+    "text", x = 2020, y = max(growth_plot$pct_change, na.rm = TRUE), label = "2020: new\nvintage",
+    size = 3, color = rva_ink[["muted"]], vjust = 1
+  ) +
+  scale_x_continuous(breaks = seq(pep_first_full, max(growth_plot$year), by = 2)) +
+  scale_y_continuous(labels = label_percent(accuracy = 0.1), limits = c(0, NA), expand = expansion(mult = c(0, 0.08))) +
+  scale_color_manual(values = c("Richmond region" = rva_pal[["blue"]], "Virginia" = rva_pal[["orange"]])) +
+  labs(
+    title = glue::glue("The region outgrew Virginia in {n_faster} of {n_years_cmp} years"),
+    subtitle = glue::glue(
+      "Annual population growth, <span style='color:{rva_pal[[\"blue\"]]}'>**Richmond region**</span> and ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**Virginia**</span>"
+    ),
+    x = NULL,
+    caption = paste(
+      pep_cap("2019 and 2025"),
+      "Growth from July 1 to July 1; the 2019-to-2020 change is not computed because the vintages differ."
+    )
+  ) +
+  theme_rva()
+```
+
+- Between `r pep_first_full` and `r max(growth_plot$year)` the 17-locality region grew faster than Virginia in `r n_faster` of `r n_years_cmp` years.
+- The region's fastest year was `r pep_peak$year`, when it grew `r p_fmt(pep_peak$pct_change, 0.01)` (`r n_fmt(pep_peak$pop_change)` people).
+- Virginia's growth slowed to `r p_fmt(min(growth_plot$pct_change[growth_plot$geoid == virginia], na.rm = TRUE), 0.01)` at its low point; the region never dropped below `r p_fmt(min(growth_plot$pct_change[growth_plot$geoid == "rr17"], na.rm = TRUE), 0.01)`.
+- Population Estimates Program figures and the ACS windows above measure different periods and use different methods, so their growth rates are not interchangeable.
+
+## Migration, not births, now drives the region's growth
+
+```{r}
+#| label: fig-pep-components
+#| fig-alt: "Stacked bar chart of annual components of population change for the Richmond region from 2011 to 2025, omitting 2020, with a diamond marking total population change each year. Natural change shrinks from about 4,000 to 5,000 a year in the early 2010s to under 2,000 a year after 2020, while international migration jumps to over 10,000 in 2024 and domestic migration holds at 6,000 to 7,500 a year."
+#| fig-height: 4.6
+
+comp_cols <- c(
+  "Natural change" = rva_pal[["aqua"]],
+  "International migration" = rva_pal[["orange"]],
+  "Domestic migration" = rva_pal[["blue"]]
+)
+
+comp <- pep$annual |>
+  filter(geoid == "rr17", !partial_components) |>
+  select(year, pop_change, natural_change, international_mig, domestic_mig) |>
+  pivot_longer(c(natural_change, international_mig, domestic_mig), names_to = "component", values_to = "n") |>
+  mutate(component = factor(
+    component,
+    levels = c("natural_change", "international_mig", "domestic_mig"),
+    labels = names(comp_cols)
+  ))
+
+ggplot(comp, aes(x = year, y = n, fill = component)) +
+  geom_col(width = 0.75) +
+  geom_point(
+    data = distinct(comp, year, pop_change), aes(x = year, y = pop_change),
+    inherit.aes = FALSE, shape = 18, size = 2.8, color = rva_ink[["primary"]]
+  ) +
+  scale_x_continuous(breaks = seq(pep_first_full, max(comp$year), by = 2)) +
+  scale_y_continuous(labels = label_comma(), expand = expansion(mult = c(0.02, 0.08))) +
+  scale_fill_manual(values = comp_cols) +
+  labs(
+    title = glue::glue("Migration supplied {p_fmt(era_at('rr17', era2, mig_share_of_growth), 1)} of growth since 2020"),
+    subtitle = glue::glue(
+      "People added per year: <span style='color:{comp_cols[[1]]}'>**natural change**</span>, ",
+      "<span style='color:{comp_cols[[2]]}'>**international**</span>, ",
+      "<span style='color:{comp_cols[[3]]}'>**domestic**</span>"
+    ),
+    x = NULL,
+    caption = paste(
+      pep_cap("2019 and 2025"),
+      "Diamonds mark total population change, which also includes a small residual. 2020 is omitted: its components cover only April to June."
+    )
+  ) +
+  theme_rva()
+```
+
+- Natural increase (births minus deaths) fell from `r n_fmt(per_year("rr17", era1, natural_change))` people a year in `r era1` to `r n_fmt(per_year("rr17", era2, natural_change))` a year in `r era2`.
+- Net migration rose: `r n_fmt(per_year("rr17", era1, net_mig))` a year in `r era1` and `r n_fmt(per_year("rr17", era2, net_mig))` a year in `r era2`, so it supplied `r p_fmt(era_at("rr17", era1, mig_share_of_growth), 1)` of growth in the first era and `r p_fmt(era_at("rr17", era2, mig_share_of_growth), 1)` in the second.
+- International migration peaked in `r pep_peak_intl$year` at `r n_fmt(pep_peak_intl$international_mig)` people, well above any earlier year; domestic migration stayed between `r n_fmt(min(comp$n[comp$component == "Domestic migration" & comp$year >= 2021]))` and `r n_fmt(max(comp$n[comp$component == "Domestic migration" & comp$year >= 2021]))` a year after 2020.
+- In `r n_natural_neg` of the 17 localities, deaths exceeded births over `r era2`.
+
+```{r}
+#| label: tbl-migration
+
+mig_geos <- c("51760", "51087", "51041", "secondary4", "rr17", virginia)
+
+pep$era |>
+  filter(geoid %in% mig_geos) |>
+  mutate(geo = factor(short_name(geoid), levels = short_name(mig_geos))) |>
+  arrange(geo, era) |>
+  transmute(
+    Geography = as.character(geo),
+    Era = as.character(era),
+    `Pop. change` = comma(pop_change, digits = 0),
+    `Natural change` = comma(natural_change, digits = 0),
+    International = comma(international_mig, digits = 0),
+    Domestic = comma(domestic_mig, digits = 0),
+    `Net migration` = comma(net_mig, digits = 0),
+    `Migration share` = if_else(is.na(mig_share_of_growth), "&mdash;", p_fmt(mig_share_of_growth, 1))
+  ) |>
+  kbl(
+    align = "llrrrrrr",
+    escape = FALSE,
+    caption = paste0(
+      "Population change and its components by era, July to July (", era1, ": nine years of ",
+      "components; ", era2, ": five). Migration share is net migration divided by population ",
+      "change; it can exceed 100% where natural change is negative. Source: Census Bureau ",
+      "Population Estimates Program, Vintages 2019 and 2025."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- The two eras are different lengths, so compare the per-year figures in the text rather than the era totals in the table.
+- The expansion ring is the clearest case: its natural change is negative in `r era2` (`r n_fmt(era_at("secondary4", era2, natural_change))`), so net migration (`r n_fmt(era_at("secondary4", era2, net_mig))`) is more than all of its growth.
+
+## Richmond city turned from domestic to international growth
+
+```{r}
+#| label: fig-mig-composition
+#| fig-alt: "Two-panel horizontal stacked bar chart of annual net migration per 1,000 residents, split into international and domestic migration, for Richmond city, Henrico, Chesterfield, the expansion ring, the region, and Virginia, in 2010 to 2019 and 2020 to 2025. In Richmond city, domestic migration is positive in the first period and slightly negative in the second while international migration more than doubles. Henrico's domestic migration is negative in both periods. The expansion ring's net migration, almost entirely domestic, roughly doubles to about 19 per 1,000."
+#| fig-height: 4.6
+
+mc_geos <- c("51760", "51087", "51041", "secondary4", "rr17", virginia)
+
+mc <- pep$era |>
+  filter(geoid %in% mc_geos) |>
+  mutate(geo = factor(short_name(geoid), levels = rev(short_name(mc_geos))))
+
+mc_long <- mc |>
+  select(geo, era, international_rate, domestic_rate) |>
+  pivot_longer(c(international_rate, domestic_rate), names_to = "kind", values_to = "rate") |>
+  mutate(kind = factor(kind, levels = c("international_rate", "domestic_rate"), labels = c("International", "Domestic")))
+
+ggplot(mc_long, aes(x = rate, y = geo, fill = kind)) +
+  geom_col(width = 0.72) +
+  geom_point(
+    data = mc, aes(x = net_mig_rate, y = geo), inherit.aes = FALSE,
+    shape = 18, size = 3, color = rva_ink[["primary"]]
+  ) +
+  geom_vline(xintercept = 0, color = rva_ink[["baseline"]]) +
+  facet_wrap(~era, ncol = 2) +
+  scale_x_continuous(labels = label_number(accuracy = 1), expand = expansion(mult = c(0.05, 0.08))) +
+  scale_fill_manual(values = c(International = rva_pal[["orange"]], Domestic = rva_pal[["blue"]])) +
+  labs(
+    title = "Richmond city turned from domestic to international growth",
+    subtitle = glue::glue(
+      "Net migration per 1,000 residents per year: <span style='color:{rva_pal[[\"orange\"]]}'>**international**</span> ",
+      "and <span style='color:{rva_pal[[\"blue\"]]}'>**domestic**</span>"
+    ),
+    x = NULL, y = NULL,
+    caption = paste(pep_cap("2019 and 2025"), "Diamonds mark net migration (international plus domestic).")
+  ) +
+  theme_rva() +
+  theme(strip.text = ggtext::element_markdown(face = "bold", hjust = 0))
+```
+
+- Richmond city's international migration rate rose from `r sprintf("%.1f", era_at("51760", era1, international_rate))` to `r sprintf("%.1f", era_at("51760", era2, international_rate))` per 1,000 residents a year, while its domestic rate swung from `r sprintf("%+.1f", era_at("51760", era1, domestic_rate))` to `r sprintf("%+.1f", era_at("51760", era2, domestic_rate))`.
+- Henrico lost residents to domestic migration in both eras (`r sprintf("%+.1f", era_at("51087", era1, domestic_rate))` and `r sprintf("%+.1f", era_at("51087", era2, domestic_rate))`) and grew on international migration (`r sprintf("%.1f", era_at("51087", era2, international_rate))` in `r era2`).
+- Chesterfield's growth is mostly domestic movers: `r sprintf("%.1f", era_at("51041", era2, domestic_rate))` domestic against `r sprintf("%.1f", era_at("51041", era2, international_rate))` international per 1,000 in `r era2`.
+- The expansion ring's net rate of `r sprintf("%.1f", era_at("secondary4", era2, net_mig_rate))` per 1,000 a year is almost entirely domestic (`r sprintf("%.1f", era_at("secondary4", era2, domestic_rate))`).
+
+```{r}
+#| label: fig-mig-localities
+#| fig-alt: "Dumbbell chart of the annual net migration rate per 1,000 residents in 2010 to 2019 and 2020 to 2025 for the 17 Richmond-region localities, the region, and Virginia. Most localities' rates rise in the second period; New Kent and Goochland are highest at above 30 per 1,000, while Petersburg is lowest, below zero."
+#| fig-height: 6.4
+
+loc_mig <- mig_rate_wide |>
+  bind_rows(
+    pep$era |>
+      filter(geoid %in% c("rr17", virginia)) |>
+      select(geoid, name, era, net_mig_rate) |>
+      pivot_wider(names_from = era, values_from = net_mig_rate) |>
+      mutate(start = .data[[era1]], end = .data[[era2]])
+  ) |>
+  mutate(
+    label = loc_label(geoid, name),
+    label = fct_reorder(label, end)
+  )
+
+ggplot(loc_mig, aes(y = label)) +
+  geom_segment(aes(x = start, xend = end, yend = label), color = rva_ink[["baseline"]], linewidth = 1.2) +
+  geom_point(aes(x = start), color = rva_seq[2], size = 3.2) +
+  geom_point(aes(x = end), color = rva_seq[7], size = 3.2) +
+  scale_x_continuous(labels = label_number(accuracy = 1), expand = expansion(mult = c(0.04, 0.08))) +
+  labs(
+    title = glue::glue("Net migration rose in {n_mig_up} of 17 localities in the 2020s"),
+    subtitle = glue::glue(
+      "Net migration per 1,000 residents a year: <span style='color:{rva_seq[2]}'>**{era1}**</span> to ",
+      "<span style='color:{rva_seq[7]}'>**{era2}**</span>"
+    ),
+    x = NULL, y = NULL,
+    caption = pep_cap("2019 and 2025")
+  ) +
+  theme_rva()
+```
+
+- Net migration rates rose in `r n_mig_up` of the 17 localities between `r era1` and `r era2`; the highest in `r era2` were `r loc_label(top_mig$geoid[1], top_mig$name[1])` (`r sprintf("%.1f", top_mig$end[1])` per 1,000 a year) and `r loc_label(top_mig$geoid[2], top_mig$name[2])` (`r sprintf("%.1f", top_mig$end[2])`).
+- The region's rate rose from `r sprintf("%.1f", era_at("rr17", era1, net_mig_rate))` to `r sprintf("%.1f", era_at("rr17", era2, net_mig_rate))` per 1,000, against `r sprintf("%.1f", era_at(virginia, era1, net_mig_rate))` to `r sprintf("%.1f", era_at(virginia, era2, net_mig_rate))` for Virginia.
+- The `r length(mig_down)` localities whose rate was no higher in the 2020s than in the 2010s are `r knitr::combine_words(mig_down)`.
+
+::: callout-note
+## How to read the migration estimates
+
+Population Estimates Program migration figures are **modeled from administrative records**, not counted, and are revised each vintage. Net migration is international plus domestic; domestic migration is the net balance of moves between this locality and the rest of the United States. The 2010-2019 and 2020-2025 series come from different vintages, the second built on the 2020 Census, so the page compares the eras instead of joining them. The 2010 and 2020 components cover only April to June and are omitted, and a small residual (not shown) accounts for the rest of each year's change.
+:::
+
+## The region is aging, and the expansion ring is aging fastest
+
+```{r}
+#| label: fig-age
+#| fig-alt: "Grouped bar chart of the share of population aged 65 and over in the three core Richmond localities, the pooled core, the pooled expansion ring, and the region across three ACS windows ending 2014, 2019, and 2024. The share rises in every geography; the expansion ring is highest, reaching 20 percent in 2024, and Richmond city is lowest at about 14 percent."
+#| fig-height: 4.2
+
+age_plot <- demo$age_sex |>
+  filter(
+    geoid %in% c(unname(bhc), "bhc3", "secondary4", "rr17"),
+    age_group == "65 and over"
+  ) |>
+  summarise(share = sum(share), .by = c(geoid, year)) |>
+  mutate(
+    geo = fct_reorder2(short_name(geoid), year, share, .fun = \(y, s) s[which.max(y)], .desc = TRUE),
+    yr = factor(year)
+  )
+
+ggplot(age_plot, aes(x = geo, y = share, fill = yr)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.08))) +
+  scale_fill_manual(values = unname(rva_seq[c(2, 4, 7)])) +
+  labs(
+    title = "Every geography has a larger share of residents 65 and over",
+    subtitle = glue::glue(
+      "Share of population 65+, <span style='color:{rva_seq[2]}'>**{first_yr}**</span>, ",
+      "<span style='color:{rva_seq[4]}'>**2019**</span>, ",
+      "<span style='color:{rva_seq[7]}'>**{latest_yr}**</span> ACS 5-year windows"
+    ),
+    caption = acs_cap("B01001", "2010-2014, 2015-2019, 2020-2024")
+  ) +
+  theme_rva()
+```
+
+- The region's 65-and-over share rose from `r p_fmt(age_share("rr17", "65 and over", first_yr))` to `r p_fmt(age_share("rr17", "65 and over"))`, while its under-18 share fell from `r p_fmt(age_share("rr17", "Under 18", first_yr))` to `r p_fmt(age_share("rr17", "Under 18"))`.
+- The expansion ring is the oldest geography: `r p_fmt(age_share("secondary4", "65 and over"))` are 65 or over, up `r pt_fmt(age_share("secondary4", "65 and over") - age_share("secondary4", "65 and over", first_yr))` since the `r first_yr` window.
+- Richmond city is the youngest of the three core localities at `r p_fmt(age_share("51760", "65 and over"))` 65 and over, and has the smallest share of children of the three (`r p_fmt(age_share("51760", "Under 18"))`).
+- Chesterfield has the largest share of children among the core three (`r p_fmt(age_share("51041", "Under 18"))`), though that share also fell over the decade.
+
+## Diversity grew across the region, but Richmond city moved the other way
+
+```{r}
+#| label: fig-race
+#| fig-alt: "Two-panel stacked horizontal bar chart of the share of population by race and ethnicity for Richmond city, Henrico, Chesterfield, the pooled core, the pooled expansion ring, and the region, in the 2014 and 2024 ACS windows. White non-Hispanic share falls in the region, Henrico, Chesterfield, and the expansion ring, but edges up in Richmond city, where the Black share falls from about 49 to 41 percent. The Hispanic share rises in every geography."
+#| fig-height: 6.5
+
+race_geos <- c("rr17", "bhc3", "51760", "51087", "51041", "secondary4")
+
+race_plot <- demo$race_ethnicity |>
+  filter(geoid %in% race_geos, year %in% c(first_yr, latest_yr)) |>
+  mutate(
+    geo = factor(short_name(geoid), levels = rev(short_name(race_geos))),
+    panel = paste(year, "ACS window")
+  )
+
+ggplot(race_plot, aes(x = share, y = geo, fill = fct_rev(race))) +
+  geom_col(width = 0.72) +
+  facet_wrap(~panel, ncol = 1) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = c(0, 0)) +
+  scale_fill_manual(values = rev(unname(rva_pal[1:6]))) +
+  labs(
+    title = "Richmond city's White share rose while the region's fell",
+    subtitle = glue::glue("Share of population by race and ethnicity, {first_yr} and {latest_yr} ACS 5-year"),
+    caption = acs_cap("B03002", "2010-2014 and 2020-2024")
+  ) +
+  theme_rva(legend.position = "bottom") +
+  theme(strip.text = ggtext::element_markdown(face = "bold", hjust = 0)) +
+  guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+```
+
+- The region's White non-Hispanic share fell from `r p_fmt(race_share("rr17", "White non-Hispanic", first_yr))` to `r p_fmt(race_share("rr17", "White non-Hispanic"))`; the Hispanic or Latino share rose from `r p_fmt(race_share("rr17", "Hispanic or Latino", first_yr))` to `r p_fmt(race_share("rr17", "Hispanic or Latino"))`.
+- Richmond city went the other direction: its White non-Hispanic share rose from `r p_fmt(race_share("51760", "White non-Hispanic", first_yr))` to `r p_fmt(race_share("51760", "White non-Hispanic"))`, and its Black share fell from `r p_fmt(race_share("51760", "Black", first_yr))` to `r p_fmt(race_share("51760", "Black"))`.
+- Chesterfield and Henrico diversified: their White non-Hispanic shares fell to `r p_fmt(race_share("51041", "White non-Hispanic"))` and `r p_fmt(race_share("51087", "White non-Hispanic"))`, and Henrico's Asian share reached `r p_fmt(race_share("51087", "Asian"))`.
+- The expansion ring remains the least diverse geography, at `r p_fmt(race_share("secondary4", "White non-Hispanic"))` White non-Hispanic.
+
+::: callout-note
+## Read the multiracial change with care
+
+The "Multiracial" share roughly doubled in the region, but part of that is measurement, not demographic change. The Census Bureau revised how it codes and processes write-in race responses beginning with 2020 data, which raised the count of people classified as two or more races. The `r first_yr` window predates that change and the `r latest_yr` window includes it, so treat the multiracial trend as partly methodological.
+:::
+
+```{r}
+#| label: tbl-race
+
+race_geos_tbl <- c("rr17", "bhc3", "51760", "51087", "51041", "secondary4")
+
+demo$race_ethnicity |>
+  filter(geoid %in% race_geos_tbl, year %in% c(first_yr, latest_yr)) |>
+  select(geoid, race, year, share) |>
+  pivot_wider(names_from = year, values_from = share) |>
+  mutate(change = .data[[as.character(latest_yr)]] - .data[[as.character(first_yr)]]) |>
+  mutate(
+    geo = short_name(geoid),
+    cell = paste0(
+      percent(.data[[as.character(latest_yr)]], digits = 1),
+      " (", sprintf("%+.1f", change * 100), ")"
+    )
+  ) |>
+  select(race, geo, cell) |>
+  pivot_wider(names_from = geo, values_from = cell) |>
+  select(race, all_of(short_name(race_geos_tbl))) |>
+  rename(`Race / ethnicity` = race) |>
+  kbl(
+    align = "lrrrrrr",
+    caption = paste0(
+      "Share of population by race and ethnicity, ", latest_yr,
+      " ACS 5-year window, with the change since ", first_yr,
+      " in percentage points in parentheses. Source: ACS Table B03002."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Every geography's Hispanic or Latino share rose over the decade, from `r p_fmt(race_share("secondary4", "Hispanic or Latino", first_yr))` to `r p_fmt(race_share("secondary4", "Hispanic or Latino"))` in the expansion ring and from `r p_fmt(race_share("51041", "Hispanic or Latino", first_yr))` to `r p_fmt(race_share("51041", "Hispanic or Latino"))` in Chesterfield.
+- The Black share is the largest in Richmond city (`r p_fmt(race_share("51760", "Black"))`) and smallest in the expansion ring (`r p_fmt(race_share("secondary4", "Black"))`).
+
+## Household makeup splits the same way: singles in the city, married couples in the ring
+
+```{r}
+#| label: fig-households
+#| fig-alt: "Stacked horizontal bar chart of households by type for Richmond city, Henrico, the pooled core, the region, Chesterfield, and the pooled expansion ring in 2024. People living alone are the largest group in Richmond city at 43 percent of households; married-couple families are the largest group in the expansion ring at 61 percent and in Chesterfield at 55 percent."
+#| fig-height: 4.2
+
+hh_geos <- c("51760", "51087", "bhc3", "rr17", "51041", "secondary4")
+
+hh_plot <- demo$household_type |>
+  filter(geoid %in% hh_geos, year == latest_yr) |>
+  mutate(geo = factor(short_name(geoid), levels = rev(short_name(hh_geos))))
+
+ggplot(hh_plot, aes(x = share, y = geo, fill = fct_rev(household_type))) +
+  geom_col(width = 0.72) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = c(0, 0)) +
+  scale_fill_manual(values = rev(unname(rva_pal[c(1, 3, 4, 2)]))) +
+  labs(
+    title = "Only in Richmond city is living alone the most common household",
+    subtitle = glue::glue("Share of households by type, {latest_yr} ACS 5-year"),
+    caption = acs_cap("B11001")
+  ) +
+  theme_rva(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+```
+
+- People living alone are `r p_fmt(hh_share("51760", "Living alone"))` of Richmond city households, against `r p_fmt(hh_share("51087", "Living alone"))` in Henrico, `r p_fmt(hh_share("51041", "Living alone"))` in Chesterfield, and `r p_fmt(hh_share("secondary4", "Living alone"))` in the expansion ring.
+- Married-couple families are `r p_fmt(hh_share("secondary4", "Married-couple family"))` of expansion-ring households and `r p_fmt(hh_share("51041", "Married-couple family"))` of Chesterfield's, but only `r p_fmt(hh_share("51760", "Married-couple family"))` of Richmond city's.
+- Across the whole region, `r p_fmt(hh_share("rr17", "Living alone"))` of households are one person — a household type that often fits a smaller unit than the detached single-family homes that dominate the stock (see the Inventory page).
+
+## After inflation, incomes rose in every geography, fastest in Richmond city among the core localities
+
+```{r}
+#| label: fig-income-real
+#| fig-alt: "Dumbbell chart of real median household income, in 2024 dollars, in the 2014 and 2024 ACS windows for Richmond city, Henrico, Chesterfield, four comparison metros, and Virginia. Income rises in every geography. Richmond city rises from about 55 thousand to about 65 thousand dollars, the Richmond metro from about 79 thousand to about 87 thousand, and the Washington metro stays highest at about 127 thousand."
+#| fig-height: 4.8
+
+inc_geos <- c("51760", "51087", "51041", "40060", "16820", "47260", "47900", "51")
+
+stopifnot(have_real) # real-dollar columns need data/bls_wage.rds when acs_demographics.R ran
+
+inc_plot <- demo$median_income |>
+  filter(geoid %in% inc_geos, year %in% c(first_yr, latest_yr)) |>
+  select(geoid, year, estimate_real) |>
+  pivot_wider(names_from = year, values_from = estimate_real) |>
+  mutate(
+    start = .data[[as.character(first_yr)]],
+    end = .data[[as.character(latest_yr)]],
+    geo = fct_reorder(short_name(geoid), end)
+  )
+
+ggplot(inc_plot, aes(y = geo)) +
+  geom_segment(aes(x = start, xend = end, yend = geo), color = rva_ink[["baseline"]], linewidth = 1.2) +
+  geom_point(aes(x = start), color = rva_seq[2], size = 3.4) +
+  geom_point(aes(x = end), color = rva_seq[7], size = 3.4) +
+  scale_x_continuous(labels = label_dollar(), expand = expansion(mult = c(0.04, 0.12))) +
+  labs(
+    title = "Richmond city gained fastest among the core but still trails",
+    subtitle = glue::glue(
+      "Median household income, {latest_yr} dollars: ",
+      "<span style='color:{rva_seq[2]}'>**{first_yr}**</span> to ",
+      "<span style='color:{rva_seq[7]}'>**{latest_yr}**</span>"
+    ),
+    caption = paste(
+      acs_cap("B19013", "2010-2014 and 2020-2024"),
+      "Earlier window inflated to 2024 dollars with national CPI-U (BLS)."
+    )
+  ) +
+  theme_rva()
+```
+
+- The Richmond MSA's median household income rose `r p_fmt(real_growth("40060"))` in real terms, from `r d_fmt(inc("40060", first_yr))` to `r d_fmt(inc("40060", latest_yr))` in `r latest_yr` dollars (`r p_fmt(nominal_growth("40060"))` before adjusting for inflation).
+- Richmond city's real median income rose `r p_fmt(real_growth("51760"))`, faster than Henrico (`r p_fmt(real_growth("51087"))`) and Chesterfield (`r p_fmt(real_growth("51041"))`), but at `r d_fmt(inc("51760", latest_yr))` it remains well below both.
+- The Richmond MSA ended the period close to Virginia's median (`r d_fmt(inc("40060", latest_yr))` against `r d_fmt(inc("51", latest_yr))`) and far below the Washington MSA (`r d_fmt(inc("47900", latest_yr))`).
+
+```{r}
+#| label: tbl-income
+
+tbl_geos <- c(unname(bhc), unname(secondary), unname(ashland), unname(regions), virginia)
+
+demo$median_income |>
+  filter(geoid %in% tbl_geos, year %in% c(first_yr, latest_yr)) |>
+  mutate(
+    label = loc_label(geoid, name),
+    d = cell(label_dollar()(estimate), reliability)
+  ) |>
+  select(geoid, label, year, d, estimate, estimate_real) |>
+  pivot_wider(names_from = year, values_from = c(d, estimate, estimate_real)) |>
+  mutate(
+    nominal = .data[[paste0("estimate_", latest_yr)]] / .data[[paste0("estimate_", first_yr)]] - 1,
+    real = .data[[paste0("estimate_real_", latest_yr)]] / .data[[paste0("estimate_real_", first_yr)]] - 1
+  ) |>
+  arrange(desc(.data[[paste0("estimate_", latest_yr)]])) |>
+  transmute(
+    Geography = label,
+    !!as.character(first_yr) := .data[[paste0("d_", first_yr)]],
+    !!as.character(latest_yr) := .data[[paste0("d_", latest_yr)]],
+    `Nominal change` = percent(nominal, digits = 1),
+    `Real change` = percent(real, digits = 1)
+  ) |>
+  kbl(
+    align = "lrrrr",
+    escape = FALSE,
+    caption = paste0(
+      "Median household income as published (each window's own dollars), with nominal ",
+      "and inflation-adjusted change, ", first_yr, " to ", latest_yr, ". Cells with a ",
+      "coefficient of variation above 30 are suppressed (—); * marks a medium-reliability ",
+      "estimate (CV 15-30). Source: ACS Table B19013."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Inflation consumed most of the nominal gain: the Richmond MSA's median rose `r p_fmt(nominal_growth("40060"))` as published but only `r p_fmt(real_growth("40060"))` after adjusting for prices.
+- Ashland's median (`r d_fmt(inc("5103368", latest_yr, estimate))`) is a small-town estimate with a wide margin of error; it carries a reliability marker in the table.
+
+```{r}
+#| label: fig-income-bands
+#| fig-alt: "Stacked horizontal bar chart of households by income band for Richmond city, Henrico, the pooled core, the region, Chesterfield, and the pooled expansion ring in 2024. About 20 percent of Richmond city households earn under 25 thousand dollars against about 8 percent in Chesterfield and the expansion ring, and about 34 percent of expansion-ring households earn 150 thousand or more against 18 percent in Richmond city."
+#| fig-height: 4.2
+
+band_geos <- c("51760", "51087", "bhc3", "rr17", "51041", "secondary4")
+
+band_plot <- demo$income_bands |>
+  filter(geoid %in% band_geos, year == latest_yr) |>
+  mutate(geo = factor(short_name(geoid), levels = rev(short_name(band_geos))))
+
+ggplot(band_plot, aes(x = share, y = geo, fill = fct_rev(income_band))) +
+  geom_col(width = 0.72) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = c(0, 0)) +
+  scale_fill_manual(values = rev(unname(rva_seq[c(1, 2, 3, 4, 5, 7)]))) +
+  labs(
+    title = "Richmond city's low-income share is about twice the suburbs'",
+    subtitle = glue::glue("Share of households by income band, {latest_yr} ACS 5-year (nominal dollars)"),
+    caption = acs_cap("B19001")
+  ) +
+  theme_rva(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+```
+
+- `r p_fmt(low_band("51760"))` of Richmond city households earn under $25,000, against `r p_fmt(low_band("51041"))` in Chesterfield and `r p_fmt(low_band("secondary4"))` in the expansion ring.
+- At the top, `r p_fmt(top_band("secondary4"))` of expansion-ring households earn $150,000 or more, against `r p_fmt(top_band("51041"))` in Chesterfield and `r p_fmt(top_band("51760"))` in Richmond city.
+- Income bands are fixed nominal thresholds, so a rising share in the top band partly reflects inflation, not only real gains.
+
+## Renter households skew far lower-income than owners
+
+```{r}
+#| label: fig-tenure-income
+#| fig-alt: "Grouped bar chart of the share of households earning under 50 thousand dollars, by tenure, for Richmond city, Henrico, Chesterfield, the pooled core, the pooled expansion ring, and the region in 2024. Renter households are far more likely to earn under 50 thousand dollars than owners in every geography; in the region the shares are about 46 percent for renters and 19 percent for owners."
+#| fig-height: 4.2
+
+ti_geos <- c("rr17", "bhc3", "51760", "51087", "51041", "secondary4")
+
+ti_plot <- demo$tenure_income |>
+  filter(geoid %in% ti_geos, year == latest_yr, income_band %in% c("Under $25k", "$25k-$49k")) |>
+  summarise(share = sum(share), .by = c(geoid, tenure)) |>
+  mutate(geo = factor(short_name(geoid), levels = short_name(ti_geos)))
+
+ggplot(ti_plot, aes(x = geo, y = share, fill = tenure)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  geom_text(
+    aes(label = p_fmt(share, 1)),
+    position = position_dodge(width = 0.8), vjust = -0.4, size = 3, color = rva_ink[["muted"]]
+  ) +
+  scale_x_discrete(labels = label_wrap(12)) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
+  scale_fill_manual(values = c(Owner = rva_pal[["blue"]], Renter = rva_pal[["orange"]])) +
+  labs(
+    title = "Renters are over twice as likely to earn under $50,000",
+    subtitle = glue::glue(
+      "Share of households under $50,000, ",
+      "<span style='color:{rva_pal[[\"blue\"]]}'>**owners**</span> and ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**renters**</span>, {latest_yr} ACS 5-year"
+    ),
+    caption = acs_cap("B25118")
+  ) +
+  theme_rva()
+```
+
+- Across the region, `r p_fmt(under50("rr17", "Renter"))` of renter households earn under $50,000, against `r p_fmt(under50("rr17", "Owner"))` of owner households.
+- In Richmond city, `r p_fmt(under50("51760", "Renter"))` of renters and `r p_fmt(under50("51760", "Owner"))` of owners fall under that line.
+- Even in the expansion ring, where incomes are highest, `r p_fmt(under50("secondary4", "Renter"))` of renters earn under $50,000 — the rental market there serves a lower-income group than the ownership market does.
+
+::: callout-warning
+## Small-geography reliability
+
+Ashland and the four expansion-ring localities have much smaller samples than the core. `r low_race$low` of the `r low_race$n` race-and-ethnicity cells for those five geographies fall below the CV-30 reliability threshold in the `r latest_yr` window. Figures here use the pooled expansion-ring row, and tables suppress low-reliability cells (—) and mark medium-reliability ones (*).
+:::
+
+::: callout-tip
+## What this page shows
+
+- **Growth:** the region grew `r p_fmt(pop_growth("rr17"))`, led by Chesterfield and the expansion ring, and outgrew Virginia in `r n_faster` of `r n_years_cmp` years.
+- **Migration:** net migration supplied `r p_fmt(era_at("rr17", era2, mig_share_of_growth), 1)` of regional growth in `r era2`, as natural increase fell.
+- **Age:** the 65-and-over share rose in every geography, and the expansion ring is the oldest.
+- **Race and ethnicity:** the region diversified, but Richmond city's White share rose while its Black share fell.
+- **Households:** living alone dominates in Richmond city (`r p_fmt(hh_share("51760", "Living alone"))`); married couples dominate in the ring.
+- **Income:** real median income rose everywhere, and renters earn far less than owners — the gap the market page turns into cost burden.
+:::

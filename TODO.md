@@ -36,14 +36,18 @@
 
 ## Phase 3 — demographics page
 
-- [ ] Extend the `acs_tenure.R` pattern: population, age/sex (B01001), race/ethnicity (already partly covered by `acs_tenure.R`'s B25003 letter tables — add B01001/B03002 for the population side), household composition (B11001), income (B19013/B19001/B25118).
-- [ ] Build out `demographics.qmd` (currently an empty stub).
+- [x] `r/acs_demographics.R` written and run 2026-10-28 (population + age/sex B01001, race/ethnicity B03002, household type B11001, income B19001/B19013/B25118; 3 windows, 25 geographies incl. pooled `bhc3`/`secondary4`/`rr17`). User confirmed validation passed.
+- [x] Build out `demographics.qmd` — 7 figures, 3 tables, takeaway H2s, computed-inline bullets, reliability + race-coding callouts. Rendered standalone 2026-10-28 and figures checked visually. All 7 `fig-` chunks have `fig-alt`. (Bullet figures are computed inline; the `fig-alt` text carries typed rounded numbers that will drift on a data refresh, same as `inventory.qmd`.)
+
+- [x] `r/pep_migration.R` + migration sections in `demographics.qmd` (added 2026-10-28 at the user's request, not in the original plan). PEP components of change (natural, international, domestic migration) for the 17 localities, pooled core/ring/region, and Virginia, 2010–2019 and 2020–2025. Ran clean; validation passes, including a same-vintage match to the Census API for all 17 localities. 4 figures, 1 table, 1 callout, all `fig-alt` present; rendered and checked.
 
 ## Phase 4 — market page
 
-- [ ] `acs_burden.R` already covers cost burden — confirm its output is current and review its validation block.
-- [ ] Add home values (B25077), rents (B25064), tenure trend if not already covered.
-- [ ] New `market.qmd` (replaces the old book's split `ownership.qmd`/`rental.qmd` — one page for v1).
+- [x] `acs_burden.R` reviewed 2026-10-28. **Its output was not current — `data/acs_burden.rds` never existed.** Fixed before first run: dropped the sibling-project tract tier and `baseline_2022` block, fixed stale `acs_income.R` refs, switched the collapsed-band MOE to quadrature (was `moe_sum(moe, estimate)` on an already-summed scalar), added pooled `bhc3`/`secondary4`/`rr17` rows, rewrote the validation block (25 geographies × 3 windows × 2 tenures × 4 categories; rr17 reconciles to its 17 members). User ran it; validation passed.
+- [~] `r/bls_wage.R` written (BLS LAUS unemployment + CES average hourly earnings + CPI-U, Richmond MSA vs. `regions` metros) — **not yet run.** User: `renv::install("blscrapeR")` + `renv::snapshot()`, confirm `BLS_KEY` is in `.Renviron`, then `Rscript r/bls_wage.R` and paste back the validation output. Check that the three comparison metros' CES wage series came back (a warning names any that didn't).
+- [ ] Add a `bls_cap()` caption helper to `_common.R` when the market page first charts `bls_wage.rds` (`oews_cap`/`cpi_cap` don't fit — `cpi_cap` says "via FRED").
+- [~] `r/acs_market.R` written 2026-10-28 — B25003 tenure (not covered by `acs_tenure.R`, which is race-specific only), B25077 home value, B25064 rent; medians carry nominal + real columns. **Not yet run — user:** `Rscript r/acs_market.R`, paste back validation output.
+- [~] `market.qmd` drafted 2026-10-28 (7 figures, 4 tables, callouts; replaces the old book's split `ownership.qmd`/`rental.qmd`). Code and layout verified against a scratchpad **mock** `acs_market.rds` (real B25118 tenure counts, synthetic medians) — **the real render is blocked on the user running `Rscript r/acs_market.R`** and pasting back validation output. After that: render `market.qmd` for real, re-read every figure, and revisit the three flagged items — the "Home values and rents climbed in every core locality" H2, the "Price-to-income ratios show where buying is hardest" H2, and the `fig-alt` text on `fig-value`/`fig-rent`/`fig-pti`/`fig-rent-share`, all written before the home-value and rent data existed.
 
 ## Phase 5 — interactive maps
 

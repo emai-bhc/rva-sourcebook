@@ -4,6 +4,74 @@ Append-only. Newest entry first.
 
 ---
 
+## 2026-10-28 — `r/pep_migration.R` and a migration section on the demographics page
+
+**What changed:** Added `r/pep_migration.R` (user request): PEP births, deaths, natural change, international and domestic migration for the 17 `rr` localities, pooled `bhc3`/`secondary4`/`rr17`, and Virginia. Source is the Census `co-est2019-alldata.csv` (2010–2019) and `co-est2025-alldata.csv` (2020–2025) files, cached under `data/cache/pep/`. Outputs `data/pep_migration.rds` (annual + era frames) and two CSVs. Added three H2 sections to `demographics.qmd` after the population-growth section (4 figures, 1 table, a callout), plus a migration bullet in the closing summary. Documented the vintage and partial-year rules in METHODOLOGY.md.
+
+**Design decisions:** The files are used instead of `tidycensus::get_estimates()` because the API returns only a vintage's latest year (probed: vintage 2025 → `year` 2025 only), so a series from it would mix revised and unrevised vintages. The two vintages don't join — the 2019 → 2020 regional step (1,291,900 → 1,316,683) spans the 2020 Census rebase — so annual change is never computed across it and the page compares eras. The 2010 and 2020 components are April–June only (Richmond city births: 765 in 2020 vs. 2,872 in 2021) and are NA. Ran the script myself (two cached CSVs plus one tiny API call, ~7 s) since it isn't a long pull.
+
+**Data surprises:**
+
+- **Natural increase collapsed; migration didn't.** Region: natural change 38,050 over 2011–2019 (4,228/yr) vs. 7,254 over 2021–2025 (1,451/yr); net migration 65,684 (7,298/yr) vs. 65,176 (13,035/yr). Migration share of growth 63% → 90%. 10 of 17 localities had more deaths than births in 2020–2025.
+- **Region outgrew Virginia in 13 of 14 years** (all but 2011). 2024 was the peak at +1.47% (19,910 people), driven by a record 10,787 international migrants.
+- **Richmond city flipped.** Domestic net migration +5.3 → −1.1 per 1,000/yr; international 2.8 → 6.8. Henrico's domestic is negative in both eras (−0.5, −3.1). Chesterfield and the expansion ring are domestic-driven; the ring's net rate is 18.8/1,000/yr with negative natural change (migration share 106%).
+- **14 of 17 localities** had a higher net migration rate in the 2020s; Henrico, Prince George, and Richmond city did not. New Kent (36.6) and Goochland (35.2) lead.
+- **Validation:** all component identities hold exactly in both files (Δpop = natural + net migration + residual; net = international + domestic); `rr17` reconciles to its 17 members in all 16 years; 2025 population and net migration match the Census API (Vintage 2025) for all 17 localities.
+- **Bugs caught:** `p_fmt(x, 0)` — its second argument is *accuracy*, not digits — rendered a title as "Migration supplied NA of growth" (fixed to `1`); `formattable::percent()` can't mix with a character in `if_else()`. The shell also choked on a long heredoc, so the page patch ran from a script file.
+
+**Left open:** `acs_market.rds` now exists (the user rendered all pages), so the Phase 4 loop's real `market.qmd` verification can proceed. `bls_wage.R` TODO items (blscrapeR install) untouched. Not committed.
+
+---
+
+## 2026-10-28 — Phase 4 loop, iteration 1: `market.qmd` drafted (render blocked on `acs_market.R`)
+
+**What changed:** Replaced the `market.qmd` stub with a full page: ownership by geography and window (`fig-ownership`, `tbl-tenure`), real-dollar median home value and rent (`fig-value`, `fig-rent`, `tbl-medians`), price-to-income and rent-to-income ratios (`fig-pti`, `fig-rent-share`), and cost burden by tenure (`fig-burden-trend`, `tbl-burden`, `fig-burden-locality`), plus reliability, ratio-caveat, burden-definition, and summary callouts. Titles and bullets for the home-value, rent, and ratio sections are built from computed values (`chg_phrase()` picks "rose"/"fell" from the data), so they can't contradict the numbers while the real data is unseen.
+
+**Verification:** `data/acs_market.rds` does not exist yet, so the real render did not run. The page code was exercised end to end against a **mock** `acs_market.rds` kept in the scratchpad only (real B25118 owner/renter counts; synthetic medians = multiples of median income), and every figure was read for clipping. That caught: `!!!` used outside a tidy-eval context in `rel_worst()`; a stray double comma and clipped subtitle in the ratio charts; and three bullets I had written from memory that the data contradicted (Richmond city's renter-household growth is not the largest — Chesterfield's +21.0% exceeds its +19.7% — and "only the expansion ring's renter burden fell" is wrong, since Richmond city's fell 4.0 points).
+
+**Data surprises (from the validated frames, not the mock):** Ownership rate region-wide 66.2% → 67.0%; Richmond city 42.7% → 43.5%, the only core locality where renters outnumber owners (58,914 vs 45,407). Renter 30%+ burden region-wide 51.4% → 50.0% → 51.2%; owner burden 26.1% → 21.1% → 20.0%. Richmond city's renter burden eased 56.0% → 52.0% while Henrico (48.4% → 51.6%) and Chesterfield (48.7% → 52.2%) rose, so the three are now nearly identical. Richmond MSA renter burden (51.2%) sits between Virginia (48.5%) and Hampton Roads (54.5%). In 2024, 9,537 renter and 2,706 owner households region-wide have no computed burden.
+
+**Left open:** User runs `Rscript r/acs_market.R` and pastes back validation output. Then: real `quarto render market.qmd`, re-read every figure, confirm or rewrite the two provisional H2s and the `fig-alt` text on the four home-value/rent/ratio figures. Not committed.
+
+---
+
+## 2026-10-28 — Ralph iteration 2: `acs_market.R` written, `demographics.qmd` built
+
+**What changed:** User confirmed `acs_burden.R` and `acs_demographics.R` validation passed. Wrote `r/acs_market.R` (B25003 tenure with pooled `bhc3`/`secondary4`/`rr17`; B25077 median home value and B25064 median gross rent, each with nominal and real-dollar columns; validation gates on owner + renter = total, `rr17` reconciling to its members, and B25003 occupied units = B19001 households from `acs_demographics.rds`). Built out `demographics.qmd` (7 figures, 3 tables) and rendered it standalone.
+
+**Data surprises:**
+
+- **Population growth, 2014 → 2024 windows:** region +10.7% (+129k), Chesterfield +16.5%, expansion ring +15.5%, Richmond city +8.7%, Henrico +6.6%. New Kent was the fastest locality (+30.8%); Sussex (-9.7%), Charles City (-7.4%), and King and Queen (-5.3%) lost population.
+- **Richmond city's White non-Hispanic share rose** (39.7% → 41.4%) while its Black share fell (48.6% → 40.6%); the region's White share fell 58.7% → 54.7%. The "Multiracial" share roughly doubled region-wide, which is partly the 2020 Census race-coding revision rather than demographic change — the page carries a callout.
+- **Real median household income** (2024 dollars, deflated by the CPI in `bls_wage.rds`): Richmond MSA $79,075 → $86,679 (+9.6%), Richmond city $54,766 → $64,587 (+17.9%), Henrico +9.1%, Chesterfield +6.1%. Charlottesville MSA (+19.3%) outpaced everything.
+- **Renter households under $50k:** 45.9% region-wide vs. 18.9% of owners.
+- **Cost burden (acs_burden.rds, logged):** 30%+ burden among renters held between 50.0% and 51.4% region-wide across all three windows; among owners it fell from 26.1% to 20.0%.
+- **Rendering bugs the exit code didn't show:** `theme_rva()`'s `strip.text` is a ggtext element, so a plain `element_text()` override fails to merge (needs `ggtext::element_markdown()`); titles over ~65 characters clip on the right because `element_markdown()` doesn't wrap; a 6-item legend in one row, and 6 long x-axis labels, both overran. Found by reading the PNGs.
+
+**Left open:** User runs `Rscript r/acs_market.R` and pastes back validation output. `market.qmd` is next; it needs `acs_market.rds`. Not committed.
+
+---
+
+## 2026-10-28 — Ralph iteration 1: `acs_burden.R` review, `acs_demographics.R` written
+
+**What changed:** (1) Reviewed `r/acs_burden.R` for Phase 4. `data/acs_burden.rds` never existed, so the script had never run in this repo. It carried sibling-project debris: a tract tier for the "BHC service area" (long pull, tract geoids unstable across the 2010/2020 boundary change, no page needs it), a reference to a nonexistent `r/acs_income.R`, and a dead `baseline_2022.rds` block. Removed all three. Also fixed a latent bug: `summarise(estimate = sum(estimate), moe = moe_sum(moe, estimate))` fed `moe_sum` the already-summed scalar; now `sqrt(sum(moe^2))`, matching `acs_stock.R`. Added pooled `bhc3`/`secondary4`/`rr17` rows and rewrote validation (category sums vs. published `_001` totals; `rr17` reconciles to its 17 members; 25 × 3 × 2 × 4 rows). (2) Wrote `r/acs_demographics.R`: B01001, B03002, B11001, B19001, B19013, B25118 across 2014/2019/2024, 5 geography grains plus 3 pooled rows, 7 frames. Validation gates on same-vintage identities (collapsed categories = published totals; B01001 = B03002 population; B11001 = B19001 = B25118 households).
+
+**Data surprises:** None — neither script has run. Design calls to review: income bands use fixed *nominal* thresholds (noted in the header — a rising top-band share partly reflects inflation); median household income can't be pooled, so it carries only the 22 named geographies; its real-dollar columns read national CPI-U from `data/bls_wage.rds` (exists from the BLS run) and go NA with a warning if absent rather than hardcoding a deflator. `acs_tenure.R` covers tenure by race only (B25003A–I), so total tenure (B25003) goes into the upcoming `acs_market.R`.
+
+**Left open:** User runs `Rscript r/acs_burden.R` and `Rscript r/acs_demographics.R` and pastes back validation output. Still to do: `r/acs_market.R` (B25077, B25064, B25003), `demographics.qmd`, `market.qmd`. Not committed.
+
+---
+
+## 2026-10-28 — Add `r/bls_wage.R` (unemployment + wage growth)
+
+**What changed:** New `r/bls_wage.R`, pulling from the BLS API through `blscrapeR`: LAUS unemployment rate and labor force, CES average hourly earnings (total private), and national CPI-U, for the Richmond MSA, the three other `regions` metros, and Virginia (unemployment only). Series IDs are built from `regions`/`virginia` rather than typed. Outputs `data/bls_wage.rds` (monthly, annual, wages frames), `data-out/bls_wage.csv` (annual) and `data-out/bls_wage_monthly.csv`. The wages frame carries YoY and cumulative-index growth, nominal and real (deflated to the latest year with complete Richmond wages and CPI). Key is read from `BLS_KEY` with the `.Renviron` fallback.
+
+**Data surprises:** None yet — **the script has not been run.** Decisions to review: (1) wage measure is CES metro average hourly earnings, not QCEW weekly wages or OEWS — QCEW was left out per the existing `oews_cap` note and the data-fetch rule; (2) real wages use national CPI-U because no Richmond-area CPI exists, so "real" means relative to national prices; (3) MSA-level LAUS is NSA only, so Virginia is pulled NSA too; (4) partial years are dropped from annual/wage frames; (5) the DC-MSA and other comparison CES series IDs follow BLS's documented pattern but are unverified — a missing one warns and drops, Richmond missing fails validation.
+
+**Left open:** `blscrapeR` is not in `renv.lock` (user: `renv::install("blscrapeR")` + `renv::snapshot()`). Run `Rscript r/bls_wage.R` and log the benchmark/validation output here. No page consumes the data yet; a `bls_cap()` helper is needed in `_common.R` first. Not committed.
+
+---
+
 ## 2026-09-16 — Phase 1 closed out; Phase 2 complete (inventory page live)
 
 **What changed:** Closed the three open Phase 1 lines and built all of Phase 2.

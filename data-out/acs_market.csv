@@ -1,0 +1,373 @@
+geoid,name,year,table,measure,category,estimate,moe,cv,reliability
+16820,"Charlottesville, VA Metro Area",2014,B25003,tenure,Owner,55113,1019,1.1239687324914156,High
+16820,"Charlottesville, VA Metro Area",2014,B25003,tenure,Renter,29963,838,1.7001718532897767,High
+16820,"Charlottesville, VA Metro Area",2014,B25003,tenure,Total,85076,962,0.6873882547498028,High
+40060,"Richmond, VA Metro Area",2014,B25003,tenure,Owner,308173,2438,0.48092041460507956,High
+40060,"Richmond, VA Metro Area",2014,B25003,tenure,Renter,155420,2060,0.8057390524117608,High
+40060,"Richmond, VA Metro Area",2014,B25003,tenure,Total,463593,2505,0.32847699438593475,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2014,B25003,tenure,Owner,390053,2993,0.4664629902956762,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2014,B25003,tenure,Renter,236921,2279,0.584756241256159,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2014,B25003,tenure,Total,626974,2850,0.2763308839525377,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2014,B25003,tenure,Owner,1345078,7156,0.3234126181294981,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2014,B25003,tenure,Renter,767473,4738,0.3752891842571954,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2014,B25003,tenure,Total,2112551,5555,0.15984938096399245,High
+51,Virginia,2014,B25003,tenure,Owner,2028244,12264,0.3675750624153785,High
+51,Virginia,2014,B25003,tenure,Renter,1013466,5608,0.3363821323096616,High
+51,Virginia,2014,B25003,tenure,Total,3041710,9225,0.184366778409589,High
+51007,"Amelia County, Virginia",2014,B25003,tenure,Owner,3886,267,4.176789253606196,High
+51007,"Amelia County, Virginia",2014,B25003,tenure,Renter,875,208,14.450716456795485,High
+51007,"Amelia County, Virginia",2014,B25003,tenure,Total,4761,203,2.591981838251395,High
+5103368,"Ashland town, Virginia",2014,B25003,tenure,Owner,1435,132,5.591857915973862,High
+5103368,"Ashland town, Virginia",2014,B25003,tenure,Renter,1174,137,7.0939245972773834,High
+5103368,"Ashland town, Virginia",2014,B25003,tenure,Total,2609,167,3.891136712874886,High
+51036,"Charles City County, Virginia",2014,B25003,tenure,Owner,2279,126,3.3609365809939042,High
+51036,"Charles City County, Virginia",2014,B25003,tenure,Renter,553,89,9.783606413208968,High
+51036,"Charles City County, Virginia",2014,B25003,tenure,Total,2832,106,2.2753421599436745,High
+51041,"Chesterfield County, Virginia",2014,B25003,tenure,Owner,88056,873,0.6026836196805404,High
+51041,"Chesterfield County, Virginia",2014,B25003,tenure,Renter,26949,907,2.045967498441557,High
+51041,"Chesterfield County, Virginia",2014,B25003,tenure,Total,115005,782,0.41335588818723223,High
+51053,"Dinwiddie County, Virginia",2014,B25003,tenure,Owner,7467,337,2.7435813832127827,High
+51053,"Dinwiddie County, Virginia",2014,B25003,tenure,Renter,2489,329,8.035355564483728,High
+51053,"Dinwiddie County, Virginia",2014,B25003,tenure,Total,9956,281,1.7157560133890026,High
+51075,"Goochland County, Virginia",2014,B25003,tenure,Owner,7194,266,2.2477359974919997,High
+51075,"Goochland County, Virginia",2014,B25003,tenure,Renter,1018,200,11.943079284131827,High
+51075,"Goochland County, Virginia",2014,B25003,tenure,Total,8212,247,1.82844588022273,High
+51085,"Hanover County, Virginia",2014,B25003,tenure,Owner,30490,556,1.1085402458925693,High
+51085,"Hanover County, Virginia",2014,B25003,tenure,Renter,6551,561,5.205822540840421,High
+51085,"Hanover County, Virginia",2014,B25003,tenure,Total,37041,383,0.6285649623940087,High
+51087,"Henrico County, Virginia",2014,B25003,tenure,Owner,79065,1115,0.8572839437829325,High
+51087,"Henrico County, Virginia",2014,B25003,tenure,Renter,44756,1293,1.7562298621013204,High
+51087,"Henrico County, Virginia",2014,B25003,tenure,Total,123821,1010,0.49586238434347407,High
+51097,"King and Queen County, Virginia",2014,B25003,tenure,Owner,2121,190,5.445616207300278,High
+51097,"King and Queen County, Virginia",2014,B25003,tenure,Renter,711,139,11.884455730402404,High
+51097,"King and Queen County, Virginia",2014,B25003,tenure,Total,2832,157,3.3700822557656314,High
+51101,"King William County, Virginia",2014,B25003,tenure,Owner,5051,236,2.8403295504396193,High
+51101,"King William County, Virginia",2014,B25003,tenure,Renter,1096,206,11.42590908082444,High
+51101,"King William County, Virginia",2014,B25003,tenure,Total,6147,150,1.4834132151349682,High
+51127,"New Kent County, Virginia",2014,B25003,tenure,Owner,6253,310,3.013750967924454,High
+51127,"New Kent County, Virginia",2014,B25003,tenure,Renter,853,220,15.678616860927102,Medium
+51127,"New Kent County, Virginia",2014,B25003,tenure,Total,7106,218,1.8649422509510776,High
+51145,"Powhatan County, Virginia",2014,B25003,tenure,Owner,8425,289,2.0852687308902977,High
+51145,"Powhatan County, Virginia",2014,B25003,tenure,Renter,1165,230,12.001513234277365,High
+51145,"Powhatan County, Virginia",2014,B25003,tenure,Total,9590,247,1.5657140321573573,High
+51149,"Prince George County, Virginia",2014,B25003,tenure,Owner,7683,311,2.46072824105009,High
+51149,"Prince George County, Virginia",2014,B25003,tenure,Renter,3223,367,6.922131677051436,High
+51149,"Prince George County, Virginia",2014,B25003,tenure,Total,10906,364,2.0289436616970558,High
+51183,"Sussex County, Virginia",2014,B25003,tenure,Owner,2124,308,8.815162078775494,High
+51183,"Sussex County, Virginia",2014,B25003,tenure,Renter,1137,280,14.970340013847563,High
+51183,"Sussex County, Virginia",2014,B25003,tenure,Total,3261,517,9.63770972970605,High
+51570,"Colonial Heights city, Virginia",2014,B25003,tenure,Owner,4542,191,2.5563501209247295,High
+51570,"Colonial Heights city, Virginia",2014,B25003,tenure,Renter,2483,203,4.969965981439747,High
+51570,"Colonial Heights city, Virginia",2014,B25003,tenure,Total,7025,156,1.349933476835877,High
+51670,"Hopewell city, Virginia",2014,B25003,tenure,Owner,4634,302,3.961731250319759,High
+51670,"Hopewell city, Virginia",2014,B25003,tenure,Renter,4140,341,5.007121565863472,High
+51670,"Hopewell city, Virginia",2014,B25003,tenure,Total,8774,277,1.9191823313284693,High
+51730,"Petersburg city, Virginia",2014,B25003,tenure,Owner,5583,343,3.734741864550821,High
+51730,"Petersburg city, Virginia",2014,B25003,tenure,Renter,6932,361,3.165794684621955,High
+51730,"Petersburg city, Virginia",2014,B25003,tenure,Total,12515,300,1.457217903864906,High
+51760,"Richmond city, Virginia",2014,B25003,tenure,Owner,36704,776,1.2852346414460347,High
+51760,"Richmond city, Virginia",2014,B25003,tenure,Renter,49209,1316,1.625718872563962,High
+51760,"Richmond city, Virginia",2014,B25003,tenure,Total,85913,1272,0.9000410643735621,High
+bhc3,Richmond core (3 localities),2014,B25003,tenure,Owner,203825,1614.784815385629,0.48160535097137425,High
+bhc3,Richmond core (3 localities),2014,B25003,tenure,Renter,120914,2055.8098161065386,1.033571307712105,High
+bhc3,Richmond core (3 localities),2014,B25003,tenure,Total,324739,1802.6669132149732,0.3374544319749237,High
+rr17,Richmond region (17 localities),2014,B25003,tenure,Owner,301557,1973.9533935734146,0.3979253235128961,High
+rr17,Richmond region (17 localities),2014,B25003,tenure,Renter,154140,2324.749018711482,0.9168426676855493,High
+rr17,Richmond region (17 localities),2014,B25003,tenure,Total,455697,2082.12487617818,0.27775680068357955,High
+secondary4,Expansion ring (4 localities),2014,B25003,tenure,Owner,52362,748.006016018588,0.8684062934088932,High
+secondary4,Expansion ring (4 localities),2014,B25003,tenure,Renter,9587,675.2932696243906,4.281971689908039,High
+secondary4,Expansion ring (4 localities),2014,B25003,tenure,Total,61949,562.3442006458322,0.5518258210789552,High
+16820,"Charlottesville, VA Metro Area",2019,B25003,tenure,Owner,53435,988,1.1239971979705479,High
+16820,"Charlottesville, VA Metro Area",2019,B25003,tenure,Renter,30568,993,1.9747690932130788,High
+16820,"Charlottesville, VA Metro Area",2019,B25003,tenure,Total,84003,878,0.635380405251846,High
+40060,"Richmond, VA Metro Area",2019,B25003,tenure,Owner,315671,2280,0.4390704996917889,High
+40060,"Richmond, VA Metro Area",2019,B25003,tenure,Renter,165546,2382,0.8746960458781381,High
+40060,"Richmond, VA Metro Area",2019,B25003,tenure,Total,481217,1942,0.2453253132083875,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2019,B25003,tenure,Owner,409367,3439,0.5106854015098393,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2019,B25003,tenure,Renter,254454,2966,0.708591538619087,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2019,B25003,tenure,Total,663821,2476,0.22674292817676445,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2019,B25003,tenure,Owner,1409325,7892,0.3404160423648024,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2019,B25003,tenure,Renter,807672,5722,0.4306722844035126,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2019,B25003,tenure,Total,2216997,4162,0.11412244515487996,High
+51,Virginia,2019,B25003,tenure,Owner,2087711,12137,0.35340693714406624,High
+51,Virginia,2019,B25003,tenure,Renter,1063334,7563,0.4323729316524959,High
+51,Virginia,2019,B25003,tenure,Total,3151045,7497,0.14463286968325234,High
+51007,"Amelia County, Virginia",2019,B25003,tenure,Owner,4181,256,3.7221502105704705,High
+51007,"Amelia County, Virginia",2019,B25003,tenure,Renter,773,172,13.526425681334711,High
+51007,"Amelia County, Virginia",2019,B25003,tenure,Total,4954,198,2.429647590660827,High
+5103368,"Ashland town, Virginia",2019,B25003,tenure,Owner,1436,187,7.916282141375486,High
+5103368,"Ashland town, Virginia",2019,B25003,tenure,Renter,1362,167,7.453726640154609,High
+5103368,"Ashland town, Virginia",2019,B25003,tenure,Total,2798,176,3.8238342194055246,High
+51036,"Charles City County, Virginia",2019,B25003,tenure,Owner,2430,101,2.526673921472976,High
+51036,"Charles City County, Virginia",2019,B25003,tenure,Renter,466,85,11.088354618625827,High
+51036,"Charles City County, Virginia",2019,B25003,tenure,Total,2896,93,1.9521738400308992,High
+51041,"Chesterfield County, Virginia",2019,B25003,tenure,Owner,94698,968,0.6213962787221653,High
+51041,"Chesterfield County, Virginia",2019,B25003,tenure,Renter,30273,996,2.0000367476631347,High
+51041,"Chesterfield County, Virginia",2019,B25003,tenure,Total,124971,690,0.33564017855181916,High
+51053,"Dinwiddie County, Virginia",2019,B25003,tenure,Owner,8027,337,2.5521766772704435,High
+51053,"Dinwiddie County, Virginia",2019,B25003,tenure,Renter,2374,287,7.34911900195379,High
+51053,"Dinwiddie County, Virginia",2019,B25003,tenure,Total,10401,307,1.7943095838633702,High
+51075,"Goochland County, Virginia",2019,B25003,tenure,Owner,7220,255,2.1470248970691004,High
+51075,"Goochland County, Virginia",2019,B25003,tenure,Renter,1286,237,11.203184162384717,High
+51075,"Goochland County, Virginia",2019,B25003,tenure,Total,8506,276,1.9725035858828774,High
+51085,"Hanover County, Virginia",2019,B25003,tenure,Owner,32174,485,0.9163698226758265,High
+51085,"Hanover County, Virginia",2019,B25003,tenure,Renter,6813,504,4.497034767700049,High
+51085,"Hanover County, Virginia",2019,B25003,tenure,Total,38987,377,0.5878352561289427,High
+51087,"Henrico County, Virginia",2019,B25003,tenure,Owner,80489,1180,0.891209019820753,High
+51087,"Henrico County, Virginia",2019,B25003,tenure,Renter,47975,1279,1.6206515868352152,High
+51087,"Henrico County, Virginia",2019,B25003,tenure,Total,128464,906,0.42872701956925896,High
+51097,"King and Queen County, Virginia",2019,B25003,tenure,Owner,2261,178,4.785788895625439,High
+51097,"King and Queen County, Virginia",2019,B25003,tenure,Renter,446,144,19.627352897079067,Medium
+51097,"King and Queen County, Virginia",2019,B25003,tenure,Total,2707,168,3.7727247718680488,High
+51101,"King William County, Virginia",2019,B25003,tenure,Owner,5310,214,2.449928162153189,High
+51101,"King William County, Virginia",2019,B25003,tenure,Renter,768,174,13.772796352583585,High
+51101,"King William County, Virginia",2019,B25003,tenure,Total,6078,227,2.270383694844429,High
+51127,"New Kent County, Virginia",2019,B25003,tenure,Owner,6886,324,2.8603033157448223,High
+51127,"New Kent County, Virginia",2019,B25003,tenure,Renter,1075,234,13.232487453170283,High
+51127,"New Kent County, Virginia",2019,B25003,tenure,Total,7961,227,1.7333742114388193,High
+51145,"Powhatan County, Virginia",2019,B25003,tenure,Owner,9253,334,2.1943101013488766,High
+51145,"Powhatan County, Virginia",2019,B25003,tenure,Renter,1012,247,14.83715174742002,High
+51145,"Powhatan County, Virginia",2019,B25003,tenure,Total,10265,261,1.5456659910546802,High
+51149,"Prince George County, Virginia",2019,B25003,tenure,Owner,7774,305,2.385005587168826,High
+51149,"Prince George County, Virginia",2019,B25003,tenure,Renter,3733,278,4.527108504857278,High
+51149,"Prince George County, Virginia",2019,B25003,tenure,Total,11507,282,1.4897764093905572,High
+51183,"Sussex County, Virginia",2019,B25003,tenure,Owner,2624,179,4.146897472014234,High
+51183,"Sussex County, Virginia",2019,B25003,tenure,Renter,1170,160,8.313199802561504,High
+51183,"Sussex County, Virginia",2019,B25003,tenure,Total,3794,215,3.4448889864495693,High
+51570,"Colonial Heights city, Virginia",2019,B25003,tenure,Owner,4426,214,2.9392495573957147,High
+51570,"Colonial Heights city, Virginia",2019,B25003,tenure,Renter,2610,242,5.6364927971677785,High
+51570,"Colonial Heights city, Virginia",2019,B25003,tenure,Total,7036,183,1.5811000654903744,High
+51670,"Hopewell city, Virginia",2019,B25003,tenure,Owner,4312,375,5.28672369749226,High
+51670,"Hopewell city, Virginia",2019,B25003,tenure,Renter,4912,417,5.160737799867331,High
+51670,"Hopewell city, Virginia",2019,B25003,tenure,Total,9224,287,1.8914579911793472,High
+51730,"Petersburg city, Virginia",2019,B25003,tenure,Owner,5112,341,4.055063239959853,High
+51730,"Petersburg city, Virginia",2019,B25003,tenure,Renter,8053,448,3.3818505591942745,High
+51730,"Petersburg city, Virginia",2019,B25003,tenure,Total,13165,351,1.6207661236792312,High
+51760,"Richmond city, Virginia",2019,B25003,tenure,Owner,38494,860,1.3581242598420187,High
+51760,"Richmond city, Virginia",2019,B25003,tenure,Renter,51807,1057,1.2402825708675693,High
+51760,"Richmond city, Virginia",2019,B25003,tenure,Total,90301,863,0.5809681629110126,High
+bhc3,Richmond core (3 localities),2019,B25003,tenure,Owner,213681,1751.8630083428327,0.49838886709722713,High
+bhc3,Richmond core (3 localities),2019,B25003,tenure,Renter,130055,1935.2276351892042,0.9045635872264022,High
+bhc3,Richmond core (3 localities),2019,B25003,tenure,Total,343736,1428.882430432959,0.25270019382814657,High
+rr17,Richmond region (17 localities),2019,B25003,tenure,Owner,315671,2068.9030910122397,0.39841855876518883,High
+rr17,Richmond region (17 localities),2019,B25003,tenure,Renter,165546,2208.458059370836,0.8109695768343311,High
+rr17,Richmond region (17 localities),2019,B25003,tenure,Total,481217,1722.3016576662753,0.21757167538944594,High
+secondary4,Expansion ring (4 localities),2019,B25003,tenure,Owner,55533,718.8755107805523,0.7869309951420789,High
+secondary4,Expansion ring (4 localities),2019,B25003,tenure,Renter,10186,652.6484505459275,3.8950204049418056,High
+secondary4,Expansion ring (4 localities),2019,B25003,tenure,Total,65719,581.338971685195,0.5377403052030773,High
+16820,"Charlottesville, VA Metro Area",2024,B25003,tenure,Owner,59967,1197,1.2134333457869915,High
+16820,"Charlottesville, VA Metro Area",2024,B25003,tenure,Renter,30485,1211,2.4148604650351233,High
+16820,"Charlottesville, VA Metro Area",2024,B25003,tenure,Total,90452,899,0.6041928970841072,High
+40060,"Richmond, VA Metro Area",2024,B25003,tenure,Owner,357348,2809,0.4778531807074697,High
+40060,"Richmond, VA Metro Area",2024,B25003,tenure,Renter,176082,2460,0.8492865423400932,High
+40060,"Richmond, VA Metro Area",2024,B25003,tenure,Total,533430,1666,0.18985920504036302,High
+47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC Metro Area",2024,B25003,tenure,Owner,448695,4334,0.5871807031339888,High
+47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC Metro Area",2024,B25003,tenure,Renter,258713,3706,0.8708056951115409,High
+47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC Metro Area",2024,B25003,tenure,Total,707408,1892,0.16258679230145695,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2024,B25003,tenure,Owner,1510742,8444,0.33977546788850416,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2024,B25003,tenure,Renter,862280,6703,0.4725578740634323,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2024,B25003,tenure,Total,2373022,4247,0.10879641730810463,High
+51,Virginia,2024,B25003,tenure,Owner,2266609,13049,0.3499731447440905,High
+51,Virginia,2024,B25003,tenure,Renter,1099123,8702,0.4812900471433336,High
+51,Virginia,2024,B25003,tenure,Total,3365732,7402,0.13369145400264248,High
+51007,"Amelia County, Virginia",2024,B25003,tenure,Owner,4469,298,4.053591747540129,High
+51007,"Amelia County, Virginia",2024,B25003,tenure,Renter,948,281,18.019057879009402,Medium
+51007,"Amelia County, Virginia",2024,B25003,tenure,Total,5417,195,2.1883151824746254,High
+5103368,"Ashland town, Virginia",2024,B25003,tenure,Owner,1567,200,7.758809643424505,High
+5103368,"Ashland town, Virginia",2024,B25003,tenure,Renter,1242,209,10.22960319907591,High
+5103368,"Ashland town, Virginia",2024,B25003,tenure,Total,2809,215,4.652868926518215,High
+51036,"Charles City County, Virginia",2024,B25003,tenure,Owner,2511,213,5.156642081830825,High
+51036,"Charles City County, Virginia",2024,B25003,tenure,Renter,400,76,11.55015197568389,High
+51036,"Charles City County, Virginia",2024,B25003,tenure,Total,2911,215,4.489834700992672,High
+51041,"Chesterfield County, Virginia",2024,B25003,tenure,Owner,107538,1185,0.6698699451741127,High
+51041,"Chesterfield County, Virginia",2024,B25003,tenure,Renter,32617,1192,2.221602418340968,High
+51041,"Chesterfield County, Virginia",2024,B25003,tenure,Total,140155,557,0.24159096978930944,High
+51053,"Dinwiddie County, Virginia",2024,B25003,tenure,Owner,8487,476,3.4094698023760994,High
+51053,"Dinwiddie County, Virginia",2024,B25003,tenure,Renter,2174,363,10.150353864264881,High
+51053,"Dinwiddie County, Virginia",2024,B25003,tenure,Total,10661,351,2.0014432059128677,High
+51075,"Goochland County, Virginia",2024,B25003,tenure,Owner,8784,334,2.311469873381279,High
+51075,"Goochland County, Virginia",2024,B25003,tenure,Renter,1558,249,9.71551868774167,High
+51075,"Goochland County, Virginia",2024,B25003,tenure,Total,10342,258,1.5165239390357377,High
+51085,"Hanover County, Virginia",2024,B25003,tenure,Owner,35055,611,1.059559467775129,High
+51085,"Hanover County, Virginia",2024,B25003,tenure,Renter,7633,544,4.332491656568802,High
+51085,"Hanover County, Virginia",2024,B25003,tenure,Total,42688,384,0.5468390424848366,High
+51087,"Henrico County, Virginia",2024,B25003,tenure,Owner,88571,1494,1.0253996081449812,High
+51087,"Henrico County, Virginia",2024,B25003,tenure,Renter,48794,1353,1.685642499520034,High
+51087,"Henrico County, Virginia",2024,B25003,tenure,Total,137365,837,0.3704106502134121,High
+51097,"King and Queen County, Virginia",2024,B25003,tenure,Owner,2274,192,5.132688004747736,High
+51097,"King and Queen County, Virginia",2024,B25003,tenure,Renter,729,178,14.843166931425403,High
+51097,"King and Queen County, Virginia",2024,B25003,tenure,Total,3003,171,3.461584008696471,High
+51101,"King William County, Virginia",2024,B25003,tenure,Owner,6534,241,2.242187928841701,High
+51101,"King William County, Virginia",2024,B25003,tenure,Renter,818,207,15.38335773366726,Medium
+51101,"King William County, Virginia",2024,B25003,tenure,Total,7352,155,1.2816230143111813,High
+51127,"New Kent County, Virginia",2024,B25003,tenure,Owner,8582,296,2.096704844167371,High
+51127,"New Kent County, Virginia",2024,B25003,tenure,Renter,681,208,18.567366959906092,Medium
+51127,"New Kent County, Virginia",2024,B25003,tenure,Total,9263,232,1.5225459856467225,High
+51145,"Powhatan County, Virginia",2024,B25003,tenure,Owner,10559,298,1.7156455648978917,High
+51145,"Powhatan County, Virginia",2024,B25003,tenure,Renter,766,226,17.935511519201313,Medium
+51145,"Powhatan County, Virginia",2024,B25003,tenure,Total,11325,245,1.3151096707529002,High
+51149,"Prince George County, Virginia",2024,B25003,tenure,Owner,9605,415,2.6265448751520943,High
+51149,"Prince George County, Virginia",2024,B25003,tenure,Renter,3314,376,6.897146305716009,High
+51149,"Prince George County, Virginia",2024,B25003,tenure,Total,12919,261,1.2281338647090558,High
+51183,"Sussex County, Virginia",2024,B25003,tenure,Owner,2640,191,4.398084185318227,High
+51183,"Sussex County, Virginia",2024,B25003,tenure,Renter,1145,223,11.839503059423157,High
+51183,"Sussex County, Virginia",2024,B25003,tenure,Total,3785,171,2.746403375988243,High
+51570,"Colonial Heights city, Virginia",2024,B25003,tenure,Owner,5127,304,3.604494472614438,High
+51570,"Colonial Heights city, Virginia",2024,B25003,tenure,Renter,2403,304,7.690488206864014,High
+51570,"Colonial Heights city, Virginia",2024,B25003,tenure,Total,7530,198,1.5984693445064726,High
+51670,"Hopewell city, Virginia",2024,B25003,tenure,Owner,5359,344,3.9021933389332832,High
+51670,"Hopewell city, Virginia",2024,B25003,tenure,Renter,3896,385,6.00725239197868,High
+51670,"Hopewell city, Virginia",2024,B25003,tenure,Total,9255,323,2.1215838312979596,High
+51730,"Petersburg city, Virginia",2024,B25003,tenure,Owner,5846,536,5.573654913811121,High
+51730,"Petersburg city, Virginia",2024,B25003,tenure,Renter,9292,578,3.7814010025292206,High
+51730,"Petersburg city, Virginia",2024,B25003,tenure,Total,15138,401,1.6103117780452263,High
+51760,"Richmond city, Virginia",2024,B25003,tenure,Owner,45407,1051,1.4070644946285549,High
+51760,"Richmond city, Virginia",2024,B25003,tenure,Renter,58914,1197,1.235121659483459,High
+51760,"Richmond city, Virginia",2024,B25003,tenure,Total,104321,766,0.4463660197282709,High
+bhc3,Richmond core (3 localities),2024,B25003,tenure,Owner,241516,2177.352061564689,0.54804579179326,High
+bhc3,Richmond core (3 localities),2024,B25003,tenure,Renter,140325,2164.3202166038186,0.9376063996481544,High
+bhc3,Richmond core (3 localities),2024,B25003,tenure,Total,381841,1263.9517395850207,0.20122504396135424,High
+rr17,Richmond region (17 localities),2024,B25003,tenure,Owner,357348,2562.1489027767298,0.435860093498759,High
+rr17,Richmond region (17 localities),2024,B25003,tenure,Renter,176082,2488.6598803372067,0.8591810344845919,High
+rr17,Richmond region (17 localities),2024,B25003,tenure,Total,533430,1608.6814476458662,0.18332711933566898,High
+secondary4,Expansion ring (4 localities),2024,B25003,tenure,Owner,62980,813.2016969977375,0.7849278122718918,High
+secondary4,Expansion ring (4 localities),2024,B25003,tenure,Renter,10638,672.5154273323401,3.8430529045232698,High
+secondary4,Expansion ring (4 localities),2024,B25003,tenure,Total,73618,572.5984631484789,0.47282481475554194,High
+16820,"Charlottesville, VA Metro Area",2014,B25077,median_value,NA,260300,4388,1.0247703433144129,High
+40060,"Richmond, VA Metro Area",2014,B25077,median_value,NA,214900,1187,0.33577503355628757,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2014,B25077,median_value,NA,235900,1029,0.2651682555716901,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2014,B25077,median_value,NA,373300,922,0.15014367055677735,High
+51,Virginia,2014,B25077,median_value,NA,243500,674,0.16826547998726774,High
+51007,"Amelia County, Virginia",2014,B25077,median_value,NA,179300,19478,6.603864742488942,High
+5103368,"Ashland town, Virginia",2014,B25077,median_value,NA,189400,10443,3.3518100673058098,High
+51036,"Charles City County, Virginia",2014,B25077,median_value,NA,154600,7859,3.0902377741165554,High
+51041,"Chesterfield County, Virginia",2014,B25077,median_value,NA,219800,2123,0.587159921564506,High
+51053,"Dinwiddie County, Virginia",2014,B25077,median_value,NA,159300,9230,3.5222487440302084,High
+51075,"Goochland County, Virginia",2014,B25077,median_value,NA,324800,20649,3.864711695389821,High
+51085,"Hanover County, Virginia",2014,B25077,median_value,NA,257600,4165,0.9828862164662351,High
+51087,"Henrico County, Virginia",2014,B25077,median_value,NA,217300,2297,0.6425920771222394,High
+51097,"King and Queen County, Virginia",2014,B25077,median_value,NA,173300,27189,9.537373039355828,High
+51101,"King William County, Virginia",2014,B25077,median_value,NA,201400,8575,2.5882651228633606,High
+51127,"New Kent County, Virginia",2014,B25077,median_value,NA,247800,10216,2.5061881947153184,High
+51145,"Powhatan County, Virginia",2014,B25077,median_value,NA,259500,9618,2.253105399089903,High
+51149,"Prince George County, Virginia",2014,B25077,median_value,NA,201600,9545,2.8781902832054804,High
+51183,"Sussex County, Virginia",2014,B25077,median_value,NA,124500,16247,7.9330086302657445,High
+51570,"Colonial Heights city, Virginia",2014,B25077,median_value,NA,176300,7137,2.460919922693254,High
+51670,"Hopewell city, Virginia",2014,B25077,median_value,NA,129600,7026,3.295620848812338,High
+51730,"Petersburg city, Virginia",2014,B25077,median_value,NA,114100,6472,3.448156445713647,High
+51760,"Richmond city, Virginia",2014,B25077,median_value,NA,195000,4941,1.5403320084171148,High
+16820,"Charlottesville, VA Metro Area",2019,B25077,median_value,NA,291100,4494,0.9384798672679564,High
+40060,"Richmond, VA Metro Area",2019,B25077,median_value,NA,237500,1408,0.36039033754599265,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2019,B25077,median_value,NA,245100,1266,0.31399627222435106,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2019,B25077,median_value,NA,424000,1315,0.18853587199632965,High
+51,Virginia,2019,B25077,median_value,NA,273100,819,0.1823040426310992,High
+51007,"Amelia County, Virginia",2019,B25077,median_value,NA,201400,12802,3.8641364551483086,High
+5103368,"Ashland town, Virginia",2019,B25077,median_value,NA,191900,11233,3.5584009528772427,High
+51036,"Charles City County, Virginia",2019,B25077,median_value,NA,167900,5681,2.056876379231378,High
+51041,"Chesterfield County, Virginia",2019,B25077,median_value,NA,241200,2152,0.5423742483126415,High
+51053,"Dinwiddie County, Virginia",2019,B25077,median_value,NA,168300,6487,2.343116485794834,High
+51075,"Goochland County, Virginia",2019,B25077,median_value,NA,375200,21977,3.5607351864213452,High
+51085,"Hanover County, Virginia",2019,B25077,median_value,NA,282900,3197,0.6869795141720414,High
+51087,"Henrico County, Virginia",2019,B25077,median_value,NA,242600,3168,0.7938317668018955,High
+51097,"King and Queen County, Virginia",2019,B25077,median_value,NA,183200,21657,7.186326170345496,High
+51101,"King William County, Virginia",2019,B25077,median_value,NA,204300,9836,2.926740727846736,High
+51127,"New Kent County, Virginia",2019,B25077,median_value,NA,281100,11242,2.4311784251837385,High
+51145,"Powhatan County, Virginia",2019,B25077,median_value,NA,279200,7515,1.6362424991943982,High
+51149,"Prince George County, Virginia",2019,B25077,median_value,NA,213300,7908,2.2537716047007725,High
+51183,"Sussex County, Virginia",2019,B25077,median_value,NA,125800,10063,4.862738654978955,High
+51570,"Colonial Heights city, Virginia",2019,B25077,median_value,NA,171700,5685,2.0127705600883705,High
+51670,"Hopewell city, Virginia",2019,B25077,median_value,NA,122900,8387,4.148478635607074,High
+51730,"Petersburg city, Virginia",2019,B25077,median_value,NA,108100,6128,3.446094323335649,High
+51760,"Richmond city, Virginia",2019,B25077,median_value,NA,230500,4508,1.1889047860802142,High
+16820,"Charlottesville, VA Metro Area",2024,B25077,median_value,NA,430300,7185,1.0150548814815703,High
+40060,"Richmond, VA Metro Area",2024,B25077,median_value,NA,353500,2074,0.356659200440235,High
+47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC Metro Area",2024,B25077,median_value,NA,340900,2129,0.3796494350285004,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2024,B25077,median_value,NA,579900,2374,0.24886378586392896,High
+51,Virginia,2024,B25077,median_value,NA,383700,1024,0.1622341415730533,High
+51007,"Amelia County, Virginia",2024,B25077,median_value,NA,282400,18805,4.048020871901289,High
+5103368,"Ashland town, Virginia",2024,B25077,median_value,NA,293200,36336,7.53368137769171,High
+51036,"Charles City County, Virginia",2024,B25077,median_value,NA,241400,18325,4.614671760223418,High
+51041,"Chesterfield County, Virginia",2024,B25077,median_value,NA,366000,3564,0.59195774577706906,High
+51053,"Dinwiddie County, Virginia",2024,B25077,median_value,NA,257800,14702,3.466790542372802,High
+51075,"Goochland County, Virginia",2024,B25077,median_value,NA,500600,32408,3.935459819037823,High
+51085,"Hanover County, Virginia",2024,B25077,median_value,NA,400400,7997,1.214135408664284,High
+51087,"Henrico County, Virginia",2024,B25077,median_value,NA,359200,4237,0.7170612167532037,High
+51097,"King and Queen County, Virginia",2024,B25077,median_value,NA,231600,19687,5.167435731871847,High
+51101,"King William County, Virginia",2024,B25077,median_value,NA,315700,14033,2.702153654781722,High
+51127,"New Kent County, Virginia",2024,B25077,median_value,NA,393600,15738,2.4306842612499073,High
+51145,"Powhatan County, Virginia",2024,B25077,median_value,NA,416000,14470,2.1145078325929387,High
+51149,"Prince George County, Virginia",2024,B25077,median_value,NA,293400,11532,2.3893436763819222,High
+51183,"Sussex County, Virginia",2024,B25077,median_value,NA,183800,22429,7.418199377544641,High
+51570,"Colonial Heights city, Virginia",2024,B25077,median_value,NA,246600,9956,2.454290200834695,High
+51670,"Hopewell city, Virginia",2024,B25077,median_value,NA,181600,14250,4.770161884230681,High
+51730,"Petersburg city, Virginia",2024,B25077,median_value,NA,189000,18119,5.8278252199224845,High
+51760,"Richmond city, Virginia",2024,B25077,median_value,NA,353000,7576,1.3046660409688557,High
+16820,"Charlottesville, VA Metro Area",2014,B25064,median_rent,NA,1050,20,1.1579099724996382,High
+40060,"Richmond, VA Metro Area",2014,B25064,median_rent,NA,981,8,0.49574127262981443,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2014,B25064,median_rent,NA,1082,6,0.33709948367595755,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2014,B25064,median_rent,NA,1479,5,0.20551140485541244,High
+51,Virginia,2014,B25064,median_rent,NA,1108,5,0.27432433915266696,High
+51007,"Amelia County, Virginia",2014,B25064,median_rent,NA,679,74,6.6251549972917445,High
+5103368,"Ashland town, Virginia",2014,B25064,median_rent,NA,941,40,2.58407113947847,High
+51036,"Charles City County, Virginia",2014,B25064,median_rent,NA,861,111,7.8370735943573075,High
+51041,"Chesterfield County, Virginia",2014,B25064,median_rent,NA,1107,17,0.9335453030315511,High
+51053,"Dinwiddie County, Virginia",2014,B25064,median_rent,NA,946,95,6.104731488205016,High
+51075,"Goochland County, Virginia",2014,B25064,median_rent,NA,947,185,11.87560782249497,High
+51085,"Hanover County, Virginia",2014,B25064,median_rent,NA,1049,34,1.9703234517748847,High
+51087,"Henrico County, Virginia",2014,B25064,median_rent,NA,1029,16,0.9452326306119495,High
+51097,"King and Queen County, Virginia",2014,B25064,median_rent,NA,878,57,3.9465211762017853,High
+51101,"King William County, Virginia",2014,B25064,median_rent,NA,967,79,4.966320176775853,High
+51127,"New Kent County, Virginia",2014,B25064,median_rent,NA,892,263,17.923589624763174,Medium
+51145,"Powhatan County, Virginia",2014,B25064,median_rent,NA,1040,63,3.682487725040917,High
+51149,"Prince George County, Virginia",2014,B25064,median_rent,NA,1252,68,3.301708148421492,High
+51183,"Sussex County, Virginia",2014,B25064,median_rent,NA,693,64,5.614108957574003,High
+51570,"Colonial Heights city, Virginia",2014,B25064,median_rent,NA,903,36,2.4235325005806376,High
+51670,"Hopewell city, Virginia",2014,B25064,median_rent,NA,833,30,2.1893255782556182,High
+51730,"Petersburg city, Virginia",2014,B25064,median_rent,NA,845,23,1.6546464991636838,High
+51760,"Richmond city, Virginia",2014,B25064,median_rent,NA,893,11,0.7488163595952307,High
+16820,"Charlottesville, VA Metro Area",2019,B25064,median_rent,NA,1203,21,1.0611768451212393,High
+40060,"Richmond, VA Metro Area",2019,B25064,median_rent,NA,1117,7,0.38095963732642524,High
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC Metro Area",2019,B25064,median_rent,NA,1180,7,0.3606202668589975,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2019,B25064,median_rent,NA,1690,5,0.1798528803438787,High
+51,Virginia,2019,B25064,median_rent,NA,1234,5,0.24631391230239466,High
+51007,"Amelia County, Virginia",2019,B25064,median_rent,NA,826,89,6.550041581724647,High
+5103368,"Ashland town, Virginia",2019,B25064,median_rent,NA,992,58,3.554270026473184,High
+51036,"Charles City County, Virginia",2019,B25064,median_rent,NA,813,123,9.197052456846757,High
+51041,"Chesterfield County, Virginia",2019,B25064,median_rent,NA,1251,18,0.8746801950536836,High
+51053,"Dinwiddie County, Virginia",2019,B25064,median_rent,NA,1005,69,4.173660572517353,High
+51075,"Goochland County, Virginia",2019,B25064,median_rent,NA,1208,115,5.787153525634574,High
+51085,"Hanover County, Virginia",2019,B25064,median_rent,NA,1159,30,1.5735187288066697,High
+51087,"Henrico County, Virginia",2019,B25064,median_rent,NA,1170,13,0.6754474839581223,High
+51097,"King and Queen County, Virginia",2019,B25064,median_rent,NA,968,217,13.627571654650957,High
+51101,"King William County, Virginia",2019,B25064,median_rent,NA,1061,157,8.995356218971034,High
+51127,"New Kent County, Virginia",2019,B25064,median_rent,NA,1010,154,9.269012007583738,High
+51145,"Powhatan County, Virginia",2019,B25064,median_rent,NA,980,84,5.210594876248371,High
+51149,"Prince George County, Virginia",2019,B25064,median_rent,NA,1338,76,3.45296023189354,High
+51183,"Sussex County, Virginia",2019,B25064,median_rent,NA,807,102,7.683528999672321,High
+51570,"Colonial Heights city, Virginia",2019,B25064,median_rent,NA,1038,54,3.1624997803819594,High
+51670,"Hopewell city, Virginia",2019,B25064,median_rent,NA,886,48,3.2933782513533725,High
+51730,"Petersburg city, Virginia",2019,B25064,median_rent,NA,947,20,1.2838494943237804,High
+51760,"Richmond city, Virginia",2019,B25064,median_rent,NA,1025,15,0.8896137593594781,High
+16820,"Charlottesville, VA Metro Area",2024,B25064,median_rent,NA,1598,30,1.1412441844098438,High
+40060,"Richmond, VA Metro Area",2024,B25064,median_rent,NA,1447,12,0.5041349569279696,High
+47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC Metro Area",2024,B25064,median_rent,NA,1478,13,0.5346911747165108,High
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV Metro Area",2024,B25064,median_rent,NA,2027,11,0.3298929497378101,High
+51,Virginia,2024,B25064,median_rent,NA,1579,8,0.3079937862253629,High
+51007,"Amelia County, Virginia",2024,B25064,median_rent,NA,1164,227,11.855147849883538,High
+5103368,"Ashland town, Virginia",2024,B25064,median_rent,NA,1229,146,7.221627289837043,High
+51036,"Charles City County, Virginia",2024,B25064,median_rent,NA,1099,121,6.6930146499581,High
+51041,"Chesterfield County, Virginia",2024,B25064,median_rent,NA,1629,25,0.9329385137543125,High
+51053,"Dinwiddie County, Virginia",2024,B25064,median_rent,NA,1224,112,5.56250869141983,High
+51075,"Goochland County, Virginia",2024,B25064,median_rent,NA,1614,178,6.704255695792514,High
+51085,"Hanover County, Virginia",2024,B25064,median_rent,NA,1591,63,2.4071572809821205,High
+51087,"Henrico County, Virginia",2024,B25064,median_rent,NA,1541,29,1.1440090416162876,High
+51097,"King and Queen County, Virginia",2024,B25064,median_rent,NA,1004,101,6.115356204361884,High
+51101,"King William County, Virginia",2024,B25064,median_rent,NA,1166,163,8.498125720124916,High
+51127,"New Kent County, Virginia",2024,B25064,median_rent,NA,1721,291,10.278889950530633,High
+51145,"Powhatan County, Virginia",2024,B25064,median_rent,NA,1168,261,13.584127909397509,High
+51149,"Prince George County, Virginia",2024,B25064,median_rent,NA,1594,83,3.165365561585429,High
+51183,"Sussex County, Virginia",2024,B25064,median_rent,NA,907,105,7.037462760092896,High
+51570,"Colonial Heights city, Virginia",2024,B25064,median_rent,NA,1234,76,3.7439714669963986,High
+51670,"Hopewell city, Virginia",2024,B25064,median_rent,NA,1106,44,2.4184195628157,High
+51730,"Petersburg city, Virginia",2024,B25064,median_rent,NA,1174,44,2.2783407465708385,High
+51760,"Richmond city, Virginia",2024,B25064,median_rent,NA,1372,20,0.8861555911987026,High

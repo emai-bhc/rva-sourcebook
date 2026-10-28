@@ -2,6 +2,574 @@
 title: "Market"
 ---
 
-Tenure, home values, rents, and cost burden for the Richmond region.
+```{r}
+#| label: setup
+#| include: false
 
-*Not built yet — see [TODO.md](TODO.md) Phase 4. `r/acs_burden.R` already covers cost burden.*
+source("_common.R")
+
+# Data flow rule: pages read_rds() only, never call an API. The frames are
+# written by r/acs_market.R (tenure, median home value, median gross rent),
+# r/acs_burden.R (cost burden), and r/acs_demographics.R (median household
+# income, used here only as the denominator of the affordability ratios).
+market <- read_rds("data/acs_market.rds")
+burden <- read_rds("data/acs_burden.rds")
+demo <- read_rds("data/acs_demographics.rds")
+
+# Geographies this page reads at. `bhc3`, `secondary4`, and `rr17` are pooled
+# rows the r/ scripts build for count tables (tenure, burden). Medians cannot be
+# pooled, so the home-value, rent, and ratio figures read the three core
+# localities, the comparison metros, and Virginia instead.
+geo_labels <- c(
+  "51760" = "Richmond city",
+  "51087" = "Henrico",
+  "51041" = "Chesterfield",
+  "bhc3" = "Richmond core",
+  "secondary4" = "Expansion ring",
+  "rr17" = "Richmond region",
+  "5103368" = "Ashland town",
+  "40060" = "Richmond MSA",
+  "16820" = "Charlottesville MSA",
+  "47260" = "Hampton Roads MSA",
+  "47900" = "Washington MSA",
+  "51" = "Virginia"
+)
+
+short_name <- function(geoid) unname(geo_labels[geoid])
+
+loc_label <- function(geoid, name) {
+  if_else(
+    geoid %in% names(geo_labels),
+    short_name(geoid),
+    str_remove(name, ", Virginia") |> str_remove(" County")
+  )
+}
+
+first_yr <- min(market$tenure$year)
+latest_yr <- max(market$tenure$year)
+mid_yr <- sort(unique(market$tenure$year))[2]
+
+# formattable::comma()/percent() mask the scales versions (_common.R loads
+# formattable after scales) and take `digits`, not `accuracy`. Inline text uses
+# these thin wrappers; the kbl() tables below use formattable's, which is what
+# they want.
+n_fmt <- function(x) scales::label_comma()(x)
+p_fmt <- function(x, accuracy = 0.1) scales::label_percent(accuracy = accuracy)(x)
+d_fmt <- function(x) scales::label_dollar()(x)
+pt_fmt <- function(x) sprintf("%+.1f points", x * 100)
+# "rose 12.3%" / "fell 3.1%" -- direction comes from the data, so a sentence or
+# title built with it can't contradict the number it quotes.
+chg_phrase <- function(x, accuracy = 0.1) {
+  paste(if_else(x >= 0, "rose", "fell"), scales::label_percent(accuracy = accuracy)(abs(x)))
+}
+
+stopifnot(!anyNA(market$median_value$estimate_real)) # real-dollar columns need data/bls_wage.rds when acs_market.R ran
+
+# Table cell helper: suppress Low-reliability cells, mark Medium with *.
+cell <- function(txt, rel) {
+  if_else(rel == "Low", "&mdash;", paste0(txt, if_else(rel == "Medium", "*", "")))
+}
+
+# Worst reliability tier across several columns -- a derived figure (a ratio, a
+# sum of burden bands) is only as reliable as its weakest input.
+rel_worst <- function(...) {
+  ranks <- c(High = 1L, Medium = 2L, Low = 3L)
+  r <- do.call(pmax, map(list(...), \(x) replace_na(unname(ranks[x]), 3L)))
+  c("High", "Medium", "Low")[r]
+}
+
+# ---- Inline scalars --------------------------------------------------------
+
+# Tenure
+own_rate <- function(g, yr = latest_yr) {
+  market$tenure |> filter(geoid == g, year == yr, tenure == "Owner") |> pull(ownership_rate)
+}
+hh <- function(g, ten, yr = latest_yr) {
+  market$tenure |> filter(geoid == g, year == yr, tenure == ten) |> pull(estimate)
+}
+hh_growth <- function(g, ten) hh(g, ten) / hh(g, ten, first_yr) - 1
+
+# Medians
+med <- function(frame, g, yr, col = estimate_real) {
+  frame |> filter(geoid == g, year == yr) |> pull({{ col }})
+}
+real_chg <- function(frame, g) med(frame, g, latest_yr) / med(frame, g, first_yr) - 1
+nom_chg <- function(frame, g) med(frame, g, latest_yr, estimate) / med(frame, g, first_yr, estimate) - 1
+
+# Affordability ratios: median value (or annual rent) over median household
+# income. Both numerator and denominator are each window's own end-year dollars,
+# so the ratio is internally consistent with no CPI adjustment.
+afford <- market$median_value |>
+  select(geoid, name, year, value = estimate, value_rel = reliability) |>
+  inner_join(
+    market$median_rent |> select(geoid, year, rent = estimate, rent_rel = reliability),
+    by = join_by(geoid, year)
+  ) |>
+  inner_join(
+    demo$median_income |> select(geoid, year, income = estimate, income_rel = reliability),
+    by = join_by(geoid, year)
+  ) |>
+  mutate(
+    pti = value / income,
+    rent_share = rent * 12 / income,
+    ratio_rel = rel_worst(value_rel, rent_rel, income_rel)
+  )
+
+ratio_at <- function(g, col, yr = latest_yr) {
+  afford |> filter(geoid == g, year == yr) |> pull({{ col }})
+}
+
+# Cost burden: share of computed households paying 30%+ (and 50%+) of income.
+b30 <- function(g, ten, yr = latest_yr) {
+  burden |>
+    filter(geoid == g, year == yr, tenure == ten, burden %in% c("Cost-burdened", "Severely cost-burdened")) |>
+    pull(share) |>
+    sum()
+}
+bsev <- function(g, ten, yr = latest_yr) {
+  burden |>
+    filter(geoid == g, year == yr, tenure == ten, burden == "Severely cost-burdened") |>
+    pull(share)
+}
+not_computed <- function(g, ten, yr = latest_yr) {
+  burden |> filter(geoid == g, year == yr, tenure == ten, burden == "Not computed") |> pull(estimate)
+}
+
+# Locality-level renter burden (2024): drop Low-reliability localities, mark
+# Medium. A locality's reliability is the weaker of its two burden rows.
+loc_burden <- burden |>
+  filter(
+    geo_level == "county", year == latest_yr, tenure == "Renter",
+    burden %in% c("Cost-burdened", "Severely cost-burdened")
+  ) |>
+  summarise(
+    moderate = share[burden == "Cost-burdened"],
+    severe = share[burden == "Severely cost-burdened"],
+    rel = rel_worst(reliability[burden == "Cost-burdened"], reliability[burden == "Severely cost-burdened"]),
+    .by = c(geoid, name)
+  ) |>
+  mutate(total = moderate + severe, label = loc_label(geoid, name))
+
+n_loc_low <- sum(loc_burden$rel == "Low")
+
+# Dumbbell of a real-dollar median, first window to latest, one row per geography.
+dumbbell <- function(frame, geos) {
+  plot_df <- frame |>
+    filter(geoid %in% geos, year %in% c(first_yr, latest_yr)) |>
+    select(geoid, year, estimate_real) |>
+    pivot_wider(names_from = year, values_from = estimate_real) |>
+    mutate(
+      start = .data[[as.character(first_yr)]],
+      end = .data[[as.character(latest_yr)]],
+      geo = fct_reorder(short_name(geoid), end)
+    )
+
+  ggplot(plot_df, aes(y = geo)) +
+    geom_segment(aes(x = start, xend = end, yend = geo), color = rva_ink[["baseline"]], linewidth = 1.2) +
+    geom_point(aes(x = start), color = rva_seq[2], size = 3.4) +
+    geom_point(aes(x = end), color = rva_seq[7], size = 3.4) +
+    scale_x_continuous(labels = label_dollar(), expand = expansion(mult = c(0.04, 0.12)))
+}
+
+dumbbell_sub <- function(what) {
+  glue::glue(
+    "{what}, {latest_yr} dollars: ",
+    "<span style='color:{rva_seq[2]}'>**{first_yr}**</span> to ",
+    "<span style='color:{rva_seq[7]}'>**{latest_yr}**</span>"
+  )
+}
+
+# Grouped bars by ACS window for one ratio column.
+window_bars <- function(geos, col, label_fn) {
+  plot_df <- afford |>
+    filter(geoid %in% geos) |>
+    mutate(
+      geo = fct_reorder2(short_name(geoid), year, {{ col }}, .fun = \(y, v) v[which.max(y)], .desc = TRUE),
+      yr = factor(year)
+    )
+
+  ggplot(plot_df, aes(x = geo, y = {{ col }}, fill = yr)) +
+    geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+    scale_x_discrete(labels = label_wrap(12)) +
+    scale_y_continuous(labels = label_fn, expand = expansion(mult = c(0, 0.08))) +
+    scale_fill_manual(values = unname(rva_seq[c(2, 4, 7)]))
+}
+
+window_sub <- function(what) {
+  glue::glue(
+    "{what}: <span style='color:{rva_seq[2]}'>**{first_yr}**</span>, ",
+    "<span style='color:{rva_seq[4]}'>**{mid_yr}**</span>, ",
+    "<span style='color:{rva_seq[7]}'>**{latest_yr}**</span>"
+  )
+}
+
+core_geos <- c(unname(bhc))
+metro_geos <- c(core_geos, "40060", "51")
+```
+
+Tenure, home values, rents, affordability, and cost burden for the Richmond region, from the ACS 5-year estimates. Every trend compares three non-overlapping five-year windows ending `r first_yr`, `r mid_yr`, and `r latest_yr`.
+
+## Ownership held near two-thirds as both tenures grew
+
+```{r}
+#| label: fig-ownership
+#| fig-alt: "Grouped bar chart of the homeownership rate in Richmond city, Henrico, Chesterfield, the pooled core, the pooled expansion ring, and the region across three ACS windows ending 2014, 2019, and 2024. Rates barely change over time. The expansion ring is highest at about 85 percent, Chesterfield is near 77 percent, and Richmond city is lowest at about 43 percent."
+#| fig-height: 4.2
+
+own_geos <- c("51760", "51087", "51041", "bhc3", "secondary4", "rr17")
+
+own_plot <- market$tenure |>
+  filter(geoid %in% own_geos, tenure == "Owner") |>
+  mutate(
+    geo = fct_reorder2(short_name(geoid), year, ownership_rate, .fun = \(y, v) v[which.max(y)], .desc = TRUE),
+    yr = factor(year)
+  )
+
+ggplot(own_plot, aes(x = geo, y = ownership_rate, fill = yr)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  scale_x_discrete(labels = label_wrap(12)) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.08))) +
+  scale_fill_manual(values = unname(rva_seq[c(2, 4, 7)])) +
+  labs(
+    title = "Ownership rates barely moved over the decade",
+    subtitle = glue::glue(
+      "Share of households that own, <span style='color:{rva_seq[2]}'>**{first_yr}**</span>, ",
+      "<span style='color:{rva_seq[4]}'>**{mid_yr}**</span>, ",
+      "<span style='color:{rva_seq[7]}'>**{latest_yr}**</span> ACS 5-year windows"
+    ),
+    caption = acs_cap("B25003", "2010-2014, 2015-2019, 2020-2024")
+  ) +
+  theme_rva()
+```
+
+- Across the 17-locality region, `r p_fmt(own_rate("rr17"))` of households own their home in the `r latest_yr` window, against `r p_fmt(own_rate("rr17", first_yr))` in the `r first_yr` window.
+- Richmond city is the only core locality where renters outnumber owners: `r n_fmt(hh("51760", "Renter"))` renter households to `r n_fmt(hh("51760", "Owner"))` owner households, an ownership rate of `r p_fmt(own_rate("51760"))`.
+- Chesterfield (`r p_fmt(own_rate("51041"))`) and the expansion ring (`r p_fmt(own_rate("secondary4"))`) are overwhelmingly owner markets; Henrico sits between them at `r p_fmt(own_rate("51087"))`.
+- Renter households grew `r p_fmt(hh_growth("rr17", "Renter"))` across the region and owner households `r p_fmt(hh_growth("rr17", "Owner"))` between the `r first_yr` and `r latest_yr` windows.
+
+```{r}
+#| label: tbl-tenure
+
+tenure_geos <- c("51760", "51087", "51041", "bhc3", "secondary4", "rr17")
+
+market$tenure |>
+  filter(geoid %in% tenure_geos, tenure %in% c("Owner", "Renter"), year %in% c(first_yr, latest_yr)) |>
+  select(geoid, tenure, year, estimate) |>
+  pivot_wider(names_from = c(tenure, year), values_from = estimate) |>
+  mutate(
+    renter_growth = .data[[paste0("Renter_", latest_yr)]] / .data[[paste0("Renter_", first_yr)]] - 1,
+    geo = short_name(geoid),
+    geo = factor(geo, levels = short_name(tenure_geos))
+  ) |>
+  arrange(geo) |>
+  transmute(
+    Geography = as.character(geo),
+    !!paste("Owners", first_yr) := comma(.data[[paste0("Owner_", first_yr)]], digits = 0),
+    !!paste("Owners", latest_yr) := comma(.data[[paste0("Owner_", latest_yr)]], digits = 0),
+    !!paste("Renters", first_yr) := comma(.data[[paste0("Renter_", first_yr)]], digits = 0),
+    !!paste("Renters", latest_yr) := comma(.data[[paste0("Renter_", latest_yr)]], digits = 0),
+    `Renter growth` = percent(renter_growth, digits = 1)
+  ) |>
+  kbl(
+    align = "lrrrrr",
+    caption = paste0(
+      "Owner- and renter-occupied households, ", first_yr, " and ", latest_yr,
+      " ACS 5-year windows. Source: ACS Table B25003."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Chesterfield added `r n_fmt(hh("51041", "Owner") - hh("51041", "Owner", first_yr))` owner households and `r n_fmt(hh("51041", "Renter") - hh("51041", "Renter", first_yr))` renter households, the largest owner gain of the three core localities.
+- Richmond city added `r n_fmt(hh("51760", "Renter") - hh("51760", "Renter", first_yr))` renter households (`r p_fmt(hh_growth("51760", "Renter"))`), against `r p_fmt(hh_growth("51087", "Renter"))` in Henrico and `r p_fmt(hh_growth("51041", "Renter"))` in Chesterfield.
+
+## Home values and rents climbed in every core locality
+
+<!-- Heading and bullets drafted before data/acs_market.rds existed; confirm
+     against the validated output once r/acs_market.R has run. -->
+
+```{r}
+#| label: fig-value
+#| fig-alt: "Dumbbell chart of real median home value, in 2024 dollars, in the 2014 and 2024 ACS windows for Richmond city, Henrico, Chesterfield, the Richmond metro, and Virginia, with a dot for each window joined by a line."
+#| fig-height: 3.8
+
+dumbbell(market$median_value, metro_geos) +
+  labs(
+    title = glue::glue("Richmond-metro home values {chg_phrase(real_chg(market$median_value, '40060'))} after inflation"),
+    subtitle = dumbbell_sub("Median value of owner-occupied homes"),
+    caption = paste(
+      acs_cap("B25077", "2010-2014 and 2020-2024"),
+      "Earlier window inflated to 2024 dollars with national CPI-U (BLS)."
+    )
+  ) +
+  theme_rva()
+```
+
+- The Richmond MSA's median home value `r chg_phrase(real_chg(market$median_value, "40060"))` after inflation, from `r d_fmt(med(market$median_value, "40060", first_yr))` to `r d_fmt(med(market$median_value, "40060", latest_yr))` in `r latest_yr` dollars (`r p_fmt(nom_chg(market$median_value, "40060"))` before adjusting).
+- Among the core three, Richmond city's real median value `r chg_phrase(real_chg(market$median_value, "51760"))`, Henrico's `r chg_phrase(real_chg(market$median_value, "51087"))`, and Chesterfield's `r chg_phrase(real_chg(market$median_value, "51041"))`.
+- The metro's `r latest_yr` median (`r d_fmt(med(market$median_value, "40060", latest_yr))`) compares with `r d_fmt(med(market$median_value, "51", latest_yr))` statewide.
+
+```{r}
+#| label: fig-rent
+#| fig-alt: "Dumbbell chart of real median gross rent, in 2024 dollars, in the 2014 and 2024 ACS windows for Richmond city, Henrico, Chesterfield, the Richmond metro, and Virginia, with a dot for each window joined by a line."
+#| fig-height: 3.8
+
+dumbbell(market$median_rent, metro_geos) +
+  labs(
+    title = glue::glue("Richmond-metro rents {chg_phrase(real_chg(market$median_rent, '40060'))} after inflation"),
+    subtitle = dumbbell_sub("Median monthly gross rent"),
+    caption = paste(
+      acs_cap("B25064", "2010-2014 and 2020-2024"),
+      "Earlier window inflated to 2024 dollars with national CPI-U (BLS)."
+    )
+  ) +
+  theme_rva()
+```
+
+- The Richmond MSA's median gross rent `r chg_phrase(real_chg(market$median_rent, "40060"))` in real terms, from `r d_fmt(med(market$median_rent, "40060", first_yr))` to `r d_fmt(med(market$median_rent, "40060", latest_yr))` a month (`r p_fmt(nom_chg(market$median_rent, "40060"))` as published).
+- Richmond city's real median rent `r chg_phrase(real_chg(market$median_rent, "51760"))`, against `r chg_phrase(real_chg(market$median_rent, "51087"))` in Henrico and `r chg_phrase(real_chg(market$median_rent, "51041"))` in Chesterfield.
+- Gross rent includes utilities the renter pays, so it is not comparable to a quoted asking rent.
+
+```{r}
+#| label: tbl-medians
+
+med_geos <- c(unname(bhc), unname(secondary), unname(ashland), unname(regions), virginia)
+
+market$median_value |>
+  select(geoid, name, year, v = estimate, v_real = estimate_real, v_rel = reliability) |>
+  inner_join(
+    market$median_rent |>
+      select(geoid, year, r = estimate, r_real = estimate_real, r_rel = reliability),
+    by = join_by(geoid, year)
+  ) |>
+  filter(geoid %in% med_geos, year %in% c(first_yr, latest_yr)) |>
+  mutate(
+    label = loc_label(geoid, name),
+    v_txt = cell(label_dollar()(v), v_rel),
+    r_txt = cell(label_dollar()(r), r_rel)
+  ) |>
+  pivot_wider(
+    id_cols = c(geoid, label),
+    names_from = year,
+    values_from = c(v, v_real, v_txt, r, r_real, r_txt)
+  ) |>
+  mutate(
+    v_chg = .data[[paste0("v_real_", latest_yr)]] / .data[[paste0("v_real_", first_yr)]] - 1,
+    r_chg = .data[[paste0("r_real_", latest_yr)]] / .data[[paste0("r_real_", first_yr)]] - 1
+  ) |>
+  arrange(desc(.data[[paste0("v_", latest_yr)]])) |>
+  transmute(
+    Geography = label,
+    !!paste("Value", first_yr) := .data[[paste0("v_txt_", first_yr)]],
+    !!paste("Value", latest_yr) := .data[[paste0("v_txt_", latest_yr)]],
+    `Real change` = percent(v_chg, digits = 1),
+    !!paste("Rent", first_yr) := .data[[paste0("r_txt_", first_yr)]],
+    !!paste("Rent", latest_yr) := .data[[paste0("r_txt_", latest_yr)]],
+    `Real change ` = percent(r_chg, digits = 1)
+  ) |>
+  kbl(
+    align = "lrrrrrr",
+    escape = FALSE,
+    caption = paste0(
+      "Median home value and median monthly gross rent as published (each window's own dollars), ",
+      "with inflation-adjusted change, ", first_yr, " to ", latest_yr, ". Cells with a coefficient ",
+      "of variation above 30 are suppressed (—); * marks a medium-reliability estimate (CV 15-30). ",
+      "Sources: ACS Tables B25077 and B25064."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Smaller localities carry wider margins of error on both medians; the table suppresses low-reliability cells and marks medium ones.
+- The "real change" columns deflate the earlier window to `r latest_yr` dollars with the national CPI-U, so they measure change relative to national prices, not a local cost-of-living index.
+
+## Price-to-income ratios show where buying is hardest
+
+<!-- Heading drafted before data/acs_market.rds existed; confirm against the
+     validated output once r/acs_market.R has run. -->
+
+```{r}
+#| label: fig-pti
+#| fig-alt: "Grouped bar chart of the ratio of median home value to median household income in Richmond city, Henrico, Chesterfield, the Richmond metro, and Virginia across three ACS windows ending 2014, 2019, and 2024."
+#| fig-height: 4.2
+
+window_bars(metro_geos, pti, label_number(accuracy = 0.1, suffix = "x")) +
+  labs(
+    title = glue::glue(
+      "Metro home values went from {round(ratio_at('40060', pti, first_yr), 1)}x to ",
+      "{round(ratio_at('40060', pti), 1)}x income"
+    ),
+    subtitle = window_sub("Median home value / household income"),
+    caption = paste(acs_cap("B25077, B19013", "2010-2014, 2015-2019, 2020-2024"))
+  ) +
+  theme_rva()
+```
+
+- In the Richmond MSA the typical home was worth `r sprintf("%.1f", ratio_at("40060", pti))` times the typical household income in the `r latest_yr` window, against `r sprintf("%.1f", ratio_at("40060", pti, first_yr))` times in the `r first_yr` window.
+- Among the core three, the ratio is `r sprintf("%.1f", ratio_at("51760", pti))` in Richmond city, `r sprintf("%.1f", ratio_at("51087", pti))` in Henrico, and `r sprintf("%.1f", ratio_at("51041", pti))` in Chesterfield; statewide it is `r sprintf("%.1f", ratio_at("51", pti))`.
+
+```{r}
+#| label: fig-rent-share
+#| fig-alt: "Grouped bar chart of annual median gross rent as a share of median household income in Richmond city, Henrico, Chesterfield, the Richmond metro, and Virginia across three ACS windows ending 2014, 2019, and 2024."
+#| fig-height: 4.2
+
+window_bars(metro_geos, rent_share, label_percent(accuracy = 1)) +
+  labs(
+    title = glue::glue(
+      "Median rent took {p_fmt(ratio_at('40060', rent_share), 0.1)} of metro income, ",
+      "from {p_fmt(ratio_at('40060', rent_share, first_yr), 0.1)}"
+    ),
+    subtitle = window_sub("Annual rent / median household income"),
+    caption = acs_cap("B25064, B19013", "2010-2014, 2015-2019, 2020-2024")
+  ) +
+  theme_rva()
+```
+
+- Annual median rent equals `r p_fmt(ratio_at("51760", rent_share))` of Richmond city's median household income, `r p_fmt(ratio_at("51087", rent_share))` of Henrico's, and `r p_fmt(ratio_at("51041", rent_share))` of Chesterfield's.
+- The ratio compares two medians, not one household's rent and income: renters are on average lower-income than the all-household median, so a typical renter's burden is higher than this ratio implies (see the cost-burden section below).
+
+::: callout-note
+## What these ratios do and don't measure
+
+Median home value is the owner's own estimate of what their home is worth, for *every* owner-occupied home, not just recent sales, so the price-to-income ratio understates what it costs to enter the market today. Both ratios divide one median by another; they describe how local prices compare with local incomes, not what any particular household can afford.
+:::
+
+## Renter cost burden stayed near half while owner burden fell
+
+```{r}
+#| label: fig-burden-trend
+#| fig-alt: "Six small line charts of the share of households paying 30 percent or more of income on housing, by tenure, across three ACS windows ending 2014, 2019, and 2024, for the region, the pooled core, Richmond city, Henrico, Chesterfield, and the expansion ring. The renter line stays near 50 percent in most panels; the owner line falls from roughly 26 percent to 20 percent in the region."
+#| fig-height: 5.2
+
+burden_geos <- c("rr17", "bhc3", "51760", "51087", "51041", "secondary4")
+
+bt <- burden |>
+  filter(geoid %in% burden_geos, burden %in% c("Cost-burdened", "Severely cost-burdened")) |>
+  summarise(share = sum(share), .by = c(geoid, year, tenure)) |>
+  mutate(geo = factor(short_name(geoid), levels = short_name(burden_geos)))
+
+ggplot(bt, aes(x = year, y = share, color = tenure, group = tenure)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2.4) +
+  facet_wrap(~geo, nrow = 2) +
+  scale_x_continuous(breaks = c(first_yr, mid_yr, latest_yr), labels = \(x) paste0("'", str_sub(x, 3, 4))) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), limits = c(0, NA), expand = expansion(mult = c(0, 0.1))) +
+  scale_color_manual(values = c(Owner = rva_pal[["blue"]], Renter = rva_pal[["orange"]])) +
+  labs(
+    title = "Renter burden stayed near half; owner burden fell",
+    subtitle = glue::glue(
+      "Share of households paying 30%+ of income on housing, ",
+      "<span style='color:{rva_pal[[\"blue\"]]}'>**owners**</span> and ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**renters**</span>"
+    ),
+    x = NULL,
+    caption = paste(acs_cap("B25070, B25091", "2010-2014, 2015-2019, 2020-2024"), "Windows end in the year shown.")
+  ) +
+  theme_rva() +
+  theme(strip.text = ggtext::element_markdown(face = "bold", hjust = 0))
+```
+
+- Across the region, `r p_fmt(b30("rr17", "Renter"))` of renter households pay 30% or more of income on housing in the `r latest_yr` window, against `r p_fmt(b30("rr17", "Renter", first_yr))` in the `r first_yr` window — effectively unchanged. `r p_fmt(bsev("rr17", "Renter"))` pay half or more.
+- Owner burden fell: `r p_fmt(b30("rr17", "Owner"))` of owners are cost-burdened now, down from `r p_fmt(b30("rr17", "Owner", first_yr))`.
+- Richmond city has the highest owner burden of the core three (`r p_fmt(b30("51760", "Owner"))`, down from `r p_fmt(b30("51760", "Owner", first_yr))`).
+- Renter burden is nearly identical across the core: `r p_fmt(b30("51760", "Renter"))` in Richmond city, `r p_fmt(b30("51087", "Renter"))` in Henrico, and `r p_fmt(b30("51041", "Renter"))` in Chesterfield — a region-wide condition, not a city one.
+- The Richmond MSA's `r p_fmt(b30("40060", "Renter"))` renter burden compares with `r p_fmt(b30("51", "Renter"))` statewide and `r p_fmt(b30("47260", "Renter"))` in Hampton Roads.
+
+```{r}
+#| label: tbl-burden
+
+burden_tbl_geos <- c("rr17", "bhc3", "51760", "51087", "51041", "secondary4")
+
+bt |>
+  filter(year %in% c(first_yr, latest_yr)) |>
+  select(geoid, tenure, year, share) |>
+  pivot_wider(names_from = c(tenure, year), values_from = share) |>
+  mutate(
+    geo = factor(short_name(geoid), levels = short_name(burden_tbl_geos)),
+    renter_pts = .data[[paste0("Renter_", latest_yr)]] - .data[[paste0("Renter_", first_yr)]],
+    owner_pts = .data[[paste0("Owner_", latest_yr)]] - .data[[paste0("Owner_", first_yr)]]
+  ) |>
+  arrange(geo) |>
+  transmute(
+    Geography = as.character(geo),
+    !!paste("Renters", first_yr) := percent(.data[[paste0("Renter_", first_yr)]], digits = 1),
+    !!paste("Renters", latest_yr) := percent(.data[[paste0("Renter_", latest_yr)]], digits = 1),
+    `Change (pts)` = sprintf("%+.1f", renter_pts * 100),
+    !!paste("Owners", first_yr) := percent(.data[[paste0("Owner_", first_yr)]], digits = 1),
+    !!paste("Owners", latest_yr) := percent(.data[[paste0("Owner_", latest_yr)]], digits = 1),
+    `Change (pts) ` = sprintf("%+.1f", owner_pts * 100)
+  ) |>
+  kbl(
+    align = "lrrrrrr",
+    caption = paste0(
+      "Share of households paying 30% or more of income on housing, by tenure, ",
+      first_yr, " and ", latest_yr, " ACS 5-year windows. Shares are of households with a ",
+      "computed burden. Sources: ACS Tables B25070 (renters) and B25091 (owners)."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+- Richmond city's renter burden moved from `r p_fmt(b30("51760", "Renter", first_yr))` to `r p_fmt(b30("51760", "Renter"))` (`r pt_fmt(b30("51760", "Renter") - b30("51760", "Renter", first_yr))`), while Henrico's moved `r pt_fmt(b30("51087", "Renter") - b30("51087", "Renter", first_yr))` and Chesterfield's `r pt_fmt(b30("51041", "Renter") - b30("51041", "Renter", first_yr))`.
+- The expansion ring's renter burden is the lowest of the six geographies at `r p_fmt(b30("secondary4", "Renter"))`, but its renter base is small (`r n_fmt(hh("secondary4", "Renter"))` households).
+- Excluded from every share: `r n_fmt(not_computed("rr17", "Renter"))` renter and `r n_fmt(not_computed("rr17", "Owner"))` owner households in the region with no computed burden (zero or negative income, or no cash rent).
+
+```{r}
+#| label: fig-burden-locality
+#| fig-alt: "Horizontal stacked bar chart of the share of renter households paying 30 percent or more of income on housing in 2024, by locality, split into households paying 30 to 49 percent and those paying 50 percent or more. Only localities with reliable estimates are shown. Chesterfield, Richmond city, Henrico, and Petersburg all sit near or just above half."
+#| fig-height: 5
+
+loc_plot <- loc_burden |>
+  filter(rel != "Low") |>
+  mutate(label = if_else(rel == "Medium", paste0(label, "*"), label)) |>
+  pivot_longer(c(moderate, severe), names_to = "level", values_to = "share") |>
+  mutate(level = factor(level, levels = c("severe", "moderate")))
+
+ggplot(loc_plot, aes(x = share, y = fct_reorder(label, total), fill = level)) +
+  geom_col(width = 0.72) +
+  geom_text(
+    data = loc_plot |> distinct(label, total),
+    aes(x = total, y = fct_reorder(label, total), label = p_fmt(total), fill = NULL),
+    hjust = -0.15, size = 3.1, color = rva_ink[["muted"]]
+  ) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.14))) +
+  scale_fill_manual(values = c(moderate = rva_seq[3], severe = rva_seq[6])) +
+  labs(
+    title = "Renter burden is high in nearly every reliable locality",
+    subtitle = glue::glue(
+      "Renters paying 30%+ of income, {latest_yr}: ",
+      "<span style='color:{rva_seq[3]}'>**30-49%**</span> and ",
+      "<span style='color:{rva_seq[6]}'>**50%+**</span>"
+    ),
+    y = NULL,
+    caption = paste(
+      acs_cap("B25070"),
+      "Localities with a coefficient of variation above 30 are omitted; * marks a medium-reliability estimate."
+    )
+  ) +
+  theme_rva()
+```
+
+- The `r nrow(loc_plot |> distinct(label))` localities with reliable renter-burden estimates all fall between `r p_fmt(min(loc_burden$total[loc_burden$rel != "Low"]))` and `r p_fmt(max(loc_burden$total[loc_burden$rel != "Low"]))`.
+- `r n_loc_low` of the 17 localities are omitted because their renter-burden estimates are too imprecise to show; they are mostly small, rural localities with few renter households.
+
+::: callout-warning
+## Small-geography reliability
+
+Renter-burden and median estimates for the expansion-ring localities and other small jurisdictions rest on small samples. Figures here use the pooled rows or the three core localities where possible; locality-level cells with a coefficient of variation above 30 are omitted (—) and medium-reliability cells are marked (*).
+:::
+
+::: callout-note
+## How cost burden is measured
+
+A household is **cost-burdened** when it pays 30% or more of its income on housing and **severely cost-burdened** at 50% or more. For renters, housing cost is gross rent, which includes utilities; for owners it is selected monthly owner costs, which include mortgage payments, taxes, insurance, and utilities. Households with no or negative income are excluded.
+:::
+
+::: callout-tip
+## What this page shows
+
+- **Tenure:** about two-thirds of households own (`r p_fmt(own_rate("rr17"))`), a share that barely moved, but Richmond city is a majority-renter locality (`r p_fmt(own_rate("51760"))` own).
+- **Values and rents:** the Richmond MSA's median home value `r chg_phrase(real_chg(market$median_value, "40060"))` and median rent `r chg_phrase(real_chg(market$median_rent, "40060"))` after inflation.
+- **Affordability:** the typical home was worth `r sprintf("%.1f", ratio_at("40060", pti))` times the typical household income in the metro, and median rent equalled `r p_fmt(ratio_at("40060", rent_share))` of it.
+- **Cost burden:** about half of renter households (`r p_fmt(b30("rr17", "Renter"))`) are cost-burdened and that has not eased, while owner burden fell to `r p_fmt(b30("rr17", "Owner"))`.
+:::
