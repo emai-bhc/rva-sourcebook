@@ -1,0 +1,239 @@
+---
+title: "Summary"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+source("_common.R")
+
+# Data flow rule: pages read_rds() only, never call an API. This page reads the
+# frames the Inventory, Demographics, and Market pages already read, and quotes
+# them -- every number below is computed, so the summary can't drift from the
+# pages it summarizes.
+stock <- read_rds("data/acs_stock.rds")
+permits <- read_rds("data/bps_permits.rds")
+demo <- read_rds("data/acs_demographics.rds")
+pep <- read_rds("data/pep_migration.rds")
+market <- read_rds("data/acs_market.rds")
+burden <- read_rds("data/acs_burden.rds")
+
+first_yr <- min(demo$population$year)
+latest_yr <- max(demo$population$year)
+latest_bps <- max(permits$annual$year)
+
+# formattable::comma()/percent() mask the scales versions (_common.R loads
+# formattable after scales); inline text uses these thin wrappers.
+n_fmt <- function(x) scales::label_comma()(x)
+p_fmt <- function(x, accuracy = 0.1) scales::label_percent(accuracy = accuracy)(x)
+d_fmt <- function(x) scales::label_dollar(accuracy = 1)(x)
+pt_fmt <- function(x) sprintf("%+.1f points", x * 100)
+
+# ---- Demographics ----------------------------------------------------------
+
+pop_at <- function(g, yr = latest_yr) {
+  demo$population |> filter(geoid == g, year == yr) |> pull(estimate)
+}
+pop_growth <- function(g) pop_at(g) / pop_at(g, first_yr) - 1
+
+pep_eras <- levels(pep$era$era)
+era1 <- pep_eras[1]
+era2 <- pep_eras[2]
+era_at <- function(g, e, col) pep$era |> filter(geoid == g, era == e) |> pull({{ col }})
+per_year <- function(g, e, col) era_at(g, e, {{ col }}) / era_at(g, e, n_years)
+
+intl <- pep$annual |> filter(geoid == "rr17", !is.na(international_mig))
+intl_peak <- intl |> slice_max(international_mig, n = 1)
+intl_last <- intl |> slice_max(year, n = 1)
+
+n_natural_neg <- sum(pep$era$natural_change[pep$era$era == era2 & pep$era$geoid %in% unname(rr)] < 0)
+
+age_share <- function(g, grp, yr = latest_yr) {
+  demo$age_sex |> filter(geoid == g, year == yr, age_group == grp) |> pull(share) |> sum()
+}
+race_share <- function(g, grp, yr = latest_yr) {
+  demo$race_ethnicity |> filter(geoid == g, year == yr, race == grp) |> pull(share)
+}
+hh_share <- function(g, grp, yr = latest_yr) {
+  demo$household_type |> filter(geoid == g, year == yr, household_type == grp) |> pull(share)
+}
+inc <- function(g, yr, col = estimate_real) {
+  demo$median_income |> filter(geoid == g, year == yr) |> pull({{ col }})
+}
+inc_real_growth <- function(g) inc(g, latest_yr) / inc(g, first_yr) - 1
+
+under50 <- function(g, ten, yr = latest_yr) {
+  demo$tenure_income |>
+    filter(geoid == g, year == yr, tenure == ten, income_band %in% c("Under $25k", "$25k-$49k")) |>
+    pull(share) |>
+    sum()
+}
+
+# ---- Inventory -------------------------------------------------------------
+
+units_at <- function(g, yr) stock$units |> filter(geoid == g, year == yr) |> pull(estimate)
+units_growth <- function(g) units_at(g, latest_yr) / units_at(g, first_yr) - 1
+
+vac <- function(g) {
+  stock$occupancy |> filter(geoid == g, year == latest_yr, status == "Vacant") |> pull(vacancy_rate)
+}
+struct_share <- function(g, s) {
+  stock$structure_type |> filter(geoid == g, year == latest_yr, structure == s) |> pull(share)
+}
+prewar <- function(g) {
+  stock$year_built |> filter(geoid == g, year == latest_yr, era == "Pre-1950") |> pull(share)
+}
+
+reg_perm <- permits$annual |> filter(geoid == "rr17")
+perm_peak <- reg_perm |> slice_max(total_units, n = 1)
+perm_trough <- reg_perm |> slice_min(total_units, n = 1)
+perm_last <- reg_perm |> filter(year == latest_bps)
+recent4 <- reg_perm |> filter(year > latest_bps - 4)
+n_mf_lead <- sum(recent4$multifamily > recent4$single_family)
+
+# ---- Market ----------------------------------------------------------------
+
+med <- function(frame, g, yr, col = estimate_real) {
+  frame |> filter(geoid == g, year == yr) |> pull({{ col }})
+}
+real_chg <- function(frame, g) med(frame, g, latest_yr) / med(frame, g, first_yr) - 1
+
+own_rate <- function(g, yr = latest_yr) {
+  market$tenure |> filter(geoid == g, year == yr, tenure == "Owner") |> pull(ownership_rate)
+}
+hh <- function(g, ten, yr = latest_yr) {
+  market$tenure |> filter(geoid == g, year == yr, tenure == ten) |> pull(estimate)
+}
+
+# Median value / median income, each window's own dollars (as on the Market page).
+pti <- function(g, yr) {
+  med(market$median_value, g, yr, estimate) / inc(g, yr, estimate)
+}
+rent_share <- function(g, yr) {
+  med(market$median_rent, g, yr, estimate) * 12 / inc(g, yr, estimate)
+}
+
+b30 <- function(g, ten, yr = latest_yr) {
+  burden |>
+    filter(geoid == g, year == yr, tenure == ten, burden %in% c("Cost-burdened", "Severely cost-burdened")) |>
+    pull(share) |>
+    sum()
+}
+bsev <- function(g, ten, yr = latest_yr) {
+  burden |> filter(geoid == g, year == yr, tenure == ten, burden == "Severely cost-burdened") |> pull(share)
+}
+```
+
+The Richmond region's housing picture in one page: who is arriving, what exists, and what it costs. Each section links to the page with the figures and tables behind it. Trends compare the ACS 5-year windows ending `r first_yr` and `r latest_yr` unless noted.
+
+## At a glance
+
+```{r}
+#| label: tbl-glance
+
+glance <- tribble(
+  ~Indicator, ~Earlier, ~Latest, ~Page,
+  "Population, 17-locality region",
+    n_fmt(pop_at("rr17", first_yr)), n_fmt(pop_at("rr17")), "Demographics",
+  "Population 65 and over",
+    p_fmt(age_share("rr17", "65 and over", first_yr)), p_fmt(age_share("rr17", "65 and over")), "Demographics",
+  "Median household income, Richmond MSA (real)",
+    d_fmt(inc("40060", first_yr)), d_fmt(inc("40060", latest_yr)), "Demographics",
+  "Housing units, core three localities",
+    n_fmt(units_at("bhc3", first_yr)), n_fmt(units_at("bhc3", latest_yr)), "Inventory",
+  "Permitted units per year, region",
+    paste0(n_fmt(perm_trough$total_units), " (", perm_trough$year, " low)"),
+    paste0(n_fmt(perm_last$total_units), " (", latest_bps, ")"), "Inventory",
+  "Homeownership rate, region",
+    p_fmt(own_rate("rr17", first_yr)), p_fmt(own_rate("rr17")), "Market",
+  "Median home value, Richmond MSA (real)",
+    d_fmt(med(market$median_value, "40060", first_yr)), d_fmt(med(market$median_value, "40060", latest_yr)), "Market",
+  "Median gross rent, Richmond MSA (real)",
+    d_fmt(med(market$median_rent, "40060", first_yr)), d_fmt(med(market$median_rent, "40060", latest_yr)), "Market",
+  "Renters paying 30%+ of income, region",
+    p_fmt(b30("rr17", "Renter", first_yr)), p_fmt(b30("rr17", "Renter")), "Market",
+  "Owners paying 30%+ of income, region",
+    p_fmt(b30("rr17", "Owner", first_yr)), p_fmt(b30("rr17", "Owner")), "Market"
+)
+
+glance |>
+  rename(!!as.character(first_yr) := Earlier, !!as.character(latest_yr) := Latest) |>
+  kbl(
+    align = "lrrl",
+    caption = paste0(
+      "Headline indicators, ", first_yr, " and ", latest_yr, " ACS 5-year windows. ",
+      "Dollar figures are in ", latest_yr, " dollars. Permits are Census Building Permits ",
+      "Survey annual counts, not ACS."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+## The region is growing, and migration is doing the work
+
+- The region grew `r p_fmt(pop_growth("rr17"))` to `r n_fmt(pop_at("rr17"))` people, led by Chesterfield (`r p_fmt(pop_growth("51041"))`) and the four-locality expansion ring (`r p_fmt(pop_growth("secondary4"))`); Richmond city grew `r p_fmt(pop_growth("51760"))` and Henrico `r p_fmt(pop_growth("51087"))`.
+- Natural increase fell from `r n_fmt(per_year("rr17", era1, natural_change))` people a year in `r era1` to `r n_fmt(per_year("rr17", era2, natural_change))` in `r era2`, so net migration now supplies `r p_fmt(era_at("rr17", era2, mig_share_of_growth), 1)` of growth. In `r n_natural_neg` of the 17 localities deaths exceeded births over `r era2`.
+- International migration peaked at `r n_fmt(intl_peak$international_mig)` in `r intl_peak$year`; the latest year, `r intl_last$year`, was `r n_fmt(intl_last$international_mig)`.
+- Richmond city flipped from domestic to international growth: its international migration rate rose from `r sprintf("%.1f", era_at("51760", era1, international_rate))` to `r sprintf("%.1f", era_at("51760", era2, international_rate))` per 1,000 a year while its domestic rate went from `r sprintf("%+.1f", era_at("51760", era1, domestic_rate))` to `r sprintf("%+.1f", era_at("51760", era2, domestic_rate))`.
+
+::: {.callout-note appearance="minimal"}
+Full detail: [Demographics](demographics.qmd)
+:::
+
+## The population is older, more diverse, and more often living alone
+
+- The 65-and-over share rose from `r p_fmt(age_share("rr17", "65 and over", first_yr))` to `r p_fmt(age_share("rr17", "65 and over"))` while the under-18 share fell from `r p_fmt(age_share("rr17", "Under 18", first_yr))` to `r p_fmt(age_share("rr17", "Under 18"))`. The expansion ring is oldest at `r p_fmt(age_share("secondary4", "65 and over"))`.
+- The Hispanic or Latino share rose from `r p_fmt(race_share("rr17", "Hispanic or Latino", first_yr))` to `r p_fmt(race_share("rr17", "Hispanic or Latino"))`, and the White non-Hispanic share fell from `r p_fmt(race_share("rr17", "White non-Hispanic", first_yr))` to `r p_fmt(race_share("rr17", "White non-Hispanic"))`. Richmond city moved the other way: its White share rose from `r p_fmt(race_share("51760", "White non-Hispanic", first_yr))` to `r p_fmt(race_share("51760", "White non-Hispanic"))`.
+- `r p_fmt(hh_share("51760", "Living alone"))` of Richmond city households are one person, against `r p_fmt(hh_share("secondary4", "Married-couple family"))` married-couple families in the expansion ring. Region-wide, `r p_fmt(hh_share("rr17", "Living alone"))` of households are one person.
+- Real median household income in the Richmond MSA rose `r p_fmt(inc_real_growth("40060"))` to `r d_fmt(inc("40060", latest_yr))`. Renters are far behind: `r p_fmt(under50("rr17", "Renter"))` of renter households earn under $50,000, against `r p_fmt(under50("rr17", "Owner"))` of owners.
+
+::: {.callout-note appearance="minimal"}
+Full detail: [Demographics](demographics.qmd)
+:::
+
+## The housing stock is single-family, older in the city, and built out in the suburbs
+
+- The three core localities held `r n_fmt(units_at("bhc3", latest_yr))` housing units, up `r p_fmt(units_growth("bhc3"))`; the expansion ring grew `r p_fmt(units_growth("secondary4"))` from a much smaller base.
+- Single-family detached homes are `r p_fmt(struct_share("bhc3", "Single-family detached"), 1)` of the core's stock and `r p_fmt(struct_share("secondary4", "Single-family detached"), 1)` of the ring's. Only Richmond city is substantially multifamily (`r p_fmt(struct_share("51760", "20+ units"), 1)` of units in buildings of 20 or more).
+- `r p_fmt(prewar("51760"), 1)` of Richmond city's housing predates 1950, against `r p_fmt(prewar("51041"), 1)` in Chesterfield.
+- Vacancy is tight in the suburbs (`r p_fmt(vac("51041"))` in Chesterfield, `r p_fmt(vac("bhc3"))` across the core) and highest in the southern localities (Sussex and Petersburg lead).
+- Permitting bottomed at `r n_fmt(perm_trough$total_units)` units in `r perm_trough$year`, reached a series high of `r n_fmt(perm_peak$total_units)` in `r perm_peak$year`, and was `r n_fmt(perm_last$total_units)` in `r latest_bps`. Multifamily outnumbered single-family permits in `r n_mf_lead` of the last 4 years, and was `r p_fmt(perm_last$mf_share, 1)` of `r latest_bps` units.
+
+::: {.callout-note appearance="minimal"}
+Full detail: [Inventory](inventory.qmd)
+:::
+
+## Prices rose faster than incomes; renters are no better off
+
+- After inflation, the Richmond MSA's median home value rose `r p_fmt(real_chg(market$median_value, "40060"))` and median gross rent `r p_fmt(real_chg(market$median_rent, "40060"))`, against `r p_fmt(inc_real_growth("40060"))` for median household income.
+- The typical home was worth `r sprintf("%.1f", pti("40060", first_yr))` times the typical household income in the `r first_yr` window and `r sprintf("%.1f", pti("40060", latest_yr))` times in `r latest_yr`. Median rent equalled `r p_fmt(rent_share("40060", latest_yr))` of median income, from `r p_fmt(rent_share("40060", first_yr))`.
+- Renter cost burden has not eased: `r p_fmt(b30("rr17", "Renter"))` of renter households pay 30% or more of income on housing (`r p_fmt(b30("rr17", "Renter", first_yr))` in `r first_yr`), and `r p_fmt(bsev("rr17", "Renter"))` pay half or more. Owner burden fell from `r p_fmt(b30("rr17", "Owner", first_yr))` to `r p_fmt(b30("rr17", "Owner"))`.
+- Renter burden is now nearly identical across the core: `r p_fmt(b30("51760", "Renter"))` in Richmond city, `r p_fmt(b30("51087", "Renter"))` in Henrico, `r p_fmt(b30("51041", "Renter"))` in Chesterfield.
+- Ownership held near two-thirds (`r p_fmt(own_rate("rr17"))`). Richmond city is the only core locality where renters outnumber owners (`r n_fmt(hh("51760", "Renter"))` renter households to `r n_fmt(hh("51760", "Owner"))`).
+
+::: {.callout-note appearance="minimal"}
+Full detail: [Market](market.qmd)
+:::
+
+## What to watch
+
+::: callout-warning
+## Five things to look out for
+
+1. **Growth leans on migration.** With natural increase down to `r n_fmt(per_year("rr17", era2, natural_change))` a year, a slowdown in international or domestic moves would show up directly in population growth. International migration in `r intl_last$year` was `r p_fmt(intl_last$international_mig / intl_peak$international_mig, 1)` of its `r intl_peak$year` peak.
+2. **Home values are outrunning incomes.** Real home values rose `r p_fmt(real_chg(market$median_value, "40060"))` against `r p_fmt(inc_real_growth("40060"))` for income, and the value-to-income ratio widened from `r sprintf("%.1f", pti("40060", first_yr))` to `r sprintf("%.1f", pti("40060", latest_yr))`. The value measure is every owner's own estimate, so it understates the cost of buying today.
+3. **Half of renters are cost-burdened, and the gap by income is wide.** The share did not improve over the decade, and the typical renter household earns far less than the typical owner household.
+4. **Production is volatile and its mix keeps changing.** Permits swing between single-family and multifamily from year to year, and the expansion ring continues to build almost entirely detached homes (`r p_fmt(struct_share("secondary4", "Single-family detached"), 1)` of its stock) even though `r p_fmt(hh_share("rr17", "Living alone"), 1)` of the region's households are one person.
+5. **The outer suburbs are the oldest part of the region.** The expansion ring has the highest 65-and-over share (`r p_fmt(age_share("secondary4", "65 and over"))`) and, in aggregate, more deaths than births in `r era2` (`r n_fmt(era_at("secondary4", era2, natural_change))`), so its growth depends entirely on in-migration.
+:::
+
+::: callout-note
+## Reading the numbers
+
+- **Stock and production are different series.** Stock (ACS) counts units standing; production (Building Permits Survey) counts permits issued, which lead completions and can be cancelled.
+- **Small geographies are noisy.** The four expansion-ring localities and Ashland carry wide margins of error; the pages suppress cells with a coefficient of variation above 30.
+- **Migration figures are modeled** from administrative records and revised each vintage. The 2010-2019 and 2020-2025 series come from different vintages and are compared, not joined.
+- **Dollar changes are inflation-adjusted** with national CPI-U, so they measure change relative to national prices, not a local cost-of-living index.
+- See [Data Notes](data-notes.qmd) for sources and definitions.
+:::

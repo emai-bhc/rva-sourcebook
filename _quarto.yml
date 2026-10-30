@@ -13,6 +13,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: summary.qmd
+        text: Summary
       - href: inventory.qmd
         text: Inventory
       - href: demographics.qmd
