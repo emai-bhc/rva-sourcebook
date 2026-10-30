@@ -109,6 +109,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Market</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./profiles.html"> 
+<span class="menu-text">Profiles</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./data-notes.html"> 
 <span class="menu-text">Data Notes</span></a>
   </li>  
@@ -245,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="what-_common.r-provides" class="level2">
 <h2 class="anchored" data-anchor-id="what-_common.r-provides">What <code>_common.R</code> provides</h2>
 <ul>
-<li><strong>Geography:</strong> <code>rr</code> (17-locality Richmond region), <code>bhc</code> (3-locality core: Richmond city, Henrico, Chesterfield), <code>secondary</code> (4 expansion localities: Hanover, Goochland, New Kent, Powhatan), <code>ashland</code> (place 5103368, sumlev 160), <code>regions</code> (comparison MSAs: Charlottesville, Richmond, Hampton Roads, DC), <code>virginia</code>; and PUMS-ready PUMA sets <code>puma_core3</code>/<code>puma_region</code>/<code>puma_locality</code> (defined but not currently used — see METHODOLOGY.md).</li>
+<li><strong>Geography:</strong> <code>rr</code> (17-locality Richmond region), <code>bhc</code> (3-locality core: Richmond city, Henrico, Chesterfield), <code>secondary</code> (4 expansion localities: Hanover, Goochland, New Kent, Powhatan), <code>ashland</code> (place 5103368, sumlev 160), <code>regions</code> (comparison MSAs: Charlottesville, Richmond, Hampton Roads, DC), <code>virginia</code>; and PUMA sets <code>puma_core3</code>/<code>puma_region</code>/<code>puma_locality</code>, used by <code>r/pums/</code> and <code>profiles.qmd</code> (<code>profiles.qmd</code> covers the core three only, via <code>puma_core3</code> — see METHODOLOGY.md).</li>
 <li><strong>Palette/theme:</strong> <code>rva_pal</code> (8-hue categorical, fixed order — never cycle or reorder), <code>rva_seq</code> (7-step blue sequential ramp for choropleths/magnitude), <code>rva_ink</code> (chart chrome: primary/muted/gridline/baseline), <code>theme_rva()</code> (ggplot2 theme; <code>legend.position = "none"</code> by default since 2-3 series use bold ggtext subtitle spans instead of a legend box), and <code>rva_map_style</code> (free Carto MapLibre basemap URL, no token). Values come from the dataviz skill’s validated reference palette — CVD-safe adjacent pairs. Change values in <code>_common.R</code> only, never at the call site.</li>
 <li><strong>Caption helpers:</strong> <code>acs_cap</code>, <code>pums_cap</code>, <code>chas_cap</code>, <code>dec_cap</code>, <code>pep_cap</code>, <code>bps_cap</code>, <code>oews_cap</code> and others — see the file for the full list. Not every helper has a matching script yet; that’s fine, they’re cheap to keep around.</li>
 <li><strong><code>flag_reliability(df, cv_col = cv)</code></strong> — High at or below 15, Medium at or below 30, Low above 30, from a <strong>0 to 100</strong> CV. Use it for secondary-locality and Ashland ACS estimates, which run noisier than the <code>bhc</code> core.</li>
@@ -322,8 +326,10 @@ ul.task-list li input[type="checkbox"] {
 ├── inventory.qmd           # Housing stock &amp; production
 ├── demographics.qmd        # Population &amp; household characteristics
 ├── market.qmd               # Tenure, values, rents, cost burden
+├── profiles.qmd             # Households and residents by AMI band and tenure (PUMS)
+├── summary.qmd              # Executive summary of the pages above
 ├── data-notes.qmd           # Public-facing methodology
-├── r/                      # collection and prep scripts — committed
+├── r/                      # collection and prep scripts — committed (r/pums/ holds the PUMS pipeline)
 ├── data/                   # .rds outputs — gitignored
 ├── data-out/               # tidy CSV exports — committed (all public-source)
 ├── docs/                   # rendered site — committed once publishing starts; GitHub Pages will serve this

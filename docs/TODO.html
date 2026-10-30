@@ -109,6 +109,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Market</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./profiles.html"> 
+<span class="menu-text">Profiles</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./data-notes.html"> 
 <span class="menu-text">Data Notes</span></a>
   </li>  
@@ -139,6 +143,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#phase-2-inventory-page" id="toc-phase-2-inventory-page" class="nav-link" data-scroll-target="#phase-2-inventory-page">Phase 2 — inventory page</a></li>
   <li><a href="#phase-3-demographics-page" id="toc-phase-3-demographics-page" class="nav-link" data-scroll-target="#phase-3-demographics-page">Phase 3 — demographics page</a></li>
   <li><a href="#phase-4-market-page" id="toc-phase-4-market-page" class="nav-link" data-scroll-target="#phase-4-market-page">Phase 4 — market page</a></li>
+  <li><a href="#phase-4b-pums-profiles-and-summary-added-2026-10-30-at-the-users-request" id="toc-phase-4b-pums-profiles-and-summary-added-2026-10-30-at-the-users-request" class="nav-link" data-scroll-target="#phase-4b-pums-profiles-and-summary-added-2026-10-30-at-the-users-request">Phase 4b — PUMS profiles and summary (added 2026-10-30 at the user’s request)</a></li>
   <li><a href="#phase-5-interactive-maps" id="toc-phase-5-interactive-maps" class="nav-link" data-scroll-target="#phase-5-interactive-maps">Phase 5 — interactive maps</a></li>
   <li><a href="#phase-6-polish-publish" id="toc-phase-6-polish-publish" class="nav-link" data-scroll-target="#phase-6-polish-publish">Phase 6 — polish &amp; publish</a></li>
   <li><a href="#surfaced-during-phase-2-not-blocking" id="toc-surfaced-during-phase-2-not-blocking" class="nav-link" data-scroll-target="#surfaced-during-phase-2-not-blocking">Surfaced during Phase 2 — not blocking</a></li>
@@ -209,6 +214,20 @@ ul.task-list li input[type="checkbox"] {
 <li><label><input type="checkbox">Add a <code>bls_cap()</code> caption helper to <code>_common.R</code> when the market page first charts <code>bls_wage.rds</code> (<code>oews_cap</code>/<code>cpi_cap</code> don’t fit — <code>cpi_cap</code> says “via FRED”).</label></li>
 <li>[~] <code>r/acs_market.R</code> written 2026-10-28 — B25003 tenure (not covered by <code>acs_tenure.R</code>, which is race-specific only), B25077 home value, B25064 rent; medians carry nominal + real columns. <strong>Not yet run — user:</strong> <code>Rscript r/acs_market.R</code>, paste back validation output.</li>
 <li>[~] <code>market.qmd</code> drafted 2026-10-28 (7 figures, 4 tables, callouts; replaces the old book’s split <code>ownership.qmd</code>/<code>rental.qmd</code>). Code and layout verified against a scratchpad <strong>mock</strong> <code>acs_market.rds</code> (real B25118 tenure counts, synthetic medians) — <strong>the real render is blocked on the user running <code>Rscript r/acs_market.R</code></strong> and pasting back validation output. After that: render <code>market.qmd</code> for real, re-read every figure, and revisit the three flagged items — the “Home values and rents climbed in every core locality” H2, the “Price-to-income ratios show where buying is hardest” H2, and the <code>fig-alt</code> text on <code>fig-value</code>/<code>fig-rent</code>/<code>fig-pti</code>/<code>fig-rent-share</code>, all written before the home-value and rent data existed.</li>
+</ul>
+</section>
+<section id="phase-4b-pums-profiles-and-summary-added-2026-10-30-at-the-users-request" class="level2">
+<h2 class="anchored" data-anchor-id="phase-4b-pums-profiles-and-summary-added-2026-10-30-at-the-users-request">Phase 4b — PUMS profiles and summary (added 2026-10-30 at the user’s request)</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked=""><code>r/pums/pums_profiles.R</code> — tidy household/resident estimates by AMI band × tenure × geography with replicate-weight SEs and reliability flags → <code>data/pums_profiles.rds</code>, <code>data-out/pums_ami_dist.csv</code>, <code>data-out/pums_profile.csv</code>. Ran clean; PUMS owner/renter households in the core-3 PUMAs match ACS B25003 within 0.6%.</label></li>
+<li><label><input type="checkbox" checked=""><code>profiles.qmd</code> — 11 figures, 3 tables, takeaway H2s, computed-inline bullets, geography + reliability callouts; every <code>fig-</code> chunk has <code>fig-alt</code>. Added to the navbar.</label></li>
+<li><label><input type="checkbox" checked=""><code>summary.qmd</code> — executive summary of inventory, demographics, market; now includes an income-band section drawn from <code>profiles.qmd</code>. Added to the navbar.</label></li>
+<li><label><input type="checkbox"><code>inventory.qmd</code> bullet “peaked at [2022’s 10,414] … a 76% collapse” is wrong: 2022 is the series high and the pre-crash peak was ~8,400 (2005). Its “multifamily first exceeded single-family in 2022” line also needs a check (2024 was single-family-led). <code>summary.qmd</code> words it around the error.</label></li>
+<li><label><input type="checkbox" checked=""><code>r/pums/pums_prep.R</code> runs (2026-10-30, after the user added <code>naics_soc_lookup.R</code> and <code>data-out/puma_pow.csv</code>) and writes <code>data/pums_rva.rds</code> (48,802 persons, 215 columns). Nothing reads it yet. Still no script header block.</label></li>
+<li><label><input type="checkbox"><code>r/pums/*.R</code> don’t follow the script anatomy (no header block, no <code>source("_common.R")</code>, <code>pums_ami.R</code> ends with an unguarded <code>ggplot()</code> call). <code>pums_ami.R</code> also hardcodes the HUD CSV path (<code>data/summary_county_5176099999.csv</code>) and the CPI factor; <code>data/</code> is gitignored, so the HUD file isn’t in the repo — note where it came from in <code>data-notes.qmd</code>.</label></li>
+<li><label><input type="checkbox"><code>r/pums/</code> is untracked in git; commit it with <code>profiles.qmd</code>, <code>summary.qmd</code>, and the log.</label></li>
+<li><label><input type="checkbox"><code>data-notes.qmd</code> needs a PUMS / AMI section (geography caveat, FY2026 limits, CPI inflation, replicate-weight SEs). See METHODOLOGY.md.</label></li>
+<li><label><input type="checkbox">Optional: a <code>mapgl</code> choropleth of share at/below 80% AMI by PUMA for Phase 5 (boundaries for all PUMAs are in <code>data/puma_va.rds</code>; the profiles now cover the seven core-three PUMAs).</label></li>
 </ul>
 </section>
 <section id="phase-5-interactive-maps" class="level2">

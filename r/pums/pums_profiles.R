@@ -1,5 +1,6 @@
 # pums_profiles.R ----
-# What:   Households and residents of the Richmond-area PUMS region by AMI band
+# What:   Households and residents of the core three (Richmond city, Henrico,
+#         Chesterfield) by AMI band
 #         and housing tenure, plus a profile of each income band by tenure
 #         (household makeup, householder age and race, earners, disability,
 #         structure type, cost burden, and resident age / education /
@@ -9,13 +10,11 @@
 #         the AMI band assigned per household in r/pums/pums_ami.R
 #         (data/rva_ami_pums.rds; FY2026 HUD income limits, incomes inflated to
 #         2026 dollars with the same CPI factor).
-# Geo:    The 9 PUMAs in r/pums/rva_puma.R -- the "PUMS region". It is NOT the
-#         17-locality `rr`: the two outer PUMAs mix localities (Goochland,
-#         Powhatan, western Hanover; King William, New Kent, Charles City,
-#         eastern Hanover) and the southern localities (Petersburg, Hopewell,
-#         Colonial Heights, Dinwiddie, Prince George, Sussex, Amelia,
-#         King & Queen) are outside it. Chesterfield, Henrico, and Richmond
-#         city tile cleanly into whole PUMAs, so those three are exact.
+# Geo:    The 7 `puma_core3` PUMAs, which tile Chesterfield, Henrico, and
+#         Richmond city exactly (BHC's target population). The two mixed
+#         outer-ring PUMAs (08501, 14501) are dropped here even though they are
+#         in the raw pull, so every total below is the core three, not the
+#         17-locality `rr`.
 # Method: Standard errors use the 80 Census replicate weights,
 #         SE = sqrt(4/80 * sum((replicate - estimate)^2)). Reliability reuses
 #         flag_reliability() on the CV of each estimate (share or count).
@@ -42,7 +41,7 @@ ami5_levels <- c(
 )
 all_ami <- "All income levels"
 all_ten <- "All households"
-all_geo <- "PUMS region"
+all_geo <- "Core three"
 
 ## 2. Inputs ----
 for (f in c("data/pums_raw.rds", "data/pums_wgt.rds", "data/rva_ami_pums.rds")) {
@@ -59,12 +58,9 @@ limits <- ami |>
   distinct(np = np_capped, ami_30, ami_50, ami_60, ami_80, ami_100, ami_120) |>
   arrange(np)
 
-geo_of <- c(
-  puma_locality,
-  "08501" = "Outer-ring PUMAs",
-  "14501" = "Outer-ring PUMAs"
-)
-stopifnot("Unmapped PUMA" = all(raw$PUMA %in% names(geo_of)))
+geo_of <- puma_locality
+raw <- raw |> filter(PUMA %in% names(geo_of))
+stopifnot("Core-3 PUMAs missing from raw pull" = setequal(unique(raw$PUMA), puma_core3))
 
 ## 3. Person and household base frames ----
 # Weight columns: `wt` plus `rep1`..`rep80`, built per unit (household or person)
@@ -352,7 +348,7 @@ medians <- bind_rows(
 # the benchmark variance is logged.
 n_hh <- sum(hh$wt)
 n_res <- sum(pp$wt)
-message("PUMS region: ", format(round(n_hh), big.mark = ","), " households, ",
+message("Core three: ", format(round(n_hh), big.mark = ","), " households, ",
         format(round(n_res), big.mark = ","), " residents in households")
 
 tot_check <- ami_dist |>

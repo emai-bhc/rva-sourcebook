@@ -109,6 +109,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Market</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./profiles.html"> 
+<span class="menu-text">Profiles</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./data-notes.html"> 
 <span class="menu-text">Data Notes</span></a>
   </li>  
@@ -136,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#geography" id="toc-geography" class="nav-link" data-scroll-target="#geography">Geography</a>
   <ul class="collapse">
-  <li><a href="#pums-geography-defined-not-yet-used" id="toc-pums-geography-defined-not-yet-used" class="nav-link" data-scroll-target="#pums-geography-defined-not-yet-used">PUMS geography (defined, not yet used)</a></li>
+  <li><a href="#pums-geography-and-ami-bands-in-use-as-of-2026-10-30" id="toc-pums-geography-and-ami-bands-in-use-as-of-2026-10-30" class="nav-link" data-scroll-target="#pums-geography-and-ami-bands-in-use-as-of-2026-10-30">PUMS geography and AMI bands (in use as of 2026-10-30)</a></li>
   </ul></li>
   <li><a href="#vintages" id="toc-vintages" class="nav-link" data-scroll-target="#vintages">Vintages</a>
   <ul class="collapse">
@@ -207,9 +211,16 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p><code>bhc</code> is inherited naming from the scripts that first defined this project’s core geography — it does not signal a client relationship. If it gets confusing, a future session can rename it (e.g.&nbsp;to <code>core</code>), but that’s a mechanical rename across <code>_common.R</code> and the two existing <code>r/</code> scripts, not a priority.</p>
-<section id="pums-geography-defined-not-yet-used" class="level3">
-<h3 class="anchored" data-anchor-id="pums-geography-defined-not-yet-used">PUMS geography (defined, not yet used)</h3>
-<p><code>puma_core3</code>, <code>puma_region</code>, and <code>puma_locality</code> are already set up for a 2020-vintage PUMS pull covering Chesterfield, Henrico, and Richmond city (which tile cleanly into whole PUMAs) plus two mixed outer PUMAs. This groundwork came along with the geography constants when <code>_common.R</code> was first written and is harmless to keep, but no PUMS script exists in this repo yet and none is planned for v1 — see PLAN.md’s “future” phase.</p>
+<section id="pums-geography-and-ami-bands-in-use-as-of-2026-10-30" class="level3">
+<h3 class="anchored" data-anchor-id="pums-geography-and-ami-bands-in-use-as-of-2026-10-30">PUMS geography and AMI bands (in use as of 2026-10-30)</h3>
+<p><code>profiles.qmd</code> reads household-level 2020-2024 ACS PUMS. The <code>r/pums/</code> scripts run in this order: <code>rva_puma.R</code> (PUMA lookup), <code>pums_collect.R</code> (pull), <code>pums_ami.R</code> (assigns each household an AMI band), <code>pums_profiles.R</code> (tidy estimates the page reads). <code>pums_prep.R</code> (with <code>naics_soc_lookup.R</code> and the <code>data-out/puma_pow.csv</code> place-of-work crosswalk) builds a person-level recoded file, <code>data/pums_rva.rds</code>; nothing reads it yet.</p>
+<ul>
+<li><strong><code>profiles.qmd</code> covers the core three only (changed 2026-10-30).</strong> BHC’s target population is Richmond city, Henrico, and Chesterfield, so <code>pums_profiles.R</code> keeps only <code>puma_core3</code> (Chesterfield ×3, Henrico ×2, Richmond city ×2), which tile those localities exactly. The two mixed PUMAs (<code>08501</code>, <code>14501</code>) stay in the raw pull and <code>rva_ami_pums.rds</code> but are dropped before estimation. Totals are core-three totals (381,842 households, 924,266 residents) and will not match the 17-locality ACS tables; never present them side by side without saying so.</li>
+<li><strong>AMI bands.</strong> HUD FY2026 Richmond income limits (<code>data/summary_county_5176099999.csv</code>, MFI $113,500) applied by household size to every PUMA in the pull (capped at 8). 30/50/80% are HUD’s; 60/100/120% are derived from the 50% limit. Household income is inflated ADJINC → 2024 dollars → 2026 dollars (CPI-U, Jan-Sep 2026 / 2024 average = 332.243 / 313.689) so it compares with FY2026 limits. Zero- and negative-income households are folded into the “30% AMI or less” profile band and counted in the callout.</li>
+<li><strong>Vacant units and group quarters</strong> (<code>TEN == "b"</code>) are excluded; their missing income would otherwise land in the top band.</li>
+<li><strong>Standard errors</strong> use the 80 replicate weights, <code>sqrt(4/80 * sum((rep - est)^2))</code>. Reliability reuses <code>flag_reliability()</code> on the CV of each estimate; shares of small categories are noisier than counts, so the page suppresses Low cells in tables and shows all in the stacked bars.</li>
+<li><strong>Benchmark.</strong> <code>pums_profiles.R</code> checks PUMS owner and renter households in <code>puma_core3</code> against ACS B25003 for <code>bhc</code> (same 2020-2024 window), 3% tolerance (observed within 0.6%).</li>
+</ul>
 </section>
 </section>
 <section id="vintages" class="level2">

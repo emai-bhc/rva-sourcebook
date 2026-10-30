@@ -59,7 +59,7 @@
 - [ ] `r/pums/*.R` don't follow the script anatomy (no header block, no `source("_common.R")`, `pums_ami.R` ends with an unguarded `ggplot()` call). `pums_ami.R` also hardcodes the HUD CSV path (`data/summary_county_5176099999.csv`) and the CPI factor; `data/` is gitignored, so the HUD file isn't in the repo — note where it came from in `data-notes.qmd`.
 - [ ] `r/pums/` is untracked in git; commit it with `profiles.qmd`, `summary.qmd`, and the log.
 - [ ] `data-notes.qmd` needs a PUMS / AMI section (geography caveat, FY2026 limits, CPI inflation, replicate-weight SEs). See METHODOLOGY.md.
-- [ ] Optional: a `mapgl` choropleth of share at/below 80% AMI by PUMA for Phase 5 (all nine PUMA boundaries are in `data/puma_va.rds`).
+- [ ] Optional: a `mapgl` choropleth of share at/below 80% AMI by PUMA for Phase 5 (boundaries for all PUMAs are in `data/puma_va.rds`; the profiles now cover the seven core-three PUMAs).
 
 ## Phase 5 — interactive maps
 

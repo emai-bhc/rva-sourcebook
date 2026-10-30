@@ -3,6 +3,17 @@
 Append-only. Newest entry first.
 
 
+
+---
+
+## 2026-10-30 (latest) — `profiles.qmd` and its summary section narrowed to the core three
+
+**What changed:** At the user's request (BHC's target population is Richmond city, Henrico, Chesterfield), `r/pums/pums_profiles.R` now keeps only the seven `puma_core3` PUMAs; the geography total is "Core three" (was "PUMS region") and the outer-ring group is gone. Re-ran the script (validation passes; benchmark vs ACS B25003 owners +0.35%, renters -0.59%). Rewrote the geography callout, bullets, fig-geo levels, and the final callout in `profiles.qmd`; updated the matching section, watch item, and caveat in `summary.qmd`. Both render clean (exit 0, no NA text).
+
+**Numbers that moved:** 381,842 households / 924,266 residents; 40.2% at or below 80% AMI (owners 28.7%, renters 60.3%; was 38.4%). Richmond city 50.9%, Henrico 39.1%, Chesterfield 33.4% (unchanged, whole PUMAs). Only 44.6% of the 84,149 lower-income renters live in the city (was 41.7% of 90,166). Re-verified every fig-alt against the data; fixed stale values (owners above 120% AMI 51%, top-band count about 152 thousand, severe burden 67%/81%, Black householders largest in the three lowest renter bands, owner degree attainment 63%).
+
+**Left open:** Not committed. `rva_ami_pums.rds` and the raw pull still hold all nine PUMAs; `data-notes.qmd` PUMS section still to write.
+
 ---
 
 ## 2026-10-30 (later) — PUMS scripts re-verified after user fixes

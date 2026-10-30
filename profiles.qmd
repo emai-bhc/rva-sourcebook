@@ -18,7 +18,7 @@ ami5_lv <- P$levels$ami5
 ami8_lv <- P$levels$ami
 ALL_T <- "All households"
 ALL_A <- "All income levels"
-REG <- "PUMS region"
+REG <- "Core three"
 ten2 <- c("Owner", "Renter")
 
 # formattable::comma()/percent() mask the scales versions (_common.R loads
@@ -129,18 +129,18 @@ prof_cap <- function(...) {
 }
 ```
 
-Households and residents of the Richmond area by income relative to area median income (AMI), and a profile of each income band for owners and renters. Everything here comes from the 2020-2024 ACS Public Use Microdata Sample (PUMS) — household-level survey records rather than the published tables the other pages use.
+Households and residents of Richmond city, Henrico, and Chesterfield by income relative to area median income (AMI), and a profile of each income band for owners and renters. Everything here comes from the 2020-2024 ACS Public Use Microdata Sample (PUMS) — household-level survey records rather than the published tables the other pages use.
 
 ::: callout-warning
-## This is the PUMS region, not the 17-locality region
+## This page covers the core three localities only
 
-PUMS reports geography only as Public Use Microdata Areas (PUMAs). The nine PUMAs used here tile Richmond city, Henrico, and Chesterfield exactly, and add two mixed outer-ring areas (Goochland, Powhatan, and western Hanover; King William, New Kent, Charles City, and eastern Hanover). Petersburg, Hopewell, Colonial Heights, Dinwiddie, Prince George, Sussex, Amelia, and King & Queen are **not** included. Totals on this page (`r n_fmt(n_hh)` households, `r n_fmt(n_res)` residents) will therefore not match the other pages, which cover the 17 localities. For the three core localities, PUMS households are within 1% of the ACS published counts by tenure.
+PUMS reports geography only as Public Use Microdata Areas (PUMAs). The seven PUMAs used here tile Richmond city (2), Henrico (2), and Chesterfield (3) exactly, so every figure is for those three localities and nothing else. The other fourteen localities of the 17-locality region are not included, so totals on this page (`r n_fmt(n_hh)` households, `r n_fmt(n_res)` residents) will not match pages that cover the full region. PUMS households are within 1% of the ACS published counts by tenure for these three localities.
 :::
 
 ::: callout-note
 ## How the income bands are defined
 
-A household's band compares its income with the HUD FY2026 income limit for its size. The Richmond area's median family income is `r d_fmt(P$mfi)`; the 4-person limits are 30%, 50%, 80%, 100%, and 120% of that (@tbl-limits). PUMS incomes are inflated to 2026 dollars before the comparison, and the same Richmond-area limits are applied to all nine PUMAs. The **`r b1`** band includes `r n_fmt(zero_inc$est)` households (`r p_fmt(zero_inc$est / n_hh)`) with zero or negative income. Vacant units and group quarters are excluded.
+A household's band compares its income with the HUD FY2026 income limit for its size. The Richmond area's median family income is `r d_fmt(P$mfi)`; the 4-person limits are 30%, 50%, 80%, 100%, and 120% of that (@tbl-limits). PUMS incomes are inflated to 2026 dollars before the comparison, and the same Richmond-area limits are applied to all seven PUMAs. The **`r b1`** band includes `r n_fmt(zero_inc$est)` households (`r p_fmt(zero_inc$est / n_hh)`) with zero or negative income. Vacant units and group quarters are excluded.
 :::
 
 ```{r}
@@ -170,7 +170,7 @@ P$limits |>
 
 ```{r}
 #| label: fig-dist
-#| fig-alt: "Stacked horizontal bar chart of the share of households in each of five AMI bands, for owner households, renter households, and all households in the nine-PUMA Richmond area. About 52 percent of owners earn above 120 percent of AMI, against about 20 percent of renters. Renters are spread fairly evenly across the bands, with about 22 percent at 30 percent of AMI or less and 60 percent at 80 percent of AMI or less."
+#| fig-alt: "Stacked horizontal bar chart of the share of households in each of five AMI bands, for owner households, renter households, and all households in Richmond city, Henrico, and Chesterfield. About 51 percent of owners earn above 120 percent of AMI, against about 20 percent of renters. Renters are spread fairly evenly across the bands, with about 22 percent at 30 percent of AMI or less and 60 percent at 80 percent of AMI or less."
 #| fig-height: 3.6
 
 dist_hh <- P$dist5 |>
@@ -203,14 +203,14 @@ ggplot(dist_hh, aes(x = est, y = tenure, fill = fct_rev(band), group = fct_rev(b
   guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
 ```
 
-- Across the PUMS region, `r p_fmt(le80(ALL_T))` of the `r n_fmt(n_hh)` households earn 80% of AMI or less: `r p_fmt(le80("Owner"))` of owners and `r p_fmt(le80("Renter"))` of renters.
+- Across the core three, `r p_fmt(le80(ALL_T))` of the `r n_fmt(n_hh)` households earn 80% of AMI or less: `r p_fmt(le80("Owner"))` of owners and `r p_fmt(le80("Renter"))` of renters.
 - `r p_fmt(dist_est("Owner", b5))` of owner households earn more than 120% of AMI, against `r p_fmt(dist_est("Renter", b5))` of renters.
 - Renters are spread across the bands rather than concentrated in one: `r p_fmt(dist_est("Renter", b1))` are at 30% of AMI or less and `r p_fmt(dist_est("Renter", b3))` are in the 51-80% band.
 - Residents follow the same pattern: `r p_fmt(le80(ALL_T, unit = "Residents"))` of the `r n_fmt(n_res)` people in households live in a household at 80% of AMI or less.
 
 ```{r}
 #| label: fig-counts
-#| fig-alt: "Stacked column chart of household counts in each of five AMI bands, split into owner and renter households. The above-120-percent band is by far the largest, at about 193 thousand households, mostly owners. The lower four bands each hold between about 48 and 94 thousand households, with renters making up a larger share of the lower bands than of the top one."
+#| fig-alt: "Stacked column chart of household counts in each of five AMI bands, split into owner and renter households. The above-120-percent band is by far the largest, at about 152 thousand households, mostly owners. The lower four bands each hold between about 41 and 76 thousand households, with renters making up a larger share of the lower bands than of the top one."
 #| fig-height: 4
 
 cnt <- P$band_counts |>
@@ -285,14 +285,14 @@ hh_wide |>
 - Renters make up `r p_fmt(renter_share(b5))` of households above 120% of AMI, against `r p_fmt(renter_share(ALL_A))` of all households.
 - The largest single group is owner households above 120% of AMI (`r n_fmt(hh_count("Owner", b5))`). Renter households are far more evenly spread, from `r n_fmt(min(map_dbl(ami5_lv, \(b) hh_count("Renter", b))))` to `r n_fmt(max(map_dbl(ami5_lv, \(b) hh_count("Renter", b))))` in each band.
 
-## Richmond city has the highest share of lower-income households, but most lower-income renters live elsewhere
+## Richmond city has the highest share of lower-income households, but most lower-income renters live in Henrico and Chesterfield
 
 ```{r}
 #| label: fig-geo
-#| fig-alt: "Grouped bar chart of the share of households at or below 80 percent of AMI, by geography and tenure, for Richmond city, Henrico, Chesterfield, the two outer-ring PUMAs, and the whole PUMS region, with error bars. Richmond city is highest for owners, renters, and all households, at about 34, 64, and 51 percent. Chesterfield and the outer ring are lowest for owners, at about 26 percent, and the outer ring is lowest for all households at about 30 percent."
+#| fig-alt: "Grouped bar chart of the share of households at or below 80 percent of AMI, by geography and tenure, for Richmond city, Henrico, Chesterfield, and the three combined, with error bars. Richmond city is highest for owners, renters, and all households, at about 34, 64, and 51 percent. Chesterfield is lowest for owners and for all households, at about 27 and 33 percent."
 #| fig-height: 4.2
 
-geo_levels <- c("Richmond city", "Henrico County", "Chesterfield County", "Outer-ring PUMAs", REG)
+geo_levels <- c("Richmond city", "Henrico County", "Chesterfield County", REG)
 
 geo_plot <- P$le80 |>
   filter(unit == "Households") |>
@@ -322,16 +322,15 @@ ggplot(geo_plot, aes(x = geo, y = est, fill = tenure)) +
   theme_rva()
 ```
 
-- `r p_fmt(le80(ALL_T, "Richmond city"))` of Richmond city households earn 80% of AMI or less, against `r p_fmt(le80(ALL_T, "Henrico County"))` in Henrico, `r p_fmt(le80(ALL_T, "Chesterfield County"))` in Chesterfield, and `r p_fmt(le80(ALL_T, "Outer-ring PUMAs"))` in the outer-ring PUMAs.
+- `r p_fmt(le80(ALL_T, "Richmond city"))` of Richmond city households earn 80% of AMI or less, against `r p_fmt(le80(ALL_T, "Henrico County"))` in Henrico and `r p_fmt(le80(ALL_T, "Chesterfield County"))` in Chesterfield.
 - The city's lead holds within each tenure: `r p_fmt(le80("Renter", "Richmond city"))` of its renters and `r p_fmt(le80("Owner", "Richmond city"))` of its owners are at 80% of AMI or less.
-- Renters at 80% of AMI or less number `r n_fmt(sum(low_renters$n))` across the PUMS region, and only `r p_fmt(low_renters_city$share)` of them live in Richmond city — the rest are in the suburbs and outer ring.
-- Outer-ring estimates carry wider margins of error (see the error bars); they pool two PUMAs that each cover several localities.
+- Renters at 80% of AMI or less number `r n_fmt(sum(low_renters$n))` across the core three, and only `r p_fmt(low_renters_city$share)` of them live in Richmond city — the rest are in Henrico and Chesterfield.
 
 ## Cost burden falls steeply with income, and low-income renters carry the most
 
 ```{r}
 #| label: fig-burden
-#| fig-alt: "Two-panel stacked horizontal bar chart of housing cost burden by AMI band, for owners and renters. Among households at 30 percent of AMI or less, about 64 percent of owners and 80 percent of renters pay half or more of income on housing. The share cost-burdened falls with each higher band, to about 2 to 3 percent above 120 percent of AMI."
+#| fig-alt: "Two-panel stacked horizontal bar chart of housing cost burden by AMI band, for owners and renters. Among households at 30 percent of AMI or less, about 67 percent of owners and 81 percent of renters pay half or more of income on housing. The share cost-burdened falls with each higher band, to about 2 to 4 percent above 120 percent of AMI."
 #| fig-height: 4
 
 burden_lv <- c("Not cost-burdened", "Cost-burdened (30-49%)", "Severely cost-burdened (50%+)")
@@ -355,7 +354,7 @@ prof_plot("Cost burden", burden_lv, rva_seq[c(2, 4, 7)]) +
 
 ```{r}
 #| label: fig-hhtype
-#| fig-alt: "Two-panel stacked horizontal bar chart of household type by AMI band, for owners and renters. Living alone is the largest household type among the lowest-income households, at about 59 percent of renters at 30 percent of AMI or less. Couples with and without children make up most households in the higher bands, especially among owners."
+#| fig-alt: "Two-panel stacked horizontal bar chart of household type by AMI band, for owners and renters. Living alone is the largest household type among the lowest-income households, at about 58 percent of renters at 30 percent of AMI or less. Couples with and without children make up most households in the higher bands, especially among owners."
 #| fig-height: 4.2
 
 hhtype_lv <- c("Living alone", "Couple, no children", "Couple with children", "Single parent", "Other (relatives or roommates)")
@@ -421,7 +420,7 @@ prof_plot("Householder age", age_lv, rva_seq[c(2, 4, 5, 7)]) +
 
 ```{r}
 #| label: fig-race
-#| fig-alt: "Two-panel stacked horizontal bar chart of householder race and ethnicity by AMI band, for owners and renters. White non-Hispanic householders are the largest group in every band except the two lowest renter bands, where Black householders are. The White share rises steadily with income among owners and renters alike, and Black householders are a much larger share of the lower bands, particularly among renters."
+#| fig-alt: "Two-panel stacked horizontal bar chart of householder race and ethnicity by AMI band, for owners and renters. White non-Hispanic householders are the largest group in every band except the three lowest renter bands, where Black householders are. The White share rises steadily with income among owners and renters alike, and Black householders are a much larger share of the lower bands, particularly among renters."
 #| fig-height: 4.4
 
 race_lv <- c("White non-Hispanic", "Black", "Hispanic or Latino", "Asian", "Another race or multiracial")
@@ -487,7 +486,7 @@ prof_plot("Resident age", resage_lv, rva_seq[c(2, 4, 5, 7)]) +
 
 ```{r}
 #| label: fig-edu-emp
-#| fig-alt: "Two-panel horizontal bar chart of the share of adults 25 and over with a bachelor's degree or higher, and the share of people 16 and over who are employed, by AMI band, for people in owner and renter households. Both shares rise with income, with one small exception: owners' degree attainment is slightly lower at 31 to 50 percent of AMI than at 30 percent or less. Degree attainment is highest above 120 percent of AMI, at about 61 percent of owners' adults and 55 percent of renters'."
+#| fig-alt: "Two-panel horizontal bar chart of the share of adults 25 and over with a bachelor's degree or higher, and the share of people 16 and over who are employed, by AMI band, for people in owner and renter households. Both shares rise with income, with one small exception: owners' degree attainment is slightly lower at 31 to 50 percent of AMI than at 30 percent or less. Degree attainment is highest above 120 percent of AMI, at about 63 percent of owners' adults and 55 percent of renters'."
 #| fig-height: 4
 
 edu_emp <- P$profile |>
@@ -601,8 +600,8 @@ Counts and medians in every band are high-reliability. Shares are noisier where 
 ## What this page shows
 
 - **Who is lower-income:** `r p_fmt(le80(ALL_T))` of households — `r p_fmt(le80("Renter"))` of renters and `r p_fmt(le80("Owner"))` of owners — earn 80% of AMI or less.
-- **Where:** Richmond city has the highest share (`r p_fmt(le80(ALL_T, "Richmond city"))`), but only `r p_fmt(low_renters_city$share)` of lower-income renters live there — most are in the suburbs and outer ring.
+- **Where:** Richmond city has the highest share (`r p_fmt(le80(ALL_T, "Richmond city"))`), but only `r p_fmt(low_renters_city$share)` of lower-income renters live there — most are in Henrico and Chesterfield.
 - **Burden:** `r p_fmt(bsev(b1, "Renter"))` of renters at 30% of AMI or less pay half or more of income on housing; above 120% of AMI, `r p_fmt(b30(b5, "Renter"))` are cost-burdened.
 - **Makeup:** the lowest bands are mostly people living alone (`r p_fmt(pr("Household type", "Living alone", b1, "Renter"))` of renters), older owners, and Black householders (`r p_fmt(pr("Householder race and ethnicity", "Black", b1, "Renter"))` of renters); above 120% of AMI, `r p_fmt(pr_sum("Household type", c("Couple, no children", "Couple with children"), b5, "Owner"))` of owners and `r p_fmt(pr_sum("Household type", c("Couple, no children", "Couple with children"), b5, "Renter"))` of renters are couples.
-- **Caveat:** the PUMS region is nine PUMAs, not the 17 localities used on the other pages.
+- **Caveat:** this page covers Richmond city, Henrico, and Chesterfield only, not the 17 localities used on the other pages.
 :::
