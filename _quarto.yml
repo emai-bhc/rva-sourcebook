@@ -21,6 +21,8 @@ website:
         text: Demographics
       - href: market.qmd
         text: Market
+      - href: profiles.qmd
+        text: Profiles
       - href: data-notes.qmd
         text: Data Notes
       - href: about.qmd

@@ -1,0 +1,302 @@
+version,st,fips,area,pow_st,pow_puma,pow_label
+PUMACE10,51,013,Arlington County,051,01300,Northern Virginia
+PUMACE10,51,041,Chesterfield County,051,04100,Richmond area
+PUMACE10,51,107,Loudoun County,051,10700,Northern Virginia
+PUMACE10,51,005,Alleghany County,051,51000,Somewhere else in Virginia
+PUMACE10,51,023,Botetourt County,051,51000,Somewhere else in Virginia
+PUMACE10,51,580,Covington city,051,51000,Somewhere else in Virginia
+PUMACE10,51,045,Craig County,051,51000,Somewhere else in Virginia
+PUMACE10,51,067,Franklin County,051,51000,Somewhere else in Virginia
+PUMACE10,51,770,Roanoke city,051,51000,Somewhere else in Virginia
+PUMACE10,51,161,Roanoke County,051,51000,Somewhere else in Virginia
+PUMACE10,51,775,Salem city,051,51000,Somewhere else in Virginia
+PUMACE10,51,027,Buchanan County,051,51010,Somewhere else in Virginia
+PUMACE10,51,051,Dickenson County,051,51010,Somewhere else in Virginia
+PUMACE10,51,105,Lee County,051,51010,Somewhere else in Virginia
+PUMACE10,51,720,Norton city,051,51010,Somewhere else in Virginia
+PUMACE10,51,167,Russell County,051,51010,Somewhere else in Virginia
+PUMACE10,51,169,Scott County,051,51010,Somewhere else in Virginia
+PUMACE10,51,185,Tazewell County,051,51010,Somewhere else in Virginia
+PUMACE10,51,195,Wise County,051,51010,Somewhere else in Virginia
+PUMACE10,51,021,Bland County,051,51020,Somewhere else in Virginia
+PUMACE10,51,520,Bristol city,051,51020,Somewhere else in Virginia
+PUMACE10,51,035,Carroll County,051,51020,Somewhere else in Virginia
+PUMACE10,51,640,Galax city,051,51020,Somewhere else in Virginia
+PUMACE10,51,077,Grayson County,051,51020,Somewhere else in Virginia
+PUMACE10,51,173,Smyth County,051,51020,Somewhere else in Virginia
+PUMACE10,51,191,Washington County,051,51020,Somewhere else in Virginia
+PUMACE10,51,197,Wythe County,051,51020,Somewhere else in Virginia
+PUMACE10,51,063,Floyd County,051,51040,Somewhere else in Virginia
+PUMACE10,51,071,Giles County,051,51040,Somewhere else in Virginia
+PUMACE10,51,121,Montgomery County,051,51040,Somewhere else in Virginia
+PUMACE10,51,155,Pulaski County,051,51040,Somewhere else in Virginia
+PUMACE10,51,750,Radford city,051,51040,Somewhere else in Virginia
+PUMACE10,51,015,Augusta County,051,51080,Somewhere else in Virginia
+PUMACE10,51,017,Bath County,051,51080,Somewhere else in Virginia
+PUMACE10,51,530,Buena Vista city,051,51080,Somewhere else in Virginia
+PUMACE10,51,091,Highland County,051,51080,Somewhere else in Virginia
+PUMACE10,51,678,Lexington city,051,51080,Somewhere else in Virginia
+PUMACE10,51,163,Rockbridge County,051,51080,Somewhere else in Virginia
+PUMACE10,51,790,Staunton city,051,51080,Somewhere else in Virginia
+PUMACE10,51,820,Waynesboro city,051,51080,Somewhere else in Virginia
+PUMACE10,51,043,Clarke County,051,51084,Somewhere else in Virginia
+PUMACE10,51,069,Frederick County,051,51084,Somewhere else in Virginia
+PUMACE10,51,840,Winchester city,051,51084,Somewhere else in Virginia
+PUMACE10,51,139,Page County,051,51085,Somewhere else in Virginia
+PUMACE10,51,171,Shenandoah County,051,51085,Somewhere else in Virginia
+PUMACE10,51,187,Warren County,051,51085,Somewhere else in Virginia
+PUMACE10,51,047,Culpeper County,051,51087,Culpeper area
+PUMACE10,51,061,Fauquier County,051,51087,Culpeper area
+PUMACE10,51,113,Madison County,051,51087,Culpeper area
+PUMACE10,51,137,Orange County,051,51087,Culpeper area
+PUMACE10,51,157,Rappahannock County,051,51087,Culpeper area
+PUMACE10,51,009,Amherst County,051,51095,Somewhere else in Virginia
+PUMACE10,51,011,Appomattox County,051,51095,Somewhere else in Virginia
+PUMACE10,51,019,Bedford County,051,51095,Somewhere else in Virginia
+PUMACE10,51,031,Campbell County,051,51096,Somewhere else in Virginia
+PUMACE10,51,680,Lynchburg city,051,51096,Somewhere else in Virginia
+PUMACE10,51,590,Danville city,051,51097,Somewhere else in Virginia
+PUMACE10,51,089,Henry County,051,51097,Somewhere else in Virginia
+PUMACE10,51,690,Martinsville city,051,51097,Somewhere else in Virginia
+PUMACE10,51,141,Patrick County,051,51097,Somewhere else in Virginia
+PUMACE10,51,143,Pittsylvania County,051,51097,Somewhere else in Virginia
+PUMACE10,51,810,Virginia Beach city,051,51100,Somewhere else in Virginia
+PUMACE10,51,007,Amelia County,051,51105,Somewhere else in Virginia
+PUMACE10,51,025,Brunswick County,051,51105,Somewhere else in Virginia
+PUMACE10,51,029,Buckingham County,051,51105,Somewhere else in Virginia
+PUMACE10,51,037,Charlotte County,051,51105,Somewhere else in Virginia
+PUMACE10,51,049,Cumberland County,051,51105,Somewhere else in Virginia
+PUMACE10,51,083,Halifax County,051,51105,Somewhere else in Virginia
+PUMACE10,51,111,Lunenburg County,051,51105,Somewhere else in Virginia
+PUMACE10,51,117,Mecklenburg County,051,51105,Somewhere else in Virginia
+PUMACE10,51,135,Nottoway County,051,51105,Somewhere else in Virginia
+PUMACE10,51,147,Prince Edward County,051,51105,Somewhere else in Virginia
+PUMACE10,51,660,Harrisonburg city,051,51110,Somewhere else in Virginia
+PUMACE10,51,165,Rockingham County,051,51110,Somewhere else in Virginia
+PUMACE10,51,630,Fredericksburg city,051,51115,Fredericksburg area
+PUMACE10,51,179,Stafford County,051,51115,Fredericksburg area
+PUMACE10,51,033,Caroline County,051,51120,Fredericksburg area
+PUMACE10,51,099,King George County,051,51120,Fredericksburg area
+PUMACE10,51,177,Spotsylvania County,051,51120,Fredericksburg area
+PUMACE10,51,001,Accomack County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,057,Essex County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,073,Gloucester County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,097,King and Queen County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,103,Lancaster County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,115,Mathews County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,119,Middlesex County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,131,Northampton County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,133,Northumberland County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,159,Richmond County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,193,Westmoreland County,051,51125,Middle Peninsula and Northern Neck
+PUMACE10,51,570,Colonial Heights city,051,51135,Somewhere else in Virginia
+PUMACE10,51,053,Dinwiddie County,051,51135,Somewhere else in Virginia
+PUMACE10,51,595,Emporia city,051,51135,Somewhere else in Virginia
+PUMACE10,51,081,Greensville County,051,51135,Somewhere else in Virginia
+PUMACE10,51,670,Hopewell city,051,51135,Somewhere else in Virginia
+PUMACE10,51,730,Petersburg city,051,51135,Somewhere else in Virginia
+PUMACE10,51,149,Prince George County,051,51135,Somewhere else in Virginia
+PUMACE10,51,181,Surry County,051,51135,Somewhere else in Virginia
+PUMACE10,51,183,Sussex County,051,51135,Somewhere else in Virginia
+PUMACE10,51,620,Franklin city,051,51145,Somewhere else in Virginia
+PUMACE10,51,093,Isle of Wight County,051,51145,Somewhere else in Virginia
+PUMACE10,51,175,Southampton County,051,51145,Somewhere else in Virginia
+PUMACE10,51,800,Suffolk city,051,51145,Somewhere else in Virginia
+PUMACE10,51,700,Newport News city,051,51175,Somewhere else in Virginia
+PUMACE10,51,650,Hampton city,051,51186,Somewhere else in Virginia
+PUMACE10,51,710,Norfolk city,051,51187,Somewhere else in Virginia
+PUMACE10,51,740,Portsmouth city,051,51187,Somewhere else in Virginia
+PUMACE10,51,087,Henrico County,051,51200,Richmond area
+PUMACE10,51,095,James city County,051,51206,Somewhere else in Virginia
+PUMACE10,51,735,Poquoson city,051,51206,Somewhere else in Virginia
+PUMACE10,51,830,Williamsburg city,051,51206,Somewhere else in Virginia
+PUMACE10,51,199,York County,051,51206,Somewhere else in Virginia
+PUMACE10,51,036,Charles City County,051,51215,Richmond area
+PUMACE10,51,075,Goochland County,051,51215,Richmond area
+PUMACE10,51,085,Hanover County,051,51215,Richmond area
+PUMACE10,51,101,King William County,051,51215,Richmond area
+PUMACE10,51,127,New Kent County,051,51215,Richmond area
+PUMACE10,51,145,Powhatan County,051,51215,Richmond area
+PUMACE10,51,760,Richmond city,051,51235,Richmond area
+PUMACE10,51,510,Alexandria city,051,51255,Northern Virginia
+PUMACE10,51,683,Manassas city,051,51256,Northern Virginia
+PUMACE10,51,685,Manassas Park city,051,51256,Northern Virginia
+PUMACE10,51,153,Prince William County,051,51256,Northern Virginia
+PUMACE10,51,550,Chesapeake city,051,55000,Somewhere else in Virginia
+PUMACE10,51,600,Fairfax city,051,59300,Northern Virginia
+PUMACE10,51,059,Fairfax County,051,59300,Northern Virginia
+PUMACE10,51,610,Falls Church city,051,59300,Northern Virginia
+PUMACE10,51,003,Albemarle County,051,51001,Charlottesville area
+PUMACE10,51,540,Charlottesville city,051,51001,Charlottesville area
+PUMACE10,51,065,Fluvanna County,051,51001,Charlottesville area
+PUMACE10,51,079,Greene County,051,51001,Charlottesville area
+PUMACE10,51,109,Louisa County,051,51001,Charlottesville area
+PUMACE10,51,125,Nelson County,051,51001,Charlottesville area
+PUMACE20,51,013,Arlington County,051,01301,Northern Virginia
+PUMACE20,51,013,Arlington County,051,01302,Northern Virginia
+PUMACE20,51,015,Augusta County,051,01500,Somewhere else in Virginia
+PUMACE20,51,017,Bath County,051,01500,Somewhere else in Virginia
+PUMACE20,51,530,Buena Vista city,051,01500,Somewhere else in Virginia
+PUMACE20,51,091,Highland County,051,01500,Somewhere else in Virginia
+PUMACE20,51,678,Lexington city,051,01500,Somewhere else in Virginia
+PUMACE20,51,163,Rockbridge County,051,01500,Somewhere else in Virginia
+PUMACE20,51,790,Staunton city,051,01500,Somewhere else in Virginia
+PUMACE20,51,820,Waynesboro city,051,01500,Somewhere else in Virginia
+PUMACE20,51,009,Amherst County,051,01900,Somewhere else in Virginia
+PUMACE20,51,011,Appomattox County,051,01900,Somewhere else in Virginia
+PUMACE20,51,019,Bedford County,051,01900,Somewhere else in Virginia
+PUMACE20,51,041,Chesterfield County,051,04101,Richmond area
+PUMACE20,51,041,Chesterfield County,051,04102,Richmond area
+PUMACE20,51,041,Chesterfield County,051,04103,Richmond area
+PUMACE20,51,059,Fairfax County,051,05901,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,05902,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,05904,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,05905,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,05906,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,05907,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,05908,Northern Virginia
+PUMACE20,51,047,Culpeper County,051,06100,Culpeper area
+PUMACE20,51,061,Fauquier County,051,06100,Culpeper area
+PUMACE20,51,113,Madison County,051,06100,Culpeper area
+PUMACE20,51,137,Orange County,051,06100,Culpeper area
+PUMACE20,51,157,Rappahannock County,051,06100,Culpeper area
+PUMACE20,51,043,Clarke County,051,06900,Somewhere else in Virginia
+PUMACE20,51,069,Frederick County,051,06900,Somewhere else in Virginia
+PUMACE20,51,840,Winchester city,051,06900,Somewhere else in Virginia
+PUMACE20,51,001,Accomack County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,057,Essex County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,073,Gloucester County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,097,King and Queen County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,103,Lancaster County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,115,Mathews County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,119,Middlesex County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,131,Northampton County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,133,Northumberland County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,159,Richmond County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,193,Westmoreland County,051,07300,Middle Peninsula and Northern Neck
+PUMACE20,51,007,Amelia County,051,08300,Somewhere else in Virginia
+PUMACE20,51,025,Brunswick County,051,08300,Somewhere else in Virginia
+PUMACE20,51,029,Buckingham County,051,08300,Somewhere else in Virginia
+PUMACE20,51,037,Charlotte County,051,08300,Somewhere else in Virginia
+PUMACE20,51,049,Cumberland County,051,08300,Somewhere else in Virginia
+PUMACE20,51,083,Halifax County,051,08300,Somewhere else in Virginia
+PUMACE20,51,111,Lunenburg County,051,08300,Somewhere else in Virginia
+PUMACE20,51,117,Mecklenburg County,051,08300,Somewhere else in Virginia
+PUMACE20,51,135,Nottoway County,051,08300,Somewhere else in Virginia
+PUMACE20,51,147,Prince Edward County,051,08300,Somewhere else in Virginia
+PUMACE20,51,036,Charles City County,051,08501,Richmond area
+PUMACE20,51,085,Hanover County,051,08501,Richmond area
+PUMACE20,51,101,King William County,051,08501,Richmond area
+PUMACE20,51,127,New Kent County,051,08501,Richmond area
+PUMACE20,51,087,Henrico County,051,08701,Richmond area
+PUMACE20,51,087,Henrico County,051,08702,Richmond area
+PUMACE20,51,095,James city County,051,09500,Somewhere else in Virginia
+PUMACE20,51,735,Poquoson city,051,09500,Somewhere else in Virginia
+PUMACE20,51,830,Williamsburg city,051,09500,Somewhere else in Virginia
+PUMACE20,51,199,York County,051,09500,Somewhere else in Virginia
+PUMACE20,51,107,Loudoun County,051,10701,Northern Virginia
+PUMACE20,51,107,Loudoun County,051,10702,Northern Virginia
+PUMACE20,51,107,Loudoun County,051,10703,Northern Virginia
+PUMACE20,51,003,Albemarle County,051,10901,Charlottesville area
+PUMACE20,51,065,Fluvanna County,051,10901,Charlottesville area
+PUMACE20,51,109,Louisa County,051,10901,Charlottesville area
+PUMACE20,51,125,Nelson County,051,10901,Charlottesville area
+PUMACE20,51,063,Floyd County,051,12100,Somewhere else in Virginia
+PUMACE20,51,071,Giles County,051,12100,Somewhere else in Virginia
+PUMACE20,51,121,Montgomery County,051,12100,Somewhere else in Virginia
+PUMACE20,51,155,Pulaski County,051,12100,Somewhere else in Virginia
+PUMACE20,51,750,Radford city,051,12100,Somewhere else in Virginia
+PUMACE20,51,590,Danville city,051,14300,Somewhere else in Virginia
+PUMACE20,51,089,Henry County,051,14300,Somewhere else in Virginia
+PUMACE20,51,690,Martinsville city,051,14300,Somewhere else in Virginia
+PUMACE20,51,141,Patrick County,051,14300,Somewhere else in Virginia
+PUMACE20,51,143,Pittsylvania County,051,14300,Somewhere else in Virginia
+PUMACE20,51,075,Goochland County,051,14501,Richmond area
+PUMACE20,51,085,Hanover County,051,14501,Richmond area
+PUMACE20,51,145,Powhatan County,051,14501,Richmond area
+PUMACE20,51,570,Colonial Heights city,051,14900,Somewhere else in Virginia
+PUMACE20,51,053,Dinwiddie County,051,14900,Somewhere else in Virginia
+PUMACE20,51,595,Emporia city,051,14900,Somewhere else in Virginia
+PUMACE20,51,081,Greensville County,051,14900,Somewhere else in Virginia
+PUMACE20,51,670,Hopewell city,051,14900,Somewhere else in Virginia
+PUMACE20,51,730,Petersburg city,051,14900,Somewhere else in Virginia
+PUMACE20,51,149,Prince George County,051,14900,Somewhere else in Virginia
+PUMACE20,51,181,Surry County,051,14900,Somewhere else in Virginia
+PUMACE20,51,183,Sussex County,051,14900,Somewhere else in Virginia
+PUMACE20,51,153,Prince William County,051,15301,Northern Virginia
+PUMACE20,51,153,Prince William County,051,15302,Northern Virginia
+PUMACE20,51,153,Prince William County,051,15303,Northern Virginia
+PUMACE20,51,005,Alleghany County,051,16101,Somewhere else in Virginia
+PUMACE20,51,023,Botetourt County,051,16101,Somewhere else in Virginia
+PUMACE20,51,580,Covington city,051,16101,Somewhere else in Virginia
+PUMACE20,51,045,Craig County,051,16101,Somewhere else in Virginia
+PUMACE20,51,067,Franklin County,051,16101,Somewhere else in Virginia
+PUMACE20,51,161,Roanoke County,051,16101,Somewhere else in Virginia
+PUMACE20,51,660,Harrisonburg city,051,16500,Somewhere else in Virginia
+PUMACE20,51,165,Rockingham County,051,16500,Somewhere else in Virginia
+PUMACE20,51,139,Page County,051,17100,Somewhere else in Virginia
+PUMACE20,51,171,Shenandoah County,051,17100,Somewhere else in Virginia
+PUMACE20,51,187,Warren County,051,17100,Somewhere else in Virginia
+PUMACE20,51,033,Caroline County,051,17700,Fredericksburg area
+PUMACE20,51,099,King George County,051,17700,Fredericksburg area
+PUMACE20,51,177,Spotsylvania County,051,17700,Fredericksburg area
+PUMACE20,51,630,Fredericksburg city,051,17900,Fredericksburg area
+PUMACE20,51,179,Stafford County,051,17900,Fredericksburg area
+PUMACE20,51,027,Buchanan County,051,18500,Somewhere else in Virginia
+PUMACE20,51,051,Dickenson County,051,18500,Somewhere else in Virginia
+PUMACE20,51,105,Lee County,051,18500,Somewhere else in Virginia
+PUMACE20,51,720,Norton city,051,18500,Somewhere else in Virginia
+PUMACE20,51,167,Russell County,051,18500,Somewhere else in Virginia
+PUMACE20,51,169,Scott County,051,18500,Somewhere else in Virginia
+PUMACE20,51,185,Tazewell County,051,18500,Somewhere else in Virginia
+PUMACE20,51,195,Wise County,051,18500,Somewhere else in Virginia
+PUMACE20,51,021,Bland County,051,19100,Somewhere else in Virginia
+PUMACE20,51,520,Bristol city,051,19100,Somewhere else in Virginia
+PUMACE20,51,035,Carroll County,051,19100,Somewhere else in Virginia
+PUMACE20,51,640,Galax city,051,19100,Somewhere else in Virginia
+PUMACE20,51,077,Grayson County,051,19100,Somewhere else in Virginia
+PUMACE20,51,173,Smyth County,051,19100,Somewhere else in Virginia
+PUMACE20,51,191,Washington County,051,19100,Somewhere else in Virginia
+PUMACE20,51,197,Wythe County,051,19100,Somewhere else in Virginia
+PUMACE20,51,510,Alexandria city,051,51000,Northern Virginia
+PUMACE20,51,003,Albemarle County,051,54001,Charlottesville area
+PUMACE20,51,540,Charlottesville city,051,54001,Charlottesville area
+PUMACE20,51,079,Greene County,051,54001,Charlottesville area
+PUMACE20,51,550,Chesapeake city,051,55001,Somewhere else in Virginia
+PUMACE20,51,550,Chesapeake city,051,55002,Somewhere else in Virginia
+PUMACE20,51,600,Fairfax city,051,60001,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,60001,Northern Virginia
+PUMACE20,51,059,Fairfax County,051,61001,Northern Virginia
+PUMACE20,51,610,Falls Church city,051,61001,Northern Virginia
+PUMACE20,51,650,Hampton city,051,65000,Somewhere else in Virginia
+PUMACE20,51,031,Campbell County,051,68000,Somewhere else in Virginia
+PUMACE20,51,680,Lynchburg city,051,68000,Somewhere else in Virginia
+PUMACE20,51,683,Manassas city,051,68701,Northern Virginia
+PUMACE20,51,685,Manassas Park city,051,68701,Northern Virginia
+PUMACE20,51,153,Prince William County,051,68701,Northern Virginia
+PUMACE20,51,700,Newport News city,051,70000,Somewhere else in Virginia
+PUMACE20,51,710,Norfolk city,051,71001,Somewhere else in Virginia
+PUMACE20,51,710,Norfolk city,051,71002,Somewhere else in Virginia
+PUMACE20,51,550,Chesapeake city,051,74001,Somewhere else in Virginia
+PUMACE20,51,740,Portsmouth city,051,74001,Somewhere else in Virginia
+PUMACE20,51,760,Richmond city,051,76001,Richmond area
+PUMACE20,51,760,Richmond city,051,76002,Richmond area
+PUMACE20,51,770,Roanoke city,051,77001,Somewhere else in Virginia
+PUMACE20,51,161,Roanoke County,051,77001,Somewhere else in Virginia
+PUMACE20,51,775,Salem city,051,77001,Somewhere else in Virginia
+PUMACE20,51,620,Franklin city,051,80000,Somewhere else in Virginia
+PUMACE20,51,093,Isle of Wight County,051,80000,Somewhere else in Virginia
+PUMACE20,51,175,Southampton County,051,80000,Somewhere else in Virginia
+PUMACE20,51,800,Suffolk city,051,80000,Somewhere else in Virginia
+PUMACE20,51,810,Virginia Beach city,051,81001,Somewhere else in Virginia
+PUMACE20,51,810,Virginia Beach city,051,81002,Somewhere else in Virginia
+PUMACE20,51,810,Virginia Beach city,051,81003,Somewhere else in Virginia
+PUMACE20,51,013,Arlington County,051,01300,Northern Virginia
+PUMACE20,51,041,Chesterfield County,051,04100,Richmond area
+PUMACE20,51,,,051,05990,Northern Virginia
+PUMACE20,51,,,051,08590,Richmond area
+PUMACE20,51,,,051,08700,Richmond area
+PUMACE20,51,,,051,10700,Northern Virginia
+PUMACE20,51,,,051,10990,Charlottesville area
+PUMACE20,51,,,051,15390,Northern Virginia
+PUMACE20,51,,,051,76000,Richmond area

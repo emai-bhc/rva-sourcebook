@@ -49,6 +49,18 @@
 - [~] `r/acs_market.R` written 2026-10-28 — B25003 tenure (not covered by `acs_tenure.R`, which is race-specific only), B25077 home value, B25064 rent; medians carry nominal + real columns. **Not yet run — user:** `Rscript r/acs_market.R`, paste back validation output.
 - [~] `market.qmd` drafted 2026-10-28 (7 figures, 4 tables, callouts; replaces the old book's split `ownership.qmd`/`rental.qmd`). Code and layout verified against a scratchpad **mock** `acs_market.rds` (real B25118 tenure counts, synthetic medians) — **the real render is blocked on the user running `Rscript r/acs_market.R`** and pasting back validation output. After that: render `market.qmd` for real, re-read every figure, and revisit the three flagged items — the "Home values and rents climbed in every core locality" H2, the "Price-to-income ratios show where buying is hardest" H2, and the `fig-alt` text on `fig-value`/`fig-rent`/`fig-pti`/`fig-rent-share`, all written before the home-value and rent data existed.
 
+## Phase 4b — PUMS profiles and summary (added 2026-10-30 at the user's request)
+
+- [x] `r/pums/pums_profiles.R` — tidy household/resident estimates by AMI band × tenure × geography with replicate-weight SEs and reliability flags → `data/pums_profiles.rds`, `data-out/pums_ami_dist.csv`, `data-out/pums_profile.csv`. Ran clean; PUMS owner/renter households in the core-3 PUMAs match ACS B25003 within 0.6%.
+- [x] `profiles.qmd` — 11 figures, 3 tables, takeaway H2s, computed-inline bullets, geography + reliability callouts; every `fig-` chunk has `fig-alt`. Added to the navbar.
+- [x] `summary.qmd` — executive summary of inventory, demographics, market; now includes an income-band section drawn from `profiles.qmd`. Added to the navbar.
+- [ ] `inventory.qmd` bullet "peaked at [2022's 10,414] … a 76% collapse" is wrong: 2022 is the series high and the pre-crash peak was ~8,400 (2005). Its "multifamily first exceeded single-family in 2022" line also needs a check (2024 was single-family-led). `summary.qmd` words it around the error.
+- [x] `r/pums/pums_prep.R` runs (2026-10-30, after the user added `naics_soc_lookup.R` and `data-out/puma_pow.csv`) and writes `data/pums_rva.rds` (48,802 persons, 215 columns). Nothing reads it yet. Still no script header block.
+- [ ] `r/pums/*.R` don't follow the script anatomy (no header block, no `source("_common.R")`, `pums_ami.R` ends with an unguarded `ggplot()` call). `pums_ami.R` also hardcodes the HUD CSV path (`data/summary_county_5176099999.csv`) and the CPI factor; `data/` is gitignored, so the HUD file isn't in the repo — note where it came from in `data-notes.qmd`.
+- [ ] `r/pums/` is untracked in git; commit it with `profiles.qmd`, `summary.qmd`, and the log.
+- [ ] `data-notes.qmd` needs a PUMS / AMI section (geography caveat, FY2026 limits, CPI inflation, replicate-weight SEs). See METHODOLOGY.md.
+- [ ] Optional: a `mapgl` choropleth of share at/below 80% AMI by PUMA for Phase 5 (all nine PUMA boundaries are in `data/puma_va.rds`).
+
 ## Phase 5 — interactive maps
 
 - [ ] One `mapgl` choropleth per page (e.g. inventory: vacancy rate by locality; demographics: median household income; market: median rent or home value).

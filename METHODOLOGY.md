@@ -17,9 +17,15 @@ Defined once in `_common.R`, sourced by every script and page.
 
 `bhc` is inherited naming from the scripts that first defined this project's core geography — it does not signal a client relationship. If it gets confusing, a future session can rename it (e.g. to `core`), but that's a mechanical rename across `_common.R` and the two existing `r/` scripts, not a priority.
 
-### PUMS geography (defined, not yet used)
+### PUMS geography and AMI bands (in use as of 2026-10-30)
 
-`puma_core3`, `puma_region`, and `puma_locality` are already set up for a 2020-vintage PUMS pull covering Chesterfield, Henrico, and Richmond city (which tile cleanly into whole PUMAs) plus two mixed outer PUMAs. This groundwork came along with the geography constants when `_common.R` was first written and is harmless to keep, but no PUMS script exists in this repo yet and none is planned for v1 — see PLAN.md's "future" phase.
+`profiles.qmd` reads household-level 2020-2024 ACS PUMS. The `r/pums/` scripts run in this order: `rva_puma.R` (PUMA lookup), `pums_collect.R` (pull), `pums_ami.R` (assigns each household an AMI band), `pums_profiles.R` (tidy estimates the page reads). `pums_prep.R` (with `naics_soc_lookup.R` and the `data-out/puma_pow.csv` place-of-work crosswalk) builds a person-level recoded file, `data/pums_rva.rds`; nothing reads it yet.
+
+- **The PUMS region is nine PUMAs, not `rr`.** `puma_core3` (Chesterfield ×3, Henrico ×2, Richmond city ×2) tile their localities exactly; `08501` (King William, New Kent, Charles City, eastern Hanover) and `14501` (Goochland, Powhatan, western Hanover) are mixed. Petersburg, Hopewell, Colonial Heights, Dinwiddie, Prince George, Sussex, Amelia, and King & Queen are outside it. Never present PUMS totals next to the 17-locality ACS tables without saying so.
+- **AMI bands.** HUD FY2026 Richmond income limits (`data/summary_county_5176099999.csv`, MFI $113,500) applied to all nine PUMAs by household size (capped at 8). 30/50/80% are HUD's; 60/100/120% are derived from the 50% limit. Household income is inflated ADJINC → 2024 dollars → 2026 dollars (CPI-U, Jan-Sep 2026 / 2024 average = 332.243 / 313.689) so it compares with FY2026 limits. Zero- and negative-income households are folded into the "30% AMI or less" profile band and counted in the callout.
+- **Vacant units and group quarters** (`TEN == "b"`) are excluded; their missing income would otherwise land in the top band.
+- **Standard errors** use the 80 replicate weights, `sqrt(4/80 * sum((rep - est)^2))`. Reliability reuses `flag_reliability()` on the CV of each estimate; shares of small categories are noisier than counts, so the page suppresses Low cells in tables and shows all in the stacked bars.
+- **Benchmark.** `pums_profiles.R` checks PUMS owner and renter households in `puma_core3` against ACS B25003 for `bhc` (same 2020-2024 window), 3% tolerance (observed within 0.6%).
 
 ## Vintages
 

@@ -18,6 +18,7 @@ demo <- read_rds("data/acs_demographics.rds")
 pep <- read_rds("data/pep_migration.rds")
 market <- read_rds("data/acs_market.rds")
 burden <- read_rds("data/acs_burden.rds")
+P <- read_rds("data/pums_profiles.rds") # written by r/pums/pums_profiles.R (PUMS region, 2020-2024)
 
 first_yr <- min(demo$population$year)
 latest_yr <- max(demo$population$year)
@@ -123,9 +124,39 @@ b30 <- function(g, ten, yr = latest_yr) {
 bsev <- function(g, ten, yr = latest_yr) {
   burden |> filter(geoid == g, year == yr, tenure == ten, burden == "Severely cost-burdened") |> pull(share)
 }
+
+# ---- Income bands (PUMS) ---------------------------------------------------
+# The PUMS region is nine PUMAs, not the 17 localities -- see profiles.qmd.
+
+ami5_lv <- P$levels$ami5
+ami_b1 <- ami5_lv[1]
+ami_b2 <- ami5_lv[2]
+ami_b3 <- ami5_lv[3]
+ami_b5 <- ami5_lv[5]
+
+le80 <- function(ten, geo = "PUMS region") {
+  P$le80 |> filter(unit == "Households", .data$geo == .env$geo, .data$tenure == .env$ten) |> pull(est)
+}
+pr <- function(tp, cat, band, ten) {
+  P$profile |>
+    filter(topic == tp, category == cat, .data$ami5 == .env$band, .data$tenure == .env$ten) |>
+    pull(est)
+}
+pb30 <- function(band, ten) {
+  pr("Cost burden", "Cost-burdened (30-49%)", band, ten) + pr("Cost burden", "Severely cost-burdened (50%+)", band, ten)
+}
+pbsev <- function(band, ten) pr("Cost burden", "Severely cost-burdened (50%+)", band, ten)
+
+# Share of the region's 80%-of-AMI-or-less renter households living in Richmond city.
+low_renter_city <- P$dist5 |>
+  filter(unit == "Households", tenure == "Renter", measure == "count", geo != "PUMS region", band %in% ami5_lv[1:3]) |>
+  summarise(n = sum(est), .by = geo) |>
+  mutate(share = n / sum(n)) |>
+  filter(geo == "Richmond city") |>
+  pull(share)
 ```
 
-The Richmond region's housing picture in one page: who is arriving, what exists, and what it costs. Each section links to the page with the figures and tables behind it. Trends compare the ACS 5-year windows ending `r first_yr` and `r latest_yr` unless noted.
+The Richmond region's housing picture in one page: who is arriving, what exists, what it costs, and who carries the cost. Each section links to the page with the figures and tables behind it. Trends compare the ACS 5-year windows ending `r first_yr` and `r latest_yr` unless noted.
 
 ## At a glance
 
@@ -216,16 +247,28 @@ Full detail: [Inventory](inventory.qmd)
 Full detail: [Market](market.qmd)
 :::
 
+## Lower-income renters carry the cost burden, and most live outside Richmond city
+
+- `r p_fmt(le80("All households"))` of households in the PUMS region earn 80% of area median income (AMI) or less: `r p_fmt(le80("Renter"))` of renters and `r p_fmt(le80("Owner"))` of owners.
+- Richmond city has the highest share (`r p_fmt(le80("All households", "Richmond city"))`, against `r p_fmt(le80("All households", "Henrico County"))` in Henrico and `r p_fmt(le80("All households", "Chesterfield County"))` in Chesterfield), but only `r p_fmt(low_renter_city)` of the region's lower-income renter households live in the city.
+- `r p_fmt(pbsev(ami_b1, "Renter"))` of renters at 30% of AMI or less pay half or more of income on housing, and `r p_fmt(pb30(ami_b3, "Renter"))` of renters at 51-80% of AMI pay 30% or more; above 120% of AMI, `r p_fmt(pb30(ami_b5, "Renter"))` do.
+- The lowest-income renters are mostly people living alone (`r p_fmt(pr("Household type", "Living alone", ami_b1, "Renter"))`) and are `r p_fmt(pr("Householder race and ethnicity", "Black", ami_b1, "Renter"))` Black; the lowest-income owners skew old (`r p_fmt(pr("Householder age", "65 and over", ami_b1, "Owner"))` are 65 or over).
+
+::: {.callout-note appearance="minimal"}
+Full detail: [Profiles](profiles.qmd). These figures come from household-level survey data (PUMS) for nine PUMAs, not the 17 localities used elsewhere on this page.
+:::
+
 ## What to watch
 
 ::: callout-warning
-## Five things to look out for
+## Six things to look out for
 
 1. **Growth leans on migration.** With natural increase down to `r n_fmt(per_year("rr17", era2, natural_change))` a year, a slowdown in international or domestic moves would show up directly in population growth. International migration in `r intl_last$year` was `r p_fmt(intl_last$international_mig / intl_peak$international_mig, 1)` of its `r intl_peak$year` peak.
 2. **Home values are outrunning incomes.** Real home values rose `r p_fmt(real_chg(market$median_value, "40060"))` against `r p_fmt(inc_real_growth("40060"))` for income, and the value-to-income ratio widened from `r sprintf("%.1f", pti("40060", first_yr))` to `r sprintf("%.1f", pti("40060", latest_yr))`. The value measure is every owner's own estimate, so it understates the cost of buying today.
 3. **Half of renters are cost-burdened, and the gap by income is wide.** The share did not improve over the decade, and the typical renter household earns far less than the typical owner household.
 4. **Production is volatile and its mix keeps changing.** Permits swing between single-family and multifamily from year to year, and the expansion ring continues to build almost entirely detached homes (`r p_fmt(struct_share("secondary4", "Single-family detached"), 1)` of its stock) even though `r p_fmt(hh_share("rr17", "Living alone"), 1)` of the region's households are one person.
-5. **The outer suburbs are the oldest part of the region.** The expansion ring has the highest 65-and-over share (`r p_fmt(age_share("secondary4", "65 and over"))`) and, in aggregate, more deaths than births in `r era2` (`r n_fmt(era_at("secondary4", era2, natural_change))`), so its growth depends entirely on in-migration.
+5. **Lower-income renters are where the burden concentrates.** Renters at 30% of AMI or less number `r n_fmt(P$band_counts |> filter(unit == "Households", ami5 == ami_b1, tenure == "Renter") |> pull(est))` households in the PUMS region, and `r p_fmt(pbsev(ami_b1, "Renter"))` of them pay half or more of income on housing.
+6. **The outer suburbs are the oldest part of the region.** The expansion ring has the highest 65-and-over share (`r p_fmt(age_share("secondary4", "65 and over"))`) and, in aggregate, more deaths than births in `r era2` (`r n_fmt(era_at("secondary4", era2, natural_change))`), so its growth depends entirely on in-migration.
 :::
 
 ::: callout-note
@@ -233,6 +276,7 @@ Full detail: [Market](market.qmd)
 
 - **Stock and production are different series.** Stock (ACS) counts units standing; production (Building Permits Survey) counts permits issued, which lead completions and can be cancelled.
 - **Small geographies are noisy.** The four expansion-ring localities and Ashland carry wide margins of error; the pages suppress cells with a coefficient of variation above 30.
+- **Income-band figures use a different geography.** They come from PUMS, which reports only whole PUMAs: Richmond city, Henrico, and Chesterfield plus two mixed outer-ring areas. The southern localities are not covered, so these totals will not match the 17-locality pages.
 - **Migration figures are modeled** from administrative records and revised each vintage. The 2010-2019 and 2020-2025 series come from different vintages and are compared, not joined.
 - **Dollar changes are inflation-adjusted** with national CPI-U, so they measure change relative to national prices, not a local cost-of-living index.
 - See [Data Notes](data-notes.qmd) for sources and definitions.

@@ -52,7 +52,7 @@ Script anatomy: a header comment stating what, source, and output → numbered `
 
 ## What `_common.R` provides
 
-- **Geography:** `rr` (17-locality Richmond region), `bhc` (3-locality core: Richmond city, Henrico, Chesterfield), `secondary` (4 expansion localities: Hanover, Goochland, New Kent, Powhatan), `ashland` (place 5103368, sumlev 160), `regions` (comparison MSAs: Charlottesville, Richmond, Hampton Roads, DC), `virginia`; and PUMS-ready PUMA sets `puma_core3`/`puma_region`/`puma_locality` (defined but not currently used — see METHODOLOGY.md).
+- **Geography:** `rr` (17-locality Richmond region), `bhc` (3-locality core: Richmond city, Henrico, Chesterfield), `secondary` (4 expansion localities: Hanover, Goochland, New Kent, Powhatan), `ashland` (place 5103368, sumlev 160), `regions` (comparison MSAs: Charlottesville, Richmond, Hampton Roads, DC), `virginia`; and PUMA sets `puma_core3`/`puma_region`/`puma_locality`, used by `r/pums/` and `profiles.qmd` (the PUMS region is nine PUMAs, not `rr` — see METHODOLOGY.md).
 - **Palette/theme:** `rva_pal` (8-hue categorical, fixed order — never cycle or reorder), `rva_seq` (7-step blue sequential ramp for choropleths/magnitude), `rva_ink` (chart chrome: primary/muted/gridline/baseline), `theme_rva()` (ggplot2 theme; `legend.position = "none"` by default since 2-3 series use bold ggtext subtitle spans instead of a legend box), and `rva_map_style` (free Carto MapLibre basemap URL, no token). Values come from the dataviz skill's validated reference palette — CVD-safe adjacent pairs. Change values in `_common.R` only, never at the call site.
 - **Caption helpers:** `acs_cap`, `pums_cap`, `chas_cap`, `dec_cap`, `pep_cap`, `bps_cap`, `oews_cap` and others — see the file for the full list. Not every helper has a matching script yet; that's fine, they're cheap to keep around.
 - **`flag_reliability(df, cv_col = cv)`** — High at or below 15, Medium at or below 30, Low above 30, from a **0 to 100** CV. Use it for secondary-locality and Ashland ACS estimates, which run noisier than the `bhc` core.
@@ -127,8 +127,10 @@ rva-sourcebook/
 ├── inventory.qmd           # Housing stock & production
 ├── demographics.qmd        # Population & household characteristics
 ├── market.qmd               # Tenure, values, rents, cost burden
+├── profiles.qmd             # Households and residents by AMI band and tenure (PUMS)
+├── summary.qmd              # Executive summary of the pages above
 ├── data-notes.qmd           # Public-facing methodology
-├── r/                      # collection and prep scripts — committed
+├── r/                      # collection and prep scripts — committed (r/pums/ holds the PUMS pipeline)
 ├── data/                   # .rds outputs — gitignored
 ├── data-out/               # tidy CSV exports — committed (all public-source)
 ├── docs/                   # rendered site — committed once publishing starts; GitHub Pages will serve this

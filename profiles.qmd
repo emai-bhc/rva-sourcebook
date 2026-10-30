@@ -1,0 +1,608 @@
+---
+title: "Profiles"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+source("_common.R")
+
+# Data flow rule: pages read_rds() only, never call an API. The list is written
+# by r/pums/pums_profiles.R from the 2020-2024 ACS PUMS and the AMI bands that
+# r/pums/pums_ami.R assigns to each household (replicate-weight standard errors
+# are already computed -- this page never sees the weights).
+P <- read_rds("data/pums_profiles.rds")
+
+ami5_lv <- P$levels$ami5
+ami8_lv <- P$levels$ami
+ALL_T <- "All households"
+ALL_A <- "All income levels"
+REG <- "PUMS region"
+ten2 <- c("Owner", "Renter")
+
+# formattable::comma()/percent() mask the scales versions (_common.R loads
+# formattable after scales); inline text uses these thin wrappers. Note that
+# p_fmt()'s second argument is the label accuracy (0.1 = one decimal place).
+n_fmt <- function(x) scales::label_comma(accuracy = 1)(x)
+p_fmt <- function(x, accuracy = 0.1) scales::label_percent(accuracy = accuracy)(x)
+d_fmt <- function(x) scales::label_dollar(accuracy = 1)(x)
+pt_fmt <- function(x) sprintf("%.0f points", abs(x) * 100)
+
+# Table cell helper: suppress Low-reliability cells, mark Medium with *.
+cell <- function(txt, rel) {
+  if_else(rel == "Low", "&mdash;", paste0(txt, if_else(rel == "Medium", "*", "")))
+}
+# A derived figure is only as reliable as its weakest input.
+rel_worst <- function(...) {
+  ranks <- c(High = 1L, Medium = 2L, Low = 3L)
+  r <- do.call(pmax, map(list(...), \(x) replace_na(unname(ranks[x]), 3L)))
+  c("High", "Medium", "Low")[r]
+}
+
+# ---- Inline scalars --------------------------------------------------------
+
+# Distribution of households / residents over the five profile bands.
+dist_est <- function(ten, band, geo = REG, unit = "Households", what = "share") {
+  P$dist5 |>
+    filter(.data$unit == .env$unit, .data$geo == .env$geo, .data$tenure == .env$ten,
+           .data$band == .env$band, .data$measure == .env$what) |>
+    pull(est)
+}
+# Share of a geography x tenure at or below 80% AMI.
+le80 <- function(ten, geo = REG, unit = "Households") {
+  P$le80 |> filter(.data$unit == .env$unit, .data$geo == .env$geo, .data$tenure == .env$ten) |> pull(est)
+}
+# Share of one category within a band x tenure profile.
+pr <- function(tp, cat, band, ten) {
+  P$profile |>
+    filter(topic == tp, category == cat, .data$ami5 == .env$band, .data$tenure == .env$ten) |>
+    pull(est)
+}
+# Combined share across several categories of a topic.
+pr_sum <- function(tp, cats, band, ten) sum(map_dbl(cats, \(k) pr(tp, k, band, ten)))
+md <- function(ms, band, ten) {
+  P$medians |> filter(measure == ms, .data$ami5 == .env$band, .data$tenure == .env$ten) |> pull(est)
+}
+b30 <- function(band, ten) {
+  pr_sum("Cost burden", c("Cost-burdened (30-49%)", "Severely cost-burdened (50%+)"), band, ten)
+}
+bsev <- function(band, ten) pr("Cost burden", "Severely cost-burdened (50%+)", band, ten)
+renter_share <- function(band, unit = "Households") {
+  P$tenure_mix |> filter(.data$unit == .env$unit, .data$ami5 == .env$band, tenure == "Renter") |> pull(est)
+}
+hh_count <- function(ten, band) {
+  P$band_counts |> filter(unit == "Households", .data$tenure == .env$ten, .data$ami5 == .env$band) |> pull(est)
+}
+
+b1 <- ami5_lv[1]; b2 <- ami5_lv[2]; b3 <- ami5_lv[3]; b4 <- ami5_lv[4]; b5 <- ami5_lv[5]
+
+n_hh <- P$n$households
+n_res <- P$n$residents
+zero_inc <- P$ami_dist |>
+  filter(unit == "Households", geo == REG, tenure == ALL_T, measure == "count", band == ami8_lv[1])
+
+# Low- and medium-reliability profile cells (band x tenure only; margins excluded).
+prof_cells <- P$profile |> filter(tenure != ALL_T, ami5 != ALL_A)
+n_cells <- nrow(prof_cells)
+n_med <- sum(prof_cells$reliability == "Medium")
+n_low <- sum(prof_cells$reliability == "Low")
+flagged <- prof_cells |> filter(reliability != "High")
+
+# Lower-income (80% AMI or less) renter households by geography, for the
+# where-do-they-live bullet.
+low_renters <- P$dist5 |>
+  filter(unit == "Households", tenure == "Renter", measure == "count", geo != REG, band %in% ami5_lv[1:3]) |>
+  summarise(n = sum(est), .by = geo) |>
+  mutate(share = n / sum(n))
+low_renters_city <- low_renters |> filter(geo == "Richmond city")
+
+# ---- Chart helper ----------------------------------------------------------
+# 100% stacked bars of one profile topic: income band on y, owners and renters
+# in two panels. `cols` is ordered like `lvls`; the fct_rev()/rev() pairing
+# follows the other pages so the first level sits at the left of each bar.
+prof_plot <- function(tp, lvls, cols) {
+  d <- P$profile |>
+    filter(topic == tp, ami5 != ALL_A, tenure %in% ten2) |>
+    mutate(
+      ami5 = factor(ami5, levels = rev(ami5_lv)),
+      tenure = factor(tenure, levels = ten2),
+      category = factor(category, levels = lvls)
+    )
+  ggplot(d, aes(x = est, y = ami5, fill = fct_rev(category))) +
+    geom_col(width = 0.72) +
+    facet_wrap(~tenure, nrow = 1) +
+    scale_x_continuous(labels = label_percent(accuracy = 1), breaks = c(0, 0.5, 1), expand = c(0, 0)) +
+    scale_fill_manual(values = rev(unname(cols))) +
+    theme_rva(legend.position = "bottom") +
+    theme(
+      strip.text = ggtext::element_markdown(face = "bold", hjust = 0),
+      panel.spacing.x = unit(2, "lines"), # keeps "100%" clear of the next panel's "0%"
+      plot.margin = margin(5.5, 14, 5.5, 5.5) # room for the right-hand "100%" label
+    ) +
+    guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+}
+
+# Both helpers open with "**Source:**"; relabel the second so the caption reads once.
+prof_cap <- function(...) {
+  paste(pums_cap(), sub("^\\*\\*Source:\\*\\* ", "Income limits: ", ami_cap()), ...)
+}
+```
+
+Households and residents of the Richmond area by income relative to area median income (AMI), and a profile of each income band for owners and renters. Everything here comes from the 2020-2024 ACS Public Use Microdata Sample (PUMS) — household-level survey records rather than the published tables the other pages use.
+
+::: callout-warning
+## This is the PUMS region, not the 17-locality region
+
+PUMS reports geography only as Public Use Microdata Areas (PUMAs). The nine PUMAs used here tile Richmond city, Henrico, and Chesterfield exactly, and add two mixed outer-ring areas (Goochland, Powhatan, and western Hanover; King William, New Kent, Charles City, and eastern Hanover). Petersburg, Hopewell, Colonial Heights, Dinwiddie, Prince George, Sussex, Amelia, and King & Queen are **not** included. Totals on this page (`r n_fmt(n_hh)` households, `r n_fmt(n_res)` residents) will therefore not match the other pages, which cover the 17 localities. For the three core localities, PUMS households are within 1% of the ACS published counts by tenure.
+:::
+
+::: callout-note
+## How the income bands are defined
+
+A household's band compares its income with the HUD FY2026 income limit for its size. The Richmond area's median family income is `r d_fmt(P$mfi)`; the 4-person limits are 30%, 50%, 80%, 100%, and 120% of that (@tbl-limits). PUMS incomes are inflated to 2026 dollars before the comparison, and the same Richmond-area limits are applied to all nine PUMAs. The **`r b1`** band includes `r n_fmt(zero_inc$est)` households (`r p_fmt(zero_inc$est / n_hh)`) with zero or negative income. Vacant units and group quarters are excluded.
+:::
+
+```{r}
+#| label: tbl-limits
+
+P$limits |>
+  filter(np <= 6) |>
+  transmute(
+    `Household size` = np,
+    `30% AMI` = d_fmt(ami_30),
+    `50% AMI` = d_fmt(ami_50),
+    `80% AMI` = d_fmt(ami_80),
+    `100% AMI` = d_fmt(ami_100),
+    `120% AMI` = d_fmt(ami_120)
+  ) |>
+  kbl(
+    align = "lrrrrr",
+    caption = paste0(
+      "Annual household income at each share of AMI, by household size, in 2026 dollars. ",
+      "Source: HUD FY2026 income limits; 100% and 120% derived from the published limits."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped"))
+```
+
+## Renters sit in the lower income bands, owners in the highest
+
+```{r}
+#| label: fig-dist
+#| fig-alt: "Stacked horizontal bar chart of the share of households in each of five AMI bands, for owner households, renter households, and all households in the nine-PUMA Richmond area. About 52 percent of owners earn above 120 percent of AMI, against about 20 percent of renters. Renters are spread fairly evenly across the bands, with about 22 percent at 30 percent of AMI or less and 60 percent at 80 percent of AMI or less."
+#| fig-height: 3.6
+
+dist_hh <- P$dist5 |>
+  filter(unit == "Households", geo == REG, measure == "share") |>
+  mutate(
+    tenure = factor(tenure, levels = rev(c(ten2, ALL_T))),
+    label = if_else(est >= 0.05, p_fmt(est, 1), ""),
+    ink = if_else(band %in% ami5_lv[4:5], "white", rva_ink[["primary"]])
+  )
+
+# Explicit group so the text layer stacks in the same order as the bars
+# (a color mapping on the text layer would otherwise change its grouping).
+ggplot(dist_hh, aes(x = est, y = tenure, fill = fct_rev(band), group = fct_rev(band))) +
+  geom_col(width = 0.72) +
+  geom_text(
+    aes(label = label, color = ink),
+    position = position_stack(vjust = 0.5), size = 3.1
+  ) +
+  scale_color_identity() +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = c(0, 0)) +
+  scale_fill_manual(values = rev(unname(rva_seq[c(1, 2, 4, 5, 7)]))) +
+  labs(
+    title = glue::glue(
+      "{p_fmt(le80('Renter'), 0.1)} of renters earn 80% of AMI or less, against {p_fmt(le80('Owner'), 0.1)} of owners"
+    ),
+    subtitle = "Share of households by income band, 2020-2024",
+    caption = prof_cap()
+  ) +
+  theme_rva(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 2, title = NULL, reverse = TRUE))
+```
+
+- Across the PUMS region, `r p_fmt(le80(ALL_T))` of the `r n_fmt(n_hh)` households earn 80% of AMI or less: `r p_fmt(le80("Owner"))` of owners and `r p_fmt(le80("Renter"))` of renters.
+- `r p_fmt(dist_est("Owner", b5))` of owner households earn more than 120% of AMI, against `r p_fmt(dist_est("Renter", b5))` of renters.
+- Renters are spread across the bands rather than concentrated in one: `r p_fmt(dist_est("Renter", b1))` are at 30% of AMI or less and `r p_fmt(dist_est("Renter", b3))` are in the 51-80% band.
+- Residents follow the same pattern: `r p_fmt(le80(ALL_T, unit = "Residents"))` of the `r n_fmt(n_res)` people in households live in a household at 80% of AMI or less.
+
+```{r}
+#| label: fig-counts
+#| fig-alt: "Stacked column chart of household counts in each of five AMI bands, split into owner and renter households. The above-120-percent band is by far the largest, at about 193 thousand households, mostly owners. The lower four bands each hold between about 48 and 94 thousand households, with renters making up a larger share of the lower bands than of the top one."
+#| fig-height: 4
+
+cnt <- P$band_counts |>
+  filter(unit == "Households", tenure %in% ten2, ami5 != ALL_A) |>
+  mutate(ami5 = factor(ami5, levels = ami5_lv), tenure = factor(tenure, levels = rev(ten2)))
+cnt_tot <- cnt |> summarise(est = sum(est), .by = ami5)
+
+ggplot(cnt, aes(x = ami5, y = est, fill = tenure)) +
+  geom_col(width = 0.72) +
+  geom_text(
+    data = cnt_tot, aes(label = n_fmt(est), fill = NULL), vjust = -0.5,
+    size = 3.1, color = rva_ink[["muted"]]
+  ) +
+  scale_x_discrete(labels = label_wrap(12)) +
+  scale_y_continuous(labels = label_comma(), expand = expansion(mult = c(0, 0.1))) +
+  scale_fill_manual(values = c(Owner = rva_pal[["blue"]], Renter = rva_pal[["orange"]])) +
+  labs(
+    title = "Renters outnumber owners only in the lowest income band",
+    subtitle = glue::glue(
+      "Households by band: <span style='color:{rva_pal[[\"blue\"]]}'>**owners**</span> and ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**renters**</span>"
+    ),
+    x = NULL, y = NULL,
+    caption = prof_cap()
+  ) +
+  theme_rva()
+```
+
+```{r}
+#| label: tbl-counts
+
+bc <- P$band_counts |>
+  mutate(ami5 = factor(ami5, levels = c(ami5_lv, ALL_A)))
+
+hh_wide <- bc |>
+  filter(unit == "Households") |>
+  mutate(txt = cell(n_fmt(est), reliability)) |>
+  select(ami5, tenure, txt) |>
+  pivot_wider(names_from = tenure, values_from = txt)
+
+res_col <- bc |>
+  filter(unit == "Residents", tenure == ALL_T) |>
+  transmute(ami5, Residents = cell(n_fmt(est), reliability))
+
+mix_col <- P$tenure_mix |>
+  filter(unit == "Households", tenure == "Renter") |>
+  transmute(ami5 = factor(ami5, levels = c(ami5_lv, ALL_A)), `Renter share` = cell(p_fmt(est, 1), reliability))
+
+hh_wide |>
+  left_join(res_col, by = join_by(ami5)) |>
+  left_join(mix_col, by = join_by(ami5)) |>
+  arrange(ami5) |>
+  transmute(
+    `Income band` = as.character(ami5),
+    Owners = Owner, Renters = Renter, `All households` = .data[[ALL_T]],
+    `Renter share`, Residents
+  ) |>
+  kbl(
+    align = "lrrrrr",
+    escape = FALSE,
+    caption = paste0(
+      "Households by AMI band and tenure, and residents by band, 2020-2024. Cells with a ",
+      "coefficient of variation above 30 are suppressed (—); * marks a medium-reliability ",
+      "estimate (CV 15-30). Source: ACS PUMS, HUD FY2026 income limits."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped")) |>
+  row_spec(nrow(hh_wide), bold = TRUE)
+```
+
+- Renters outnumber owners only in the `r b1` band, where they are `r p_fmt(renter_share(b1))` of households; the `r b2` band is nearly even (`r p_fmt(renter_share(b2))` renters).
+- Renters make up `r p_fmt(renter_share(b5))` of households above 120% of AMI, against `r p_fmt(renter_share(ALL_A))` of all households.
+- The largest single group is owner households above 120% of AMI (`r n_fmt(hh_count("Owner", b5))`). Renter households are far more evenly spread, from `r n_fmt(min(map_dbl(ami5_lv, \(b) hh_count("Renter", b))))` to `r n_fmt(max(map_dbl(ami5_lv, \(b) hh_count("Renter", b))))` in each band.
+
+## Richmond city has the highest share of lower-income households, but most lower-income renters live elsewhere
+
+```{r}
+#| label: fig-geo
+#| fig-alt: "Grouped bar chart of the share of households at or below 80 percent of AMI, by geography and tenure, for Richmond city, Henrico, Chesterfield, the two outer-ring PUMAs, and the whole PUMS region, with error bars. Richmond city is highest for owners, renters, and all households, at about 34, 64, and 51 percent. Chesterfield and the outer ring are lowest for owners, at about 26 percent, and the outer ring is lowest for all households at about 30 percent."
+#| fig-height: 4.2
+
+geo_levels <- c("Richmond city", "Henrico County", "Chesterfield County", "Outer-ring PUMAs", REG)
+
+geo_plot <- P$le80 |>
+  filter(unit == "Households") |>
+  mutate(
+    geo = factor(geo, levels = geo_levels),
+    tenure = factor(tenure, levels = c(ten2, ALL_T))
+  )
+
+ggplot(geo_plot, aes(x = geo, y = est, fill = tenure)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  geom_errorbar(
+    aes(ymin = pmax(est - moe90, 0), ymax = est + moe90),
+    position = position_dodge(width = 0.8), width = 0.25, color = rva_ink[["muted"]]
+  ) +
+  scale_x_discrete(labels = label_wrap(12)) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.08)), limits = c(0, NA)) +
+  scale_fill_manual(values = c(Owner = rva_pal[["blue"]], Renter = rva_pal[["orange"]], `All households` = rva_ink[["baseline"]])) +
+  labs(
+    title = "Richmond city is highest for owners and renters alike",
+    subtitle = glue::glue(
+      "Households at 80% of AMI or less: <span style='color:{rva_pal[[\"blue\"]]}'>**owners**</span>, ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**renters**</span>, all"
+    ),
+    x = NULL, y = NULL,
+    caption = prof_cap("Error bars are 90% margins of error.")
+  ) +
+  theme_rva()
+```
+
+- `r p_fmt(le80(ALL_T, "Richmond city"))` of Richmond city households earn 80% of AMI or less, against `r p_fmt(le80(ALL_T, "Henrico County"))` in Henrico, `r p_fmt(le80(ALL_T, "Chesterfield County"))` in Chesterfield, and `r p_fmt(le80(ALL_T, "Outer-ring PUMAs"))` in the outer-ring PUMAs.
+- The city's lead holds within each tenure: `r p_fmt(le80("Renter", "Richmond city"))` of its renters and `r p_fmt(le80("Owner", "Richmond city"))` of its owners are at 80% of AMI or less.
+- Renters at 80% of AMI or less number `r n_fmt(sum(low_renters$n))` across the PUMS region, and only `r p_fmt(low_renters_city$share)` of them live in Richmond city — the rest are in the suburbs and outer ring.
+- Outer-ring estimates carry wider margins of error (see the error bars); they pool two PUMAs that each cover several localities.
+
+## Cost burden falls steeply with income, and low-income renters carry the most
+
+```{r}
+#| label: fig-burden
+#| fig-alt: "Two-panel stacked horizontal bar chart of housing cost burden by AMI band, for owners and renters. Among households at 30 percent of AMI or less, about 64 percent of owners and 80 percent of renters pay half or more of income on housing. The share cost-burdened falls with each higher band, to about 2 to 3 percent above 120 percent of AMI."
+#| fig-height: 4
+
+burden_lv <- c("Not cost-burdened", "Cost-burdened (30-49%)", "Severely cost-burdened (50%+)")
+prof_plot("Cost burden", burden_lv, rva_seq[c(2, 4, 7)]) +
+  labs(
+    title = glue::glue(
+      "{p_fmt(bsev(b1, 'Renter'), 0.1)} of the lowest-income renters pay half their income on housing"
+    ),
+    subtitle = "Share of households by cost burden, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap("Excludes households with zero or negative income, and owners and renters with no housing cost.")
+  )
+```
+
+- Among households at 30% of AMI or less, `r p_fmt(bsev(b1, "Renter"), 0.1)` of renters and `r p_fmt(bsev(b1, "Owner"), 0.1)` of owners pay half or more of income on housing.
+- Burden falls with each band: renters go from `r p_fmt(b30(b1, "Renter"))` cost-burdened (30%+) in the lowest band to `r p_fmt(b30(b3, "Renter"))` at 51-80% of AMI and `r p_fmt(b30(b5, "Renter"))` above 120%; owners go from `r p_fmt(b30(b1, "Owner"))` to `r p_fmt(b30(b3, "Owner"))` to `r p_fmt(b30(b5, "Owner"))`.
+- The renter-owner gap is widest at 31-50% of AMI, where `r p_fmt(b30(b2, "Renter"))` of renters are cost-burdened against `r p_fmt(b30(b2, "Owner"))` of owners (`r pt_fmt(b30(b2, "Renter") - b30(b2, "Owner"))`); by 81-120% of AMI the two are within `r pt_fmt(b30(b4, "Renter") - b30(b4, "Owner"))`.
+- Owner costs include mortgage, taxes, insurance, and utilities; renter costs are gross rent.
+
+## Household makeup shifts from people living alone to couples as income rises
+
+```{r}
+#| label: fig-hhtype
+#| fig-alt: "Two-panel stacked horizontal bar chart of household type by AMI band, for owners and renters. Living alone is the largest household type among the lowest-income households, at about 59 percent of renters at 30 percent of AMI or less. Couples with and without children make up most households in the higher bands, especially among owners."
+#| fig-height: 4.2
+
+hhtype_lv <- c("Living alone", "Couple, no children", "Couple with children", "Single parent", "Other (relatives or roommates)")
+prof_plot("Household type", hhtype_lv, rva_pal[1:5]) +
+  labs(
+    title = glue::glue(
+      "{p_fmt(pr('Household type', 'Living alone', b1, 'Renter'), 0.1)} of the lowest-income renters live alone"
+    ),
+    subtitle = "Share of households by type, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap()
+  )
+```
+
+- Living alone is the most common household type in the lowest band for both tenures: `r p_fmt(pr("Household type", "Living alone", b1, "Renter"))` of renters and `r p_fmt(pr("Household type", "Living alone", b1, "Owner"))` of owners.
+- Single-parent households are `r p_fmt(pr("Household type", "Single parent", b1, "Renter"))` of renters at 30% of AMI or less, against `r p_fmt(pr("Household type", "Single parent", b5, "Renter"))` above 120%.
+- Couples with children are `r p_fmt(pr("Household type", "Couple with children", b5, "Owner"))` of owners above 120% of AMI and `r p_fmt(pr("Household type", "Couple with children", b1, "Owner"))` of owners at 30% or less.
+
+```{r}
+#| label: fig-earners
+#| fig-alt: "Two-panel stacked horizontal bar chart of the number of earners per household by AMI band, for owners and renters. The share of households with no earner is highest in the lowest bands, especially among owners, many of whom are retired. Two-earner households dominate the highest bands in both tenures."
+#| fig-height: 4
+
+earn_lv <- c("No earners", "1 earner", "2+ earners")
+prof_plot("Earners", earn_lv, rva_seq[c(1, 4, 7)]) +
+  labs(
+    title = glue::glue(
+      "{p_fmt(pr('Earners', 'No earners', b1, 'Owner'), 0.1)} of the lowest-income owners have no earner"
+    ),
+    subtitle = "Share of households by number of earners, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap("An earner has $5,000 or more in wages and self-employment income, in 2026 dollars.")
+  )
+```
+
+- No household member earns $5,000 or more in `r p_fmt(pr("Earners", "No earners", b1, "Owner"))` of owners and `r p_fmt(pr("Earners", "No earners", b1, "Renter"))` of renters at 30% of AMI or less.
+- At the other end, `r p_fmt(pr("Earners", "2+ earners", b5, "Owner"))` of owners and `r p_fmt(pr("Earners", "2+ earners", b5, "Renter"))` of renters above 120% of AMI have two or more earners.
+- Most renters at 31-50% of AMI (`r p_fmt(pr("Earners", "1 earner", b2, "Renter"))`) have exactly one earner.
+- `r p_fmt(pr("Disability", "Member with a disability", b1, "Renter"))` of renter households and `r p_fmt(pr("Disability", "Member with a disability", b1, "Owner"))` of owner households at 30% of AMI or less include a member with a disability, against `r p_fmt(pr("Disability", "Member with a disability", b5, "Renter"))` and `r p_fmt(pr("Disability", "Member with a disability", b5, "Owner"))` above 120%.
+
+## Owners in the lowest bands are older; renters are younger at every income level
+
+```{r}
+#| label: fig-hhage
+#| fig-alt: "Two-panel stacked horizontal bar chart of householder age by AMI band, for owners and renters. Among owners, the share aged 65 and over is largest in the lowest band, at more than half, and falls with income. Among renters, householders under 35 are the largest group in the 51 to 80 and 81 to 120 percent bands."
+#| fig-height: 4
+
+age_lv <- c("Under 35", "35-54", "55-64", "65 and over")
+prof_plot("Householder age", age_lv, rva_seq[c(2, 4, 5, 7)]) +
+  labs(
+    title = glue::glue(
+      "Median owner householder age falls from {md('Householder age', b1, 'Owner')} to {md('Householder age', b5, 'Owner')} as income rises"
+    ),
+    subtitle = "Share of households by householder age, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap()
+  )
+```
+
+- The median householder is `r md("Householder age", b1, "Owner")` for owners at 30% of AMI or less and `r md("Householder age", b5, "Owner")` above 120%; for renters the medians are `r md("Householder age", b1, "Renter")` and `r md("Householder age", b5, "Renter")`.
+- `r p_fmt(pr("Householder age", "65 and over", b1, "Owner"))` of the lowest-income owners are 65 or over — typically a retired homeowner on a fixed income.
+- Renters aged under 35 are `r p_fmt(pr("Householder age", "Under 35", b3, "Renter"))` of the 51-80% band and `r p_fmt(pr("Householder age", "Under 35", b4, "Renter"))` of the 81-120% band.
+
+```{r}
+#| label: fig-race
+#| fig-alt: "Two-panel stacked horizontal bar chart of householder race and ethnicity by AMI band, for owners and renters. White non-Hispanic householders are the largest group in every band except the two lowest renter bands, where Black householders are. The White share rises steadily with income among owners and renters alike, and Black householders are a much larger share of the lower bands, particularly among renters."
+#| fig-height: 4.4
+
+race_lv <- c("White non-Hispanic", "Black", "Hispanic or Latino", "Asian", "Another race or multiracial")
+prof_plot("Householder race and ethnicity", race_lv, rva_pal[1:5]) +
+  labs(
+    title = glue::glue(
+      "Black householders are {p_fmt(pr('Householder race and ethnicity', 'Black', b1, 'Renter'), 0.1)} of renters at 30% of AMI or less"
+    ),
+    subtitle = "Share of households by householder race, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap("Householder is the reference person on the survey.")
+  )
+```
+
+- Black householders are `r p_fmt(pr("Householder race and ethnicity", "Black", b1, "Renter"))` of renters at 30% of AMI or less and `r p_fmt(pr("Householder race and ethnicity", "Black", b5, "Renter"))` of renters above 120%.
+- Among owners the same gradient runs from `r p_fmt(pr("Householder race and ethnicity", "Black", b1, "Owner"))` at 30% or less to `r p_fmt(pr("Householder race and ethnicity", "Black", b5, "Owner"))` above 120%.
+- White non-Hispanic householders are `r p_fmt(pr("Householder race and ethnicity", "White non-Hispanic", b5, "Owner"))` of owners above 120% of AMI.
+- Hispanic or Latino householders are `r p_fmt(pr("Householder race and ethnicity", "Hispanic or Latino", b2, "Renter"))` of renters at 31-50% of AMI, their largest share among renter bands.
+
+```{r}
+#| label: fig-structure
+#| fig-alt: "Two-panel stacked horizontal bar chart of housing structure type by AMI band, for owners and renters. Owners live overwhelmingly in single-family detached homes in every band. Renters in the lowest bands are concentrated in buildings of 10 or more units and in small multifamily buildings, and single-family homes grow as a share of renters' housing in the higher bands."
+#| fig-height: 4.4
+
+struct_lv <- c("Single-family detached", "Single-family attached", "2-9 units", "10+ units", "Mobile home or other")
+prof_plot("Structure type", struct_lv, rva_pal[1:5]) +
+  labs(
+    title = glue::glue(
+      "{p_fmt(pr_sum('Structure type', c('2-9 units', '10+ units'), b1, 'Renter'), 0.1)} of the lowest-income renters live in multifamily buildings"
+    ),
+    subtitle = "Share of households by structure type, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap()
+  )
+```
+
+- Single-family detached homes house `r p_fmt(pr("Structure type", "Single-family detached", b1, "Owner"))` of owners at 30% of AMI or less and `r p_fmt(pr("Structure type", "Single-family detached", b5, "Owner"))` of owners above 120%.
+- Renters at 30% of AMI or less live in buildings of 2 or more units at a rate of `r p_fmt(pr_sum("Structure type", c("2-9 units", "10+ units"), b1, "Renter"))`; above 120% the share is `r p_fmt(pr_sum("Structure type", c("2-9 units", "10+ units"), b5, "Renter"))`.
+- `r p_fmt(pr_sum("Structure type", c("Single-family detached", "Single-family attached"), b5, "Renter"))` of renters above 120% of AMI live in single-family homes, against `r p_fmt(pr_sum("Structure type", c("Single-family detached", "Single-family attached"), b1, "Renter"))` of renters at 30% or less.
+
+## Residents: children are most common in the lowest-income renter households, older adults in the lowest-income owner households
+
+```{r}
+#| label: fig-resage
+#| fig-alt: "Two-panel stacked horizontal bar chart of resident age by AMI band of the household, for people in owner and renter households. Children under 18 are about a third of residents in the lowest-income renter households, well above their roughly 20 percent share in owner households of every band. People aged 65 and over are the largest age group among residents of the lowest-income owner households."
+#| fig-height: 4
+
+resage_lv <- c("Under 18", "18-34", "35-64", "65 and over")
+prof_plot("Resident age", resage_lv, rva_seq[c(2, 4, 5, 7)]) +
+  labs(
+    title = glue::glue(
+      "Children are {p_fmt(pr('Resident age', 'Under 18', b1, 'Renter'), 0.1)} of residents of the lowest-income renter households"
+    ),
+    subtitle = "Share of residents by age, 2020-2024",
+    x = NULL, y = NULL,
+    caption = prof_cap("Residents take the AMI band and tenure of their household.")
+  )
+```
+
+- Children under 18 are `r p_fmt(pr("Resident age", "Under 18", b1, "Renter"))` of residents in renter households at 30% of AMI or less and `r p_fmt(pr("Resident age", "Under 18", b1, "Owner"))` in owner households of that band.
+- People 65 and over are `r p_fmt(pr("Resident age", "65 and over", b1, "Owner"))` of residents in the lowest-income owner households, against `r p_fmt(pr("Resident age", "65 and over", b5, "Owner"))` above 120% of AMI.
+- `r p_fmt(pr("Resident disability", "With a disability", b1, "Renter"))` of residents in renter households at 30% of AMI or less have a disability, against `r p_fmt(pr("Resident disability", "With a disability", b5, "Renter"))` above 120%.
+
+```{r}
+#| label: fig-edu-emp
+#| fig-alt: "Two-panel horizontal bar chart of the share of adults 25 and over with a bachelor's degree or higher, and the share of people 16 and over who are employed, by AMI band, for people in owner and renter households. Both shares rise with income, with one small exception: owners' degree attainment is slightly lower at 31 to 50 percent of AMI than at 30 percent or less. Degree attainment is highest above 120 percent of AMI, at about 61 percent of owners' adults and 55 percent of renters'."
+#| fig-height: 4
+
+edu_emp <- P$profile |>
+  filter(
+    (topic == "Education (25 and over)" & category == "Bachelor's or higher") |
+      (topic == "Employment (16 and over)" & category == "Employed"),
+    ami5 != ALL_A, tenure %in% ten2
+  ) |>
+  mutate(
+    measure = if_else(topic == "Employment (16 and over)", "Employed (16+)", "Bachelor's or higher (25+)"),
+    ami5 = factor(ami5, levels = rev(ami5_lv)),
+    tenure = factor(tenure, levels = ten2)
+  )
+
+ggplot(edu_emp, aes(x = est, y = ami5, fill = tenure)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.72) +
+  facet_wrap(~measure, nrow = 1) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), breaks = c(0, 0.5, 1), limits = c(0, 1), expand = c(0, 0)) +
+  scale_fill_manual(values = c(Owner = rva_pal[["blue"]], Renter = rva_pal[["orange"]])) +
+  labs(
+    title = "Education and employment rise with income, for owners and renters",
+    subtitle = glue::glue(
+      "Share of residents: <span style='color:{rva_pal[[\"blue\"]]}'>**owner**</span> and ",
+      "<span style='color:{rva_pal[[\"orange\"]]}'>**renter**</span> households"
+    ),
+    x = NULL, y = NULL,
+    caption = prof_cap()
+  ) +
+  theme_rva() +
+  theme(
+    strip.text = ggtext::element_markdown(face = "bold", hjust = 0),
+    panel.spacing.x = unit(2, "lines"),
+    plot.margin = margin(5.5, 14, 5.5, 5.5)
+  )
+```
+
+- Among adults 25 and over, `r p_fmt(pr("Education (25 and over)", "Bachelor's or higher", b1, "Renter"))` of residents of the lowest-income renter households hold a bachelor's degree or higher, against `r p_fmt(pr("Education (25 and over)", "Bachelor's or higher", b5, "Renter"))` above 120% of AMI.
+- `r p_fmt(pr("Employment (16 and over)", "Employed", b1, "Owner"))` of people 16 and over in the lowest-income owner households are employed — low because so many householders are 65 or over — against `r p_fmt(pr("Employment (16 and over)", "Employed", b1, "Renter"))` in the lowest-income renter households.
+- Above 120% of AMI, `r p_fmt(pr("Employment (16 and over)", "Employed", b5, "Owner"))` of owner-household residents 16 and over are employed.
+
+## Each band by tenure, side by side
+
+```{r}
+#| label: tbl-profile
+
+prof_med <- P$medians |>
+  mutate(measure = recode_values(
+    measure,
+    "Household income" ~ "inc", "Monthly housing cost" ~ "cost", "Householder age" ~ "age"
+  )) |>
+  filter(tenure %in% ten2, ami5 != ALL_A) |>
+  select(tenure, ami5, measure, est, reliability) |>
+  pivot_wider(names_from = measure, values_from = c(est, reliability))
+
+prof_bur <- P$profile |>
+  filter(topic == "Cost burden", tenure %in% ten2, ami5 != ALL_A) |>
+  summarise(
+    b30 = sum(est[category != "Not cost-burdened"]),
+    b30_rel = rel_worst(reliability[category == "Cost-burdened (30-49%)"], reliability[category == "Severely cost-burdened (50%+)"]),
+    sev = est[category == "Severely cost-burdened (50%+)"],
+    sev_rel = reliability[category == "Severely cost-burdened (50%+)"],
+    .by = c(tenure, ami5)
+  )
+
+P$band_counts |>
+  filter(unit == "Households", tenure %in% ten2, ami5 != ALL_A) |>
+  select(tenure, ami5, hh = est, hh_rel = reliability) |>
+  left_join(prof_med, by = join_by(tenure, ami5)) |>
+  left_join(prof_bur, by = join_by(tenure, ami5)) |>
+  mutate(
+    tenure = factor(tenure, levels = ten2),
+    ami5 = factor(ami5, levels = ami5_lv)
+  ) |>
+  arrange(tenure, ami5) |>
+  transmute(
+    Tenure = as.character(tenure),
+    `Income band` = as.character(ami5),
+    Households = cell(n_fmt(hh), hh_rel),
+    `Median income` = cell(d_fmt(est_inc), reliability_inc),
+    `Median housing cost` = cell(d_fmt(est_cost), reliability_cost),
+    `Median age` = cell(sprintf("%.0f", est_age), reliability_age),
+    `Cost-burdened (30%+)` = cell(p_fmt(b30, 1), b30_rel),
+    `Severely (50%+)` = cell(p_fmt(sev, 1), sev_rel)
+  ) |>
+  kbl(
+    align = "llrrrrrr",
+    escape = FALSE,
+    caption = paste0(
+      "Profile of each AMI band by tenure, 2020-2024. Incomes and housing costs in 2026 dollars; ",
+      "housing cost is monthly owner costs or gross rent among households that pay one; median age is the householder's. ",
+      "Burden shares exclude households with zero or negative income. Cells with a coefficient of ",
+      "variation above 30 are suppressed (—); * marks a medium-reliability estimate (CV 15-30). ",
+      "Source: ACS PUMS, HUD FY2026 income limits."
+    )
+  ) |>
+  kable_styling(c("condensed", "striped")) |>
+  collapse_rows(columns = 1, valign = "top")
+```
+
+- Median household income runs from `r d_fmt(md("Household income", b1, "Renter"))` for renters at 30% of AMI or less to `r d_fmt(md("Household income", b5, "Renter"))` above 120%; for owners from `r d_fmt(md("Household income", b1, "Owner"))` to `r d_fmt(md("Household income", b5, "Owner"))`.
+- Median monthly housing cost for renters rises only from `r d_fmt(md("Monthly housing cost", b1, "Renter"))` to `r d_fmt(md("Monthly housing cost", b5, "Renter"))` across the same bands, which is why burden falls so steeply.
+- Lowest-income owners pay a median of `r d_fmt(md("Monthly housing cost", b1, "Owner"))` a month, a figure that includes owners with no mortgage.
+
+::: callout-warning
+## Reliability of the profile cells
+
+Counts and medians in every band are high-reliability. Shares are noisier where a category is small: of the `r n_cells` category-by-band-by-tenure shares estimated, `r n_med` are medium-reliability (CV 15-30) and `r n_low` are low-reliability (CV above 30). All of them are small categories — none exceeds `r p_fmt(max(flagged$est), 0.1)` of a band, and the low-reliability ones are under `r p_fmt(max(flagged$est[flagged$reliability == "Low"]), 0.1)` (for example, severely cost-burdened households above 120% of AMI). Tables suppress low-reliability cells (—) and mark medium ones (*); the stacked bars show every estimate, and a very thin segment should not be read as a precise number. Standard errors come from the 80 Census replicate weights.
+:::
+
+::: callout-tip
+## What this page shows
+
+- **Who is lower-income:** `r p_fmt(le80(ALL_T))` of households — `r p_fmt(le80("Renter"))` of renters and `r p_fmt(le80("Owner"))` of owners — earn 80% of AMI or less.
+- **Where:** Richmond city has the highest share (`r p_fmt(le80(ALL_T, "Richmond city"))`), but only `r p_fmt(low_renters_city$share)` of lower-income renters live there — most are in the suburbs and outer ring.
+- **Burden:** `r p_fmt(bsev(b1, "Renter"))` of renters at 30% of AMI or less pay half or more of income on housing; above 120% of AMI, `r p_fmt(b30(b5, "Renter"))` are cost-burdened.
+- **Makeup:** the lowest bands are mostly people living alone (`r p_fmt(pr("Household type", "Living alone", b1, "Renter"))` of renters), older owners, and Black householders (`r p_fmt(pr("Householder race and ethnicity", "Black", b1, "Renter"))` of renters); above 120% of AMI, `r p_fmt(pr_sum("Household type", c("Couple, no children", "Couple with children"), b5, "Owner"))` of owners and `r p_fmt(pr_sum("Household type", c("Couple, no children", "Couple with children"), b5, "Renter"))` of renters are couples.
+- **Caveat:** the PUMS region is nine PUMAs, not the 17 localities used on the other pages.
+:::

@@ -2,6 +2,34 @@
 
 Append-only. Newest entry first.
 
+
+---
+
+## 2026-10-30 (later) — PUMS scripts re-verified after user fixes
+
+**What changed:** The user added `r/pums/naics_soc_lookup.R`, `data-out/puma_pow.csv`, and reworked `pums_prep.R` (now reads lookups from `data/`, writes `data/pums_rva.rds`). Re-ran `rva_puma.R`, `pums_prep.R`, `pums_profiles.R`: all exit 0. `pums_rva.rds` has 48,802 persons x 215 columns, no all-NA columns. `pums_profiles.rds` is identical (`all.equal`) to the version the pages were built on, so no re-render. Fixed a stale path comment in `pums_prep.R`; TODO and METHODOLOGY no longer call it unrunnable.
+
+**Left open:** `pums_prep.R` has no header block and nothing reads its output; `inventory.qmd` permit wording error; `data-notes.qmd` PUMS section. `renv.lock` was modified outside this work and is not in the commit.
+
+---
+
+## 2026-10-30 — `summary.qmd`, then PUMS `profiles.qmd` (ralph loop) and the summary's income-band section
+
+**What changed:** Added `summary.qmd` (executive summary: at-a-glance table, one section per page, "what to watch" box; every number computed from the page `.rds` files). Then, at the user's request, a PUMS profile pipeline and page: `r/pums/pums_profiles.R` → `data/pums_profiles.rds` (+ two CSVs), `profiles.qmd` (households and residents by AMI band; each band profiled by owner/renter: household type, size, householder age and race, earners, disability, structure, cost burden, resident age/education/employment, medians), a "Lower-income renters carry the cost burden" section and sixth watch item in `summary.qmd`, and navbar entries for both pages. Updated METHODOLOGY.md (PUMS is now in use) and CLAUDE.md (PUMA sets, repo map).
+
+**Design decisions:** The user's `r/pums/` scripts left no profile-ready dataset — `pums_prep.R` writes to `data-in/pums/` and needs lookups that don't exist — so `pums_profiles.R` builds from `pums_raw`/`pums_wgt`/`rva_ami_pums` directly. Profiles use five bands (≤30, 31–50, 51–80, 81–120, >120% AMI; zero/negative income folded into the first) because 8 bands × 2 tenures leave thin cells; the 8-band distribution is kept in `ami_dist`. SEs use the 80 replicate weights, computed in the script so the page never touches them. Vacant/group-quarters rows (`TEN == "b"`, 2,516) are excluded — their income is missing and would otherwise land in "121%+".
+
+**Data surprises:**
+
+- **Geography is not `rr`.** The nine PUMAs cover 465,726 households / 1,140,000 residents; southern localities are out and two PUMAs mix localities. Called out at the top of the page and in the summary. Benchmark vs. ACS B25003 for the core-3 PUMAs (same 2020–2024 window): owners +0.35%, renters −0.59%.
+- **38.4% of households are at or below 80% AMI** — 59.8% of renters, 28.2% of owners. Richmond city is 50.9%, but only 41.7% of the region's ≤80% AMI renter households live there.
+- **Burden is steep and tenure-split:** 80.3% of ≤30% AMI renters pay half or more of income on housing (owners: 64.4%); the renter–owner gap in 30%+ burden is widest at 31–50% AMI (87.0% vs 54.7%) and closes by 81–120% (16.9% vs 15.2%).
+- **Reliability:** counts and medians are all High; of 460 band × tenure shares, 50 are Medium and 9 Low, all small categories (<9.8% of a band; Low <2.5%).
+- **Inventory page error found:** its "peak … 76% collapse" line treats 2022's 10,414 (the series high) as the pre-crash peak (~8,400 in 2005). Not fixed (out of scope); logged in TODO. The summary words permits as "bottomed in 2011, series high in 2022".
+- **Bugs caught before they shipped:** I had written several alt-text and bullet claims ahead of the numbers and checked them afterward; seven were wrong (e.g. "57% of owners above 120% AMI" is 51.6%; "renters outnumber owners at 51–80%" is 42.6%; "White largest group in every band" fails for the two lowest renter bands; Hispanic renter share peaks at 31–50%, not 51–80%). `geom_text` + `position_stack` labels stacked in the wrong order until an explicit `group` was set; "100%" collided with the next panel's "0%" until `panel.spacing.x` was widened. `p_fmt(x, 0)` NA gotcha hit again in `summary.qmd` (second argument is accuracy).
+
+**Left open:** see TODO "Phase 4b" — inventory.qmd permit wording, dead `pums_prep.R`, `r/pums` script anatomy and hardcoded HUD path/CPI factor, `data-notes.qmd` PUMS section, optional PUMA choropleth. `market.qmd`'s provisional H2s/`fig-alt` and the unrun `bls_wage.R` are untouched. Nothing committed; `r/pums/`, `profiles.qmd`, `summary.qmd`, and `data-out/pums_*.csv` are untracked.
+
 ---
 
 ## 2026-10-28 — `r/pep_migration.R` and a migration section on the demographics page
