@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>todo – rva-sourcebook</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">rva-sourcebook</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./summary.html"> 
+<span class="menu-text">Summary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./inventory.html"> 
+<span class="menu-text">Inventory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./demographics.html"> 
+<span class="menu-text">Demographics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./market.html"> 
+<span class="menu-text">Market</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data-notes.html"> 
+<span class="menu-text">Data Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#todo.md-punch-list" id="toc-todo.md-punch-list" class="nav-link active" data-scroll-target="#todo.md-punch-list">TODO.md — punch list</a>
+  <ul class="collapse">
+  <li><a href="#session-0-repo-cleanup-2026-09-15" id="toc-session-0-repo-cleanup-2026-09-15" class="nav-link" data-scroll-target="#session-0-repo-cleanup-2026-09-15">Session 0 — repo cleanup (2026-09-15)</a></li>
+  <li><a href="#phase-1-foundations" id="toc-phase-1-foundations" class="nav-link" data-scroll-target="#phase-1-foundations">Phase 1 — foundations</a></li>
+  <li><a href="#phase-2-inventory-page" id="toc-phase-2-inventory-page" class="nav-link" data-scroll-target="#phase-2-inventory-page">Phase 2 — inventory page</a></li>
+  <li><a href="#phase-3-demographics-page" id="toc-phase-3-demographics-page" class="nav-link" data-scroll-target="#phase-3-demographics-page">Phase 3 — demographics page</a></li>
+  <li><a href="#phase-4-market-page" id="toc-phase-4-market-page" class="nav-link" data-scroll-target="#phase-4-market-page">Phase 4 — market page</a></li>
+  <li><a href="#phase-5-interactive-maps" id="toc-phase-5-interactive-maps" class="nav-link" data-scroll-target="#phase-5-interactive-maps">Phase 5 — interactive maps</a></li>
+  <li><a href="#phase-6-polish-publish" id="toc-phase-6-polish-publish" class="nav-link" data-scroll-target="#phase-6-polish-publish">Phase 6 — polish &amp; publish</a></li>
+  <li><a href="#surfaced-during-phase-2-not-blocking" id="toc-surfaced-during-phase-2-not-blocking" class="nav-link" data-scroll-target="#surfaced-during-phase-2-not-blocking">Surfaced during Phase 2 — not blocking</a></li>
+  <li><a href="#future-not-in-scope-right-now" id="toc-future-not-in-scope-right-now" class="nav-link" data-scroll-target="#future-not-in-scope-right-now">Future — not in scope right now</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="todo.md-punch-list" class="level1">
+<h1>TODO.md — punch list</h1>
+<p><strong>Always check TODO.md before starting work.</strong> Update it as tasks land (<code>[x]</code>), start (<code>[~]</code>), or get skipped (<code>[-]</code>). See <a href="./LOG.html">LOG.md</a> for the history behind any line, <a href="./METHODOLOGY.html">METHODOLOGY.md</a> for the data/scope rules, and <a href="./PLAN.html">PLAN.md</a> for the full phased build order.</p>
+<section id="session-0-repo-cleanup-2026-09-15" class="level2">
+<h2 class="anchored" data-anchor-id="session-0-repo-cleanup-2026-09-15">Session 0 — repo cleanup (2026-09-15)</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Remove the nested <code>rva-sourcebook/</code> duplicate subfolder (superseded by root files).</label></li>
+<li><label><input type="checkbox" checked="">Remove stale generic scaffold: <code>rva-sourcebook.qmd</code>, <code>app.R</code>, <code>_site/</code>.</label></li>
+<li><label><input type="checkbox" checked="">Rewrite <code>PLAN.md</code> — was a Fauquier County/Better Housing Coalition plan for an unrelated engagement.</label></li>
+<li><label><input type="checkbox" checked="">Rewrite <code>CLAUDE.md</code> — fix geography section (<code>rr</code>/<code>bhc</code>/<code>secondary</code>/<code>ashland</code>/<code>regions</code>, not <code>pha</code>/4-primary), switch book → website language, drop PHA/BHC client-review conventions, add <code>mapgl</code> section, trim “Known gotchas” to what’s real.</label></li>
+<li><label><input type="checkbox" checked="">Reset this file to a real, accurate punch list.</label></li>
+<li><label><input type="checkbox" checked="">Write <code>README.md</code> (quick start, renv guide, status).</label></li>
+<li><label><input type="checkbox" checked="">Write <code>METHODOLOGY.md</code> (geography/scope conventions, referenced by CLAUDE.md but never written).</label></li>
+<li><label><input type="checkbox" checked="">Reconcile <code>_quarto.yml</code> — real navbar (Home/About/Inventory/Demographics/Market/Data Notes), <code>output-dir: docs</code>, <code>freeze: auto</code>, <code>execute-dir: project</code>. Added stub content to <code>inventory.qmd</code>/<code>demographics.qmd</code>/<code>market.qmd</code>/<code>data-notes.qmd</code>/<code>index.qmd</code>/<code>about.qmd</code> so the site renders end-to-end even before real data lands.</label></li>
+<li><label><input type="checkbox" checked="">First <code>LOG.md</code> entry for this session.</label></li>
+<li><label><input type="checkbox" checked="">Commit the cleanup (including removing the leftover <code>rva-sourcebook/</code> folder that survived the first pass).</label></li>
+</ul>
+</section>
+<section id="phase-1-foundations" class="level2">
+<h2 class="anchored" data-anchor-id="phase-1-foundations">Phase 1 — foundations</h2>
+<ul>
+<li><p><label><input type="checkbox" checked=""><code>renv::init()</code> + <code>renv::snapshot()</code> — <strong>user runs</strong>, package installs are a long job. Pin R + tidyverse/tidycensus/tigris/sf/mapgl/kableExtra/ggtext/formattable/janitor.</label></p></li>
+<li><p><label><input type="checkbox" checked="">Add <code>.Rprofile</code> (<code>source("renv/activate.R")</code>) once renv exists.</label></p></li>
+<li><p><label><input type="checkbox" checked="">Define a palette + light theme in <code>_common.R</code> — <code>rva_pal</code> (8-hue categorical), <code>rva_seq</code> (sequential blue ramp), <code>rva_ink</code> (chart chrome), <code>theme_rva()</code>. Values from the dataviz skill’s validated reference palette.</label></p></li>
+<li><p><label><input type="checkbox" checked="">Decide the <code>mapgl</code> basemap style — <code>rva_map_style</code> in <code>_common.R</code>, Carto’s free Positron MapLibre style, no token.</label></p></li>
+<li><p><label><input type="checkbox" checked=""><code>r/geo.R</code> written — tigris county/independent-city boundaries for the <code>rr</code> region → <code>data/geo.rds</code> + <code>data-out/geo.csv</code>.</label></p></li>
+<li><p><label><input type="checkbox" checked=""><strong>Run <code>Rscript r/geo.R</code></strong> — user runs (tigris pull is a long job). Confirms <code>data/geo.rds</code> writes clean and the validation block passes (17 localities, valid geometry, EPSG:4326). Verified 2026-09-16: <code>data/geo.rds</code> is an <code>sf</code> frame, 17 rows, all <code>rr</code> GEOIDs, EPSG:4326, zero empty geometries.</label></p></li>
+<li><p><label><input type="checkbox" checked="">Confirm <code>CENSUS_API_KEY</code> is visible (<code>Sys.getenv("CENSUS_API_KEY") != ""</code>) — TRUE/FALSE check only, never print the value. Not needed by <code>geo.R</code> (tigris doesn’t require a key) but will be for every ACS script from Phase 2 on. Verified TRUE 2026-09-16 via the <code>.Renviron</code> fallback.</label></p></li>
+<li><p>[-] Once <code>mapgl</code> is in <code>renv.lock</code>, build one small proof-of-concept map (e.g.&nbsp;<code>rr</code> region colored by <code>aland</code>) to confirm <code>rva_map_style</code> + <code>data/geo.rds</code> actually render before wiring real data into it. <strong>Blocked:</strong> <code>mapgl</code> is not in <code>renv.lock</code> — needs a user-run <code>renv::install("mapgl")</code> + <code>renv::snapshot()</code>.</p></li>
+<li><p><label><input type="checkbox"><code>r/acs_tenure.R</code>’s header comment (lines 18–21) still says “8 <code>rr</code> localities” / “4 primary localities” / <code>region4</code> — doesn’t match <code>_common.R</code> (<code>rr</code>=17, <code>bhc</code>=3) or the script’s own <code>region3</code> pooling. Sibling-project debris missed in the 2026-09-15 cleanup; reconcile the comment (and sanity-check no other <code>r/*.R</code> header has the same mismatch).</label></p></li>
+</ul>
+</section>
+<section id="phase-2-inventory-page" class="level2">
+<h2 class="anchored" data-anchor-id="phase-2-inventory-page">Phase 2 — inventory page</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked=""><code>r/acs_stock.R</code> — ACS B25001 (units), B25002/B25004 (occupancy/vacancy), B25024 (structure type), B25034–36 (year built). Ran clean; validation passes. <strong>B25036 dropped from scope</strong> — not published in the 2014 window, which would break the three-window trend (recorded in METHODOLOGY.md). B25035 is pulled but carries no pooled rows, since a median can’t be summed.</label></li>
+<li><label><input type="checkbox" checked="">BPS building permits (census.gov text files) — annual permits by structure type for the <code>rr</code> region. <code>r/bps_permits.R</code>, 2000–2025, cached under <code>data/cache/bps/</code>. Ran clean; the <code>rr17</code> pooled row reconciles to its 17 members in all 26 years.</label></li>
+<li><label><input type="checkbox" checked="">Build out <code>inventory.qmd</code> (currently an empty stub). 6 figures, 3 tables, takeaway H2s, bullets, callouts; renders standalone in ~10s.</label></li>
+</ul>
+</section>
+<section id="phase-3-demographics-page" class="level2">
+<h2 class="anchored" data-anchor-id="phase-3-demographics-page">Phase 3 — demographics page</h2>
+<ul class="task-list">
+<li><p><label><input type="checkbox" checked=""><code>r/acs_demographics.R</code> written and run 2026-10-28 (population + age/sex B01001, race/ethnicity B03002, household type B11001, income B19001/B19013/B25118; 3 windows, 25 geographies incl.&nbsp;pooled <code>bhc3</code>/<code>secondary4</code>/<code>rr17</code>). User confirmed validation passed.</label></p></li>
+<li><p><label><input type="checkbox" checked="">Build out <code>demographics.qmd</code> — 7 figures, 3 tables, takeaway H2s, computed-inline bullets, reliability + race-coding callouts. Rendered standalone 2026-10-28 and figures checked visually. All 7 <code>fig-</code> chunks have <code>fig-alt</code>. (Bullet figures are computed inline; the <code>fig-alt</code> text carries typed rounded numbers that will drift on a data refresh, same as <code>inventory.qmd</code>.)</label></p></li>
+<li><p><label><input type="checkbox" checked=""><code>r/pep_migration.R</code> + migration sections in <code>demographics.qmd</code> (added 2026-10-28 at the user’s request, not in the original plan). PEP components of change (natural, international, domestic migration) for the 17 localities, pooled core/ring/region, and Virginia, 2010–2019 and 2020–2025. Ran clean; validation passes, including a same-vintage match to the Census API for all 17 localities. 4 figures, 1 table, 1 callout, all <code>fig-alt</code> present; rendered and checked.</label></p></li>
+</ul>
+</section>
+<section id="phase-4-market-page" class="level2">
+<h2 class="anchored" data-anchor-id="phase-4-market-page">Phase 4 — market page</h2>
+<ul>
+<li><label><input type="checkbox" checked=""><code>acs_burden.R</code> reviewed 2026-10-28. <strong>Its output was not current — <code>data/acs_burden.rds</code> never existed.</strong> Fixed before first run: dropped the sibling-project tract tier and <code>baseline_2022</code> block, fixed stale <code>acs_income.R</code> refs, switched the collapsed-band MOE to quadrature (was <code>moe_sum(moe, estimate)</code> on an already-summed scalar), added pooled <code>bhc3</code>/<code>secondary4</code>/<code>rr17</code> rows, rewrote the validation block (25 geographies × 3 windows × 2 tenures × 4 categories; rr17 reconciles to its 17 members). User ran it; validation passed.</label></li>
+<li>[~] <code>r/bls_wage.R</code> written (BLS LAUS unemployment + CES average hourly earnings + CPI-U, Richmond MSA vs.&nbsp;<code>regions</code> metros) — <strong>not yet run.</strong> User: <code>renv::install("blscrapeR")</code> + <code>renv::snapshot()</code>, confirm <code>BLS_KEY</code> is in <code>.Renviron</code>, then <code>Rscript r/bls_wage.R</code> and paste back the validation output. Check that the three comparison metros’ CES wage series came back (a warning names any that didn’t).</li>
+<li><label><input type="checkbox">Add a <code>bls_cap()</code> caption helper to <code>_common.R</code> when the market page first charts <code>bls_wage.rds</code> (<code>oews_cap</code>/<code>cpi_cap</code> don’t fit — <code>cpi_cap</code> says “via FRED”).</label></li>
+<li>[~] <code>r/acs_market.R</code> written 2026-10-28 — B25003 tenure (not covered by <code>acs_tenure.R</code>, which is race-specific only), B25077 home value, B25064 rent; medians carry nominal + real columns. <strong>Not yet run — user:</strong> <code>Rscript r/acs_market.R</code>, paste back validation output.</li>
+<li>[~] <code>market.qmd</code> drafted 2026-10-28 (7 figures, 4 tables, callouts; replaces the old book’s split <code>ownership.qmd</code>/<code>rental.qmd</code>). Code and layout verified against a scratchpad <strong>mock</strong> <code>acs_market.rds</code> (real B25118 tenure counts, synthetic medians) — <strong>the real render is blocked on the user running <code>Rscript r/acs_market.R</code></strong> and pasting back validation output. After that: render <code>market.qmd</code> for real, re-read every figure, and revisit the three flagged items — the “Home values and rents climbed in every core locality” H2, the “Price-to-income ratios show where buying is hardest” H2, and the <code>fig-alt</code> text on <code>fig-value</code>/<code>fig-rent</code>/<code>fig-pti</code>/<code>fig-rent-share</code>, all written before the home-value and rent data existed.</li>
+</ul>
+</section>
+<section id="phase-5-interactive-maps" class="level2">
+<h2 class="anchored" data-anchor-id="phase-5-interactive-maps">Phase 5 — interactive maps</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">One <code>mapgl</code> choropleth per page (e.g.&nbsp;inventory: vacancy rate by locality; demographics: median household income; market: median rent or home value).</label></li>
+</ul>
+</section>
+<section id="phase-6-polish-publish" class="level2">
+<h2 class="anchored" data-anchor-id="phase-6-polish-publish">Phase 6 — polish &amp; publish</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"><code>data-notes.qmd</code> — public-facing methodology, derived from <code>METHODOLOGY.md</code>.</label></li>
+<li><label><input type="checkbox"><code>about.qmd</code> — real content (currently a one-line stub).</label></li>
+<li><label><input type="checkbox">Full <code>quarto render</code> completes with no errors.</label></li>
+<li><label><input type="checkbox">Every <code>#| label: fig-</code> chunk has a matching <code>#| fig-alt:</code> line. (<code>inventory.qmd</code> is done — 6 of 6.)</label></li>
+<li><label><input type="checkbox">GitHub Pages live from <code>docs/</code> on <code>main</code>.</label></li>
+</ul>
+</section>
+<section id="surfaced-during-phase-2-not-blocking" class="level2">
+<h2 class="anchored" data-anchor-id="surfaced-during-phase-2-not-blocking">Surfaced during Phase 2 — not blocking</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"><code>cache_table = TRUE</code> is deprecated in current tidycensus (one warning per <code>get_acs()</code> call, ignored). CLAUDE.md still prescribes it. Drop it project-wide in one pass — <code>acs_stock.R</code>, <code>acs_tenure.R</code>, <code>acs_burden.R</code>, and the CLAUDE.md line together — rather than piecemeal.</label></li>
+<li><label><input type="checkbox"><code>theme_rva()</code>‘s caption switched to <code>element_textbox_simple()</code> so long source lines wrap instead of clipping. The other pages’ charts haven’t been re-rendered against it yet; check them when Phases 3–4 land.</label></li>
+<li><label><input type="checkbox"><code>formattable::comma()</code>/<code>percent()</code> mask the <code>scales</code> versions (<code>_common.R</code> loads formattable last) and take <code>digits</code>, not <code>accuracy</code>. <code>inventory.qmd</code> works around it with local <code>n_fmt()</code>/<code>p_fmt()</code> wrappers — consider promoting those to <code>_common.R</code> before the next page repeats the workaround.</label></li>
+</ul>
+</section>
+<section id="future-not-in-scope-right-now" class="level2">
+<h2 class="anchored" data-anchor-id="future-not-in-scope-right-now">Future — not in scope right now</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">PUMS gap analysis, CHAS, MLS/CoStar, vulnerable-populations data. The PUMA geography groundwork (<code>puma_core3</code>/<code>puma_region</code>/<code>puma_locality</code>) already exists in <code>_common.R</code> if this ever gets picked up — see METHODOLOGY.md.</label></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>log – rva-sourcebook</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">rva-sourcebook</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./summary.html"> 
+<span class="menu-text">Summary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./inventory.html"> 
+<span class="menu-text">Inventory</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./demographics.html"> 
+<span class="menu-text">Demographics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./market.html"> 
+<span class="menu-text">Market</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data-notes.html"> 
+<span class="menu-text">Data Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#log.md-dev-log" id="toc-log.md-dev-log" class="nav-link active" data-scroll-target="#log.md-dev-log">LOG.md — dev log</a>
+  <ul class="collapse">
+  <li><a href="#rpep_migration.r-and-a-migration-section-on-the-demographics-page" id="toc-rpep_migration.r-and-a-migration-section-on-the-demographics-page" class="nav-link" data-scroll-target="#rpep_migration.r-and-a-migration-section-on-the-demographics-page">2026-10-28 — <code>r/pep_migration.R</code> and a migration section on the demographics page</a></li>
+  <li><a href="#phase-4-loop-iteration-1-market.qmd-drafted-render-blocked-on-acs_market.r" id="toc-phase-4-loop-iteration-1-market.qmd-drafted-render-blocked-on-acs_market.r" class="nav-link" data-scroll-target="#phase-4-loop-iteration-1-market.qmd-drafted-render-blocked-on-acs_market.r">2026-10-28 — Phase 4 loop, iteration 1: <code>market.qmd</code> drafted (render blocked on <code>acs_market.R</code>)</a></li>
+  <li><a href="#ralph-iteration-2-acs_market.r-written-demographics.qmd-built" id="toc-ralph-iteration-2-acs_market.r-written-demographics.qmd-built" class="nav-link" data-scroll-target="#ralph-iteration-2-acs_market.r-written-demographics.qmd-built">2026-10-28 — Ralph iteration 2: <code>acs_market.R</code> written, <code>demographics.qmd</code> built</a></li>
+  <li><a href="#ralph-iteration-1-acs_burden.r-review-acs_demographics.r-written" id="toc-ralph-iteration-1-acs_burden.r-review-acs_demographics.r-written" class="nav-link" data-scroll-target="#ralph-iteration-1-acs_burden.r-review-acs_demographics.r-written">2026-10-28 — Ralph iteration 1: <code>acs_burden.R</code> review, <code>acs_demographics.R</code> written</a></li>
+  <li><a href="#add-rbls_wage.r-unemployment-wage-growth" id="toc-add-rbls_wage.r-unemployment-wage-growth" class="nav-link" data-scroll-target="#add-rbls_wage.r-unemployment-wage-growth">2026-10-28 — Add <code>r/bls_wage.R</code> (unemployment + wage growth)</a></li>
+  <li><a href="#phase-1-closed-out-phase-2-complete-inventory-page-live" id="toc-phase-1-closed-out-phase-2-complete-inventory-page-live" class="nav-link" data-scroll-target="#phase-1-closed-out-phase-2-complete-inventory-page-live">2026-09-16 — Phase 1 closed out; Phase 2 complete (inventory page live)</a></li>
+  <li><a href="#fix-racs_tenure.r-runtime-error-leftover-pha-reference" id="toc-fix-racs_tenure.r-runtime-error-leftover-pha-reference" class="nav-link" data-scroll-target="#fix-racs_tenure.r-runtime-error-leftover-pha-reference">2026-09-17 — Fix <code>r/acs_tenure.R</code> runtime error: leftover <code>pha</code> reference</a></li>
+  <li><a href="#phase-1-renv-pinned-.rprofile-added" id="toc-phase-1-renv-pinned-.rprofile-added" class="nav-link" data-scroll-target="#phase-1-renv-pinned-.rprofile-added">2026-09-16 — Phase 1: renv pinned, <code>.Rprofile</code> added</a></li>
+  <li><a href="#finish-session-0-cleanup-remove-leftover-rva-sourcebook-folder" id="toc-finish-session-0-cleanup-remove-leftover-rva-sourcebook-folder" class="nav-link" data-scroll-target="#finish-session-0-cleanup-remove-leftover-rva-sourcebook-folder">2026-09-16 — Finish Session 0 cleanup: remove leftover <code>rva-sourcebook/</code> folder</a></li>
+  <li><a href="#phase-1-foundations-palette-theme-map-basemap-geo-script" id="toc-phase-1-foundations-palette-theme-map-basemap-geo-script" class="nav-link" data-scroll-target="#phase-1-foundations-palette-theme-map-basemap-geo-script">2026-09-15 — Phase 1 foundations: palette, theme, map basemap, geo script</a></li>
+  <li><a href="#repo-cleanup-and-re-plan" id="toc-repo-cleanup-and-re-plan" class="nav-link" data-scroll-target="#repo-cleanup-and-re-plan">2026-09-15 — Repo cleanup and re-plan</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="log.md-dev-log" class="level1">
+<h1>LOG.md — dev log</h1>
+<p>Append-only. Newest entry first.</p>
+<hr>
+<section id="rpep_migration.r-and-a-migration-section-on-the-demographics-page" class="level2">
+<h2 class="anchored" data-anchor-id="rpep_migration.r-and-a-migration-section-on-the-demographics-page">2026-10-28 — <code>r/pep_migration.R</code> and a migration section on the demographics page</h2>
+<p><strong>What changed:</strong> Added <code>r/pep_migration.R</code> (user request): PEP births, deaths, natural change, international and domestic migration for the 17 <code>rr</code> localities, pooled <code>bhc3</code>/<code>secondary4</code>/<code>rr17</code>, and Virginia. Source is the Census <code>co-est2019-alldata.csv</code> (2010–2019) and <code>co-est2025-alldata.csv</code> (2020–2025) files, cached under <code>data/cache/pep/</code>. Outputs <code>data/pep_migration.rds</code> (annual + era frames) and two CSVs. Added three H2 sections to <code>demographics.qmd</code> after the population-growth section (4 figures, 1 table, a callout), plus a migration bullet in the closing summary. Documented the vintage and partial-year rules in METHODOLOGY.md.</p>
+<p><strong>Design decisions:</strong> The files are used instead of <code>tidycensus::get_estimates()</code> because the API returns only a vintage’s latest year (probed: vintage 2025 → <code>year</code> 2025 only), so a series from it would mix revised and unrevised vintages. The two vintages don’t join — the 2019 → 2020 regional step (1,291,900 → 1,316,683) spans the 2020 Census rebase — so annual change is never computed across it and the page compares eras. The 2010 and 2020 components are April–June only (Richmond city births: 765 in 2020 vs.&nbsp;2,872 in 2021) and are NA. Ran the script myself (two cached CSVs plus one tiny API call, ~7 s) since it isn’t a long pull.</p>
+<p><strong>Data surprises:</strong></p>
+<ul>
+<li><strong>Natural increase collapsed; migration didn’t.</strong> Region: natural change 38,050 over 2011–2019 (4,228/yr) vs.&nbsp;7,254 over 2021–2025 (1,451/yr); net migration 65,684 (7,298/yr) vs.&nbsp;65,176 (13,035/yr). Migration share of growth 63% → 90%. 10 of 17 localities had more deaths than births in 2020–2025.</li>
+<li><strong>Region outgrew Virginia in 13 of 14 years</strong> (all but 2011). 2024 was the peak at +1.47% (19,910 people), driven by a record 10,787 international migrants.</li>
+<li><strong>Richmond city flipped.</strong> Domestic net migration +5.3 → −1.1 per 1,000/yr; international 2.8 → 6.8. Henrico’s domestic is negative in both eras (−0.5, −3.1). Chesterfield and the expansion ring are domestic-driven; the ring’s net rate is 18.8/1,000/yr with negative natural change (migration share 106%).</li>
+<li><strong>14 of 17 localities</strong> had a higher net migration rate in the 2020s; Henrico, Prince George, and Richmond city did not. New Kent (36.6) and Goochland (35.2) lead.</li>
+<li><strong>Validation:</strong> all component identities hold exactly in both files (Δpop = natural + net migration + residual; net = international + domestic); <code>rr17</code> reconciles to its 17 members in all 16 years; 2025 population and net migration match the Census API (Vintage 2025) for all 17 localities.</li>
+<li><strong>Bugs caught:</strong> <code>p_fmt(x, 0)</code> — its second argument is <em>accuracy</em>, not digits — rendered a title as “Migration supplied NA of growth” (fixed to <code>1</code>); <code>formattable::percent()</code> can’t mix with a character in <code>if_else()</code>. The shell also choked on a long heredoc, so the page patch ran from a script file.</li>
+</ul>
+<p><strong>Left open:</strong> <code>acs_market.rds</code> now exists (the user rendered all pages), so the Phase 4 loop’s real <code>market.qmd</code> verification can proceed. <code>bls_wage.R</code> TODO items (blscrapeR install) untouched. Not committed.</p>
+<hr>
+</section>
+<section id="phase-4-loop-iteration-1-market.qmd-drafted-render-blocked-on-acs_market.r" class="level2">
+<h2 class="anchored" data-anchor-id="phase-4-loop-iteration-1-market.qmd-drafted-render-blocked-on-acs_market.r">2026-10-28 — Phase 4 loop, iteration 1: <code>market.qmd</code> drafted (render blocked on <code>acs_market.R</code>)</h2>
+<p><strong>What changed:</strong> Replaced the <code>market.qmd</code> stub with a full page: ownership by geography and window (<code>fig-ownership</code>, <code>tbl-tenure</code>), real-dollar median home value and rent (<code>fig-value</code>, <code>fig-rent</code>, <code>tbl-medians</code>), price-to-income and rent-to-income ratios (<code>fig-pti</code>, <code>fig-rent-share</code>), and cost burden by tenure (<code>fig-burden-trend</code>, <code>tbl-burden</code>, <code>fig-burden-locality</code>), plus reliability, ratio-caveat, burden-definition, and summary callouts. Titles and bullets for the home-value, rent, and ratio sections are built from computed values (<code>chg_phrase()</code> picks “rose”/“fell” from the data), so they can’t contradict the numbers while the real data is unseen.</p>
+<p><strong>Verification:</strong> <code>data/acs_market.rds</code> does not exist yet, so the real render did not run. The page code was exercised end to end against a <strong>mock</strong> <code>acs_market.rds</code> kept in the scratchpad only (real B25118 owner/renter counts; synthetic medians = multiples of median income), and every figure was read for clipping. That caught: <code>!!!</code> used outside a tidy-eval context in <code>rel_worst()</code>; a stray double comma and clipped subtitle in the ratio charts; and three bullets I had written from memory that the data contradicted (Richmond city’s renter-household growth is not the largest — Chesterfield’s +21.0% exceeds its +19.7% — and “only the expansion ring’s renter burden fell” is wrong, since Richmond city’s fell 4.0 points).</p>
+<p><strong>Data surprises (from the validated frames, not the mock):</strong> Ownership rate region-wide 66.2% → 67.0%; Richmond city 42.7% → 43.5%, the only core locality where renters outnumber owners (58,914 vs 45,407). Renter 30%+ burden region-wide 51.4% → 50.0% → 51.2%; owner burden 26.1% → 21.1% → 20.0%. Richmond city’s renter burden eased 56.0% → 52.0% while Henrico (48.4% → 51.6%) and Chesterfield (48.7% → 52.2%) rose, so the three are now nearly identical. Richmond MSA renter burden (51.2%) sits between Virginia (48.5%) and Hampton Roads (54.5%). In 2024, 9,537 renter and 2,706 owner households region-wide have no computed burden.</p>
+<p><strong>Left open:</strong> User runs <code>Rscript r/acs_market.R</code> and pastes back validation output. Then: real <code>quarto render market.qmd</code>, re-read every figure, confirm or rewrite the two provisional H2s and the <code>fig-alt</code> text on the four home-value/rent/ratio figures. Not committed.</p>
+<hr>
+</section>
+<section id="ralph-iteration-2-acs_market.r-written-demographics.qmd-built" class="level2">
+<h2 class="anchored" data-anchor-id="ralph-iteration-2-acs_market.r-written-demographics.qmd-built">2026-10-28 — Ralph iteration 2: <code>acs_market.R</code> written, <code>demographics.qmd</code> built</h2>
+<p><strong>What changed:</strong> User confirmed <code>acs_burden.R</code> and <code>acs_demographics.R</code> validation passed. Wrote <code>r/acs_market.R</code> (B25003 tenure with pooled <code>bhc3</code>/<code>secondary4</code>/<code>rr17</code>; B25077 median home value and B25064 median gross rent, each with nominal and real-dollar columns; validation gates on owner + renter = total, <code>rr17</code> reconciling to its members, and B25003 occupied units = B19001 households from <code>acs_demographics.rds</code>). Built out <code>demographics.qmd</code> (7 figures, 3 tables) and rendered it standalone.</p>
+<p><strong>Data surprises:</strong></p>
+<ul>
+<li><strong>Population growth, 2014 → 2024 windows:</strong> region +10.7% (+129k), Chesterfield +16.5%, expansion ring +15.5%, Richmond city +8.7%, Henrico +6.6%. New Kent was the fastest locality (+30.8%); Sussex (-9.7%), Charles City (-7.4%), and King and Queen (-5.3%) lost population.</li>
+<li><strong>Richmond city’s White non-Hispanic share rose</strong> (39.7% → 41.4%) while its Black share fell (48.6% → 40.6%); the region’s White share fell 58.7% → 54.7%. The “Multiracial” share roughly doubled region-wide, which is partly the 2020 Census race-coding revision rather than demographic change — the page carries a callout.</li>
+<li><strong>Real median household income</strong> (2024 dollars, deflated by the CPI in <code>bls_wage.rds</code>): Richmond MSA $79,075 → $86,679 (+9.6%), Richmond city $54,766 → $64,587 (+17.9%), Henrico +9.1%, Chesterfield +6.1%. Charlottesville MSA (+19.3%) outpaced everything.</li>
+<li><strong>Renter households under $50k:</strong> 45.9% region-wide vs.&nbsp;18.9% of owners.</li>
+<li><strong>Cost burden (acs_burden.rds, logged):</strong> 30%+ burden among renters held between 50.0% and 51.4% region-wide across all three windows; among owners it fell from 26.1% to 20.0%.</li>
+<li><strong>Rendering bugs the exit code didn’t show:</strong> <code>theme_rva()</code>’s <code>strip.text</code> is a ggtext element, so a plain <code>element_text()</code> override fails to merge (needs <code>ggtext::element_markdown()</code>); titles over ~65 characters clip on the right because <code>element_markdown()</code> doesn’t wrap; a 6-item legend in one row, and 6 long x-axis labels, both overran. Found by reading the PNGs.</li>
+</ul>
+<p><strong>Left open:</strong> User runs <code>Rscript r/acs_market.R</code> and pastes back validation output. <code>market.qmd</code> is next; it needs <code>acs_market.rds</code>. Not committed.</p>
+<hr>
+</section>
+<section id="ralph-iteration-1-acs_burden.r-review-acs_demographics.r-written" class="level2">
+<h2 class="anchored" data-anchor-id="ralph-iteration-1-acs_burden.r-review-acs_demographics.r-written">2026-10-28 — Ralph iteration 1: <code>acs_burden.R</code> review, <code>acs_demographics.R</code> written</h2>
+<p><strong>What changed:</strong> (1) Reviewed <code>r/acs_burden.R</code> for Phase 4. <code>data/acs_burden.rds</code> never existed, so the script had never run in this repo. It carried sibling-project debris: a tract tier for the “BHC service area” (long pull, tract geoids unstable across the 2010/2020 boundary change, no page needs it), a reference to a nonexistent <code>r/acs_income.R</code>, and a dead <code>baseline_2022.rds</code> block. Removed all three. Also fixed a latent bug: <code>summarise(estimate = sum(estimate), moe = moe_sum(moe, estimate))</code> fed <code>moe_sum</code> the already-summed scalar; now <code>sqrt(sum(moe^2))</code>, matching <code>acs_stock.R</code>. Added pooled <code>bhc3</code>/<code>secondary4</code>/<code>rr17</code> rows and rewrote validation (category sums vs.&nbsp;published <code>_001</code> totals; <code>rr17</code> reconciles to its 17 members; 25 × 3 × 2 × 4 rows). (2) Wrote <code>r/acs_demographics.R</code>: B01001, B03002, B11001, B19001, B19013, B25118 across 2014/2019/2024, 5 geography grains plus 3 pooled rows, 7 frames. Validation gates on same-vintage identities (collapsed categories = published totals; B01001 = B03002 population; B11001 = B19001 = B25118 households).</p>
+<p><strong>Data surprises:</strong> None — neither script has run. Design calls to review: income bands use fixed <em>nominal</em> thresholds (noted in the header — a rising top-band share partly reflects inflation); median household income can’t be pooled, so it carries only the 22 named geographies; its real-dollar columns read national CPI-U from <code>data/bls_wage.rds</code> (exists from the BLS run) and go NA with a warning if absent rather than hardcoding a deflator. <code>acs_tenure.R</code> covers tenure by race only (B25003A–I), so total tenure (B25003) goes into the upcoming <code>acs_market.R</code>.</p>
+<p><strong>Left open:</strong> User runs <code>Rscript r/acs_burden.R</code> and <code>Rscript r/acs_demographics.R</code> and pastes back validation output. Still to do: <code>r/acs_market.R</code> (B25077, B25064, B25003), <code>demographics.qmd</code>, <code>market.qmd</code>. Not committed.</p>
+<hr>
+</section>
+<section id="add-rbls_wage.r-unemployment-wage-growth" class="level2">
+<h2 class="anchored" data-anchor-id="add-rbls_wage.r-unemployment-wage-growth">2026-10-28 — Add <code>r/bls_wage.R</code> (unemployment + wage growth)</h2>
+<p><strong>What changed:</strong> New <code>r/bls_wage.R</code>, pulling from the BLS API through <code>blscrapeR</code>: LAUS unemployment rate and labor force, CES average hourly earnings (total private), and national CPI-U, for the Richmond MSA, the three other <code>regions</code> metros, and Virginia (unemployment only). Series IDs are built from <code>regions</code>/<code>virginia</code> rather than typed. Outputs <code>data/bls_wage.rds</code> (monthly, annual, wages frames), <code>data-out/bls_wage.csv</code> (annual) and <code>data-out/bls_wage_monthly.csv</code>. The wages frame carries YoY and cumulative-index growth, nominal and real (deflated to the latest year with complete Richmond wages and CPI). Key is read from <code>BLS_KEY</code> with the <code>.Renviron</code> fallback.</p>
+<p><strong>Data surprises:</strong> None yet — <strong>the script has not been run.</strong> Decisions to review: (1) wage measure is CES metro average hourly earnings, not QCEW weekly wages or OEWS — QCEW was left out per the existing <code>oews_cap</code> note and the data-fetch rule; (2) real wages use national CPI-U because no Richmond-area CPI exists, so “real” means relative to national prices; (3) MSA-level LAUS is NSA only, so Virginia is pulled NSA too; (4) partial years are dropped from annual/wage frames; (5) the DC-MSA and other comparison CES series IDs follow BLS’s documented pattern but are unverified — a missing one warns and drops, Richmond missing fails validation.</p>
+<p><strong>Left open:</strong> <code>blscrapeR</code> is not in <code>renv.lock</code> (user: <code>renv::install("blscrapeR")</code> + <code>renv::snapshot()</code>). Run <code>Rscript r/bls_wage.R</code> and log the benchmark/validation output here. No page consumes the data yet; a <code>bls_cap()</code> helper is needed in <code>_common.R</code> first. Not committed.</p>
+<hr>
+</section>
+<section id="phase-1-closed-out-phase-2-complete-inventory-page-live" class="level2">
+<h2 class="anchored" data-anchor-id="phase-1-closed-out-phase-2-complete-inventory-page-live">2026-09-16 — Phase 1 closed out; Phase 2 complete (inventory page live)</h2>
+<p><strong>What changed:</strong> Closed the three open Phase 1 lines and built all of Phase 2.</p>
+<p><em>Phase 1.</em> <code>data/geo.rds</code> already existed from a user run and validates clean — <code>sf</code>, 17 rows, all <code>rr</code> GEOIDs, EPSG:4326, zero empty geometries — so the tigris pull was not re-run. <code>CENSUS_API_KEY</code> visibility confirmed TRUE via the <code>.Renviron</code> fallback (existence check only; the value was never printed). The <code>mapgl</code> POC map is marked <code>[-]</code>: <code>mapgl</code> is absent from <code>renv.lock</code> and installing it is a user-run job.</p>
+<p><em>Phase 2.</em> Added <code>r/acs_stock.R</code> (B25001, B25002, B25004, B25024, B25034, B25035 across the 2014/2019/2024 non-overlapping ACS windows; 17 <code>rr</code> localities + Ashland + 4 comparison metros + Virginia, plus pooled <code>bhc3</code>/<code>secondary4</code> rows) and <code>r/bps_permits.R</code> (Census BPS county annual files, 2000–2025). Both ran clean and passed validation on the first attempt. Replaced the <code>inventory.qmd</code> stub with a real page: 6 figures, 3 tables, takeaway H2s, 2–4 bullets per section, a reliability callout, and a closing summary. Renders standalone in ~10 seconds.</p>
+<p><strong>Data surprises:</strong></p>
+<ul>
+<li><strong>B25036 is not published in the 2014 window.</strong> The TODO line asked for B25034–36; including B25036 would have broken the three-window trend every other frame carries, so it is out of scope for v1 and recorded as such in METHODOLOGY.md. B25035 is a median and cannot be summed, so it is pulled but carries no pooled rows.</li>
+<li><strong>BPS file naming is a trap.</strong> <code>co&lt;YY&gt;&lt;MM&gt;y.txt</code> is year-to-date-through-month and <code>...c.txt</code> is the monthly current file; only <code>co&lt;YYYY&gt;a.txt</code> is the true annual file. Confirmed the layout against both the 2000 and 2025 files before writing the parser. The files also carry each size class twice — a published imputation-inclusive figure and a “rep” reported-only duplicate. This script reads the former.</li>
+<li><strong>Both cross-table checks reconciled exactly.</strong> B25024 and B25034 each sum to B25001 at 0.000% max difference across every geography-year, and B25002’s Occupied + Vacant equals its own Total everywhere. Tighter than the 0.5% tolerance allowed for.</li>
+<li><strong>The regional permit story is compositional, not volumetric.</strong> Permitted units ran 6,110 (2000) → 8,912 (2002) → a 2,520 trough in 2011 → a 10,414 peak in 2022 → 9,091 in 2025. Multifamily went from 3.6% of permitted units in 2000 to 56.8% in 2022, first exceeding single-family that year. Richmond city is now at 86.3% multifamily while Chesterfield fell back to 28.2% — the three core localities diverged sharply after 2021.</li>
+<li><strong>Housing-unit growth, 2014 → 2024</strong> (logged, not gated): Richmond core +13.3% (357,302 → 404,918), Chesterfield +17.1%, Richmond city +15.3%, Henrico +8.3%, expansion ring +18.4%, Ashland +14.3%.</li>
+<li><strong><code>theme_rva()</code> was clipping every caption.</strong> <code>element_markdown()</code> does not wrap, so the ~95-character ACS source line ran off the right edge of every chart — a latent bug in the shared theme, not this page. Switched <code>plot.caption</code> to <code>element_textbox_simple()</code> with <code>width = unit(1, "npc")</code>. Found by reading the rendered PNGs; the render exit code was clean throughout.</li>
+<li><strong><code>formattable</code> masks <code>scales</code>.</strong> <code>_common.R</code> loads formattable after scales, so <code>comma()</code>/<code>percent()</code> resolve to formattable’s, which take <code>digits</code> rather than <code>accuracy</code> — this killed two renders outright and silently produced “357,302.00” unit counts in a table. <code>inventory.qmd</code> uses local <code>n_fmt()</code>/<code>p_fmt()</code> wrappers for inline prose and passes <code>digits = 0</code> to the <code>kbl()</code> cells.</li>
+<li><strong>12 of 30 Ashland structure-type and year-built cells fall below CV-30.</strong> The page computes that count rather than hardcoding it, and suppresses Low cells while marking Medium ones.</li>
+</ul>
+<p><strong>Left open:</strong> <code>mapgl</code> install (blocks the Phase 1 POC map and all of Phase 5). Three non-blocking items surfaced and are now in TODO.md: retire the deprecated <code>cache_table = TRUE</code> project-wide in one pass, re-check the other pages’ captions against the new theme when Phases 3–4 land, and consider promoting <code>n_fmt()</code>/<code>p_fmt()</code> into <code>_common.R</code> before another page repeats the workaround. Phases 3–6 are untouched.</p>
+<hr>
+</section>
+<section id="fix-racs_tenure.r-runtime-error-leftover-pha-reference" class="level2">
+<h2 class="anchored" data-anchor-id="fix-racs_tenure.r-runtime-error-leftover-pha-reference">2026-09-17 — Fix <code>r/acs_tenure.R</code> runtime error: leftover <code>pha</code> reference</h2>
+<p><strong>What changed:</strong> <code>Rscript r/acs_tenure.R</code> failed with <code>object 'pha' not found</code> (two <code>filter(geoid %in% pha, ...)</code> calls, lines 521 and 585). <code>pha</code> is a geography constant from the sibling project this script was copied from; it was never defined in this project’s <code>_common.R</code> and never got swapped for the equivalent <code>bhc</code> (3-locality core) during the earlier cleanup pass. Replaced both occurrences with <code>bhc</code>, which matches the surrounding “3 primary localities” comments and the <code>region3</code> pooling used elsewhere in the same script.</p>
+<p><strong>Data surprises:</strong> The script’s own header comment (lines 18–21) still describes “the 8 <code>rr</code> localities” and “the 4 primary localities” / a <code>region4</code> pooling — none of which match this project’s real geography (<code>rr</code> = 17, <code>bhc</code> = 3, code pools into <code>region3</code>). Didn’t rewrite it as part of this fix (out of scope for the reported error), but it’s the same sibling-project debris class flagged in METHODOLOGY.md/PLAN.md — flagging here rather than trusting it. Added a TODO line.</p>
+<p><strong>Left open:</strong> Re-run <code>Rscript r/acs_tenure.R</code> end to end to confirm the rest of the script is clean now that it gets past line 521/585. Consider a pass to reconcile every <code>r/*.R</code> header comment against <code>_common.R</code>’s actual constants while this class of bug is fresh.</p>
+<hr>
+</section>
+<section id="phase-1-renv-pinned-.rprofile-added" class="level2">
+<h2 class="anchored" data-anchor-id="phase-1-renv-pinned-.rprofile-added">2026-09-16 — Phase 1: renv pinned, <code>.Rprofile</code> added</h2>
+<p><strong>What changed:</strong> Ran <code>renv::init()</code> + <code>renv::snapshot()</code> (user-run, per CLAUDE.md — package installs are a long job) and committed the result: <code>renv.lock</code> (168 packages), <code>renv/.gitignore</code>, <code>renv/activate.R</code>, <code>renv/settings.json</code>, and a new <code>.Rprofile</code> that sources <code>renv/activate.R</code>. <code>renv/library/</code> stays untracked via renv’s own <code>.gitignore</code>. R 4.6.1. Pinned the packages CLAUDE.md’s Phase 1 line calls for — tidyverse, tidycensus, tigris, sf, kableExtra, ggtext, formattable, janitor — confirmed present in the lockfile. <strong><code>mapgl</code> is not in <code>renv.lock</code></strong> — it never got installed in this pass, so the Phase 1 POC map and any Phase 2/5 interactive map work stay blocked until a follow-up <code>renv::install("mapgl")</code> + <code>renv::snapshot()</code>.</p>
+<p><strong>Data surprises:</strong> None — this is package pinning, not a data pull.</p>
+<p><strong>Left open:</strong> <code>mapgl</code> still needs installing (blocks TODO’s POC-map line). <code>Rscript r/geo.R</code> and the <code>CENSUS_API_KEY</code> visibility check are still open — both are next per TODO.md’s Phase 1 list.</p>
+<hr>
+</section>
+<section id="finish-session-0-cleanup-remove-leftover-rva-sourcebook-folder" class="level2">
+<h2 class="anchored" data-anchor-id="finish-session-0-cleanup-remove-leftover-rva-sourcebook-folder">2026-09-16 — Finish Session 0 cleanup: remove leftover <code>rva-sourcebook/</code> folder</h2>
+<p><strong>What changed:</strong> The 2026-09-15 cleanup entry claimed the nested <code>rva-sourcebook/</code> subfolder was removed, but it wasn’t — it still held a <code>.quarto/</code> build cache and a live <code>.Renviron</code>. Deleted it for real. Also fixed <code>.gitignore</code>: the <code>.quarto/</code> rule was anchored to the repo root (<code>/.quarto/</code>), so it never covered that nested copy — a real gap, since a stray <code>git add -A</code> could have staged cache files or (worse) an <code>.Renviron</code> sitting somewhere the anchored rule didn’t reach. Unanchored the rule so it covers <code>.quarto/</code> at any depth. Committed the Session 0 cleanup, which had been sitting unstaged.</p>
+<p><strong>Data surprises:</strong> None — repo hygiene only.</p>
+<p><strong>Left open:</strong> Phase 1 still needs <code>renv::init()</code>/<code>renv::snapshot()</code>, <code>Rscript r/geo.R</code>, and a <code>CENSUS_API_KEY</code> visibility check — all user-run long jobs per CLAUDE.md.</p>
+<hr>
+</section>
+<section id="phase-1-foundations-palette-theme-map-basemap-geo-script" class="level2">
+<h2 class="anchored" data-anchor-id="phase-1-foundations-palette-theme-map-basemap-geo-script">2026-09-15 — Phase 1 foundations: palette, theme, map basemap, geo script</h2>
+<p><strong>What changed:</strong> Defined the site’s palette and theme in <code>_common.R</code> — <code>rva_pal</code> (8-hue categorical, fixed order), <code>rva_seq</code> (sequential blue ramp for choropleths/magnitude), <code>rva_ink</code> (chart chrome tokens), and <code>theme_rva()</code> (ggplot2 theme, <code>legend.position = "none"</code> by default per the bold-subtitle-span convention). Values are the dataviz skill’s validated reference palette (CVD-safe adjacent pairs), not hand-picked. Chose <code>rva_map_style</code> — Carto’s free Positron MapLibre style — as the <code>mapgl</code> basemap, avoiding a Mapbox token. Wrote <code>r/geo.R</code>: pulls cartographic-boundary (500k) county/independent-city geometry for the 17-locality <code>rr</code> region via <code>tigris::counties()</code>, transforms to EPSG:4326, writes <code>data/geo.rds</code> + <code>data-out/geo.csv</code> (attributes only — CSV can’t hold geometry sensibly).</p>
+<p><strong>Data surprises:</strong> None yet — <code>r/geo.R</code> hasn’t been run. tigris pulls are a user-run long job per CLAUDE.md.</p>
+<p><strong>Left open:</strong> User needs to (1) run <code>renv::init()</code>/<code>renv::snapshot()</code> to pin the package set (tidyverse/tidycensus/tigris/sf/mapgl/kableExtra/ggtext/formattable/janitor), (2) run <code>Rscript r/geo.R</code> and confirm the validation block passes, (3) confirm <code>CENSUS_API_KEY</code> is visible. Once <code>mapgl</code> is installed, build one proof-of-concept map before wiring real data into Phase 2.</p>
+<hr>
+</section>
+<section id="repo-cleanup-and-re-plan" class="level2">
+<h2 class="anchored" data-anchor-id="repo-cleanup-and-re-plan">2026-09-15 — Repo cleanup and re-plan</h2>
+<p><strong>What changed:</strong> The repo was in a confused, mid-restructure state — <code>CLAUDE.md</code> and <code>TODO.md</code> had been copy-pasted from an unrelated sibling engagement (a much larger Richmond-nonprofit report with PUMS/CHAS/MLS pipelines that don’t exist here), <code>PLAN.md</code> was for a wholly different Fauquier County study, and <code>_quarto.yml</code>/<code>index.qmd</code>/<code>about.qmd</code> were generic un-customized <code>quarto create</code> scaffold. <code>_common.R</code> and <code>r/acs_tenure.R</code>/<code>r/acs_burden.R</code> were confirmed real and Richmond-specific, and kept as-is.</p>
+<p>Rewrote <code>PLAN.md</code>, <code>CLAUDE.md</code>, and <code>TODO.md</code> to match this project’s actual scope (personal/portfolio site, inventory/demographics/market pages, public data only, Quarto <strong>website</strong> not book, <code>mapgl</code> for interactive maps). Added <code>README.md</code> and <code>METHODOLOGY.md</code>, both previously referenced but never written. Reconciled <code>_quarto.yml</code> (website type, real navbar, <code>output-dir: docs</code>, <code>freeze: auto</code>) and gave every page (<code>index.qmd</code>, <code>about.qmd</code>, <code>inventory.qmd</code>, <code>demographics.qmd</code>, new <code>market.qmd</code>, new <code>data-notes.qmd</code>) enough stub content to render cleanly. Removed the empty nested <code>rva-sourcebook/</code> subfolder and stale scaffold files (<code>rva-sourcebook.qmd</code>, <code>app.R</code>, <code>_site/</code>).</p>
+<p><strong>Data surprises:</strong> None — no data scripts ran this session, this was pure repo hygiene.</p>
+<p><strong>Left open:</strong> Phase 1 (renv setup, palette/theme, <code>r/geo.R</code>, mapgl basemap choice) is next. No page has real chart/table content yet. See TODO.md.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
